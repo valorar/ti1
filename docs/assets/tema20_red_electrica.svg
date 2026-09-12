@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img" aria-labelledby="t20_title t20_desc">
+<title id="t20_title">De la central al enchufe: transporte y distribución de la energía eléctrica</title>
+<desc id="t20_desc">La central genera a unos 15 kilovoltios. Un transformador elevador sube la tensión a 400 kilovoltios para el transporte por la red de alta tensión. En una subestación se reduce a 20 kilovoltios para la distribución, y un centro de transformación de barrio la baja a 230 o 400 voltios para el consumo. Se eleva la tensión porque, para la misma potencia, más tensión significa menos corriente, y la pérdida por efecto Joule crece con el cuadrado de la corriente.</desc>
+<defs><marker id="t20_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker></defs>
+<rect width="900" height="320" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">De la central al enchufe</text>
+
+<g stroke-width="2.5">
+<rect x="30" y="105" width="140" height="76" rx="10" fill="#dff3ef" stroke="#2b8c7f"/>
+<rect x="190" y="105" width="140" height="76" rx="10" fill="#fff4d9" stroke="#c6922d"/>
+<rect x="350" y="105" width="140" height="76" rx="10" fill="#e7f3f6" stroke="#0b6680"/>
+<rect x="510" y="105" width="140" height="76" rx="10" fill="#fff4d9" stroke="#c6922d"/>
+<rect x="670" y="105" width="140" height="76" rx="10" fill="#fff4d9" stroke="#c6922d"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="13" text-anchor="middle" fill="#17262d">
+<text x="100" y="132" font-weight="700" fill="#245c49">Central</text><text x="100" y="150">generación</text><text x="100" y="168">15 kV</text>
+<text x="260" y="132" font-weight="700" fill="#705015">Transformador</text><text x="260" y="150" fill="#705015">elevador</text><text x="260" y="168" font-weight="700">→ 400 kV</text>
+<text x="420" y="132" font-weight="700" fill="#164d5f">Red de</text><text x="420" y="150" fill="#164d5f">transporte</text><text x="420" y="168">400 kV</text>
+<text x="580" y="132" font-weight="700" fill="#705015">Subestación</text><text x="580" y="150" fill="#705015">distribución</text><text x="580" y="168" font-weight="700">→ 20 kV</text>
+<text x="740" y="132" font-weight="700" fill="#705015">Centro de</text><text x="740" y="150" fill="#705015">transformación</text><text x="740" y="168" font-weight="700">→ 230/400 V</text>
+</g>
+<g fill="none" stroke="#1a6b7a" stroke-width="3" marker-end="url(#t20_a)">
+<path d="M170 143 H184"/><path d="M330 143 H344"/><path d="M490 143 H504"/><path d="M650 143 H664"/><path d="M810 143 H866"/>
+</g>
+<text x="848" y="180" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">vivienda</text>
+
+<rect x="30" y="212" width="780" height="34" rx="8" fill="#fff0ec" stroke="#c85c40" stroke-width="2"/>
+<text x="420" y="234" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#8f3a24">¿Por qué elevar la tensión? Porque la pérdida en la línea es P = I² · R</text>
+<text x="30" y="272" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Para la misma potencia transportada, multiplicar la tensión por 25 divide la corriente por 25… y la pérdida por 625.</text>
+<text x="30" y="292" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Esa es la única razón de que existan las líneas de alta tensión, y la razón de que la red use corriente alterna: se transforma con facilidad.</text>
+</svg>

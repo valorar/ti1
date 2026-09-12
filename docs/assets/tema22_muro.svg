@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img" aria-labelledby="t22_title t22_desc">
+<title id="t22_title">Sección de un muro con aislamiento y un puente térmico</title>
+<desc id="t22_desc">Sección de un muro exterior con cuatro capas: revoco exterior, aislamiento, ladrillo y enlucido interior. El forjado interrumpe la capa de aislamiento, y por esa franja el calor escapa mucho más deprisa: es un puente térmico. Las flechas finas representan el flujo de calor a través de la zona aislada y la flecha gruesa el flujo por el puente. A la derecha, la fórmula del flujo de calor y valores típicos de transmitancia.</desc>
+<defs><marker id="t22_a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#c85c40"/></marker></defs>
+<rect width="900" height="380" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Lo que se escapa por donde falta el aislamiento</text>
+
+<rect x="40" y="60" width="160" height="260" fill="#e7f3f6"/>
+<rect x="400" y="60" width="60" height="260" fill="#fff4d9"/>
+<rect x="200" y="60" width="25" height="260" fill="#d9d3c6"/>
+<rect x="225" y="60" width="70" height="260" fill="#fff1d5"/>
+<rect x="295" y="60" width="85" height="260" fill="#e8cfc4"/>
+<rect x="380" y="60" width="20" height="260" fill="#efece4"/>
+<rect x="225" y="168" width="155" height="44" fill="#c9ccce"/>
+<g stroke="#58707a" stroke-width="2" fill="none">
+<rect x="200" y="60" width="200" height="260"/><path d="M225 60 V320"/><path d="M295 60 V320"/><path d="M380 60 V320"/><path d="M225 168 H380"/><path d="M225 212 H380"/>
+</g>
+
+<g stroke="#c85c40" stroke-width="2" marker-end="url(#t22_a)">
+<path d="M390 110 H150"/><path d="M390 280 H150"/>
+</g>
+<path d="M390 190 H120" stroke="#c85c40" stroke-width="7" marker-end="url(#t22_a)"/>
+
+<g font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">
+<text x="50" y="82" font-weight="700" fill="#164d5f">exterior 2 °C</text>
+<text x="450" y="82" text-anchor="end" font-weight="700" fill="#705015">interior 21 °C</text>
+<text x="212" y="356" text-anchor="middle" font-size="11">revoco</text>
+<text x="260" y="340" text-anchor="middle" font-size="11" font-weight="700" fill="#8a6317">aislamiento</text>
+<text x="337" y="356" text-anchor="middle" font-size="11">ladrillo</text>
+<text x="392" y="340" text-anchor="middle" font-size="11">enlucido</text>
+<text x="190" y="170" text-anchor="end" font-weight="700" fill="#8f3a24">puente térmico</text>
+<text x="50" y="222" text-anchor="start" font-size="11.5" fill="#8f3a24">el forjado corta</text>
+<text x="50" y="238" text-anchor="start" font-size="11.5" fill="#8f3a24">el aislamiento</text>
+</g>
+
+<path d="M480 60 V350" stroke="#d8e0df" stroke-width="2"/>
+<text x="510" y="88" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#18384a">El calor que se pierde</text>
+<text x="510" y="122" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#152a42">Q = U · S · ΔT</text>
+<g font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">
+<text x="510" y="146">U: transmitancia del cerramiento, en W/(m²·K)</text>
+<text x="510" y="164">S: superficie, en m²  ·  ΔT: diferencia de temperatura</text>
+<text x="510" y="196" font-size="14" font-weight="700" fill="#18384a">Transmitancia de algunos cerramientos</text>
+</g>
+<g font-family="system-ui,sans-serif" font-size="12.5">
+<text x="510" y="222" fill="#17262d">Muro de ladrillo sin aislar</text><text x="860" y="222" text-anchor="end" font-weight="700" fill="#8f3a24">1,8</text>
+<text x="510" y="244" fill="#17262d">Muro con 6 cm de aislamiento</text><text x="860" y="244" text-anchor="end" font-weight="700" fill="#245c49">0,45</text>
+<text x="510" y="266" fill="#17262d">Ventana de vidrio simple</text><text x="860" y="266" text-anchor="end" font-weight="700" fill="#8f3a24">5,7</text>
+<text x="510" y="288" fill="#17262d">Ventana con doble vidrio</text><text x="860" y="288" text-anchor="end" font-weight="700" fill="#705015">2,8</text>
+<text x="510" y="322" font-size="12.5" fill="#46616a">Cuanto menor es U, mejor aísla. Una ventana simple pierde</text>
+<text x="510" y="340" font-size="12.5" fill="#46616a">por metro cuadrado doce veces más que un muro aislado.</text>
+</g>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img" aria-labelledby="t23_title t23_desc">
+<title id="t23_title">Autoconsumo fotovoltaico: consumo y generación a lo largo del día</title>
+<desc id="t23_desc">Gráfica de un día completo. La curva de consumo de la vivienda tiene dos picos, uno por la mañana y otro mayor al anochecer. La generación fotovoltaica dibuja una campana centrada al mediodía. Donde la generación queda por debajo del consumo, la energía solar se autoconsume y el resto se toma de la red; al mediodía la generación supera el consumo y ese exceso es el excedente que se vierte a la red. El pico del anochecer coincide con generación nula, y por eso el autoconsumo directo tiene un límite sin baterías.</desc>
+<defs><marker id="t23_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#46616a"/></marker></defs>
+<rect width="900" height="400" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Un día de autoconsumo: el sol no llega cuando más se gasta</text>
+
+<g stroke="#d8e0df" stroke-width="1"><path d="M270 60 V320"/><path d="M460 60 V320"/><path d="M650 60 V320"/></g>
+
+<path d="M270 320 L302 309 L333 280 L365 241 L397 206 L428 178 L460 161 L492 155 L523 167 L555 195 L587 229 L618 269 L650 303 L682 320 Z" fill="#fff1d5" stroke="#c6922d" stroke-width="2.5"/>
+<path d="M80 286 L143 286 L270 275 L302 184 L333 172 L365 218 L397 263 L460 263 L523 252 L587 252 L650 184 L682 116 L713 104 L745 150 L777 229 L808 275 L840 286" fill="none" stroke="#167e78" stroke-width="3.5"/>
+
+<g stroke="#46616a" stroke-width="2" fill="none" marker-end="url(#t23_a)">
+<path d="M80 320 H866"/><path d="M80 320 V52"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="12" fill="#46616a" text-anchor="middle">
+<text x="80" y="342">0 h</text><text x="270" y="342">6 h</text><text x="460" y="342">12 h</text><text x="650" y="342">18 h</text><text x="840" y="342">24 h</text>
+</g>
+<text x="44" y="66" font-family="system-ui,sans-serif" font-size="13" fill="#46616a" transform="rotate(-90 44 66)" text-anchor="end">potencia (kW)</text>
+
+<text x="480" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#8a6317">excedente: se vierte a la red</text>
+<path d="M480 138 V152" stroke="#8a6317" stroke-width="1.5"/>
+<text x="330" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#245c49">autoconsumo</text>
+<text x="730" y="86" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#8f3a24">el pico de consumo llega sin sol</text>
+<path d="M730 94 V100" stroke="#8f3a24" stroke-width="1.5"/>
+
+<g font-family="system-ui,sans-serif" font-size="12.5">
+<rect x="80" y="364" width="18" height="12" fill="#fff1d5" stroke="#c6922d" stroke-width="2"/><text x="106" y="374" fill="#46616a">generación fotovoltaica</text>
+<rect x="280" y="368" width="18" height="4" fill="#167e78"/><text x="306" y="374" fill="#46616a">consumo de la vivienda</text>
+<text x="490" y="374" font-weight="700" fill="#18384a">Sin batería, solo se aprovecha lo que se consume mientras hay sol.</text>
+</g>
+</svg>

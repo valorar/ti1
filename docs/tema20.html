@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 20 del Bloque G de Tecnología e Ingeniería I: obtención, transformación y distribución de las fuentes de energía, centrales de generación eléctrica, rendimiento de conversión, transporte y pérdidas, sistemas y mercados energéticos, consumo sostenible, cálculo de costes y criterios de ahorro.">
+  <title>Tema 20. Fuentes de energía, sistemas y mercados energéticos · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 20 · Bloque G · Tecnología sostenible</p>
+        <h1>Tema 20. Fuentes de energía, sistemas y mercados energéticos</h1>
+        <p class="hero-lead">De dónde sale la electricidad que llega al enchufe, cómo se transporta y cómo se fija lo que cuesta.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 20">
+        <strong>Pregunta guía</strong>
+        <p>El KR-1 consume unos 4 Wh al día. ¿Cuánta energía ha habido que quemar, mover o captar para que esos 4 Wh lleguen a la placa, cuánto cuestan y por qué el precio cambia según la hora en que rieguen?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#energia">Energía, potencia y unidades</a></li>
+        <li><a href="#fuentes">Fuentes de energía</a></li>
+        <li><a href="#centrales">Centrales de generación</a></li>
+        <li><a href="#rendimiento">Rendimiento de la conversión</a></li>
+        <li><a href="#red">Transporte y distribución</a></li>
+        <li><a href="#mercado">El mercado eléctrico</a></li>
+        <li><a href="#costes">Calcular lo que cuesta</a></li>
+        <li><a href="#ahorro">Criterios de ahorro</a></li>
+        <li><a href="#dependencia">Dependencia y sostenibilidad</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes-rec">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Empieza el último bloque, y es el que responde a la pregunta que justifica todo el proyecto: <strong>¿cuánto ahorra de verdad el KR-1?</strong> Para contestarla hace falta saber de dónde viene la energía, cuánta se pierde por el camino y cómo se cuenta lo que cuesta. Este tema se imparte en la primera evaluación, y no al final del curso, por una razón práctica: no depende de nada previo y es el que se queda sin dar cuando el bloque energético se deja para junio.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> tu móvil tiene una batería de unos 18 Wh. Un coche eléctrico, de 60 000 Wh. Y una persona necesita unos 2 300 Wh al día en comida. Los tres números están en la misma unidad, y verlos juntos cambia la escala de casi todas las conversaciones sobre energía.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>distinguir energía de potencia y manejar el julio, el vatio hora y sus múltiplos;</li>
+          <li>clasificar las fuentes de energía en renovables y no renovables, y en primarias y finales;</li>
+          <li>describir cómo funciona cada tipo de central y qué energía convierte;</li>
+          <li>calcular el rendimiento de una conversión y explicar por qué hay un límite físico;</li>
+          <li>explicar la cadena de transporte y distribución y por qué se eleva la tensión;</li>
+          <li>describir cómo se forma el precio de la electricidad y qué es el mercado diario;</li>
+          <li>calcular el coste energético de un consumo y comparar dos alternativas;</li>
+          <li>aplicar criterios de ahorro con datos, distinguiendo lo que ahorra de lo que lo parece;</li>
+          <li>valorar la dependencia energética y relacionarla con los Objetivos de Desarrollo Sostenible.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="energia">
+        <h2 id="energia">1. Energía, potencia y unidades</h2>
+        <p>Es la distinción que hay que tener clara antes de nada, porque casi todos los errores del bloque nacen de confundirlas. Ya apareció en el Tema 10; aquí se usa a escala de vivienda y de país.</p>
+
+        <div class="comparacion">
+          <div><h3>Potencia</h3><p>Energía por unidad de tiempo: <strong>lo rápido</strong> que se consume. Se mide en vatios. Es lo que caracteriza a un aparato: un horno de 2 000 W.</p></div>
+          <div><h3>Energía</h3><p>Potencia por tiempo: <strong>cuánto</strong> se consume en total. Se mide en julios o en vatios hora. Es lo que se paga: 0,5 kWh de horno.</p></div>
+        </div>
+
+        <p class="ti1-formula">E = P · t <span class="ti1-formula-leyenda">1 kWh = 1000 W durante 1 hora = 3,6 · 10⁶ J</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: órdenes de magnitud de energía">
+          <table>
+            <caption>Para tener la escala en la cabeza</caption>
+            <thead><tr><th scope="col">Cantidad</th><th scope="col">Energía</th><th scope="col">Equivale a</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">El KR-1 en un día</th><td>4 Wh</td><td>Una bombilla LED de 8 W durante media hora.</td></tr>
+              <tr><th scope="row">Cargar un móvil</th><td>18 Wh</td><td>Cuatro días y medio del KR-1.</td></tr>
+              <tr><th scope="row">Una ducha de agua caliente</th><td>2 kWh</td><td>Quinientos días del KR-1.</td></tr>
+              <tr><th scope="row">Una vivienda al año</th><td>3 000 kWh</td><td>La media española por hogar.</td></tr>
+              <tr><th scope="row">Un coche eléctrico, carga completa</th><td>60 kWh</td><td>Una semana entera de una vivienda.</td></tr>
+              <tr><th scope="row">España en un año</th><td>250 TWh</td><td>Ochenta millones de viviendas como la media.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La comparación que ordena el bloque entero</strong>El KR-1 consume en todo un verano menos que una sola ducha caliente. Eso no invalida el proyecto: lo sitúa. <strong>El KR-1 no es un proyecto de ahorro energético: es un proyecto de ahorro de agua</strong>, y su valor se medirá en litros, no en kilovatios hora. Saber distinguir qué magnitud importa en cada caso es el criterio informado que pide la competencia 6, y evita el error más frecuente en proyectos de sostenibilidad: optimizar lo que es fácil de medir en lugar de lo que importa.</div>
+
+        <div class="ti1-note"><strong>Y una unidad que confunde a todo el mundo.</strong> El <strong>kilovatio</strong> (kW) es potencia; el <strong>kilovatio hora</strong> (kWh) es energía. Escribir «kW/h» no significa nada y aparece constantemente en la prensa. La regla: si la frase admite «durante», es energía. «Consume 2 kW» describe el aparato; «ha consumido 2 kWh» describe lo que se paga.</div>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">2. Fuentes de energía: obtención y clasificación</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: fuentes de energía">
+          <table>
+            <caption>Fuentes de energía, su origen y su límite</caption>
+            <thead><tr><th scope="col">Fuente</th><th scope="col">Tipo</th><th scope="col">De dónde viene</th><th scope="col">Limitación principal</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Carbón, petróleo y gas</strong></th><td>No renovable, fósil</td><td>Restos orgánicos fosilizados durante millones de años.</td><td>Agotables y emisoras de CO₂.</td></tr>
+              <tr><th scope="row"><strong>Nuclear de fisión</strong></th><td>No renovable</td><td>Ruptura de núcleos de uranio.</td><td>Residuos de larga vida y combustible finito.</td></tr>
+              <tr><th scope="row"><strong>Hidráulica</strong></th><td>Renovable</td><td>Energía potencial del agua embalsada.</td><td>Depende de la lluvia; altera los ríos.</td></tr>
+              <tr><th scope="row"><strong>Eólica</strong></th><td>Renovable</td><td>Energía cinética del viento.</td><td>Intermitente y poco predecible.</td></tr>
+              <tr><th scope="row"><strong>Solar fotovoltaica</strong></th><td>Renovable</td><td>Conversión directa de la luz en electricidad.</td><td>Solo de día; depende de las nubes.</td></tr>
+              <tr><th scope="row"><strong>Solar térmica</strong></th><td>Renovable</td><td>Calor del sol, para agua caliente o para vapor.</td><td>Igual que la anterior.</td></tr>
+              <tr><th scope="row"><strong>Biomasa</strong></th><td>Renovable</td><td>Materia orgánica: restos agrícolas, forestales o residuos.</td><td>Requiere superficie; emite al quemarse.</td></tr>
+              <tr><th scope="row"><strong>Geotérmica</strong></th><td>Renovable</td><td>Calor del interior de la Tierra.</td><td>Solo viable en determinados lugares.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Primaria, final y útil: tres energías distintas para el mismo kilovatio hora</strong>La <strong>energía primaria</strong> es la que se extrae de la naturaleza: el gas en el yacimiento. La <strong>energía final</strong> es la que llega al consumidor: la electricidad del enchufe. Y la <strong>energía útil</strong> es la que hace el trabajo: la luz que sale de la bombilla. Entre las tres hay pérdidas grandes, y es la razón de que un kilovatio hora ahorrado en el enchufe equivalga a bastante más de un kilovatio hora de energía primaria no extraída. <strong>Ahorrar en el punto de consumo es donde más se multiplica el efecto.</strong></div>
+
+        <div class="ti1-note"><strong>Renovable no es sinónimo de inagotable ni de inocua.</strong> Una renovable se repone a escala humana, y eso no significa que no tenga impacto: una presa inunda un valle, un parque eólico afecta a las aves, un panel fotovoltaico requiere minerales que hay que extraer y reciclar. El criterio del Tema 5 se aplica igual aquí: se compara el <strong>ciclo de vida completo</strong>, no la etiqueta.</div>
+      </section>
+
+      <section aria-labelledby="centrales">
+        <h2 id="centrales">3. Centrales de generación eléctrica</h2>
+        <p>Casi todas las centrales hacen lo mismo: <strong>mover un alternador</strong>. La diferencia está en qué lo mueve, y eso es lo que conviene recordar en lugar de una lista de nombres.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de central y su funcionamiento">
+          <table>
+            <caption>Qué mueve el alternador en cada caso</caption>
+            <thead><tr><th scope="col">Central</th><th scope="col">Cadena de conversión</th><th scope="col">Rendimiento típico</th><th scope="col">Regulable</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Térmica de carbón</strong></th><td>Química → calor → vapor → mecánica → eléctrica</td><td>35–40 %</td><td>Lentamente</td></tr>
+              <tr><th scope="row"><strong>Ciclo combinado de gas</strong></th><td>Química → gases → mecánica, y el calor sobrante hace vapor</td><td>55–60 %</td><td>Sí, con rapidez</td></tr>
+              <tr><th scope="row"><strong>Nuclear</strong></th><td>Nuclear → calor → vapor → mecánica → eléctrica</td><td>33–36 %</td><td>Muy poco: funciona continuamente</td></tr>
+              <tr><th scope="row"><strong>Hidráulica</strong></th><td>Potencial → cinética → mecánica → eléctrica</td><td>85–92 %</td><td>Sí, en segundos</td></tr>
+              <tr><th scope="row"><strong>Eólica</strong></th><td>Cinética del viento → mecánica → eléctrica</td><td>35–45 % del viento disponible</td><td>No: depende del viento</td></tr>
+              <tr><th scope="row"><strong>Fotovoltaica</strong></th><td>Radiación → eléctrica, sin partes móviles</td><td>18–23 %</td><td>No: depende del sol</td></tr>
+              <tr><th scope="row"><strong>Termosolar</strong></th><td>Radiación → calor → vapor → mecánica → eléctrica</td><td>15–20 %</td><td>Parcialmente, con almacenamiento de sales</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La columna que de verdad importa es la última</strong>La electricidad no se puede almacenar en cantidad apreciable: <strong>lo que se consume hay que generarlo en ese mismo instante</strong>. Por eso la red necesita centrales <em>regulables</em> que sigan la demanda minuto a minuto, y por eso el problema de las renovables no es su rendimiento sino su <strong>intermitencia</strong>. Una central hidráulica que arranca en segundos vale para la red mucho más de lo que su potencia sugiere, y ese es el papel del bombeo: subir agua cuando sobra energía y soltarla cuando falta.</div>
+
+        <div class="ti1-curio"><strong>La fotovoltaica es la excepción de la tabla.</strong> Todas las demás centrales convierten a mecánica y de ahí a eléctrica con un alternador. Un panel fotovoltaico convierte la luz <strong>directamente</strong> en electricidad, sin una sola pieza en movimiento. Eso explica sus dos rasgos característicos: no hace ruido y prácticamente no necesita mantenimiento, pero su rendimiento es bajo porque no puede aprovechar todo el espectro de la luz solar. Es el mismo efecto fotovoltaico del LED del Tema 11, a escala de tejado.</div>
+      </section>
+
+      <section aria-labelledby="rendimiento">
+        <h2 id="rendimiento">4. Rendimiento de la conversión</h2>
+        <p class="ti1-formula">η = E<sub>útil</sub> / E<sub>aportada</sub> <span class="ti1-formula-leyenda">siempre menor que 1; el resto se convierte en calor</span></p>
+
+        <p>Y cuando hay varias etapas, los rendimientos <strong>se multiplican</strong>, exactamente como en el reductor del Tema 9.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: cadena de rendimientos desde el gas hasta la placa">
+          <table>
+            <caption>Del yacimiento de gas a los 4 Wh del KR-1</caption>
+            <thead><tr><th scope="col">Etapa</th><th scope="col">Rendimiento</th><th scope="col">Acumulado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Extracción y transporte del gas</th><td>0,92</td><td>0,92</td></tr>
+              <tr><th scope="row">Central de ciclo combinado</th><td>0,57</td><td>0,52</td></tr>
+              <tr><th scope="row">Transporte y distribución</th><td>0,93</td><td>0,49</td></tr>
+              <tr><th scope="row">Fuente de alimentación y regulador</th><td>0,80</td><td>0,39</td></tr>
+              <tr><th scope="row"><strong>Total</strong></th><td>—</td><td><strong>0,39</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Lo que cuestan de verdad los 4 Wh del KR-1</strong>Con un rendimiento global del 39 %, esos 4 Wh de energía final exigen unos <strong>10 Wh de energía primaria</strong>. Es decir: por cada vatio hora que se ahorra en el enchufe, se dejan de extraer dos y medio del yacimiento. Ese factor es la razón técnica de que las políticas de eficiencia energética se centren en el consumo y no solo en la generación, y es el argumento numérico del apartado de ahorro de este tema.</div>
+
+        <div class="aviso"><strong>Hay un límite físico, no tecnológico</strong>El rendimiento de una central térmica no es bajo por falta de ingenio: cualquier máquina que convierta calor en trabajo tiene un <strong>rendimiento máximo teórico</strong> que depende únicamente de las temperaturas entre las que trabaja, y ninguna tecnología puede superarlo. Es el segundo principio de la termodinámica, y por eso una térmica no pasa del 40 % mientras una hidráulica —que no convierte calor— llega al 90 %. El tratamiento de las máquinas térmicas corresponde a Tecnología e Ingeniería II; aquí basta saber que el límite existe y de dónde viene.</div>
+      </section>
+
+      <section aria-labelledby="red">
+        <h2 id="red">5. Transporte y distribución</h2>
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de la cadena de transporte y distribución eléctrica">
+          <img src="assets/tema20_red_electrica.svg" alt="Cadena de la red eléctrica: la central genera a 15 kilovoltios, un transformador elevador sube a 400 kilovoltios para el transporte, una subestación reduce a 20 kilovoltios para la distribución y un centro de transformación baja a 230 o 400 voltios para la vivienda. Se eleva la tensión porque la pérdida en la línea crece con el cuadrado de la corriente.">
+          <figcaption>Toda la arquitectura de la red se explica con la fórmula del Tema 10: la pérdida es proporcional al cuadrado de la corriente.</figcaption>
+        </figure>
+
+        <p class="ti1-formula">P<sub>transportada</sub> = V · I <span class="ti1-formula-leyenda">para la misma potencia, más tensión significa menos corriente</span></p>
+        <p class="ti1-formula">P<sub>perdida</sub> = I² · R <span class="ti1-formula-leyenda">y la pérdida cae con el cuadrado de esa reducción</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: efecto de la tensión en las pérdidas de transporte">
+          <table>
+            <caption>Transportar 100 MW por una línea de 5 Ω</caption>
+            <thead><tr><th scope="col">Tensión</th><th scope="col">Corriente</th><th scope="col">Pérdida</th><th scope="col">% perdido</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">20 kV</th><td>5 000 A</td><td>125 MW</td><td>Imposible: más que la potencia transportada</td></tr>
+              <tr><th scope="row">132 kV</th><td>758 A</td><td>2,9 MW</td><td>2,9 %</td></tr>
+              <tr><th scope="row">400 kV</th><td>250 A</td><td>0,31 MW</td><td>0,31 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Y de aquí sale por qué la red es de corriente alterna</strong>La alta tensión resuelve las pérdidas, pero nadie puede tener 400 000 V en casa: hay que subir y bajar la tensión varias veces. Y subir o bajar tensión es sencillo y muy eficiente <strong>solo en corriente alterna</strong>, con un transformador que no tiene partes móviles y rinde más del 98 %. Esa es la razón histórica y técnica de que la red mundial sea de alterna, aunque casi todos los aparatos que conectamos funcionen internamente en continua. Y es también la razón de que la alterna se estudie en 2.º: exige herramientas matemáticas que no se han visto todavía.</div>
+
+        <div class="ti1-note"><strong>Las pérdidas totales de la red española rondan el 7 %</strong> entre transporte y distribución. Parece poco, y sobre 250 TWh anuales son unos 17 TWh: más que el consumo eléctrico de toda una comunidad autónoma mediana, perdidos en forma de calor en los cables. Reducir esas pérdidas —con mayor tensión, mejores conductores y generación más cercana al consumo— es una de las líneas de trabajo de la ingeniería eléctrica, y es el argumento técnico a favor de la generación distribuida del Tema 23.</div>
+      </section>
+
+      <section aria-labelledby="mercado">
+        <h2 id="mercado">6. El mercado eléctrico</h2>
+        <p>El currículo pide estudiar «sistemas y mercados energéticos». Y hay una idea que lo explica casi todo: como la electricidad no se almacena, <strong>su precio no lo fija el coste medio de producirla, sino el coste de la última central que hace falta encender</strong>.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Se predice la demanda</div><p>Para cada hora del día siguiente se estima cuánta potencia hará falta, a partir del histórico, el calendario y la previsión meteorológica.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Las centrales ofertan</div><p>Cada una indica cuánta energía puede aportar y a qué precio. Las renovables ofertan casi a cero: su combustible es gratis.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Se ordenan de más barata a más cara</div><p>Primero renovables y nuclear, después hidráulica, y al final el gas, que es la más caro de operar.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Se entra hasta cubrir la demanda</div><p>Se aceptan ofertas en ese orden hasta que la suma iguala lo que hace falta.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · El precio es el de la última aceptada</div><p>Todas cobran ese precio, llamado <strong>precio marginal</strong>. De ahí que un día de mucho viento el precio se hunda, y un día sin viento suba aunque las renovables sigan produciendo lo mismo.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué el precio cambia cada hora</strong>Porque cada hora cambia tanto la demanda como la mezcla de generación disponible. A las 4 de la madrugada hay poca demanda y sobra generación: el precio se hunde. A las 20:00 de un día de invierno sin viento, la demanda es máxima y hay que encender gas: el precio se dispara. <strong>Esa variación es la que hace que mover un consumo de hora sea una medida de ahorro real</strong>, y es el argumento del apartado siguiente. Los datos reales de demanda y precio de cada hora son públicos y consultables.<sup><a href="#f2">[2]</a></sup></div>
+
+        <div class="ti1-note"><strong>Y en la factura el precio de la energía es solo una parte.</strong> Se paga también por la <strong>potencia contratada</strong> —esté o no consumiendo—, los peajes de transporte y distribución, impuestos y el alquiler del contador. Es la razón de que reducir el consumo un 20 % no baje la factura un 20 %, y de que bajar la potencia contratada sea a veces la medida más rentable de todas. Lo desmenuzaremos en el Tema 21 sobre una factura real.</div>
+      </section>
+
+      <section aria-labelledby="costes">
+        <h2 id="costes">7. Calcular lo que cuesta</h2>
+        <p>El currículo pide «cálculo de costos» —así, en el texto oficial— y es el ejercicio que convierte este bloque en ingeniería en lugar de cultura general.</p>
+
+        <p class="ti1-formula">coste = E · precio <span class="ti1-formula-leyenda">E en kWh y precio en €/kWh</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: coste anual de varios consumos domésticos">
+          <table>
+            <caption>Coste anual de algunos consumos, con un precio de 0,18 €/kWh</caption>
+            <thead><tr><th scope="col">Aparato</th><th scope="col">Potencia</th><th scope="col">Uso</th><th scope="col">Energía anual</th><th scope="col">Coste</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Bombilla incandescente de 60 W</th><td>60 W</td><td>4 h/día</td><td>88 kWh</td><td>15,80 €</td></tr>
+              <tr><th scope="row">La misma luz en LED</th><td>8 W</td><td>4 h/día</td><td>12 kWh</td><td>2,10 €</td></tr>
+              <tr><th scope="row">Nevera A</th><td>—</td><td>Continuo</td><td>200 kWh</td><td>36,00 €</td></tr>
+              <tr><th scope="row">Aparatos en espera</th><td>15 W</td><td>24 h/día</td><td>131 kWh</td><td>23,60 €</td></tr>
+              <tr><th scope="row">Termo eléctrico</th><td>1 500 W</td><td>3 h/día</td><td>1 642 kWh</td><td>295,60 €</td></tr>
+              <tr><th scope="row">El KR-1</th><td>—</td><td>Continuo</td><td>1,5 kWh</td><td>0,26 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El resultado que sorprende, y el criterio que enseña</strong>Los aparatos en espera —15 W que nadie ve— cuestan más al año que sustituir todas las bombillas de una habitación, y el termo eléctrico cuesta más que todo lo demás junto. <strong>La energía es potencia por tiempo, y el tiempo casi siempre gana</strong>: lo que está encendido todo el año importa más que lo que consume mucho un rato. Es la misma conclusión del balance del KR-1 en el Tema 10, ahora a escala de vivienda, y es el criterio con el que se ordenan las medidas de ahorro.</div>
+
+        <h3>Comparar dos alternativas: el periodo de retorno</h3>
+        <p class="ti1-formula">periodo de retorno = inversión / ahorro anual <span class="ti1-formula-leyenda">en años; cuanto menor, mejor inversión</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: periodo de retorno de tres medidas">
+          <table>
+            <caption>Tres medidas comparadas</caption>
+            <thead><tr><th scope="col">Medida</th><th scope="col">Inversión</th><th scope="col">Ahorro anual</th><th scope="col">Retorno</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Cambiar 10 bombillas a LED</th><td>30 €</td><td>137 €</td><td>0,2 años</td></tr>
+              <tr><th scope="row">Regleta con interruptor para el espera</th><td>15 €</td><td>20 €</td><td>0,8 años</td></tr>
+              <tr><th scope="row">Aislar la fachada</th><td>8 000 €</td><td>450 €</td><td>17,8 años</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Y el retorno no es el único criterio.</strong> Aislar la fachada tarda casi dieciocho años en pagarse y, además de energía, aporta confort, revaloriza la vivienda y dura cuarenta años. El LED se paga en dos meses y no mejora nada más. Un análisis honesto pone el retorno <em>junto a</em> la vida útil de la medida y a lo que aporta más allá del dinero. Compararlo solo por el retorno haría que nunca se aislara ninguna casa.</div>
+      </section>
+
+      <section aria-labelledby="ahorro">
+        <h2 id="ahorro">8. Criterios y técnicas de ahorro</h2>
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · No consumir</div><p>La medida más eficaz y la más barata: apagar lo que no se usa, eliminar consumos en espera, aprovechar la luz natural. Coste cero.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Reducir la demanda</div><p>Aislar, sellar, proteger del sol. Actúa sobre la causa: la mejor calefacción es la que apenas hace falta. Es el Tema 22.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Mejorar la eficiencia</div><p>Sustituir un equipo por otro que da el mismo servicio con menos energía: LED, bomba de calor, electrodoméstico de clase alta.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Desplazar el consumo</div><p>Consumir cuando la energía es más barata y más limpia: poner la lavadora al mediodía si hay fotovoltaica, o de noche según la tarifa.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Generar</div><p>Autoconsumo fotovoltaico. Es lo último de la lista, y no lo primero: generar para alimentar un despilfarro es la peor inversión posible. Es el Tema 23.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El orden de la lista no es casual, y casi siempre se invierte</strong>Es tentador empezar por el paso 5 —es visible, es tecnológico, se fotografía bien— y es el menos rentable si los cuatro anteriores están sin hacer. La regla profesional en auditoría energética es exactamente esta escalera: <strong>primero lo que no cuesta nada, después lo que reduce la demanda, y solo al final generar</strong>. Un panel solar sobre una casa sin aislar es una solución caraísima a un problema que tenía una respuesta barata.</div>
+
+        <div class="aviso"><strong>Tres medidas que parecen ahorrar y no ahorran</strong><strong>1.</strong> Apagar y encender continuamente un aparato con arranque costoso puede gastar más que dejarlo en marcha; depende del tiempo de parada. <strong>2.</strong> Bajar la calefacción y compensar con un radiador eléctrico portátil suele salir mucho más caro, porque la electricidad cuesta por kilovatio hora bastante más que el gas. <strong>3.</strong> Sustituir un aparato que funciona por otro más eficiente tiene un coste ambiental de fabricación que a veces tarda años en compensarse: es el ciclo de vida del Tema 5. <strong>Toda medida de ahorro se comprueba con números antes de defenderla.</strong></div>
+      </section>
+
+      <section aria-labelledby="dependencia">
+        <h2 id="dependencia">9. Dependencia energética y sostenibilidad</h2>
+        <p>La <strong>dependencia energética</strong> es la fracción de la energía que un país necesita importar. España importa históricamente en torno al 70 % de su energía primaria, porque no tiene petróleo ni gas y su carbón es escaso. Eso tiene tres consecuencias que no son abstractas.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Económica</h3><p>El precio de la energía depende de mercados internacionales que no se controlan, y una subida se traslada a toda la economía.</p></div>
+          <div class="ti1-card"><h3>Estratégica</h3><p>Depender del suministro de terceros países condiciona decisiones políticas, como se ha visto en los últimos años.</p></div>
+          <div class="ti1-card"><h3>Ambiental</h3><p>La energía importada es mayoritariamente fósil, con sus emisiones asociadas.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué las renovables son también una cuestión de independencia</strong>El sol y el viento de un país no se importan. Cada kilovatio hora generado con recurso propio reduce a la vez la factura exterior, la exposición a los precios internacionales y las emisiones. Es la razón de que la transición energética se defienda desde tres argumentos distintos —económico, estratégico y ambiental— que rara vez coinciden en una misma política. Y es también un argumento para el ahorro: <strong>la energía que no se consume es la más autóctona de todas</strong>.</div>
+
+        <h3>Los Objetivos de Desarrollo Sostenible que toca este bloque</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: Objetivos de Desarrollo Sostenible relacionados con la energía">
+          <table>
+            <caption>Los ODS que el currículo menciona para esta materia</caption>
+            <thead><tr><th scope="col">Objetivo</th><th scope="col">Qué pide</th><th scope="col">Dónde aparece en el curso</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>ODS 6</strong> · Agua limpia y saneamiento</th><td>Acceso al agua y uso eficiente.</td><td>El KR-1 entero; instalaciones de agua del Tema 21.</td></tr>
+              <tr><th scope="row"><strong>ODS 7</strong> · Energía asequible y no contaminante</th><td>Acceso, eficiencia y renovables.</td><td>Este tema y los temas 22 y 23.</td></tr>
+              <tr><th scope="row"><strong>ODS 9</strong> · Industria, innovación e infraestructura</th><td>Infraestructura resiliente e industria sostenible.</td><td>Bloques A y B.</td></tr>
+              <tr><th scope="row"><strong>ODS 12</strong> · Producción y consumo responsables</th><td>Uso eficiente de recursos y menos residuos.</td><td>Ciclo de vida de los temas 2 y 5.</td></tr>
+              <tr><th scope="row"><strong>ODS 13</strong> · Acción por el clima</th><td>Reducción de emisiones.</td><td>Todo el Bloque G.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Y una advertencia sobre cómo se usan los ODS.</strong> Poner el logotipo de un objetivo en la portada de un proyecto no lo hace sostenible. Lo que sí lo hace es <strong>medir</strong>: cuántos litros de agua ahorra, cuántos kilovatios hora, cuánto CO₂ evita. El KR-1 puede reclamar el ODS 6 porque tendrá el dato del agua consumida frente al riego manual, medido con su propio registro del Tema 15. Sin ese número, la referencia al objetivo es decoración.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con cálculos de energía y de coste bien planteados, no con una lista de centrales.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 20">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Energía y potencia</th><td>Que las distingues y manejas las unidades sin errores.</td><td>Conversión entre julios y kWh, y un consumo propio calculado con su orden de magnitud comentado.</td></tr>
+              <tr><th scope="row">Generación</th><td>Que explicas la cadena de conversión de cada central y por qué unas son regulables.</td><td>Comparación de tres centrales por rendimiento, regulabilidad e impacto.</td></tr>
+              <tr><th scope="row">Rendimiento</th><td>Que encadenas rendimientos y calculas la energía primaria equivalente.</td><td>Cadena completa desde la fuente hasta un consumo tuyo, con el rendimiento global.</td></tr>
+              <tr><th scope="row">Transporte</th><td>Que justificas la alta tensión con números.</td><td>Cálculo de pérdidas a dos tensiones distintas para la misma potencia.</td></tr>
+              <tr><th scope="row">Mercado y coste</th><td>Que explicas el precio marginal y calculas costes y periodos de retorno.</td><td>Consulta de los datos reales de una hora concreta y tres medidas comparadas por retorno y vida útil.</td></tr>
+              <tr><th scope="row">Ahorro</th><td>Que aplicas la escalera en su orden y detectas una medida que no ahorra.</td><td>Propuesta de cinco medidas ordenadas y una medida popular desmontada con números.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ejercicio revelador: busca el precio de la electricidad de hoy hora a hora y localiza la diferencia entre la hora más barata y la más cara. Con ese dato, calcula lo que ahorraría una vivienda al año por poner la lavadora en la hora buena. El resultado sorprende en las dos direcciones.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Alternador</dt><dd>Máquina que convierte energía mecánica en energía eléctrica; está en casi todas las centrales.</dd>
+          <dt>Ciclo combinado</dt><dd>Central de gas que aprovecha además el calor de los gases de escape para generar vapor, con lo que mejora su rendimiento.</dd>
+          <dt>Dependencia energética</dt><dd>Fracción de la energía que un país necesita importar.</dd>
+          <dt>Energía final</dt><dd>Energía tal como llega al consumidor: la electricidad del enchufe.</dd>
+          <dt>Energía primaria</dt><dd>Energía tal como se extrae de la naturaleza, antes de transformarla.</dd>
+          <dt>Energía útil</dt><dd>Parte de la energía final que realmente realiza el servicio deseado.</dd>
+          <dt>Generación distribuida</dt><dd>Producción de energía cerca del punto de consumo, con lo que se reducen las pérdidas de transporte.</dd>
+          <dt>Intermitencia</dt><dd>Variabilidad no controlable de la producción de una fuente renovable.</dd>
+          <dt>Kilovatio hora</dt><dd>Unidad de energía equivalente a mil vatios durante una hora; es lo que se factura.</dd>
+          <dt>Periodo de retorno</dt><dd>Tiempo que tarda una inversión en pagarse con el ahorro que genera.</dd>
+          <dt>Potencia contratada</dt><dd>Potencia máxima que un suministro permite consumir; se paga con independencia del consumo.</dd>
+          <dt>Precio marginal</dt><dd>Precio de la última oferta aceptada en el mercado diario, que cobran todas las centrales que han entrado.</dd>
+          <dt>Rendimiento</dt><dd>Cociente entre la energía útil obtenida y la energía aportada.</dd>
+          <dt>Renovable</dt><dd>Fuente que se repone a escala de tiempo humana; no implica ausencia de impacto.</dd>
+          <dt>Subestación</dt><dd>Instalación donde se transforma la tensión entre niveles de la red.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>La potencia es lo rápido que se consume y la energía es cuánto: se paga la energía, en kilovatios hora, y «kW/h» no significa nada.</li>
+          <li>El KR-1 gasta en un verano menos que una ducha: es un proyecto de ahorro de agua, no de energía, y saber qué magnitud importa es parte del criterio.</li>
+          <li>Las fuentes se clasifican en renovables y no renovables, y la energía en primaria, final y útil; ahorrar en el consumo es donde más se multiplica el efecto.</li>
+          <li>Renovable no significa inagotable ni inocua: se compara el ciclo de vida completo, no la etiqueta.</li>
+          <li>Casi todas las centrales mueven un alternador; la fotovoltaica es la excepción y convierte la luz directamente.</li>
+          <li>Como la electricidad no se almacena, lo importante de una central no es solo su rendimiento sino si es regulable.</li>
+          <li>Los rendimientos se multiplican: los 4 Wh del KR-1 exigen unos 10 Wh de energía primaria.</li>
+          <li>El rendimiento de una térmica no es bajo por falta de ingenio: hay un límite físico que depende de las temperaturas de trabajo.</li>
+          <li>Se eleva la tensión porque la pérdida crece con el cuadrado de la corriente; y se usa alterna porque solo así se transforma con facilidad.</li>
+          <li>El precio de la electricidad lo fija la última central que hace falta encender, y por eso cambia cada hora.</li>
+          <li>En la factura, la energía es solo una parte: también se paga potencia contratada, peajes e impuestos.</li>
+          <li>Lo que está encendido todo el año importa más que lo que consume mucho un rato: el tiempo casi siempre gana.</li>
+          <li>El periodo de retorno se pone junto a la vida útil y a lo que la medida aporta además del dinero.</li>
+          <li>La escalera del ahorro es no consumir, reducir la demanda, mejorar la eficiencia, desplazar el consumo y solo al final generar.</li>
+          <li>Toda medida de ahorro se comprueba con números: hay varias muy populares que no ahorran.</li>
+          <li>Las renovables son también una cuestión de independencia, y la energía que no se consume es la más autóctona de todas.</li>
+          <li>Citar un Objetivo de Desarrollo Sostenible sin medir nada es decoración: el KR-1 puede reclamar el ODS 6 porque tendrá el dato del agua.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes-rec">
+        <h2 id="fuentes-rec">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="f1">[1] <a href="https://www.ree.es/es">Red Eléctrica de España</a>. Operación del sistema eléctrico, mezcla de generación y pérdidas de la red.</li>
+          <li id="f2">[2] <a href="https://demanda.ree.es/visiona/peninsula/demandaqh/total">Red Eléctrica — Seguimiento de la demanda en tiempo real</a>. Demanda, generación por tecnología y emisiones, hora a hora.</li>
+          <li id="f3">[3] <a href="https://www.cnmc.es/">Comisión Nacional de los Mercados y la Competencia</a>. Estructura de la factura, peajes y funcionamiento del mercado.</li>
+          <li id="f4">[4] <a href="https://www.idae.es/">IDAE — Instituto para la Diversificación y Ahorro de la Energía</a>. Guías de ahorro, consumos por uso y datos de eficiencia.</li>
+          <li id="f5">[5] <a href="https://www.miteco.gob.es/es.html">Ministerio para la Transición Ecológica y el Reto Demográfico</a>. Balances energéticos y dependencia energética.</li>
+          <li id="f6">[6] <a href="https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/">Naciones Unidas — Objetivos de Desarrollo Sostenible</a> (en español).</li>
+          <li id="f7">[7] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque G y criterio 6.1.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema19.html">← Tema 19</a>
+  <a href="tema21.html">Tema 21 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

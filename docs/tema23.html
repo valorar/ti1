@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 23 del Bloque G de Tecnología e Ingeniería I: instalaciones de comunicación y domóticas, sensores, actuadores y escenas, ahorro energético con domótica, energías renovables en la vivienda, autoconsumo fotovoltaico y su dimensionado, periodo de retorno, eficiencia y certificación energética de edificios y aparatos, y análisis de la sostenibilidad de una vivienda.">
+  <title>Tema 23. Domótica, energías renovables y certificación energética · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 23 · Bloque G · Tecnología sostenible</p>
+        <h1>Tema 23. Domótica, energías renovables y certificación energética</h1>
+        <p class="hero-lead">Cómo se automatiza el ahorro en una vivienda, cómo se produce energía en ella y cómo se acredita que es eficiente.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 23">
+        <strong>Pregunta guía</strong>
+        <p>Con 3 000 € se puede aislar la fachada, instalar placas solares o poner un sistema domótico completo. Las tres cosas se anuncian como ahorro energético. ¿En qué orden las harías, y qué dato necesitas de la vivienda antes de decidir?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#domotica">Qué es la domótica</a></li>
+        <li><a href="#instalacion">La instalación domótica</a></li>
+        <li><a href="#escenas">Escenas y ahorro</a></li>
+        <li><a href="#renovables">Renovables en la vivienda</a></li>
+        <li><a href="#fotovoltaica">Dimensionar una instalación solar</a></li>
+        <li><a href="#autoconsumo">Autoconsumo y excedentes</a></li>
+        <li><a href="#retorno">El periodo de retorno</a></li>
+        <li><a href="#certificacion">Certificación energética</a></li>
+        <li><a href="#analisis">Analizar una vivienda completa</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Último tema del curso, y el que reúne todo lo demás. La domótica es el Bloque F aplicado a una vivienda; el autoconsumo fotovoltaico es el Bloque D con una fuente propia; y el análisis de sostenibilidad es el criterio informado que la competencia 6 pide desde el principio. Al terminar deberías poder entrar en una casa, mirar cuatro cosas y decir con números qué convendría hacer primero.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> mira la etiqueta energética de cualquier electrodoméstico de tu casa. Tiene una letra y, debajo, un número: el consumo anual en kilovatios hora. La letra sirve para comparar aparatos de la misma clase; <strong>el número sirve para calcular</strong>. Casi todo el mundo mira la letra y casi nadie el número, y es el número el que aparece en la factura.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>explicar qué es la domótica y en qué se diferencia de una instalación convencional;</li>
+          <li>describir los elementos de una instalación domótica y sus arquitecturas;</li>
+          <li>diseñar escenas y automatismos que produzcan ahorro medible;</li>
+          <li>comparar las renovables aplicables a una vivienda y decir para qué sirve cada una;</li>
+          <li>dimensionar de forma elemental una instalación fotovoltaica de autoconsumo;</li>
+          <li>distinguir autoconsumo de excedente y explicar la compensación;</li>
+          <li>calcular el periodo de retorno de una inversión energética y ponerlo en contexto;</li>
+          <li>interpretar el certificado energético de un edificio y la etiqueta de un aparato;</li>
+          <li>analizar la sostenibilidad de una vivienda y proponer mejoras ordenadas y justificadas.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="domotica">
+        <h2 id="domotica">1. Qué es la domótica, y qué no es</h2>
+        <p>La <strong>domótica</strong> es el conjunto de sistemas que automatizan y controlan las instalaciones de una vivienda: iluminación, climatización, persianas, riego, seguridad y consumo. El currículo la sitúa junto a las «instalaciones de comunicación», y las dos van juntas porque una necesita de la otra.</p>
+
+        <div class="comparacion">
+          <div><h3>Instalación convencional</h3><p>Cada elemento se manda desde su propio interruptor, cableado directamente a él. Simple, robusta y rígida: cambiar el funcionamiento exige cambiar cables.</p></div>
+          <div><h3>Instalación domótica</h3><p>Los mandos y los elementos están <strong>separados</strong>: el interruptor envía una orden y un controlador decide qué hacer. Cambiar el comportamiento es reconfigurar, no recablear.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Domótica no es mando a distancia</strong>Poder encender la luz desde el móvil es una comodidad, y no ahorra nada: la luz sigue encendida el mismo tiempo. La domótica ahorra cuando <strong>decide sola</strong>, con la lógica del Bloque F: apagar lo que nadie usa, bajar la persiana cuando da el sol, no calentar habitaciones vacías, poner la lavadora cuando hay excedente solar. <strong>El ahorro no viene del control remoto, viene de la automatización</strong>, y esa distinción es la que separa un gadget de una instalación con periodo de retorno.</div>
+
+        <div class="ti1-note"><strong>Y es el Tema 18 en una vivienda.</strong> Un sistema domótico tiene entradas —sensores—, salidas —actuadores—, un controlador con su programa y, si se quiere, supervisión remota: exactamente los cuatro componentes del SCADA. Los enclavamientos también se aplican: una persiana no debe cerrarse con la ventana abierta, la calefacción no debe encenderse con las ventanas abiertas, y el riego no debe activarse si el depósito está vacío. Todo lo aprendido en el KR-1 vale aquí, con más señales.</div>
+      </section>
+
+      <section aria-labelledby="instalacion">
+        <h2 id="instalacion">2. La instalación domótica</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elementos de una instalación domótica">
+          <table>
+            <caption>Los elementos, y de dónde vienen en este curso</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Función</th><th scope="col">Ejemplos</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Sensores</strong></th><td>Miden o detectan.</td><td>Temperatura, presencia, luminosidad, apertura de ventana, humo, fuga de agua, consumo eléctrico.</td></tr>
+              <tr><th scope="row"><strong>Actuadores</strong></th><td>Ejecutan.</td><td>Relés de luz, reguladores, motores de persiana, electroválvulas, termostatos de zona.</td></tr>
+              <tr><th scope="row"><strong>Controlador</strong></th><td>Decide según su programa.</td><td>Central domótica, o una placa como la del KR-1.</td></tr>
+              <tr><th scope="row"><strong>Interfaces de usuario</strong></th><td>Permiten mandar y consultar.</td><td>Pulsadores, pantalla, aplicación móvil, voz.</td></tr>
+              <tr><th scope="row"><strong>Red de comunicación</strong></th><td>Une todo lo anterior.</td><td>Cable dedicado, Wi-Fi, Zigbee o Bluetooth, del Tema 16.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Tres arquitecturas, y la elección importa</h3>
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Centralizada</h3><p>Un controlador único al que llega todo. Fácil de programar y con un <strong>punto único de fallo</strong>: si cae, cae la casa.</p></div>
+          <div class="ti1-card"><h3>Distribuida</h3><p>Cada dispositivo tiene inteligencia propia y se comunica con los demás. Más robusta y más difícil de configurar. Es la arquitectura de los sistemas por cable profesionales.</p></div>
+          <div class="ti1-card"><h3>En la nube</h3><p>La lógica reside en un servidor de internet. Instalación trivial y dos problemas graves: no funciona sin red y depende de que una empresa mantenga el servicio.</p></div>
+        </div>
+
+        <div class="aviso"><strong>La domótica en la nube tiene el problema del Tema 16, agravado</strong>Si la lógica está en un servidor ajeno, una caída de internet deja la casa sin persianas y sin calefacción programada; y si la empresa cierra el servicio, los dispositivos se vuelven inútiles aunque estén perfectos: la <strong>obsolescencia funcional</strong> del Tema 2. La regla de diseño es la misma que aplicamos al KR-1: <strong>la lógica esencial vive en casa, y la nube solo añade comodidad</strong>. Un sistema domótico que no puede encender una luz sin internet está mal diseñado, no modernizado.</div>
+
+        <div class="ti1-note"><strong>Cable o inalámbrico.</strong> Por <strong>cable</strong> —los estándares profesionales de instalación fija— es más fiable, no depende de baterías y dura décadas; exige obra, así que se decide al construir o al reformar. <strong>Inalámbrico</strong> —Zigbee, Wi-Fi— se instala en una vivienda existente sin romper nada, y a cambio hay que cambiar pilas, la cobertura puede fallar y la vida útil de los dispositivos es más corta. Para una rehabilitación, inalámbrico; para obra nueva, cable en lo esencial e inalámbrico en lo accesorio.</div>
+      </section>
+
+      <section aria-labelledby="escenas">
+        <h2 id="escenas">3. Escenas y ahorro medible</h2>
+        <p>Una <strong>escena</strong> es un conjunto de acciones que se ejecutan juntas ante una condición. Es la forma habitual de configurar la domótica, y es la máquina de estados del Tema 18 escrita en lenguaje de usuario.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: escenas domóticas con su ahorro">
+          <table>
+            <caption>Escenas que de verdad ahorran, y cuánto</caption>
+            <thead><tr><th scope="col">Escena</th><th scope="col">Condición</th><th scope="col">Acciones</th><th scope="col">Ahorro estimado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Salida de casa</strong></th><td>Nadie detectado durante 30 min y puerta cerrada.</td><td>Apagar luces, bajar consigna de calefacción 3 °C, cortar enchufes no esenciales.</td><td>10–15 % de la climatización</td></tr>
+              <tr><th scope="row"><strong>Protección solar</strong></th><td>Luminosidad alta y temperatura exterior mayor de 28 °C.</td><td>Bajar persianas de la fachada al sol.</td><td>Hasta 30 % de la refrigeración</td></tr>
+              <tr><th scope="row"><strong>Ventana abierta</strong></th><td>Contacto de ventana abierto.</td><td>Apagar el radiador de esa habitación.</td><td>5–10 % de la calefacción</td></tr>
+              <tr><th scope="row"><strong>Aprovechar el excedente solar</strong></th><td>Generación mayor que consumo durante 10 min.</td><td>Arrancar lavadora, lavavajillas o termo.</td><td>Sube el autoconsumo del 30 al 60 %</td></tr>
+              <tr><th scope="row"><strong>Ventilación nocturna de verano</strong></th><td>Temperatura exterior menor que la interior, de noche.</td><td>Abrir ventanas motorizadas o activar extracción.</td><td>Reduce horas de refrigeración</td></tr>
+              <tr><th scope="row"><strong>Aviso de fuga</strong></th><td>Sensor de agua mojado.</td><td>Cerrar la electroválvula general y avisar.</td><td>No ahorra energía: evita un desastre</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La escena que más rinde es la del excedente solar</strong>Y es la que enlaza este apartado con el siguiente. Sin domótica, el excedente del mediodía se vierte a la red y se compensa a un precio bajo. Con una escena que arranca los electrodomésticos cuando sobra generación, esa energía se consume en casa a su valor completo: <strong>el autoconsumo pasa de un 30 % típico a un 55–65 %</strong>. Es el mejor argumento económico de la domótica, y es puro control del Bloque F: medir dos variables, comparar y accionar.</div>
+
+        <div class="ti1-note"><strong>Y toda escena necesita un enclavamiento.</strong> «Bajar persianas si hace sol» tiene que llevar «salvo que la ventana esté abierta» y «salvo que alguien las haya subido a mano en la última hora». Sin esas excepciones, el sistema pelea con las personas y acaba desactivado —que es el destino más frecuente de las instalaciones domóticas mal configuradas—. El criterio del Tema 18 se aplica igual: <strong>el automatismo debe ser previsible, y la persona debe poder imponerse siempre</strong>.</div>
+      </section>
+
+      <section aria-labelledby="renovables">
+        <h2 id="renovables">4. Energías renovables en la vivienda</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: renovables aplicables a una vivienda">
+          <table>
+            <caption>Las cuatro renovables del currículo, aplicadas a una vivienda</caption>
+            <thead><tr><th scope="col">Tecnología</th><th scope="col">Qué produce</th><th scope="col">Rendimiento</th><th scope="col">Cuándo conviene</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Solar fotovoltaica</strong></th><td>Electricidad.</td><td>18–23 %</td><td>Casi siempre: tejado disponible y consumo diurno. Es la opción por defecto.</td></tr>
+              <tr><th scope="row"><strong>Solar térmica</strong></th><td>Agua caliente.</td><td>50–70 %</td><td>Cuando el consumo de agua caliente es alto y constante.</td></tr>
+              <tr><th scope="row"><strong>Biomasa</strong></th><td>Calor.</td><td>85–92 %</td><td>Zonas frías con acceso a pélets y espacio de almacenamiento.</td></tr>
+              <tr><th scope="row"><strong>Geotérmica</strong></th><td>Calor y frío, con bomba de calor.</td><td>SCOP 4–5,5</td><td>Obra nueva con terreno; inversión alta y muy buen rendimiento.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un dato que sorprende: la solar térmica rinde tres veces más que la fotovoltaica</strong>Y aun así se instala menos. La razón es que el rendimiento no es el único criterio: la fotovoltaica produce <strong>electricidad</strong>, que sirve para todo —incluido calentar agua con una bomba de calor—, no tiene partes móviles, no necesita mantenimiento apreciable y sus excedentes se pueden verter a la red. La térmica produce agua caliente, que solo sirve para eso, y si se produce más de la que se consume, se desperdicia. <strong>La versatilidad del producto pesa más que el rendimiento de la conversión</strong>, y es un buen ejemplo de que optimizar una sola magnitud lleva a decisiones equivocadas.</div>
+
+        <div class="ti1-note"><strong>Y lo que el Código Técnico exige.</strong> En obra nueva y en rehabilitación importante hay una contribución mínima obligatoria de energía renovable para el agua caliente sanitaria, que se puede cubrir con solar térmica, con fotovoltaica o con bomba de calor.<sup><a href="#f2">[2]</a></sup> No es una recomendación: es una exigencia normativa, y es la razón de que casi todos los edificios construidos en los últimos años lleven placas en el tejado.</div>
+      </section>
+
+      <section aria-labelledby="fotovoltaica">
+        <h2 id="fotovoltaica">5. Dimensionar una instalación fotovoltaica</h2>
+        <p>El dimensionado elemental de una instalación de autoconsumo tiene cinco pasos, y se puede hacer con los datos de una factura y una tabla pública de radiación.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Conocer el consumo</div><p>De las facturas o de la curva horaria del contador del Tema 21. No el consumo anual solo: también <strong>cuándo</strong> se consume.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Obtener la radiación del lugar</div><p>Las horas solares pico equivalentes de la localidad, dato público. En Madrid, del orden de 1 650 kWh por kWp al año.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Estimar la potencia necesaria</div><p>No se dimensiona para cubrir el consumo anual, sino para <strong>aprovechar lo que se pueda consumir de día</strong>.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Comprobar el espacio</div><p>Un panel de unos 450 W ocupa alrededor de 2 m². La superficie de tejado bien orientada suele ser el límite real.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Calcular producción, ahorro y retorno</div><p>Y solo entonces decidir. Sin este paso no hay proyecto, hay una intención.</p></div>
+        </div>
+
+        <p class="ti1-formula">E<sub>anual</sub> = P<sub>instalada</sub> · HSP<sub>anuales</sub> · PR <span class="ti1-formula-leyenda">P en kWp, HSP horas solares pico, PR rendimiento global ≈ 0,80</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: dimensionado de una instalación fotovoltaica de una vivienda">
+          <table>
+            <caption>Vivienda en Madrid con 3 000 kWh/año de consumo</caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Cálculo</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Potencia instalada</th><td>6 paneles de 450 W</td><td>2,7 kWp</td></tr>
+              <tr><th scope="row">Superficie necesaria</th><td>6 × 2 m²</td><td>12 m² de tejado</td></tr>
+              <tr><th scope="row">Producción anual</th><td>2,7 × 1 650 × 0,80</td><td>3 564 kWh</td></tr>
+              <tr><th scope="row">Autoconsumo directo</th><td>35 % de la producción, sin domótica</td><td>1 247 kWh</td></tr>
+              <tr><th scope="row">Excedente vertido</th><td>3 564 − 1 247</td><td>2 317 kWh</td></tr>
+              <tr><th scope="row">Ahorro por autoconsumo</th><td>1 247 × 0,18 €/kWh</td><td>224 €/año</td></tr>
+              <tr><th scope="row">Compensación del excedente</th><td>2 317 × 0,06 €/kWh</td><td>139 €/año</td></tr>
+              <tr><th scope="row"><strong>Ahorro total</strong></th><td>—</td><td><strong>363 €/año</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El error de dimensionado más frecuente</strong>Parece razonable instalar potencia para cubrir los 3 000 kWh que consume la vivienda, y es una mala decisión: el kilovatio hora autoconsumido vale 0,18 € y el vertido, unos 0,06 €. <strong>Cada kilovatio hora que no se puede autoconsumir vale la tercera parte</strong>, así que sobredimensionar alarga el periodo de retorno. La instalación se dimensiona para el consumo <em>diurno</em>, y la forma de aprovechar más es desplazar consumo al mediodía —con la escena domótica de la sección 3— o almacenar en batería.</div>
+
+        <div class="ti1-note"><strong>Orientación e inclinación: las dos decisiones gratis.</strong> En el hemisferio norte lo óptimo anual es orientación sur con una inclinación próxima a la latitud —unos 35 a 40° en la Península—. Y hay una elección de fondo que no es técnica: orientar al <strong>sur</strong> maximiza la producción total; orientar al <strong>sudoeste</strong> la desplaza hacia la tarde, que es cuando muchas viviendas consumen más. Si lo que se busca es autoconsumo y no producción bruta, la segunda puede ser mejor decisión aunque produzca menos. <strong>Otra vez: la magnitud que se optimiza decide el diseño.</strong></div>
+      </section>
+
+      <section aria-labelledby="autoconsumo">
+        <h2 id="autoconsumo">6. Autoconsumo y excedentes</h2>
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de consumo y generación fotovoltaica a lo largo del día">
+          <img src="assets/tema23_autoconsumo.svg" alt="Gráfica de un día: el consumo de la vivienda tiene un pico por la mañana y otro mayor al anochecer; la generación fotovoltaica dibuja una campana centrada al mediodía. Al mediodía la generación supera el consumo y ese exceso es el excedente; el pico del anochecer coincide con generación nula.">
+          <figcaption>El desajuste que define todo el autoconsumo doméstico: el sol produce al mediodía y la vivienda consume al anochecer.</figcaption>
+        </figure>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: modalidades de autoconsumo">
+          <table>
+            <caption>Modalidades y qué implica cada una</caption>
+            <thead><tr><th scope="col">Modalidad</th><th scope="col">Qué hace con el excedente</th><th scope="col">Observaciones</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Sin excedentes</strong></th><td>Un dispositivo impide verter a la red.</td><td>Trámite muy simple; se desperdicia el excedente.</td></tr>
+              <tr><th scope="row"><strong>Con excedentes y compensación</strong></th><td>Se vierte y se descuenta en la factura a un precio menor.</td><td>Es la modalidad habitual en vivienda. La compensación no puede superar el importe de la energía consumida.</td></tr>
+              <tr><th scope="row"><strong>Con excedentes y venta</strong></th><td>Se vende la energía en el mercado.</td><td>Obligaciones fiscales y administrativas; para instalaciones grandes.</td></tr>
+              <tr><th scope="row"><strong>Con batería</strong></th><td>Se almacena para consumirlo después.</td><td>Sube el autoconsumo al 70–80 % y encarece mucho la instalación.</td></tr>
+              <tr><th scope="row"><strong>Autoconsumo colectivo</strong></th><td>Varios vecinos comparten una instalación.</td><td>Permite aprovechar una cubierta común y reparte la inversión.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué la batería casi nunca sale a cuenta todavía</strong>Una batería doméstica sube el autoconsumo del 35 % al 75 %, lo que en el ejemplo anterior añadiría unos 250 € de ahorro anual. Y cuesta del orden de 4 000 a 6 000 €, con una vida de diez a quince años: el retorno se acerca al final de su vida útil. <strong>Los números, hoy, no la justifican en una vivienda con buena conexión a la red</strong>; sí la justifican si hay cortes frecuentes, si no hay red, o si la diferencia entre el precio de compra y el de compensación aumenta. Es el tipo de conclusión que hay que rehacer cada pocos años, porque los precios se mueven, y por eso conviene saber hacer el cálculo en lugar de memorizar la respuesta.</div>
+
+        <div class="ti1-note"><strong>La batería más barata de una vivienda es el agua caliente.</strong> Calentar el termo con el excedente del mediodía almacena energía en forma de calor, en un depósito que ya está instalado y que cuesta cero euros extra. No sirve para encender luces por la noche, y para el 20 o 25 % del consumo doméstico que es agua caliente funciona perfectamente. Es el ejemplo más claro de <strong>gestión de la demanda</strong>, y se implementa con la escena domótica de la sección 3.</div>
+      </section>
+
+      <section aria-labelledby="retorno">
+        <h2 id="retorno">7. El periodo de retorno, y sus límites</h2>
+        <p class="ti1-formula">periodo de retorno = inversión / ahorro anual</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación de inversiones energéticas por periodo de retorno">
+          <table>
+            <caption>Las tres opciones de la pregunta guía, con 3 000 € disponibles</caption>
+            <thead><tr><th scope="col">Medida</th><th scope="col">Inversión</th><th scope="col">Ahorro anual</th><th scope="col">Retorno</th><th scope="col">Vida útil</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Sellado e insuflado de aislamiento en cámara</th><td>2 500 €</td><td>380 €</td><td>6,6 años</td><td>40 años</td></tr>
+              <tr><th scope="row">Fotovoltaica de 2,7 kWp</th><td>3 000 €</td><td>363 €</td><td>8,3 años</td><td>25 años</td></tr>
+              <tr><th scope="row">Fotovoltaica + escena de excedentes</th><td>3 200 €</td><td>470 €</td><td>6,8 años</td><td>25 años</td></tr>
+              <tr><th scope="row">Sistema domótico completo</th><td>3 000 €</td><td>180 €</td><td>16,7 años</td><td>12 años</td></tr>
+              <tr><th scope="row">Cambiar ventanas de una fachada</th><td>3 000 €</td><td>210 €</td><td>14,3 años</td><td>30 años</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La respuesta a la pregunta guía, y el dato que hace falta</strong>El orden que sale de la tabla es: <strong>primero aislar, después fotovoltaica con su escena de excedentes, y la domótica completa al final</strong> —justo la escalera del Tema 20—. Pero hay un dato sin el que la tabla no vale: <strong>el certificado energético de la vivienda</strong>. Si ya está bien aislada, la primera fila desaparece y la fotovoltaica pasa a ser lo primero. Y fíjate en la tercera fila: doscientos euros de domótica bien elegida mejoran el retorno de la fotovoltaica más que tres mil de domótica completa. <strong>No es cuánto se invierte: es en qué.</strong></div>
+
+        <div class="aviso"><strong>Cuatro límites del periodo de retorno como criterio único</strong><strong>1.</strong> Ignora la <strong>vida útil</strong>: una medida de 14 años de retorno y 30 de vida es mejor inversión que una de 8 y 12. <strong>2.</strong> Ignora lo que aporta <strong>además del dinero</strong>: confort, salud, valor de la vivienda, ruido. <strong>3.</strong> Supone que el precio de la energía se mantiene, y sube. <strong>4.</strong> Ignora las <strong>subvenciones</strong>, que pueden cambiar el orden entero. Un análisis honesto pone el retorno junto a esas cuatro cosas, y lo dice.</div>
+      </section>
+
+      <section aria-labelledby="certificacion">
+        <h2 id="certificacion">8. Certificación energética</h2>
+        <p>El <strong>certificado de eficiencia energética</strong> es obligatorio para vender o alquilar una vivienda en España. Asigna una letra de la A a la G según el consumo de energía primaria y las emisiones de CO₂ del edificio.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: certificado energético frente a etiqueta de electrodoméstico">
+          <table>
+            <caption>Dos etiquetas que se confunden</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Certificado de un edificio</th><th scope="col">Etiqueta de un electrodoméstico</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Qué califica</th><td>El edificio: envolvente, instalaciones y renovables.</td><td>El aparato.</td></tr>
+              <tr><th scope="row">Escala</th><td>A a G, relativa a la zona climática y al uso.</td><td>A a G, revisada en 2021 para que la A vuelva a ser exigente.</td></tr>
+              <tr><th scope="row">Quién lo emite</th><td>Un técnico competente, y se registra en la comunidad autónoma.</td><td>El fabricante, bajo su responsabilidad.</td></tr>
+              <tr><th scope="row">Obligatorio</th><td>Para vender o alquilar.</td><td>Para comercializar el aparato.</td></tr>
+              <tr><th scope="row">Lo más útil que contiene</th><td>El <strong>informe de mejoras</strong> con su ahorro y su coste.</td><td>El <strong>consumo anual en kWh</strong>, que permite calcular.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La letra sirve para comparar; el número, para calcular</strong>Una letra dice si el edificio es mejor o peor que otros de su zona, y no dice cuánto se va a pagar. Para eso está el <strong>consumo de energía primaria en kWh/m²·año</strong> que figura junto a la letra: multiplicado por la superficie y por el precio de la energía, da un coste estimado. Es exactamente la diferencia de la pregunta inicial del tema: la letra es una comparación y el número es un dato. Y en el certificado la parte que casi nadie lee —el informe de medidas de mejora con su ahorro y su inversión— es <strong>una auditoría energética ya hecha y pagada</strong>.</div>
+
+        <div class="ti1-note"><strong>Y la escala de los electrodomésticos cambió en 2021.</strong> Se había llegado a A+++, lo que era absurdo, y se recalibró: hoy la A está prácticamente vacía, reservada a una eficiencia que aún no existe en el mercado, de modo que un aparato excelente puede ser un B o un C. Un frigorífico que antes era A+++ hoy puede aparecer como E, <strong>sin haber cambiado nada</strong>. Comparar etiquetas de antes y después de 2021 no tiene sentido, y es un buen recordatorio de que una escala normalizada también se revisa.</div>
+      </section>
+
+      <section aria-labelledby="analisis">
+        <h2 id="analisis">9. Analizar la sostenibilidad de una vivienda</h2>
+        <p>El cierre del curso: reunir todo lo anterior en un análisis que termine en una propuesta razonada. Es el ejercicio que el criterio 6.2 pide, y el procedimiento es este.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Recoger los datos</div><p>Facturas de un año, curva horaria del contador, certificado energético, superficie y orientación, inventario de aparatos con su consumo de etiqueta.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Medir</div><p>Temperaturas interiores, temperaturas de superficie con termómetro de infrarrojos, consumo de aparatos con un medidor de enchufe. Del Tema 2: sin medir, solo hay opiniones.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Repartir el consumo</div><p>Cuánto va a climatización, agua caliente, cocina, iluminación y aparatos. Es lo que permite atacar lo que pesa.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Calcular el balance</div><p>Pérdidas y demanda, con el método del Tema 22. Localizar los puntos débiles.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Proponer medidas ordenadas</div><p>Con la escalera del Tema 20, cada una con su inversión, su ahorro, su retorno y su vida útil.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">6 · Cuantificar el resultado</div><p>Energía ahorrada, dinero ahorrado y CO₂ evitado. Con esos tres números el informe es defendible.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">7 · Comunicarlo</div><p>Informe y presentación, con el rigor del Tema 4. Un análisis que nadie entiende no cambia nada.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: reparto del consumo de una vivienda media española">
+          <table>
+            <caption>Reparto típico del consumo de una vivienda española</caption>
+            <thead><tr><th scope="col">Uso</th><th scope="col">% del consumo</th><th scope="col">Dónde se ataca</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Calefacción</th><td>≈ 40 %</td><td>Aislamiento y equipo. Temas 22 y 23.</td></tr>
+              <tr><th scope="row">Agua caliente sanitaria</th><td>≈ 20 %</td><td>Solar térmica o bomba de calor; excedente fotovoltaico.</td></tr>
+              <tr><th scope="row">Electrodomésticos</th><td>≈ 18 %</td><td>Etiqueta energética y desplazamiento horario.</td></tr>
+              <tr><th scope="row">Cocina</th><td>≈ 8 %</td><td>Inducción frente a otras tecnologías.</td></tr>
+              <tr><th scope="row">Iluminación</th><td>≈ 5 %</td><td>LED y control por presencia.</td></tr>
+              <tr><th scope="row">Refrigeración</th><td>≈ 1 %</td><td>Protección solar pasiva; creciente cada año.</td></tr>
+              <tr><th scope="row">Aparatos en espera</th><td>≈ 8 %</td><td>Regletas y escenas de salida.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La tabla que ordena cualquier propuesta</strong>El 60 % del consumo de una vivienda es <strong>calor</strong>: calefacción y agua caliente. Cualquier propuesta de mejora que empiece por las bombillas —el 5 %— está atacando lo pequeño porque es lo fácil. Es el mismo criterio que aplicamos al KR-1 en el Tema 10: <strong>hay que actuar sobre lo que pesa, y para saber qué pesa hay que medir</strong>. Este reparto es la razón técnica por la que las políticas de rehabilitación se centran en la envolvente y no en los electrodomésticos.</div>
+
+        <div class="ti1-note"><strong>Y el cierre del curso, de vuelta al KR-1.</strong> El proyecto empezó en el Tema 1 con un huerto que se secaba y termina aquí con la pregunta que lo justifica: <strong>cuánta agua y cuánta energía ha ahorrado</strong>. Con el registro del Tema 15 hay litros medidos frente al riego manual; con el balance de este bloque, los kilovatios hora y el CO₂. Ese es el resultado del proyecto: no una maqueta que funciona, sino <strong>una afirmación sostenida por datos propios</strong>. Y eso es exactamente lo que la competencia 6 llama criterio informado sobre el uso de la tecnología.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema —y el curso— se demuestran con un análisis de una vivienda real que termine en una propuesta ordenada y cuantificada.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 23">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Domótica</th><td>Que diseñas automatismos que ahorran, no mandos a distancia.</td><td>Tres escenas con su condición, sus acciones, su enclavamiento y su ahorro estimado.</td></tr>
+              <tr><th scope="row">Arquitectura del sistema</th><td>Que eliges entre centralizada, distribuida o en la nube con criterios.</td><td>Elección justificada y comprobación de que el sistema funciona sin internet.</td></tr>
+              <tr><th scope="row">Renovables</th><td>Que comparas tecnologías por lo que producen y no solo por su rendimiento.</td><td>Comparación de fotovoltaica y solar térmica para un caso concreto, con su conclusión.</td></tr>
+              <tr><th scope="row">Dimensionado</th><td>Que dimensionas una instalación fotovoltaica con los cinco pasos.</td><td>Cálculo completo con la radiación real de tu localidad, la superficie disponible y la producción anual.</td></tr>
+              <tr><th scope="row">Autoconsumo</th><td>Que distingues autoconsumo de excedente y explicas por qué no se sobredimensiona.</td><td>Gráfica de consumo y generación de un día y cálculo del ahorro con y sin escena de excedentes.</td></tr>
+              <tr><th scope="row">Certificación</th><td>Que interpretas un certificado y una etiqueta y usas sus números.</td><td>Certificado real leído, con su consumo por metro cuadrado convertido en coste anual.</td></tr>
+              <tr><th scope="row">Análisis completo</th><td>Que propones medidas ordenadas con inversión, retorno, vida útil y CO₂ evitado.</td><td>Informe con los siete pasos, el reparto del consumo y la propuesta priorizada y defendida.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cierre del curso: haz el análisis sobre el propio instituto. Tiene facturas, tiene superficie, tiene certificado y tiene un huerto con un sistema de riego que vosotros habéis construido y medido. Con eso se puede escribir un informe que el centro pueda usar de verdad, y ese es el mejor trabajo final que esta materia permite.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Autoconsumo</dt><dd>Parte de la energía generada que se consume en la propia instalación.</dd>
+          <dt>Autoconsumo colectivo</dt><dd>Instalación compartida por varios consumidores, habitualmente vecinos de un mismo edificio.</dd>
+          <dt>Certificado de eficiencia energética</dt><dd>Documento que califica un edificio de la A a la G según su consumo de energía primaria y sus emisiones.</dd>
+          <dt>Compensación de excedentes</dt><dd>Descuento en la factura por la energía vertida a la red, a un precio menor que el de compra.</dd>
+          <dt>Domótica</dt><dd>Conjunto de sistemas que automatizan y controlan las instalaciones de una vivienda.</dd>
+          <dt>Escena</dt><dd>Conjunto de acciones que se ejecutan juntas al cumplirse una condición.</dd>
+          <dt>Etiqueta energética</dt><dd>Calificación de un aparato, con su clase y su consumo anual; la escala se recalibró en 2021.</dd>
+          <dt>Excedente</dt><dd>Energía generada que no se consume en el momento y se vierte a la red o se almacena.</dd>
+          <dt>Gestión de la demanda</dt><dd>Desplazamiento del consumo a las horas en que la energía es más barata o más limpia.</dd>
+          <dt>Horas solares pico</dt><dd>Horas equivalentes de radiación de mil vatios por metro cuadrado; permiten estimar la producción anual.</dd>
+          <dt>kWp</dt><dd>Kilovatio pico: potencia nominal de una instalación fotovoltaica en condiciones normalizadas.</dd>
+          <dt>Periodo de retorno</dt><dd>Años que tarda una inversión en pagarse con el ahorro que genera.</dd>
+          <dt>Rendimiento global (PR)</dt><dd>Factor que recoge las pérdidas de una instalación fotovoltaica: inversor, cableado, temperatura y suciedad.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>La domótica separa el mando del elemento: cambiar el comportamiento es reconfigurar, no recablear.</li>
+          <li>El ahorro no viene del control remoto, viene de la automatización: encender la luz desde el móvil no ahorra nada.</li>
+          <li>Un sistema domótico es el SCADA del Tema 18 en una vivienda, y sus enclavamientos se aplican igual.</li>
+          <li>La lógica esencial vive en casa: un sistema que no puede encender una luz sin internet está mal diseñado.</li>
+          <li>La escena que más rinde es la que arranca los electrodomésticos con el excedente solar: sube el autoconsumo del 30 al 60 %.</li>
+          <li>Toda escena necesita excepciones, y la persona debe poder imponerse siempre; si no, el sistema acaba desactivado.</li>
+          <li>La solar térmica rinde tres veces más que la fotovoltaica y se instala menos, porque la electricidad sirve para todo y el agua caliente solo para una cosa.</li>
+          <li>Una instalación fotovoltaica se dimensiona para el consumo diurno, no para el anual: el kilovatio hora vertido vale la tercera parte.</li>
+          <li>Orientar al sudoeste produce menos y puede autoconsumirse más: la magnitud que se optimiza decide el diseño.</li>
+          <li>La batería doméstica todavía no sale a cuenta con buena conexión a red, y la conclusión hay que rehacerla cada pocos años.</li>
+          <li>La batería más barata de una vivienda es el termo de agua caliente, y se activa con una escena domótica.</li>
+          <li>El periodo de retorno no basta: hay que ponerlo junto a la vida útil, a lo que aporta además del dinero, a la subida del precio de la energía y a las subvenciones.</li>
+          <li>Doscientos euros de domótica bien elegida pueden mejorar el retorno más que tres mil de domótica completa.</li>
+          <li>En una etiqueta o un certificado, la letra sirve para comparar y el número para calcular; y el informe de mejoras del certificado es una auditoría ya pagada.</li>
+          <li>El 60 % del consumo de una vivienda es calor: una propuesta que empieza por las bombillas ataca el 5 %.</li>
+          <li>El resultado de un proyecto de sostenibilidad no es una maqueta que funciona: es una afirmación sostenida por datos propios.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="f1">[1] <a href="https://www.idae.es/">IDAE</a>. Guías de autoconsumo, calificación energética y consumos del sector residencial.</li>
+          <li id="f2">[2] <a href="https://www.codigotecnico.org/">Código Técnico de la Edificación</a>. Documento Básico de Ahorro de Energía: contribución renovable mínima y exigencias de la envolvente.</li>
+          <li id="f3">[3] <a href="https://re.jrc.ec.europa.eu/pvg_tools/es/">PVGIS — Comisión Europea</a> (en español). Radiación solar y producción fotovoltaica estimada de cualquier localidad.</li>
+          <li id="f4">[4] <a href="https://www.cnmc.es/">Comisión Nacional de los Mercados y la Competencia</a>. Modalidades de autoconsumo y compensación de excedentes.</li>
+          <li id="f5">[5] <a href="https://ec.europa.eu/info/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/energy-label-and-ecodesign_es">Comisión Europea — Etiqueta energética y diseño ecológico</a> (en español). Escala recalibrada de electrodomésticos.</li>
+          <li id="f6">[6] <a href="https://www.miteco.gob.es/es.html">Ministerio para la Transición Ecológica y el Reto Demográfico</a>. Factores de emisión y estrategia de rehabilitación.</li>
+          <li id="f7">[7] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque G: domótica, renovables, eficiencia y certificación energética.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema22.html">← Tema 22</a>
+  <a href="index.html">Índice →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

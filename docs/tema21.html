@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 21 del Bloque G de Tecnología e Ingeniería I: suministros domésticos, instalación eléctrica interior, cuadro de distribución, elementos de protección, esquemas de fuerza e iluminación, potencia contratada y factura eléctrica, instalación de agua, tipos de válvula, ahorro con aireadores y recirculadores, aguas grises y saneamiento.">
+  <title>Tema 21. Instalaciones de la vivienda: electricidad y agua · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 21 · Bloque G · Tecnología sostenible</p>
+        <h1>Tema 21. Instalaciones de la vivienda: electricidad y agua</h1>
+        <p class="hero-lead">Cómo llegan la electricidad y el agua a una vivienda, cómo se protegen esas instalaciones y cómo se reduce su consumo.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 21">
+        <strong>Pregunta guía</strong>
+        <p>Se va la luz de toda la casa al enchufar el microondas mientras funciona el horno. ¿Qué ha saltado exactamente, por qué, y qué habría pasado si en lugar de eso alguien hubiera tocado un cable pelado?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#acometida">Del contador a la vivienda</a></li>
+        <li><a href="#cuadro">El cuadro de distribución</a></li>
+        <li><a href="#protecciones">Las tres protecciones</a></li>
+        <li><a href="#circuitos">Circuitos y esquemas</a></li>
+        <li><a href="#potencia">Potencia contratada</a></li>
+        <li><a href="#factura">Leer la factura eléctrica</a></li>
+        <li><a href="#agua">La instalación de agua</a></li>
+        <li><a href="#ahorro-agua">Ahorrar agua</a></li>
+        <li><a href="#saneamiento">Saneamiento y aguas grises</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este tema aplica todo el Bloque D a la instalación que tienes en casa, y es probablemente el más inmediatamente útil del curso: al terminarlo sabrás por qué salta un automático, qué protege cada elemento de tu cuadro, si tu potencia contratada es la adecuada y cuánto cuesta cada cosa que enchufas. Y hace lo mismo con el agua, que es la instalación de la que casi nadie sabe nada hasta que hay una fuga.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> ve a tu cuadro eléctrico y cuenta los interruptores. Hay uno grande, uno con un botón de prueba y varios pequeños con números distintos. Esos tres tipos protegen tres cosas distintas: la instalación, las personas y cada cable. Confundirlos es lo que hace que alguien puentee el que salta «porque molesta».</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>describir la cadena desde la acometida hasta el cuadro de la vivienda;</li>
+          <li>identificar los elementos de un cuadro de distribución y su función;</li>
+          <li>explicar qué protege el IGA, qué el diferencial y qué cada magnetotérmico;</li>
+          <li>relacionar la intensidad de un magnetotérmico con la sección del cable de su circuito;</li>
+          <li>interpretar un esquema unifilar de un circuito de fuerza y de otro de iluminación;</li>
+          <li>calcular la potencia contratada necesaria y valorar si conviene cambiarla;</li>
+          <li>leer una factura eléctrica y distinguir sus términos;</li>
+          <li>describir la instalación de agua de una vivienda y los tipos de válvula;</li>
+          <li>evaluar medidas de ahorro de agua con datos y explicar qué son las aguas grises.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="acometida">
+        <h2 id="acometida">1. Del contador a la vivienda</h2>
+        <p>Los <strong>suministros domésticos</strong> llegan a la vivienda por una cadena de elementos que la normativa fija con precisión. Conviene conocerla porque delimita de quién es cada parte, y por tanto quién paga cada avería.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Acometida</div><p>La derivación desde la red de distribución hasta el edificio. Es de la compañía distribuidora.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Caja general de protección</div><p>Aloja los fusibles generales del edificio, en la fachada o en el portal. Frontera entre la red y la instalación del inmueble.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Línea general de alimentación</div><p>Lleva la energía hasta la centralización de contadores.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Contador</div><p>Mide la energía consumida. Es el punto donde empieza lo que paga el usuario, y hoy es telegestionado: informa a distancia hora a hora.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Derivación individual</div><p>El cable que va del contador al cuadro de la vivienda.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Cuadro general de mando y protección</div><p>El cuadro de la vivienda. Desde aquí todo es responsabilidad del propietario.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Dos empresas distintas, y conviene saberlo</strong>La <strong>distribuidora</strong> es dueña de los cables, del contador y de la acometida, y es a quien se llama si no hay luz en la calle; no se elige. La <strong>comercializadora</strong> es quien factura la energía y con quien se firma el contrato; sí se elige. Confundirlas es la causa de la mitad de las llamadas perdidas cuando hay una avería, y de que alguien intente cambiar de compañía para resolver un problema técnico.</div>
+
+        <div class="ti1-note"><strong>El contador digital cambió una cosa importante.</strong> Antes medía solo el total; hoy registra el consumo <strong>hora a hora</strong> y lo envía. Eso hace posible la discriminación horaria del Tema 20 y, sobre todo, permite al usuario descargar sus propias curvas de consumo y analizarlas con las herramientas del Tema 15. Es un dato real, propio y gratuito: la mejor materia prima para una auditoría energética escolar.</div>
+      </section>
+
+      <section aria-labelledby="cuadro">
+        <h2 id="cuadro">2. El cuadro de distribución</h2>
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable del cuadro de distribución de una vivienda">
+          <img src="assets/tema21_cuadro.svg" alt="Cuadro de distribución: la acometida entra en el interruptor general automático de 25 amperios, pasa por el diferencial de 30 miliamperios y de una barra común salen cinco circuitos con su magnetotérmico: alumbrado 10 amperios y 1,5 milímetros cuadrados, tomas 16 amperios y 2,5, cocina 25 amperios y 6, lavadora 20 amperios y 4, y climatización 25 amperios y 6. A la izquierda, la toma de tierra.">
+          <figcaption>Tres niveles de protección en cascada, cada uno con un objeto distinto. El orden no es casual: el diferencial va después del general para que este pueda cortarlo todo.</figcaption>
+        </figure>
+
+        <div class="ti1-note"><strong>Y un cuarto elemento que a veces está y a veces no: el ICP.</strong> El <em>interruptor de control de potencia</em> limitaba el consumo a la potencia contratada y hoy suele estar integrado en el propio contador digital, que corta si se supera. Cuando salta «todo» al enchufar el microondas con el horno encendido, normalmente es esto: no es una avería, es el límite de lo contratado. Lo veremos con números en la sección 5.</div>
+      </section>
+
+      <section aria-labelledby="protecciones">
+        <h2 id="protecciones">3. Las tres protecciones, y qué protege cada una</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: las tres protecciones de una instalación">
+          <table>
+            <caption>Qué protege cada elemento, y de qué</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Protege a…</th><th scope="col">De…</th><th scope="col">Cómo actúa</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>IGA</strong> · interruptor general automático</th><td>La instalación completa</td><td>Sobrecarga global y cortocircuito</td><td>Corta todo. Es además el mando general para trabajar sin tensión.</td></tr>
+              <tr><th scope="row"><strong>Diferencial</strong></th><td><strong>Las personas</strong></td><td>Contacto con una parte en tensión y derivaciones a tierra</td><td>Compara la corriente que entra con la que sale; si difieren en más de 30 mA, corta.</td></tr>
+              <tr><th scope="row"><strong>Magnetotérmico</strong></th><td><strong>El cable</strong> de su circuito</td><td>Sobrecarga y cortocircuito de ese circuito</td><td>Dos mecanismos: uno térmico, lento, para sobrecargas; uno magnético, instantáneo, para cortocircuitos.</td></tr>
+              <tr><th scope="row"><strong>Toma de tierra</strong></th><td>Las personas, junto al diferencial</td><td>Que una masa metálica quede en tensión</td><td>Deriva la corriente de fallo al terreno, y así el diferencial la detecta y corta.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El diferencial y la tierra trabajan en pareja</strong>El diferencial detecta que la corriente «se escapa» por algún sitio. Pero para que se escape, tiene que haber un camino: y ese camino es la <strong>toma de tierra</strong>. Si la carcasa metálica de una lavadora queda en tensión y no está conectada a tierra, no se escapa nada hasta que alguien la toca —y entonces el camino es esa persona—. Con tierra, la corriente se va por el cable verde y amarillo, el diferencial lo nota en milisegundos y corta antes de que nadie se acerque. <strong>Un diferencial sin toma de tierra protege mucho menos de lo que parece.</strong></div>
+
+        <p class="ti1-formula">30 mA <span class="ti1-formula-leyenda">la sensibilidad del diferencial doméstico: por debajo del umbral de fibrilación cardíaca</span></p>
+
+        <div class="aviso"><strong>Nunca se puentea ni se rearma a ciegas un elemento que salta</strong>Un automático que salta está haciendo su trabajo: hay una causa. Si salta el <strong>magnetotérmico</strong>, hay demasiada carga en ese circuito o un cortocircuito: se desconecta algo y se rearma. Si salta el <strong>diferencial</strong>, hay una fuga de corriente, y eso puede significar un aparato con la carcasa en tensión: hay que localizar la causa desconectando aparatos uno a uno, y si se repite, avisar a un instalador. Rearmar el diferencial repetidamente sin encontrar el motivo es convivir con un riesgo eléctrico. Y sustituir un automático por otro de más amperios no resuelve nada: deja el cable sin protección, y el cable es lo que se incendia.</div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La curva del magnetotérmico y el arranque de un motor</strong>El magnetotérmico tolera deliberadamente una sobrecorriente breve, porque muchos aparatos la producen al arrancar: es la <strong>corriente de arranque</strong> del motor del Tema 10. Por eso tiene dos mecanismos: el térmico, que tarda segundos o minutos ante una sobrecarga moderada, y el magnético, que actúa en milisegundos ante un cortocircuito. Si actuara instantáneamente en cualquier caso, saltaría cada vez que arranca la nevera.</div>
+      </section>
+
+      <section aria-labelledby="circuitos">
+        <h2 id="circuitos">4. Circuitos independientes y esquemas</h2>
+        <p>Una vivienda no lleva un solo circuito: la normativa exige <strong>varios circuitos independientes</strong>, cada uno con su magnetotérmico. La razón es doble: que una avería en la cocina no deje la casa a oscuras, y que cada cable lleve solo la carga para la que está dimensionado.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: circuitos de una vivienda con su sección e intensidad">
+          <table>
+            <caption>Circuitos habituales de una vivienda</caption>
+            <thead><tr><th scope="col">Circuito</th><th scope="col">Automático</th><th scope="col">Sección</th><th scope="col">Qué alimenta</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">C1 · Alumbrado</th><td>10 A</td><td>1,5 mm²</td><td>Puntos de luz.</td></tr>
+              <tr><th scope="row">C2 · Tomas de uso general</th><td>16 A</td><td>2,5 mm²</td><td>Enchufes de habitaciones y salón.</td></tr>
+              <tr><th scope="row">C3 · Cocina y horno</th><td>25 A</td><td>6 mm²</td><td>Los dos aparatos de mayor potencia.</td></tr>
+              <tr><th scope="row">C4 · Lavadora, lavavajillas y termo</th><td>20 A</td><td>4 mm²</td><td>Aparatos con resistencia calefactora.</td></tr>
+              <tr><th scope="row">C5 · Tomas de baños y cocina</th><td>16 A</td><td>2,5 mm²</td><td>Enchufes en locales húmedos.</td></tr>
+              <tr><th scope="row">C6 y siguientes</th><td>Según uso</td><td>Según carga</td><td>Climatización, vehículo eléctrico, domótica.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La sección manda sobre el automático, y no al revés</strong>Es la idea central de la tabla y la que casi todo el mundo tiene invertida. El magnetotérmico <strong>no protege al aparato</strong>: protege al <strong>cable</strong>. Se elige la sección según la corriente que va a circular —el cálculo del Tema 10— y después se elige un automático que corte <em>antes</em> de que ese cable se caliente en exceso. De ahí que poner un automático de 25 A en un circuito de 1,5 mm² sea peligrosísimo: el cable se degradaría durante meses sin que el automático llegara a saltar nunca.</div>
+
+        <h3>El esquema unifilar</h3>
+        <p>Un <strong>esquema unifilar</strong> representa la instalación con una sola línea por circuito, aunque lleve varios conductores. Es la forma habitual de documentar una vivienda, y aplica la simbología del Tema 3.</p>
+
+        <div class="comparacion">
+          <div><h3>Circuito de fuerza</h3><p>Una toma de corriente lleva <strong>tres conductores</strong>: fase, neutro y tierra. El esquema muestra el automático, el recorrido y los puntos de toma, con la sección anotada.</p></div>
+          <div><h3>Circuito de iluminación</h3><p>Lo interesante es el <strong>mando</strong>: un interruptor simple, un conmutador para encender desde dos puntos, o un cruzamiento para hacerlo desde tres. Aquí la lógica de la instalación se parece a la del Tema 6 de electrónica digital de 2.º.</p></div>
+        </div>
+
+        <div class="ti1-note"><strong>Y el color de los cables no es decorativo: es normativo.</strong> Fase en marrón, negro o gris; neutro en azul; y <strong>tierra siempre en verde y amarillo</strong>, un color reservado exclusivamente para ella. Es la misma idea del código de señalización del Tema 6: un lenguaje visual común que cualquiera interpreta igual. Encontrar un cable verde y amarillo usado como fase en una instalación es motivo suficiente para no fiarse de nada de esa instalación.</div>
+      </section>
+
+      <section aria-labelledby="potencia">
+        <h2 id="potencia">5. Potencia contratada</h2>
+        <p>La <strong>potencia contratada</strong> es el máximo que se puede consumir a la vez. Se paga todos los meses, se consuma o no, y es una de las decisiones con mejor relación entre esfuerzo y ahorro que existe en una vivienda.</p>
+
+        <p class="ti1-formula">P<sub>simultánea</sub> = Σ (P<sub>aparato</sub> · factor de uso) <span class="ti1-formula-leyenda">no todo se enciende a la vez, y ahí está el cálculo</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: cálculo de la potencia simultánea de una vivienda">
+          <table>
+            <caption>Potencia de los aparatos de una vivienda tipo</caption>
+            <thead><tr><th scope="col">Aparato</th><th scope="col">Potencia</th><th scope="col">¿Coincide con los demás?</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Horno</th><td>2 200 W</td><td>A veces, a mediodía.</td></tr>
+              <tr><th scope="row">Vitrocerámica (dos zonas)</th><td>3 000 W</td><td>Sí, junto al horno.</td></tr>
+              <tr><th scope="row">Microondas</th><td>1 200 W</td><td>Posible.</td></tr>
+              <tr><th scope="row">Lavadora en calentamiento</th><td>2 000 W</td><td>Se puede evitar.</td></tr>
+              <tr><th scope="row">Lavavajillas</th><td>1 800 W</td><td>Se puede evitar.</td></tr>
+              <tr><th scope="row">Nevera</th><td>150 W</td><td>Siempre.</td></tr>
+              <tr><th scope="row">Iluminación LED de toda la casa</th><td>80 W</td><td>Siempre.</td></tr>
+              <tr><th scope="row">Ordenadores, televisor y otros</th><td>300 W</td><td>Casi siempre.</td></tr>
+              <tr><th scope="row"><strong>Suma de todo</strong></th><td><strong>10 730 W</strong></td><td>Nunca ocurre en la práctica.</td></tr>
+              <tr><th scope="row"><strong>Peor caso realista</strong></th><td><strong>≈ 6 900 W</strong></td><td>Cocina completa más lo permanente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El compromiso de la potencia contratada</strong>Contratar los 10,7 kW de la suma total sería pagar todo el año por algo que no ocurre nunca. Contratar 3,45 kW haría saltar el limitador cada vez que coincidieran el horno y la vitrocerámica. La decisión razonable está en medio —unos 5,75 kW en el escalón normalizado— y se acompaña de un hábito: <strong>no poner la lavadora mientras se cocina</strong>. Ese hábito, que es gratis, permite bajar un escalón de potencia y ahorrar del orden de 40 a 60 € al año. Es la medida de la escalera del Tema 20 que casi nadie aplica porque exige mirar un número una sola vez.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> ¿qué pasa exactamente cuando se supera la potencia contratada? El limitador —hoy en el propio contador— corta el suministro, y hay que rearmarlo. No se rompe nada y no se paga penalización, pero es incómodo. Ahora, la pregunta de la guía del tema: ¿saltó el limitador de potencia o un magnetotérmico? Depende de si se apagó <em>toda</em> la casa o solo la cocina, y saber leer eso ahorra una llamada.</div>
+      </section>
+
+      <section aria-labelledby="factura">
+        <h2 id="factura">6. Leer la factura eléctrica</h2>
+        <p>El criterio 6.2 es comprobable sobre un documento real, y este es el ejercicio que lo convierte en algo tangible. Una factura tiene cuatro bloques, y solo uno depende de lo que se consume.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: estructura de una factura eléctrica">
+          <table>
+            <caption>Factura de un mes: 250 kWh con 5,75 kW contratados</caption>
+            <thead><tr><th scope="col">Concepto</th><th scope="col">Cálculo</th><th scope="col">Importe</th><th scope="col">Depende de…</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Término de potencia</strong></th><td>5,75 kW × 30 días × 0,08 €/kW·día</td><td>13,80 €</td><td>Lo contratado, no lo consumido.</td></tr>
+              <tr><th scope="row"><strong>Término de energía</strong></th><td>250 kWh × 0,14 €/kWh</td><td>35,00 €</td><td>El consumo real.</td></tr>
+              <tr><th scope="row">Alquiler del contador</th><td>30 días × 0,027 €/día</td><td>0,81 €</td><td>Nada.</td></tr>
+              <tr><th scope="row">Impuesto eléctrico</th><td>5,1 % de lo anterior</td><td>2,53 €</td><td>La suma anterior.</td></tr>
+              <tr><th scope="row">IVA</th><td>21 % del total</td><td>11,00 €</td><td>La suma anterior.</td></tr>
+              <tr><th scope="row"><strong>Total</strong></th><td>—</td><td><strong>63,14 €</strong></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué reducir el consumo un 20 % no baja la factura un 20 %</strong>De los 63,14 €, solo 35,00 € dependen del consumo. Reducirlo un 20 % ahorra 7 €, que es un 11 % de la factura. Y funciona también al revés: <strong>bajar un escalón de potencia contratada ahorra unos 3,60 € al mes sin cambiar un solo hábito de consumo</strong>. Este cálculo es el que permite ordenar las medidas de ahorro por su efecto real, y es la razón de que una auditoría energética empiece siempre mirando la potencia contratada y la tarifa, antes de hablar de bombillas.</div>
+
+        <div class="ti1-note"><strong>Y hay que mirar la tarifa, no solo el precio.</strong> Con discriminación horaria el kilovatio hora cuesta menos en unas horas y más en otras, y eso solo interesa si de verdad se puede desplazar el consumo —lavadora, lavavajillas, vehículo eléctrico—. Para una vivienda con consumo plano, una tarifa con discriminación puede salir más caro. Es el mismo criterio del Tema 20: <strong>la medida buena depende del perfil de consumo real</strong>, y ese perfil se descarga del contador digital.</div>
+      </section>
+
+      <section aria-labelledby="agua">
+        <h2 id="agua">7. La instalación de agua</h2>
+        <p>La instalación de <strong>abastecimiento de agua</strong> es más simple que la eléctrica y se conoce mucho peor. Su esquema de distribución sigue siempre la misma lógica.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Acometida y llave de paso general</div><p>La entrada desde la red municipal y la <strong>llave que hay que saber localizar</strong>: es lo primero que se cierra ante una fuga.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Contador y filtro</div><p>Mide el consumo en metros cúbicos y protege la instalación de partículas.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Reductor de presión</div><p>Limita la presión de entrada. Una presión excesiva estropea grifos y electrodomésticos y multiplica el caudal desperdiciado.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Distribución de agua fría</div><p>Ramales hacia cada punto de consumo, con llave de corte por local húmedo.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Producción de agua caliente</div><p>Caldera, termo o bomba de calor, con su propia red de distribución en paralelo.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Puntos de consumo</div><p>Grifos, duchas, cisternas y electrodomésticos, cada uno con su llave de escuadra.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Evacuación</div><p>Desagües, sifones y bajantes, que es el saneamiento de la sección 9.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de válvula y su uso">
+          <table>
+            <caption>Tipos de válvula y para qué sirve cada uno</caption>
+            <thead><tr><th scope="col">Válvula</th><th scope="col">Cómo funciona</th><th scope="col">Se usa para</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>De esfera o de bola</strong></th><td>Una esfera perforada gira un cuarto de vuelta.</td><td>Cortar. Abre y cierra rápido, y no sirve para regular.</td></tr>
+              <tr><th scope="row"><strong>De asiento o de compuerta</strong></th><td>Un obturador se acerca progresivamente al asiento.</td><td>Regular el caudal; es la de los grifos antiguos.</td></tr>
+              <tr><th scope="row"><strong>Monomando de cartucho</strong></th><td>Dos discos cerámicos que giran uno sobre otro.</td><td>Grifería moderna: regula caudal y temperatura a la vez.</td></tr>
+              <tr><th scope="row"><strong>Antirretorno</strong></th><td>Permite el paso en un solo sentido.</td><td>Evitar que el agua vuelva y contamine la red. Es el diodo del Tema 11.</td></tr>
+              <tr><th scope="row"><strong>Reductora de presión</strong></th><td>Mantiene la presión de salida constante.</td><td>Proteger la instalación y limitar el consumo.</td></tr>
+              <tr><th scope="row"><strong>Electroválvula</strong></th><td>Un solenoide abre o cierra el paso.</td><td>Automatizar: es la del KR-1, y del Tema 8.</td></tr>
+              <tr><th scope="row"><strong>Termostática</strong></th><td>Mantiene la temperatura de mezcla constante.</td><td>Duchas: evita quemaduras y ahorra el agua que se tira ajustando.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La válvula de esfera no se usa a medias</strong>Es el error de uso más común. Una válvula de esfera está diseñada para estar completamente abierta o completamente cerrada; dejarla a media vuelta para «regular» produce turbulencias que erosionan la esfera y el asiento, y acaba goteando. Para regular hay válvulas de asiento. Es la distinción del Tema 8 entre un elemento de mando todo-nada y uno proporcional, en la instalación de tu casa.</div>
+      </section>
+
+      <section aria-labelledby="ahorro-agua">
+        <h2 id="ahorro-agua">8. Ahorrar agua: los dispositivos que el currículo nombra</h2>
+        <p>El texto oficial enumera aireadores, grifos inteligentes y recirculadores. Conviene verlos con números, porque sus efectos son muy distintos.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: medidas de ahorro de agua con su efecto">
+          <table>
+            <caption>Medidas de ahorro de agua en una vivienda</caption>
+            <thead><tr><th scope="col">Medida</th><th scope="col">Cómo actúa</th><th scope="col">Ahorro aproximado</th><th scope="col">Coste</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Aireador o perlizador</strong></th><td>Mezcla aire con el agua: el chorro parece igual con la mitad de caudal.</td><td>40–50 % en ese grifo</td><td>3–8 € por grifo</td></tr>
+              <tr><th scope="row"><strong>Cabezal de ducha eficiente</strong></th><td>De 15 L/min a 8 L/min sin perder sensación.</td><td>Hasta 45 % de la ducha</td><td>15–40 €</td></tr>
+              <tr><th scope="row"><strong>Cisterna de doble descarga</strong></th><td>Dos volúmenes, 3 o 6 litros.</td><td>Unos 20 L por persona y día</td><td>20–60 €</td></tr>
+              <tr><th scope="row"><strong>Grifo termostático</strong></th><td>Alcanza la temperatura pedida sin tantear.</td><td>Elimina el agua tirada al ajustar</td><td>80–150 €</td></tr>
+              <tr><th scope="row"><strong>Grifo inteligente</strong></th><td>Sensor de presencia o temporizado.</td><td>Alto en uso público; discutible en vivienda</td><td>60–200 €</td></tr>
+              <tr><th scope="row"><strong>Recirculador de agua caliente</strong></th><td>Mantiene el agua caliente cerca del grifo, o la devuelve al depósito.</td><td>Hasta 10 000 L al año por vivienda</td><td>100–300 €, y consume algo de energía</td></tr>
+              <tr><th scope="row"><strong>Reparar una fuga de cisterna</strong></th><td>—</td><td>Hasta 30 L al día: más que casi todo lo anterior</td><td>Unos pocos euros</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El recirculador: el que más ahorra y el que introduce un compromiso</strong>Cada vez que se abre el grifo de agua caliente, hay que tirar por el desagüe todo el agua fría que había en la tubería: en una vivienda grande pueden ser varios litros por uso. Un <strong>recirculador</strong> devuelve esa agua al depósito en lugar de perderla. Ahorra mucha agua… y consume electricidad para bombear, y pierde calor por la tubería si funciona continuamente. La solución correcta no es instalarlo y olvidarse: es <strong>gobernarlo con un sensor y un temporizador</strong> para que solo funcione cuando alguien lo va a usar, que es exactamente el problema de control del Bloque F.</div>
+
+        <div class="aviso"><strong>Y la medida más rentable de la tabla es la última</strong>Una cisterna que gotea puede perder 30 litros al día —unos 11 metros cúbicos al año— y la reparación cuesta una junta de goma. Ninguna de las medidas tecnológicas de la tabla ahorra tanto por euro invertido. Es la escalera del Tema 20 aplicada al agua: <strong>primero lo que no cuesta nada y arregla un despilfarro, después los dispositivos</strong>. Un proyecto de ahorro que instala grifos inteligentes sin haber buscado las fugas está resolviendo el problema equivocado.</div>
+      </section>
+
+      <section aria-labelledby="saneamiento">
+        <h2 id="saneamiento">9. Saneamiento y reutilización de aguas</h2>
+        <p>El agua que entra tiene que salir. La red de <strong>evacuación</strong> es menos visible y da la mayoría de los problemas de una vivienda.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Sifón</h3><p>Un codo que retiene agua y forma un tapón hidráulico: impide que los gases de la red suban al interior. Si un desagüe huele, casi siempre es un sifón que se ha secado.</p></div>
+          <div class="ti1-card"><h3>Bajante</h3><p>La tubería vertical que recoge los desagües de todas las plantas.</p></div>
+          <div class="ti1-card"><h3>Ventilación</h3><p>La bajante se prolonga hasta la cubierta para que el aire entre y salga. Sin ella, un desagüe succiona el sifón de otro y aparecen olores.</p></div>
+          <div class="ti1-card"><h3>Arqueta y acometida</h3><p>Punto de registro antes de la red municipal, para inspección y desatascos.</p></div>
+        </div>
+
+        <h3>Aguas grises y aguas pluviales</h3>
+        <div class="comparacion">
+          <div><h3>Aguas grises</h3><p>Las de duchas, bañeras y lavabos: sucias pero <strong>sin materia fecal</strong>. Con un filtrado y una desinfección sencillos sirven para cisternas y riego, que no exigen agua potable.</p></div>
+          <div><h3>Aguas pluviales</h3><p>Las de lluvia recogidas de la cubierta. Muy limpias tras descartar el primer agua de lavado del tejado, y adecuadas para riego y limpieza exterior.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La idea de fondo: no toda el agua tiene que ser potable</strong>Potabilizar agua cuesta energía y dinero, y en una vivienda en torno al 30 % del consumo va a la cisterna del inodoro, que no necesita agua de beber. Separar las redes —una de agua potable y otra de agua reutilizada para cisternas y riego— es técnicamente sencillo en obra nueva y caro en rehabilitación. Es la razón de que estas instalaciones aparezcan sobre todo en edificios nuevos, y de que en el KR-1 el depósito pueda alimentarse con el agua de lluvia del tejado del instituto.</div>
+
+        <div class="aviso"><strong>Dos reglas que no se negocian al reutilizar agua</strong><strong>1. Ninguna conexión entre la red de agua reutilizada y la de agua potable</strong>, ni siquiera con una llave cerrada: un error de manipulación contaminaría la red de todo el edificio. <strong>2. Señalización y grifos distintos</strong>, para que nadie pueda beber por error. Las dos son requisitos normativos, y las dos son un ejemplo perfecto del enclavamiento del Tema 18: lo seguro no puede depender de que alguien se acuerde.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el depósito del KR-1 puede llenarse con agua de lluvia del tejado. Eso ahorra agua potable y añade dos problemas nuevos: el agua estancada puede desarrollar algas y obstruir el gotero, y en verano puede que no llueva durante semanas. ¿Qué tendrías que añadir al sistema, y qué requisito de seguridad del Tema 18 cubre ya el segundo problema?</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra sobre una instalación y una factura reales, no sobre un ejemplo de libro.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 21">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">El cuadro</th><td>Que identificas cada protección y sabes qué protege.</td><td>Esquema del cuadro de tu casa o del aula con sus intensidades, y explicación de qué salta en tres supuestos.</td></tr>
+              <tr><th scope="row">Sección y protección</th><td>Que relacionas la sección del cable con la intensidad del automático.</td><td>Cálculo de la sección de un circuito y del automático que le corresponde; explicación de por qué no se puede subir.</td></tr>
+              <tr><th scope="row">Esquemas</th><td>Que interpretas y dibujas un unifilar de fuerza y otro de iluminación.</td><td>Esquema de un circuito de tomas y de un punto de luz conmutado, con simbología normalizada.</td></tr>
+              <tr><th scope="row">Potencia y factura</th><td>Que calculas la potencia simultánea y desglosas una factura real.</td><td>Tabla de aparatos con su coincidencia, potencia recomendada y desglose de una factura con los cinco términos.</td></tr>
+              <tr><th scope="row">Agua</th><td>Que describes la instalación, eliges la válvula adecuada y evalúas medidas de ahorro.</td><td>Esquema de la instalación de un baño, tabla de válvulas por función y tres medidas comparadas por litros ahorrados y coste.</td></tr>
+              <tr><th scope="row">Reutilización</th><td>Que distingues aguas grises de pluviales y respetas las reglas de separación.</td><td>Propuesta de reutilización para el riego del centro con la separación de redes y la señalización previstas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ejercicio con efecto inmediato: descarga del contador digital la curva horaria de tu vivienda durante una semana, represéntala con las herramientas del Tema 15 y localiza el máximo. Ese número es el que decide tu potencia contratada, y probablemente descubras que pagas por más de lo que usas.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Acometida</dt><dd>Derivación desde la red de distribución hasta el edificio.</dd>
+          <dt>Aguas grises</dt><dd>Aguas usadas de duchas y lavabos, sin materia fecal, reutilizables tras un tratamiento sencillo.</dd>
+          <dt>Aireador</dt><dd>Dispositivo que mezcla aire con el agua del grifo para reducir el caudal sin que se note.</dd>
+          <dt>Bajante</dt><dd>Tubería vertical que recoge los desagües de las distintas plantas de un edificio.</dd>
+          <dt>Derivación individual</dt><dd>Línea que va del contador al cuadro de la vivienda.</dd>
+          <dt>Diferencial</dt><dd>Interruptor que corta cuando la corriente que entra y la que sale no coinciden; protege a las personas.</dd>
+          <dt>Distribuidora</dt><dd>Empresa propietaria de los cables y del contador; no se elige.</dd>
+          <dt>Comercializadora</dt><dd>Empresa que factura la energía y con la que se contrata; sí se elige.</dd>
+          <dt>Esquema unifilar</dt><dd>Representación de una instalación con una sola línea por circuito.</dd>
+          <dt>IGA</dt><dd>Interruptor general automático: protege la instalación completa y permite cortarla.</dd>
+          <dt>Magnetotérmico</dt><dd>Interruptor automático que protege el cable de su circuito con un mecanismo térmico y otro magnético.</dd>
+          <dt>Potencia contratada</dt><dd>Potencia máxima que permite el suministro; se paga con independencia del consumo.</dd>
+          <dt>Recirculador</dt><dd>Dispositivo que devuelve al depósito el agua fría de la tubería de agua caliente en lugar de perderla.</dd>
+          <dt>Reductor de presión</dt><dd>Válvula que mantiene constante la presión de salida de la instalación.</dd>
+          <dt>Sifón</dt><dd>Codo del desagüe que retiene agua y forma un tapón hidráulico contra los gases.</dd>
+          <dt>Término de energía</dt><dd>Parte de la factura proporcional a los kilovatios hora consumidos.</dd>
+          <dt>Término de potencia</dt><dd>Parte de la factura proporcional a la potencia contratada y a los días del periodo.</dd>
+          <dt>Toma de tierra</dt><dd>Conexión de las masas metálicas al terreno, que permite al diferencial detectar un fallo de aislamiento.</dd>
+          <dt>Válvula antirretorno</dt><dd>Válvula que permite el paso del agua en un solo sentido.</dd>
+          <dt>Válvula de esfera</dt><dd>Válvula de corte rápido que no debe usarse en posiciones intermedias.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>La cadena del suministro va de la acometida al cuadro de la vivienda, y el contador marca dónde empieza la responsabilidad del usuario.</li>
+          <li>La distribuidora es dueña de los cables y no se elige; la comercializadora factura y sí se elige.</li>
+          <li>El contador digital registra el consumo hora a hora, y esa curva es la mejor materia prima para una auditoría energética.</li>
+          <li>El IGA protege la instalación, el diferencial protege a las personas y cada magnetotérmico protege el cable de su circuito.</li>
+          <li>El diferencial y la toma de tierra trabajan en pareja: sin tierra, la corriente de fallo no tiene camino hasta que alguien la toca.</li>
+          <li>Un automático que salta está haciendo su trabajo; sustituirlo por otro de más amperios deja el cable sin protección.</li>
+          <li>El magnetotérmico tolera una sobrecorriente breve a propósito, porque los motores la producen al arrancar.</li>
+          <li>Se elige primero la sección del cable y después el automático que lo protege, nunca al revés.</li>
+          <li>El verde y amarillo está reservado a la tierra: es un código normalizado, no una preferencia.</li>
+          <li>La potencia contratada se calcula con la coincidencia real de los aparatos, y bajar un escalón ahorra sin cambiar hábitos de consumo.</li>
+          <li>En una factura solo el término de energía depende del consumo, de modo que reducir el consumo un 20 % no baja la factura un 20 %.</li>
+          <li>Una tarifa con discriminación horaria solo interesa si se puede desplazar el consumo de verdad.</li>
+          <li>La llave de paso general del agua es lo primero que hay que saber localizar en una vivienda.</li>
+          <li>Una válvula de esfera está para abrir o cerrar, no para regular.</li>
+          <li>El recirculador es el dispositivo que más agua ahorra y el que exige control: ahorra agua y gasta energía.</li>
+          <li>La medida más rentable de todas es reparar una fuga: una cisterna que gotea pierde más que casi cualquier dispositivo ahorra.</li>
+          <li>No toda el agua tiene que ser potable, y las redes de agua reutilizada nunca se conectan con la de agua potable.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099">Reglamento Electrotécnico para Baja Tensión (Real Decreto 842/2002)</a>. Circuitos de una vivienda, secciones y protecciones.</li>
+          <li id="fuente_2">[2] <a href="https://www.codigotecnico.org/">Código Técnico de la Edificación</a>. Documentos básicos de salubridad —suministro de agua y evacuación— y de ahorro de energía.</li>
+          <li id="fuente_3">[3] <a href="https://www.cnmc.es/">Comisión Nacional de los Mercados y la Competencia</a>. Estructura de la factura y peajes de acceso.</li>
+          <li id="fuente_4">[4] <a href="https://www.idae.es/">IDAE</a>. Guías de consumo doméstico y de medidas de ahorro.</li>
+          <li id="fuente_5">[5] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Simbología de esquemas eléctricos (UNE-EN 60617) y colores de conductores.</li>
+          <li id="fuente_6">[6] <a href="https://www.miteco.gob.es/es.html">Ministerio para la Transición Ecológica y el Reto Demográfico</a>. Reutilización de aguas y consumo doméstico de agua.</li>
+          <li id="fuente_7">[7] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque G y criterio 6.2.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema20.html">← Tema 20</a>
+  <a href="tema22.html">Tema 22 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>
