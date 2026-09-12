@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 8 del Bloque C de Tecnología e Ingeniería I: mecanismos de transformación del movimiento, biela-manivela, piñón-cremallera, leva, tornillo-tuerca, cigüeñal, soportes y guiado, rodamientos, uniones, acoplamientos rígidos y flexibles, junta Cardan, lubricación y planos de conjunto.">
+  <title>Tema 8. Transformación del movimiento, soportes, uniones y acoplamientos · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 08 · Bloque C · Sistemas mecánicos</p>
+        <h1>Tema 8. Transformación del movimiento, soportes, uniones y acoplamientos</h1>
+        <p class="hero-lead">Cómo se convierte un giro en un desplazamiento y cómo se sujetan, se guían y se enlazan las piezas de una máquina.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 8">
+        <strong>Pregunta guía</strong>
+        <p>El reductor del KR-1 entrega un giro lento y con fuerza. Pero el obturador de la válvula no gira: se desplaza 8 mm en línea recta. ¿Qué mecanismo hace esa conversión, y qué sujeta todo eso para que no se desmonte a la tercera semana?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#transformar">Transformar el movimiento</a></li>
+        <li><a href="#biela">Biela-manivela y cigüeñal</a></li>
+        <li><a href="#otros">Cremallera, leva y tornillo</a></li>
+        <li><a href="#eleccion">Elegir el mecanismo</a></li>
+        <li><a href="#soportes">Soportes, ejes y guiado</a></li>
+        <li><a href="#uniones">Uniones entre piezas</a></li>
+        <li><a href="#acoplamientos">Acoplamientos y junta Cardan</a></li>
+        <li><a href="#mantenimiento">Lubricación y desgaste</a></li>
+        <li><a href="#planos">El plano de conjunto</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">El Tema 7 movió el giro de un sitio a otro. Este lo cambia de naturaleza —de rotación a desplazamiento— y, sobre todo, se ocupa de todo lo que en los esquemas no aparece y en el taller decide si la máquina funciona: qué sujeta los ejes, qué une las piezas, qué pasa cuando dos ejes no están perfectamente alineados y por qué una máquina bien diseñada acaba destruyéndose si nadie la engrasa.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> abre y cierra un grifo monomando. Tu mano hace un giro; dentro, algo se desplaza para tapar o destapar el paso del agua. Ese «algo» es un mecanismo de transformación, y hay al menos cuatro maneras distintas de resolverlo. Cada una da una sensación distinta al usarlo, y eso no es casualidad: es una decisión de diseño.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>distinguir transmisión de transformación del movimiento y clasificar un mecanismo en su tipo;</li>
+          <li>explicar el funcionamiento de la biela-manivela y calcular su carrera;</li>
+          <li>describir qué hace un cigüeñal y por qué es un mecanismo de transformación;</li>
+          <li>comparar piñón-cremallera, leva-seguidor y tornillo-tuerca, y elegir entre ellos con criterios;</li>
+          <li>identificar los elementos de soporte y guiado y distinguir cojinete de rodamiento;</li>
+          <li>clasificar una unión en desmontable o fija y justificar cuál conviene;</li>
+          <li>explicar para qué sirve un acoplamiento flexible y qué resuelve una junta Cardan;</li>
+          <li>razonar el mantenimiento de un mecanismo: lubricación, desgaste y vida útil;</li>
+          <li>interpretar un plano de conjunto con su lista de piezas.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="transformar">
+        <h2 id="transformar">1. Transformar el movimiento</h2>
+        <p>Un mecanismo de <strong>transformación</strong> cambia la naturaleza del movimiento: convierte una rotación en una traslación, o una traslación en una rotación. Casi siempre funciona en los dos sentidos, y el sentido en que se usa lo decide la aplicación, no el mecanismo.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: los cuatro mecanismos de transformación">
+          <table>
+            <caption>Los cuatro mecanismos de transformación esenciales</caption>
+            <thead><tr><th scope="col">Mecanismo</th><th scope="col">Convierte</th><th scope="col">Desplazamiento</th><th scope="col">Ejemplo cotidiano</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Biela-manivela</strong></th><td>Giro ↔ vaivén</td><td>Alternativo, limitado a dos veces el radio.</td><td>Motor de explosión, sierra de calar, máquina de coser.</td></tr>
+              <tr><th scope="row"><strong>Piñón-cremallera</strong></th><td>Giro ↔ traslación</td><td>Continuo y tan largo como la cremallera.</td><td>Dirección de un coche, puerta de garaje, sacacorchos.</td></tr>
+              <tr><th scope="row"><strong>Leva-seguidor</strong></th><td>Giro → vaivén</td><td>Alternativo, con la ley de movimiento que quieras tallar.</td><td>Válvulas de un motor, mecanismo de un reloj, cerradura.</td></tr>
+              <tr><th scope="row"><strong>Tornillo-tuerca</strong></th><td>Giro ↔ traslación</td><td>Continuo, muy lento y con mucha fuerza.</td><td>Gato de coche, sargento, mordaza, mesa de una fresadora.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Movimiento alternativo y movimiento continuo</strong>Un desplazamiento <strong>alternativo</strong> va y vuelve entre dos extremos: la biela-manivela y la leva lo producen, y su recorrido está limitado por la geometría. Un desplazamiento <strong>continuo</strong> avanza mientras siga girando la entrada: la cremallera y el tornillo lo producen, y su recorrido lo limita solo la longitud de la pieza. Si necesitas un recorrido largo, la biela-manivela no es candidata por mucho que la agrandes.</div>
+      </section>
+
+      <section aria-labelledby="biela">
+        <h2 id="biela">2. Biela-manivela y cigüeñal</h2>
+        <p>La <strong>biela-manivela</strong> es el mecanismo de transformación más importante de la historia industrial: es el que convierte la explosión de un pistón en el giro de las ruedas de un coche. Consta de tres elementos: una <strong>manivela</strong> que gira, una <strong>biela</strong> articulada en sus dos extremos y un <strong>patín o pistón</strong> que se desplaza guiado.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de biela-manivela y leva excéntrica">
+          <img src="assets/tema08_biela_manivela.svg" alt="A la izquierda, biela-manivela: la manivela gira, la biela transmite el movimiento y el patín se desplaza entre dos extremos, con una carrera igual al doble del radio de la manivela. A la derecha, leva excéntrica: el eje de giro está desplazado una distancia e del centro del disco y el seguidor sube el doble de esa excentricidad.">
+          <figcaption>Dos mecanismos, dos leyes de movimiento. En los dos casos, la carrera depende solo de una medida: el radio de la manivela o la excentricidad de la leva.</figcaption>
+        </figure>
+
+        <p class="ti1-formula">carrera = 2 · r <span class="ti1-formula-leyenda">r es el radio de la manivela; la longitud de la biela no interviene</span></p>
+
+        <div class="ti1-note"><strong>El resultado más contraintuitivo del tema.</strong> La longitud de la biela <strong>no cambia la carrera</strong>: solo cambia la <em>suavidad</em> del movimiento. Una biela corta produce un vaivén brusco y asimétrico; una biela larga, un vaivén casi sinusoidal. Quien quiera aumentar el recorrido de su mecanismo tiene que alargar la manivela, no la biela. Es un error que se comete en el taller una vez y no se olvida.</div>
+
+        <h3>El cigüeñal</h3>
+        <p>Un <strong>cigüeñal</strong> es un eje con varias manivelas —los <em>codos</em>— desfasadas entre sí, cada una unida a la biela de un pistón. Su función es reunir el vaivén de varios pistones en un único giro continuo y regular. No transmite el movimiento: lo <strong>transforma</strong>, y por eso se estudia aquí y no en el Tema 7, donde el texto oficial lo enumera.</p>
+
+        <div class="ti1-curio"><strong>Por qué los codos están desfasados.</strong> Si los cuatro pistones de un motor empujaran al mismo tiempo, el giro sería una sucesión de tirones. Desfasando los codos, cada pistón empuja en un momento distinto y el par resulta mucho más uniforme: el motor vibra menos y gira más redondo. Ese desfase —y el volante de inercia que lo complementa— es la razón de que un motor de cuatro cilindros funcione mejor que cuatro motores de uno.</div>
+      </section>
+
+      <section aria-labelledby="otros">
+        <h2 id="otros">3. Cremallera, leva y tornillo</h2>
+
+        <h3>Piñón-cremallera</h3>
+        <p>Un piñón engrana con una barra dentada recta, la <strong>cremallera</strong>. Al girar el piñón, la cremallera avanza. Es un engranaje en el que una de las ruedas tiene radio infinito, y por eso comparte con los engranajes la precisión y la ausencia de deslizamiento.</p>
+        <p class="ti1-formula">avance por vuelta = π · D<sub>piñón</sub> = paso · Z<sub>piñón</sub> <span class="ti1-formula-leyenda">el avance es la circunferencia del piñón que «se desenrolla»</span></p>
+
+        <h3>Leva-seguidor</h3>
+        <p>Una <strong>leva</strong> es una pieza de perfil no circular que, al girar, desplaza un <strong>seguidor</strong> apoyado en ella. Su virtud es única entre todos los mecanismos: <strong>el perfil de la leva es el programa del movimiento</strong>. Puedes tallar una leva que suba rápido, se quede arriba media vuelta y baje despacio. Ningún otro mecanismo mecánico permite eso.</p>
+        <p class="ti1-formula">carrera = radio máximo − radio mínimo del perfil <span class="ti1-formula-leyenda">en una leva excéntrica circular, carrera = 2 · e</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La leva es un programa mecánico</strong>Antes de que existieran los microcontroladores, las máquinas se «programaban» tallando levas: un árbol con varias levas de perfiles distintos accionaba una secuencia completa de operaciones, ciclo tras ciclo, con una precisión inmejorable. Las máquinas automáticas de mecanizado, las cajas de música y las válvulas de un motor siguen funcionando así. Cuando en el Tema 18 escribamos una máquina de estados en MicroPython estaremos haciendo lo mismo que hacía un tornero tallando un árbol de levas, con la diferencia de que nuestro programa se puede cambiar sin volver al torno.</div>
+
+        <h3>Tornillo-tuerca</h3>
+        <p>Al girar un tornillo, la tuerca avanza —o al contrario—. Su característica definitoria es la <strong>enorme multiplicación de fuerza</strong>: una vuelta completa de la manivela produce un avance de un paso, que puede ser de uno o dos milímetros. Eso significa mucho recorrido angular por muy poco recorrido lineal, y por tanto una fuerza axial altísima.</p>
+        <p class="ti1-formula">avance por vuelta = paso de la rosca <span class="ti1-formula-leyenda">1 mm de paso: 360° de giro para avanzar 1 mm</span></p>
+
+        <div class="ti1-note"><strong>Casi siempre es irreversible, y eso es una ventaja.</strong> El rozamiento en la rosca suele impedir que una carga axial haga girar el tornillo: un gato de coche sostiene el vehículo sin que nadie lo sujete, y una mordaza no se abre sola. Es la misma propiedad del tornillo sin fin del Tema 7. La contrapartida es un rendimiento bajo —mucha energía se pierde en rozamiento— y un movimiento muy lento.</div>
+      </section>
+
+      <section aria-labelledby="eleccion">
+        <h2 id="eleccion">4. Elegir el mecanismo de transformación</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación de los mecanismos de transformación">
+          <table>
+            <caption>Los cuatro mecanismos frente a cinco criterios</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">Biela-manivela</th><th scope="col">Piñón-cremallera</th><th scope="col">Leva</th><th scope="col">Tornillo-tuerca</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Recorrido</th><td>Limitado a 2r</td><td>Largo</td><td>Limitado y pequeño</td><td>Largo pero lento</td></tr>
+              <tr><th scope="row">Fuerza que da</th><td>Media, variable</td><td>Media</td><td>Alta en el contacto</td><td>Muy alta</td></tr>
+              <tr><th scope="row">Ley de movimiento</th><td>Fija, casi sinusoidal</td><td>Lineal y uniforme</td><td>La que se talle</td><td>Lineal y uniforme</td></tr>
+              <tr><th scope="row">Rendimiento</th><td>Alto</td><td>Alto</td><td>Medio</td><td>Bajo</td></tr>
+              <tr><th scope="row">Se mueve solo con la carga</th><td>Sí</td><td>Sí</td><td>Depende</td><td>No: irreversible</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La decisión del KR-1</strong>El obturador necesita 8 mm de recorrido, fuerza suficiente para vencer la presión del agua y, sobre todo, <strong>quedarse donde está si se corta la corriente</strong>. Los criterios apuntan al tornillo-tuerca por su irreversibilidad… y sin embargo la solución elegida es una <strong>electroválvula comercial normalmente cerrada</strong>, que resuelve el problema con un muelle y un solenoide. Es la lección del Tema 2 otra vez: el mejor mecanismo a veces es el que no hay que diseñar. El mecanismo propio se estudia y se calcula porque hay que saber hacerlo y porque hay proyectos donde no existe un componente comercial.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> una puerta de garaje tiene que recorrer dos metros y quedarse quieta a media altura si se va la luz. ¿Cuál de los cuatro mecanismos elegirías, y qué añadirías para que no caiga si se rompe el que has elegido?</div>
+      </section>
+
+      <section aria-labelledby="soportes">
+        <h2 id="soportes">5. Soportes, ejes y guiado</h2>
+        <p>Todo lo anterior gira o se desliza, y necesita algo que lo sostenga permitiendo ese movimiento y bloqueando todos los demás. Esa es la función del <strong>guiado</strong>: permitir el movimiento deseado e impedir los indeseados.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elementos de soporte y guiado">
+          <table>
+            <caption>Elementos de soporte y guiado</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Función</th><th scope="col">Observaciones</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Eje</strong></th><td>Elemento cilíndrico que gira y transmite par.</td><td>Un <em>eje</em> gira; un <em>árbol</em> gira y transmite par; un <em>husillo</em> es un eje roscado.</td></tr>
+              <tr><th scope="row"><strong>Cojinete de fricción</strong></th><td>Casquillo en el que el eje desliza directamente.</td><td>Barato, silencioso y compacto; necesita lubricación y tiene más rozamiento.</td></tr>
+              <tr><th scope="row"><strong>Rodamiento</strong></th><td>Interpone bolas o rodillos entre eje y soporte.</td><td>Rozamiento mucho menor, soporta más velocidad; más caro y más ruidoso.</td></tr>
+              <tr><th scope="row"><strong>Chumacera</strong></th><td>Soporte completo que aloja el cojinete o rodamiento y se atornilla al bastidor.</td><td>Facilita el montaje y la alineación.</td></tr>
+              <tr><th scope="row"><strong>Guía lineal</strong></th><td>Permite el desplazamiento recto e impide el giro.</td><td>Varilla y casquillo, o carro sobre perfil. El patín del KR-1 va sobre guía.</td></tr>
+              <tr><th scope="row"><strong>Casquillo de tope y arandela</strong></th><td>Fijan la posición axial del eje.</td><td>Sin ellos, el eje «viaja» a lo largo y desalinea el engranaje.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Cojinete o rodamiento: cómo decidir</strong>Si el eje gira despacio, con poca carga y el ruido importa, un <strong>cojinete</strong> de plástico autolubricado es más barato, más compacto y más silencioso. Si gira rápido, con carga o hay que reducir el rozamiento al mínimo, un <strong>rodamiento</strong>. El KR-1 lleva cojinetes: doscientas vueltas por minuto unas cuantas veces al día no justifican un rodamiento, y un cojinete de polímero no necesita engrase, que es decisivo cuando nadie va a mantenerlo.</div>
+
+        <div class="aviso"><strong>La desalineación destruye lo que el cálculo no prevé</strong>Dos soportes que no están perfectamente alineados obligan al eje a flexarse en cada vuelta. El resultado es calentamiento, desgaste acelerado y rotura por fatiga —la propiedad del Tema 5— a una carga muy inferior a la calculada. Es la causa más frecuente de que un mecanismo bien diseñado falle en el taller, y no se detecta en el plano: se detecta midiendo el montaje. De ahí la importancia del bastidor rígido del Tema 7.</div>
+      </section>
+
+      <section aria-labelledby="uniones">
+        <h2 id="uniones">6. Uniones entre piezas</h2>
+        <p>El currículo pide expresamente la «unión de elementos mecánicos». La primera decisión no es qué tornillo usar, sino si la unión debe poder deshacerse.</p>
+
+        <div class="comparacion">
+          <div><h3>Uniones desmontables</h3><p>Se pueden deshacer sin dañar las piezas: tornillos, pasadores, chavetas, anillos elásticos, encajes a presión. Permiten montar, ajustar, reparar y reciclar.</p></div>
+          <div><h3>Uniones fijas</h3><p>Deshacerlas destruye la unión o las piezas: soldadura, remachado, encolado, sobremoldeo. Son más rígidas, más ligeras y más baratas en serie.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de unión mecánica y su uso">
+          <table>
+            <caption>Uniones y cuándo se usa cada una</caption>
+            <thead><tr><th scope="col">Unión</th><th scope="col">Tipo</th><th scope="col">Ventaja</th><th scope="col">Cuidado con</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Tornillo y tuerca</strong></th><td>Desmontable</td><td>Universal, normalizado, ajustable, reutilizable.</td><td>Se afloja con la vibración: hace falta arandela elástica, tuerca autoblocante o adhesivo de roscas.</td></tr>
+              <tr><th scope="row"><strong>Chaveta o lengüeta</strong></th><td>Desmontable</td><td>Une una rueda a su eje transmitiendo par sin que patine.</td><td>El chavetero debilita el eje: es el punto por donde rompe.</td></tr>
+              <tr><th scope="row"><strong>Pasador</strong></th><td>Desmontable</td><td>Fija la posición relativa con precisión; puede actuar de fusible mecánico.</td><td>No está pensado para transmitir par grande.</td></tr>
+              <tr><th scope="row"><strong>Anillo elástico</strong></th><td>Desmontable</td><td>Retiene axialmente un eje con muy poco espacio.</td><td>No aguanta carga axial importante.</td></tr>
+              <tr><th scope="row"><strong>Remache</strong></th><td>Fija</td><td>Rápida, barata, accesible por un solo lado.</td><td>Para desmontar hay que taladrarla.</td></tr>
+              <tr><th scope="row"><strong>Soldadura</strong></th><td>Fija</td><td>Continuidad total, la unión más rígida.</td><td>Deforma por calor y crea tensiones internas; exige formación y protección.</td></tr>
+              <tr><th scope="row"><strong>Adhesivo</strong></th><td>Fija</td><td>Une materiales distintos y reparte la carga en toda la superficie.</td><td>Depende de la preparación de la superficie y envejece.</td></tr>
+              <tr><th scope="row"><strong>Encaje a presión o clip</strong></th><td>Desmontable o fija según diseño</td><td>Coste de montaje nulo: es la unión del plástico inyectado.</td><td>Fatiga del clip y tolerancias muy ajustadas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>La unión es el punto débil, y eso cambia el diseño.</strong> Una pieza bien calculada rara vez rompe por su sección: rompe por el agujero del tornillo, por el chavetero o por el cordón de soldadura. Por eso las uniones se sitúan donde las tensiones son menores y se sobredimensionan respecto al resto. Y por eso el diseño para el desmontaje del Tema 5 empieza aquí: un producto unido con tornillos accesibles se repara y se recicla; uno encolado, no.</div>
+      </section>
+
+      <section aria-labelledby="acoplamientos">
+        <h2 id="acoplamientos">7. Acoplamientos y junta Cardan</h2>
+        <p>Un <strong>acoplamiento</strong> une dos ejes en prolongación para transmitir el giro. Parece el elemento más trivial de una máquina y resuelve uno de sus problemas más frecuentes: en la realidad, dos ejes nunca están perfectamente alineados.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de acoplamiento">
+          <table>
+            <caption>Tipos de acoplamiento y qué tolera cada uno</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Tolera desalineación</th><th scope="col">Comportamiento</th><th scope="col">Cuándo se usa</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Rígido</strong></th><td>Ninguna</td><td>Los dos ejes se comportan como uno solo; máxima rigidez torsional.</td><td>Cuando la alineación está garantizada por mecanizado o por un bastidor común.</td></tr>
+              <tr><th scope="row"><strong>Flexible</strong> (elastómero, garras, fuelle)</th><td>Pequeña, angular y paralela</td><td>Absorbe desalineaciones, amortigua vibraciones y golpes de par.</td><td>Motor y máquina montados por separado. Es el caso normal.</td></tr>
+              <tr><th scope="row"><strong>Elástico helicoidal</strong></th><td>Pequeña</td><td>Muy usado en ejes pequeños; barato y compacto.</td><td>Impresoras 3D, robótica educativa, el propio KR-1.</td></tr>
+              <tr><th scope="row"><strong>Junta Cardan</strong></th><td>Angular grande</td><td>Transmite entre ejes que forman un ángulo apreciable; la velocidad de salida fluctúa dentro de cada vuelta.</td><td>Transmisión de un vehículo, llaves articuladas, ejes que cambian de dirección.</td></tr>
+              <tr><th scope="row"><strong>Junta homocinética</strong></th><td>Angular grande</td><td>Como la Cardan pero sin fluctuación de velocidad.</td><td>Ruedas motrices y directrices de un coche.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué existen dos juntas y no una</strong>Una <strong>junta Cardan</strong> transmite el giro entre ejes que forman un ángulo, pero tiene un defecto: la velocidad de salida no es constante dentro de cada vuelta, aunque la entrada sí lo sea. Eso produce vibración. La solución clásica es montar <strong>dos juntas Cardan</strong> en serie, correctamente orientadas: la segunda compensa la fluctuación de la primera. Cuando el ángulo es grande y variable —una rueda que además gira para dirigir— esa solución no basta, y ahí es donde se usa la <strong>junta homocinética</strong>, que mantiene la velocidad constante por construcción.</div>
+
+        <div class="ti1-note"><strong>Un acoplamiento flexible también protege.</strong> Además de tolerar desalineación, absorbe los picos de par del arranque y la parada. En el KR-1, si el obturador se atasca con un grano de tierra, un acoplamiento elástico cede un poco y da tiempo a que el programa de control detecte la sobrecorriente en lugar de romper un diente del reductor. Es protección mecánica que colabora con la protección por programa del Bloque F.</div>
+      </section>
+
+      <section aria-labelledby="mantenimiento">
+        <h2 id="mantenimiento">8. Lubricación, desgaste y vida útil</h2>
+        <p>Un mecanismo con piezas en contacto y movimiento relativo se desgasta. La <strong>lubricación</strong> interpone una película entre las superficies, y con eso consigue tres cosas a la vez: reducir el rozamiento —y por tanto subir el rendimiento del Tema 7—, evacuar el calor y arrastrar las partículas de desgaste.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Aceite</h3><p>Fluye, refrigera y se filtra; exige retenes y un nivel que revisar. Reductores cerrados y motores.</p></div>
+          <div class="ti1-card"><h3>Grasa</h3><p>Se queda donde se pone y no necesita estanqueidad perfecta; no refrigera. Rodamientos y engranajes abiertos.</p></div>
+          <div class="ti1-card"><h3>Seco</h3><p>Polímeros autolubricados o recubrimientos. Ideal cuando no habrá mantenimiento: es la opción del KR-1.</p></div>
+          <div class="ti1-card"><h3>Sellado de fábrica</h3><p>El motorreductor viene lubricado y cerrado para toda su vida. Se sustituye entero, no se mantiene.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de desgaste y su prevención">
+          <table>
+            <caption>Cómo se degrada un mecanismo</caption>
+            <thead><tr><th scope="col">Fenómeno</th><th scope="col">Qué ocurre</th><th scope="col">Cómo se previene</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Desgaste por abrasión</strong></th><td>Partículas duras rayan las superficies en contacto.</td><td>Lubricación limpia, sellado contra el polvo del huerto.</td></tr>
+              <tr><th scope="row"><strong>Desgaste por adhesión</strong></th><td>Las superficies se pegan y se arrancan material mutuamente.</td><td>Película lubricante suficiente; materiales distintos en cada pieza del par.</td></tr>
+              <tr><th scope="row"><strong>Fatiga superficial</strong></th><td>Picaduras en el flanco del diente o en la pista del rodamiento.</td><td>No superar la carga admisible; alineación correcta.</td></tr>
+              <tr><th scope="row"><strong>Corrosión</strong></th><td>El mecanismo se oxida y se agarrota.</td><td>Materiales del Tema 5, recubrimientos y estanqueidad.</td></tr>
+              <tr><th scope="row"><strong>Aflojamiento</strong></th><td>La vibración desaprieta la tornillería.</td><td>Elementos antigiro y una revisión periódica prevista en el manual.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-curio"><strong>El juego no es un defecto: es una especificación.</strong> Un engranaje necesita una pequeña holgura entre dientes —el <em>juego</em>— para que la lubricación entre y para absorber la dilatación del Tema 5. Sin juego, el mecanismo se agarrota al calentarse. Con demasiado juego, el mecanismo tiene <em>retroceso</em>: al invertir el sentido de giro, la salida no reacciona hasta que los dientes vuelven a tocarse. En un robot eso significa error de posición, y es una de las razones de que un brazo robótico barato no repita con precisión.</div>
+      </section>
+
+      <section aria-labelledby="planos">
+        <h2 id="planos">9. El plano de conjunto</h2>
+        <p>Un mecanismo no se documenta con un plano por pieza y nada más: hace falta un <strong>plano de conjunto</strong> que muestre cómo se relacionan, con una <strong>lista de piezas</strong> numerada que remite a cada elemento. Es la aplicación directa del Tema 3 y del Tema 4.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: lista de piezas del accionamiento del KR-1">
+          <table>
+            <caption>Lista de piezas del accionamiento del KR-1</caption>
+            <thead><tr><th scope="col">N.º</th><th scope="col">Denominación</th><th scope="col">Cant.</th><th scope="col">Material o referencia</th><th scope="col">Observaciones</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>Motorreductor de CC</td><td>1</td><td>Comercial, i = 9</td><td>Lubricado y sellado de fábrica.</td></tr>
+              <tr><th scope="row">2</th><td>Acoplamiento elástico ⌀5-⌀6</td><td>1</td><td>Comercial</td><td>Absorbe desalineación y picos de par.</td></tr>
+              <tr><th scope="row">3</th><td>Husillo de accionamiento</td><td>1</td><td>Acero inoxidable, paso 2 mm</td><td>Rosca a la derecha.</td></tr>
+              <tr><th scope="row">4</th><td>Tuerca del obturador</td><td>1</td><td>Polímero autolubricado</td><td>Sin engrase; ver Tema 5.</td></tr>
+              <tr><th scope="row">5</th><td>Guía lineal del patín</td><td>2</td><td>Varilla ⌀4 inoxidable</td><td>Impide el giro del obturador.</td></tr>
+              <tr><th scope="row">6</th><td>Cojinete de polímero</td><td>2</td><td>Comercial</td><td>Autolubricado.</td></tr>
+              <tr><th scope="row">7</th><td>Soporte impreso</td><td>1</td><td>PETG</td><td>Pieza del Tema 6.</td></tr>
+              <tr><th scope="row">8</th><td>Tornillo M3×12 con tuerca autoblocante</td><td>4</td><td>DIN 912 / DIN 985</td><td>Unión desmontable; la autoblocante evita el aflojamiento.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La lista de piezas revela la calidad del diseño</strong>Fíjate en cuántas líneas dicen «comercial». Cuantas más, mejor: cada pieza que no hay que fabricar es una pieza que no falla, no se retrasa y no cuesta. Un diseño de aprendiz fabrica el acoplamiento y el cojinete; un diseño maduro los compra normalizados y concentra el esfuerzo en las dos o tres piezas que de verdad son propias del proyecto.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> en la lista faltan los elementos de estanqueidad, y la pieza 3 es un husillo que atraviesa la pared de una caja que tenía que mantener el grado de protección IP65 del Tema 2. ¿Qué habría que añadir, y qué problema nuevo introduce ese añadido? (Un retén o una junta; y el problema es que roza, lo que aumenta el par necesario y vuelve al cálculo del Tema 9.)</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un mecanismo montado que funciona y una lista de piezas que alguien más podría comprar.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 8">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Transformación</th><td>Que eliges el mecanismo por criterios y calculas su carrera.</td><td>Tabla comparativa de los cuatro mecanismos para tu caso y el cálculo de la carrera obtenida.</td></tr>
+              <tr><th scope="row">Soporte y guiado</th><td>Que el eje está sostenido, guiado y retenido axialmente, y que has decidido entre cojinete y rodamiento.</td><td>Esquema del guiado, elección justificada del apoyo y comprobación de la alineación en el montaje.</td></tr>
+              <tr><th scope="row">Uniones y acoplamientos</th><td>Que distingues desmontable de fija y que has previsto el aflojamiento y la desalineación.</td><td>Uniones justificadas una a una, elementos antigiro previstos y acoplamiento elegido con su tolerancia.</td></tr>
+              <tr><th scope="row">Mantenimiento</th><td>Que el mecanismo está pensado para las condiciones reales de mantenimiento.</td><td>Decisión de lubricación razonada, juego previsto y apartado de mantenimiento en el manual del Tema 4.</td></tr>
+              <tr><th scope="row">Documentación</th><td>Que el conjunto está representado y despiezado.</td><td>Plano de conjunto con lista de piezas numerada, con la mayor parte de elementos comerciales normalizados.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba de montaje: ensambla el mecanismo, hazlo funcionar cincuenta ciclos completos y vuelve a medir la carrera. Si ha cambiado, hay juego, aflojamiento o desgaste, y los tres son información de diseño.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Acoplamiento</dt><dd>Elemento que une dos ejes en prolongación para transmitirse el giro.</dd>
+          <dt>Árbol</dt><dd>Eje que además de girar transmite par.</dd>
+          <dt>Biela</dt><dd>Barra articulada en sus dos extremos que enlaza la manivela con el patín o pistón.</dd>
+          <dt>Carrera</dt><dd>Recorrido total de un elemento con movimiento alternativo, entre sus dos posiciones extremas.</dd>
+          <dt>Chaveta</dt><dd>Pieza que une una rueda a su eje transmitiendo par e impidiendo que patine.</dd>
+          <dt>Chumacera</dt><dd>Soporte que aloja un cojinete o rodamiento y se fija al bastidor.</dd>
+          <dt>Cigüeñal</dt><dd>Eje con varias manivelas desfasadas que reúne el vaivén de varios pistones en un giro continuo.</dd>
+          <dt>Cojinete</dt><dd>Casquillo sobre el que el eje desliza directamente.</dd>
+          <dt>Cremallera</dt><dd>Barra dentada recta que engrana con un piñón para convertir giro en traslación.</dd>
+          <dt>Excentricidad</dt><dd>Distancia entre el eje de giro de una leva y el centro de su perfil; fija la carrera del seguidor.</dd>
+          <dt>Husillo</dt><dd>Eje roscado destinado a transformar giro en desplazamiento.</dd>
+          <dt>Junta Cardan</dt><dd>Acoplamiento que transmite el giro entre ejes que forman un ángulo, con fluctuación de velocidad dentro de cada vuelta.</dd>
+          <dt>Junta homocinética</dt><dd>Acoplamiento angular que mantiene constante la velocidad de salida.</dd>
+          <dt>Juego</dt><dd>Holgura prevista entre piezas en contacto, necesaria para la lubricación y la dilatación.</dd>
+          <dt>Leva</dt><dd>Pieza de perfil no circular que al girar impone al seguidor la ley de movimiento tallada en ella.</dd>
+          <dt>Manivela</dt><dd>Elemento que gira alrededor de un eje y arrastra la biela desde un punto excéntrico.</dd>
+          <dt>Movimiento alternativo</dt><dd>Desplazamiento que va y vuelve entre dos posiciones extremas.</dd>
+          <dt>Rodamiento</dt><dd>Apoyo que interpone bolas o rodillos entre el eje y su soporte para reducir el rozamiento.</dd>
+          <dt>Retroceso</dt><dd>Recorrido perdido al invertir el sentido de giro debido al juego del mecanismo.</dd>
+          <dt>Unión desmontable</dt><dd>Unión que puede deshacerse sin dañar las piezas.</dd>
+          <dt>Unión fija</dt><dd>Unión cuya separación destruye la propia unión o las piezas.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Transformar el movimiento es cambiar su naturaleza: de giro a desplazamiento o al contrario.</li>
+          <li>Los cuatro mecanismos esenciales son biela-manivela, piñón-cremallera, leva-seguidor y tornillo-tuerca.</li>
+          <li>En la biela-manivela la carrera es dos veces el radio de la manivela; la longitud de la biela solo cambia la suavidad del movimiento.</li>
+          <li>El cigüeñal transforma —no transmite— el vaivén de varios pistones en un giro continuo, y sus codos van desfasados para que el par sea uniforme.</li>
+          <li>El perfil de una leva es el programa del movimiento: ningún otro mecanismo permite decidir la ley de desplazamiento.</li>
+          <li>El tornillo-tuerca da una fuerza enorme, avanza un paso por vuelta y suele ser irreversible, lo que lo convierte en freno automático.</li>
+          <li>El guiado permite el movimiento deseado e impide los demás; sin retención axial, un eje se desplaza y desalinea el mecanismo.</li>
+          <li>Un cojinete es barato, silencioso y compacto; un rodamiento reduce el rozamiento y admite más velocidad.</li>
+          <li>La desalineación provoca calentamiento, desgaste y rotura por fatiga muy por debajo de la carga calculada.</li>
+          <li>La primera decisión de una unión es si debe poder deshacerse; y la unión es casi siempre el punto por el que rompe una pieza.</li>
+          <li>Un acoplamiento flexible tolera desalineaciones, amortigua los picos de par y protege el mecanismo.</li>
+          <li>La junta Cardan transmite entre ejes en ángulo pero fluctúa la velocidad; la homocinética no, y por eso va en las ruedas directrices.</li>
+          <li>La lubricación reduce el rozamiento, evacua calor y arrastra partículas; cuando no habrá mantenimiento, la solución es la lubricación seca o el conjunto sellado de fábrica.</li>
+          <li>El juego es una especificación, no un defecto, pero produce retroceso y con ello error de posición.</li>
+          <li>Un plano de conjunto con su lista de piezas es el documento del mecanismo, y cuantas más piezas comerciales normalizadas contenga, mejor es el diseño.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Tornillería, chavetas, pasadores y anillos elásticos normalizados (series DIN e ISO recogidas como UNE-EN ISO).</li>
+          <li id="fuente_2">[2] <a href="https://algodoo.com/">Algodoo</a>. Simulación de biela-manivela, levas y mecanismos articulados en dos dimensiones.</li>
+          <li id="fuente_3">[3] <a href="https://www.geogebra.org/">GeoGebra</a>. Construcción dinámica de la trayectoria de un mecanismo y de su ley de movimiento.</li>
+          <li id="fuente_4">[4] <a href="https://www.freecad.org/">FreeCAD</a>. Ensamblaje del mecanismo y comprobación de interferencias y recorridos.</li>
+          <li id="fuente_5">[5] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque C y criterio 4.1.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema07.html">← Tema 7</a>
+  <a href="tema09.html">Tema 9 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

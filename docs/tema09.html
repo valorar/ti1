@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 9 del Bloque C de Tecnología e Ingeniería I: transferencia de matemáticas y física al cálculo mecánico, relaciones de transmisión en trenes compuestos, par, potencia y rendimiento, fuerzas y momentos, diseño a partir de un requisito de movimiento, simulación y montaje.">
+  <title>Tema 9. Cálculo, diseño y montaje de sistemas mecánicos · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 09 · Bloque C · Sistemas mecánicos</p>
+        <h1>Tema 9. Cálculo, diseño y montaje de sistemas mecánicos</h1>
+        <p class="hero-lead">Cómo se dimensiona un mecanismo con las herramientas de las matemáticas y la física, y cómo se comprueba que lo calculado funciona de verdad.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 9">
+        <strong>Pregunta guía</strong>
+        <p>Tienes un requisito —abrir una válvula que opone 2,5 N·m en menos de dos segundos— y un catálogo de motores. ¿Cómo pasas de esa frase a un pedido concreto, con un número de referencia, sin comprar por intuición y sin quedarte corto?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#transferencia">Transferir matemáticas y física</a></li>
+        <li><a href="#trenes">Calcular trenes de engranajes</a></li>
+        <li><a href="#potencia">Par, potencia y rendimiento</a></li>
+        <li><a href="#fuerzas">Fuerzas, momentos y equilibrio</a></li>
+        <li><a href="#disenar">Del requisito al mecanismo</a></li>
+        <li><a href="#simular">Simular antes de montar</a></li>
+        <li><a href="#montar">Montar, medir y ajustar</a></li>
+        <li><a href="#proyecto">Aplicación al KR-1</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este es el tema donde la materia se convierte en ingeniería. Hasta aquí hemos descrito mecanismos; ahora hay que <strong>dimensionarlos</strong>: decidir cuántos dientes, cuánta potencia, qué sección, con qué margen. Es donde se materializa la competencia 4 del currículo —transferir conocimientos de otras disciplinas científicas para calcular y resolver problemas— y donde las matemáticas y la física dejan de ser asignaturas para convertirse en herramientas de trabajo.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> un cálculo de ingeniería no se parece a un problema de examen. En el examen te dan todos los datos y falta uno. En ingeniería faltan la mitad, sobran tres, dos son aproximados y tú tienes que decidir qué supones y declararlo. Esa es la diferencia, y es la que se entrena aquí.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>plantear un cálculo mecánico declarando datos, hipótesis, unidades y resultado con sus cifras significativas;</li>
+          <li>calcular relaciones de transmisión en trenes simples y compuestos, y deducir la velocidad de cualquier eje;</li>
+          <li>relacionar par, velocidad angular, potencia y rendimiento, y encadenar rendimientos;</li>
+          <li>calcular momentos y aplicar las condiciones de equilibrio a un elemento sencillo;</li>
+          <li>dimensionar un accionamiento a partir de un requisito de movimiento, con coeficiente de seguridad;</li>
+          <li>comprobar un diseño con un simulador antes de fabricarlo;</li>
+          <li>montar, medir y ajustar un mecanismo, y contrastar lo medido con lo calculado;</li>
+          <li>explicar una desviación entre cálculo y realidad en lugar de ignorarla.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="transferencia">
+        <h2 id="transferencia">1. Transferir matemáticas y física al cálculo mecánico</h2>
+        <p>El criterio 4.1 pide «resolver problemas asociados a sistemas e instalaciones mecánicas». Las herramientas ya las tienes; lo que cambia es el uso.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: herramientas matemáticas y físicas y su uso mecánico">
+          <table>
+            <caption>De dónde viene cada herramienta</caption>
+            <thead><tr><th scope="col">Procede de</th><th scope="col">Herramienta</th><th scope="col">Para qué se usa aquí</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Matemáticas</th><td>Proporcionalidad y despeje.</td><td>Relaciones de transmisión y cadenas de cálculo.</td></tr>
+              <tr><th scope="row">Matemáticas</th><td>Trigonometría.</td><td>Descomponer fuerzas y calcular brazos de palanca.</td></tr>
+              <tr><th scope="row">Matemáticas</th><td>Notación científica y cifras significativas.</td><td>Expresar resultados con la precisión que los datos sostienen.</td></tr>
+              <tr><th scope="row">Física</th><td>Fuerza, momento y equilibrio.</td><td>Comprobar que el mecanismo no vuelca ni se dobla.</td></tr>
+              <tr><th scope="row">Física</th><td>Trabajo, energía y potencia.</td><td>Dimensionar el motor y calcular el consumo.</td></tr>
+              <tr><th scope="row">Física</th><td>Rozamiento.</td><td>Estimar el rendimiento y el par resistente.</td></tr>
+              <tr><th scope="row">Tema 2</th><td>Medida, incertidumbre y tolerancia.</td><td>Saber cuántas cifras del resultado son reales.</td></tr>
+              <tr><th scope="row">Tema 5</th><td>Límite elástico y coeficiente de seguridad.</td><td>Decidir si la sección elegida aguanta.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Cómo se presenta un cálculo de ingeniería</strong><strong>1. Datos</strong> con sus unidades y su procedencia. <strong>2. Hipótesis</strong>: lo que supones porque no lo sabes, declarado. <strong>3. Ecuaciones</strong> en forma simbólica antes de meter números. <strong>4. Sustitución</strong> con unidades coherentes. <strong>5. Resultado</strong> con unidad y cifras significativas sensatas. <strong>6. Comprobación</strong>: ¿el orden de magnitud es razonable? Un cálculo que salta del enunciado al número no se puede revisar, y un cálculo que no se puede revisar no vale para nada.</div>
+
+        <div class="aviso"><strong>Las unidades son la mitad del trabajo</strong>Mezclar minutos con segundos, milímetros con metros o gramos con kilogramos es el error más frecuente y el más caro. Antes de sustituir, pasa todo al Sistema Internacional. Y usa las unidades como comprobación: si multiplicas N·m por rad/s tienen que salir vatios; si no salen, la fórmula está mal aplicada. El <strong>análisis dimensional</strong> detecta errores que el resultado numérico esconde.</div>
+      </section>
+
+      <section aria-labelledby="trenes">
+        <h2 id="trenes">2. Calcular trenes de engranajes</h2>
+        <p>Retomamos el reductor del Tema 7 y lo resolvemos entero. El tren tiene dos etapas: Z₁ = 20 engrana con Z₂ = 60, y Z₃ = 15, solidario con Z₂, engrana con Z₄ = 45.</p>
+
+        <p class="ti1-formula">i<sub>1</sub> = Z<sub>2</sub>/Z<sub>1</sub> = 60/20 = 3  ·  i<sub>2</sub> = Z<sub>4</sub>/Z<sub>3</sub> = 45/15 = 3  ·  i = i<sub>1</sub>·i<sub>2</sub> = 9</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: velocidades de cada eje del tren">
+          <table>
+            <caption>Velocidad de cada eje con el motor a 1800 min⁻¹</caption>
+            <thead><tr><th scope="col">Eje</th><th scope="col">Ruedas</th><th scope="col">Cálculo</th><th scope="col">n (min⁻¹)</th><th scope="col">ω (rad/s)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Entrada</th><td>Z₁ = 20</td><td>dato</td><td>1800</td><td>188,5</td></tr>
+              <tr><th scope="row">Intermedio</th><td>Z₂ = 60 y Z₃ = 15</td><td>1800 / 3</td><td>600</td><td>62,8</td></tr>
+              <tr><th scope="row">Salida</th><td>Z₄ = 45</td><td>600 / 3</td><td>200</td><td>20,9</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Comprobación por dos caminos.</strong> Se puede llegar a los 200 min⁻¹ etapa por etapa (1800 → 600 → 200) o de un golpe (1800 / 9 = 200). Que los dos caminos coincidan no demuestra que el planteamiento sea correcto, pero que <em>no</em> coincidan demuestra que hay un error. Es una comprobación gratis y conviene hacerla siempre.</div>
+
+        <h3>Un tren con rueda loca</h3>
+        <p>Si entre Z₁ y Z₂ se intercala una rueda de Z = 30, ¿qué cambia? La rueda loca es a la vez salida de un engrane y entrada del siguiente:</p>
+        <p class="ti1-formula">i = (30/20) · (60/30) = 60/20 = 3 <span class="ti1-formula-leyenda">la rueda intermedia se cancela: solo cambia el sentido de giro</span></p>
+        <p>La relación es exactamente la misma. Es la propiedad de los trenes simples del Tema 7, ahora demostrada: las ruedas intermedias no alteran la relación total porque aparecen una vez en el numerador y otra en el denominador.</p>
+
+        <div class="ti1-think"><strong>Piensa:</strong> quieres una relación de 20 con engranajes de entre 12 y 60 dientes. ¿Se puede con una sola etapa? (No: exigiría 12 y 240. Con dos etapas sí: por ejemplo 4 × 5, con 15→60 y 12→60.) Prueba a encontrar otra combinación y compara cuál ocupa menos espacio.</div>
+      </section>
+
+      <section aria-labelledby="potencia">
+        <h2 id="potencia">3. Par, potencia y rendimiento</h2>
+        <p>Ahora los números del par, que es lo que de verdad decide si el mecanismo sirve.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de la cadena de potencia del accionamiento">
+          <img src="assets/tema09_cadena_potencia.svg" alt="Cadena de potencia: el motor entrega 0,35 newton metro a 1800 revoluciones por minuto, que son 66 vatios; el reductor de relación 9 y rendimiento 0,85 pierde 10 vatios; a la salida quedan 56 vatios, es decir 2,68 newton metro a 200 revoluciones por minuto.">
+          <figcaption>La potencia baja de 66 a 56 W por el rendimiento. La velocidad se divide por 9 y el par se multiplica por 9 y por el rendimiento: de 0,35 a 2,68 N·m.</figcaption>
+        </figure>
+
+        <h3>Cálculo paso a paso</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: cálculo de la cadena de potencia">
+          <table>
+            <caption>Del motor a la válvula, con unidades</caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Operación</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Velocidad angular de entrada</th><td>ω = 2π · 1800 / 60</td><td>188,5 rad/s</td></tr>
+              <tr><th scope="row">Potencia de entrada</th><td>P = 0,35 · 188,5</td><td>66,0 W</td></tr>
+              <tr><th scope="row">Rendimiento del tren</th><td>η = 0,95 · 0,95 (dos etapas)</td><td>0,90</td></tr>
+              <tr><th scope="row">Rendimiento total</th><td>η · η<sub>cojinetes</sub> ≈ 0,90 · 0,94</td><td>0,85</td></tr>
+              <tr><th scope="row">Potencia de salida</th><td>P = 66,0 · 0,85</td><td>56,1 W</td></tr>
+              <tr><th scope="row">Velocidad angular de salida</th><td>ω = 188,5 / 9</td><td>20,9 rad/s</td></tr>
+              <tr><th scope="row">Par de salida</th><td>M = 56,1 / 20,9</td><td>2,68 N·m</td></tr>
+              <tr><th scope="row">Comprobación</th><td>M = 0,35 · 9 · 0,85</td><td>2,68 N·m ✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Los rendimientos se multiplican, no se suman</strong>Dos etapas de engranajes al 95 % no dan 90 % por casualidad: dan 0,95 × 0,95 = 0,9025. Y si además hay cojinetes al 94 %, el total es 0,85. Encadenar elementos degrada el rendimiento de forma multiplicativa, que es mucho más rápido de lo que la intuición sugiere. Con seis elementos al 95 % quedaría un 73 %: más de una cuarta parte de la energía convertida en calor.</div>
+
+        <div class="ti1-note"><strong>Y el par que importa es el de arranque, no el nominal.</strong> Un mecanismo parado opone más resistencia que uno en movimiento: hay que vencer el rozamiento estático, que es mayor que el dinámico. Un motor dimensionado justo para el par nominal puede no arrancar. De ahí que el catálogo de un motor dé <em>par nominal</em> y <em>par de arranque</em>, y que el cálculo se haga con el peor caso.</div>
+      </section>
+
+      <section aria-labelledby="fuerzas">
+        <h2 id="fuerzas">4. Fuerzas, momentos y equilibrio</h2>
+        <p>Los mecanismos ejercen fuerzas sobre sus soportes, y esos soportes tienen que aguantarlas. Para comprobarlo basta con las dos condiciones de equilibrio que ya conoces de Física.</p>
+
+        <p class="ti1-formula">Σ F = 0 <span class="ti1-formula-leyenda">la suma de todas las fuerzas es nula</span></p>
+        <p class="ti1-formula">Σ M = 0 <span class="ti1-formula-leyenda">la suma de todos los momentos respecto a cualquier punto es nula</span></p>
+
+        <h3>Ejemplo: la fuerza en el diente</h3>
+        <p>El engranaje Z₄ tiene 45 dientes de módulo 1, luego su diámetro primitivo es <em>D = m · Z</em> = 45 mm, y su radio 22,5 mm = 0,0225 m. Con un par de 2,68 N·m, la fuerza tangencial en el diente es:</p>
+        <p class="ti1-formula">F = M / r = 2,68 / 0,0225 ≈ 119 N <span class="ti1-formula-leyenda">unos 12 kg de fuerza en un diente de 1 mm de módulo</span></p>
+        <p>Ese número tiene consecuencias: decide si el diente resiste, qué carga soportan los cojinetes y qué rigidez necesita el soporte impreso del Tema 6. Un par que parecía inofensivo se convierte en una fuerza considerable cuando el radio es pequeño.</p>
+
+        <h3>Ejemplo: el soporte en voladizo</h3>
+        <p>El motorreductor pesa 180 g y va atornillado a una placa que sobresale 60 mm del apoyo. Su peso es <em>F = m·g</em> = 0,180 · 9,81 ≈ 1,77 N, y el momento que produce en el empotramiento es:</p>
+        <p class="ti1-formula">M = F · d = 1,77 · 0,060 ≈ 0,106 N·m</p>
+        <p>Pequeño, pero no despreciable si la placa es de PETG de 3 mm: hay que comprobarlo, y sobre todo hay que recordar que ese momento actúa <strong>siempre</strong>, día y noche, durante tres veranos. Los polímeros sometidos a carga constante sufren <strong>fluencia</strong>: se deforman lentamente con el tiempo aunque la tensión esté muy por debajo del límite elástico. Es la razón de que un estante de plástico acabe combado.</p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Coeficiente de seguridad: dónde ponerlo</strong>Del Tema 5: la tensión de trabajo es el límite elástico dividido por un coeficiente de seguridad. ¿Qué valor? Depende de lo que ignoras. Carga bien conocida, material fiable y consecuencia leve del fallo: 1,5. Carga variable o con golpes, material con dispersión —una pieza impresa lo es—, o consecuencia grave: 3 o más. Elegirlo no es una fórmula: es una declaración de cuánta incertidumbre hay en tu cálculo, y por eso se escribe en la memoria con su justificación.</div>
+      </section>
+
+      <section aria-labelledby="disenar">
+        <h2 id="disenar">5. Del requisito al mecanismo</h2>
+        <p>Hasta ahora hemos comprobado un diseño dado. Diseñar es el camino inverso: partir del requisito y llegar a las piezas. Se hace en cinco pasos.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Requisito de movimiento</div><p>Qué tiene que moverse, cuánto, en cuánto tiempo y contra qué resistencia. «El obturador recorre 8 mm en menos de 2 s venciendo 2,5 N·m.»</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Par y velocidad necesarios</div><p>Del requisito salen el par resistente y la velocidad de salida. Se añade el coeficiente de seguridad: 2,5 × 1,5 = 3,75 N·m de diseño.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Potencia necesaria</div><p>P = M · ω en la salida, dividida por el rendimiento estimado de la transmisión. Es el número con el que se busca motor.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Elección del motor y de la relación</div><p>Se busca en catálogo un motor que dé esa potencia, y la relación sale de dividir su velocidad entre la velocidad de salida requerida.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Dimensionado de las piezas</div><p>Con el par ya conocido se calculan fuerzas en dientes, cargas en apoyos y secciones, y se comprueba cada una contra el material del Tema 5.</p></div>
+        </div>
+
+        <div class="ti1-note"><strong>El catálogo manda sobre el cálculo.</strong> Si el cálculo pide 2,3 N·m y el catálogo ofrece 2,0 o 3,0, se elige 3,0 y se rehace el cálculo con ese valor. Diseñar no es alcanzar el número exacto: es elegir entre lo que existe y comprobar que la elección cumple. Un proyecto con un motor de 2,3 N·m que nadie fabrica es un proyecto sin motor.</div>
+      </section>
+
+      <section aria-labelledby="simular">
+        <h2 id="simular">6. Simular antes de montar</h2>
+        <p>El currículo admite expresamente «experimentación física o simulada». La simulación no sustituye al montaje, pero permite equivocarse barato y muchas veces, que es exactamente lo que pedía el Tema 1.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué comprobar con cada herramienta de simulación">
+          <table>
+            <caption>Qué se comprueba y con qué</caption>
+            <thead><tr><th scope="col">Pregunta</th><th scope="col">Herramienta</th><th scope="col">Qué se obtiene</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">¿Las piezas encajan y se mueven sin chocar?</th><td>Ensamblaje CAD (Tema 3)</td><td>Interferencias y recorridos reales.</td></tr>
+              <tr><th scope="row">¿Qué trayectoria describe el mecanismo?</th><td>GeoGebra o simulador de mecanismos</td><td>Posición, velocidad y aceleración a lo largo del ciclo.</td></tr>
+              <tr><th scope="row">¿Se dobla el soporte?</th><td>Módulo de análisis del CAD (CAE)</td><td>Tensiones y deformaciones bajo la carga aplicada.</td></tr>
+              <tr><th scope="row">¿Cómo se comporta con rozamiento y gravedad?</th><td>Algodoo</td><td>Comportamiento dinámico aproximado, muy útil para explicar.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>Una simulación devuelve lo que le has metido</strong>Es el aviso del Tema 3, y aquí se concreta: si declaras un apoyo perfectamente rígido que en realidad es un tornillo con juego, o si omites el rozamiento del retén, el resultado será limpio y equivocado. La simulación sirve para <strong>decidir qué medir</strong>, no para sustituir la medida. Y su resultado se declara siempre con las hipótesis que lo sostienen.</div>
+      </section>
+
+      <section aria-labelledby="montar">
+        <h2 id="montar">7. Montar, medir y ajustar</h2>
+        <p>El montaje es un procedimiento, no una improvisación. Y termina siempre con medidas, porque un mecanismo que funciona pero no se ha medido no ha demostrado nada.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Preparar</div><p>Comprobar que todas las piezas están y que sus cotas críticas coinciden con el plano. Una pieza fuera de tolerancia detectada ahora ahorra desmontar después.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Montar en orden</div><p>El orden lo fija el diseño para el montaje del Tema 6. Apretar por pasos y en cruz, nunca un tornillo del todo antes que los demás.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Alinear</div><p>Comprobar la alineación de ejes antes de dar tensión. Es la causa de fallo del Tema 8 y no se ve en el plano.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Probar a mano</div><p>Girar el mecanismo sin motor. Si no gira suave con la mano, no girará mejor con el motor: girará hasta romperse.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Medir</div><p>Velocidad de salida, carrera, tiempo de ciclo y corriente del motor, que es un indicador indirecto y excelente del par resistente.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Ajustar y anotar</div><p>Cada ajuste, al registro de cambios del Tema 1, con su motivo.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación entre lo calculado y lo medido">
+          <table>
+            <caption>Calculado frente a medido en el accionamiento del KR-1</caption>
+            <thead><tr><th scope="col">Magnitud</th><th scope="col">Calculado</th><th scope="col">Medido</th><th scope="col">Desviación</th><th scope="col">Explicación</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Velocidad de salida</th><td>200 min⁻¹</td><td>196 min⁻¹</td><td>−2 %</td><td>Caída de velocidad del motor bajo carga: normal.</td></tr>
+              <tr><th scope="row">Tiempo de apertura</th><td>1,6 s</td><td>1,9 s</td><td>+19 %</td><td>Rozamiento del retén, no considerado en el cálculo.</td></tr>
+              <tr><th scope="row">Carrera del obturador</th><td>8,0 mm</td><td>7,6 mm</td><td>−5 %</td><td>Juego axial del husillo: falta un casquillo de tope.</td></tr>
+              <tr><th scope="row">Corriente en régimen</th><td>—</td><td>310 mA</td><td>—</td><td>Dato nuevo: dimensiona la alimentación del Tema 10.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Una desviación se explica, no se esconde</strong>Ninguna de las tres desviaciones invalida el diseño; las tres lo mejoran, porque cada una identifica una hipótesis que faltaba. La que importa de verdad es la tercera: los 0,4 mm de juego revelan una pieza que falta en la lista del Tema 8. Un informe que dijera «funciona correctamente» habría perdido esa información. <strong>Medir sirve para encontrar lo que no sabías, no para confirmar lo que esperabas.</strong></div>
+      </section>
+
+      <section aria-labelledby="proyecto">
+        <h2 id="proyecto">8. Aplicación al KR-1: el cálculo completo</h2>
+        <p>Reunimos todo en la memoria de cálculo del accionamiento, tal como se escribiría en el documento del Tema 4.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: memoria de cálculo del accionamiento">
+          <table>
+            <caption>Memoria de cálculo del accionamiento del KR-1</caption>
+            <thead><tr><th scope="col">Apartado</th><th scope="col">Contenido</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Requisito</strong></th><td>Abrir y cerrar el obturador, 8 mm de carrera, en menos de 2 s, contra un par resistente medido de 2,5 N·m.</td></tr>
+              <tr><th scope="row"><strong>Hipótesis</strong></th><td>Rozamiento del retén despreciable (se comprobará). Rendimiento de cada etapa 0,95 y de los cojinetes 0,94. Coeficiente de seguridad 1,5 sobre el par resistente.</td></tr>
+              <tr><th scope="row"><strong>Par de diseño</strong></th><td>M = 2,5 · 1,5 = 3,75 N·m. <em>Nota: con el motor elegido se obtienen 2,68 N·m, insuficientes; véase la conclusión.</em></td></tr>
+              <tr><th scope="row"><strong>Velocidad de salida</strong></th><td>Con husillo de paso 2 mm, 8 mm exigen 4 vueltas; en 2 s, 120 min⁻¹ mínimo. Se adopta 200 min⁻¹.</td></tr>
+              <tr><th scope="row"><strong>Relación</strong></th><td>i = 1800 / 200 = 9, obtenida con dos etapas de 3.</td></tr>
+              <tr><th scope="row"><strong>Rendimiento</strong></th><td>η = 0,95² · 0,94 = 0,85.</td></tr>
+              <tr><th scope="row"><strong>Par disponible</strong></th><td>M = 0,35 · 9 · 0,85 = 2,68 N·m.</td></tr>
+              <tr><th scope="row"><strong>Fuerza en el diente</strong></th><td>F = 2,68 / 0,0225 = 119 N en Z₄.</td></tr>
+              <tr><th scope="row"><strong>Conclusión</strong></th><td>El accionamiento cubre el par resistente medido (2,5 N·m) pero <strong>no el par de diseño</strong> (3,75). Se recalcula con un motor de 0,5 N·m, que da 3,83 N·m, o se sube la relación a 13.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un cálculo que sale mal es un cálculo que ha servido</strong>La conclusión es que el diseño no cumple, y eso es exactamente para lo que se calcula. Detectarlo aquí cuesta rehacer una tabla; detectarlo con las piezas fabricadas cuesta el presupuesto del trimestre. Es la «regla del coste creciente» del Tema 2 vista desde el otro lado: el cálculo es la herramienta más barata que existe para equivocarse.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> hay dos salidas —motor mayor o relación mayor— y no son equivalentes. Subir la relación a 13 baja la velocidad de salida a 138 min⁻¹, con lo que la apertura pasa de 1,6 a 2,3 s: incumpliría el requisito de tiempo. ¿Qué eliges tú, y qué requisito estás dispuesto a renegociar? Esa conversación, con números delante, es ingeniería.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con una memoria de cálculo que otra persona pueda revisar y con medidas que la contrasten.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 9">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Plantear</th><td>Que declaras datos, hipótesis y unidades antes de calcular.</td><td>Memoria con los seis apartados, hipótesis explícitas y análisis dimensional de al menos una fórmula.</td></tr>
+              <tr><th scope="row">Calcular</th><td>Que resuelves relaciones, pares, potencias, rendimientos y momentos sin errores de unidades.</td><td>Tabla de velocidades por eje, cadena de potencia completa y una comprobación por dos caminos.</td></tr>
+              <tr><th scope="row">Dimensionar</th><td>Que partes del requisito y llegas a una referencia de catálogo, con coeficiente de seguridad justificado.</td><td>Los cinco pasos del dimensionado y la referencia comercial elegida con su motivo.</td></tr>
+              <tr><th scope="row">Simular y montar</th><td>Que compruebas antes de fabricar y que mides después de montar.</td><td>Informe de interferencias, procedimiento de montaje seguido y acta de medidas.</td></tr>
+              <tr><th scope="row">Contrastar</th><td>Que comparas lo calculado con lo medido y explicas cada desviación.</td><td>Tabla calculado-medido-desviación-explicación, con al menos una hipótesis corregida.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cierre del Bloque C: el KR-1 ya tiene un accionamiento calculado, montado y medido. Falta la electricidad que lo mueva, y ese es el Bloque D.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Análisis dimensional</dt><dd>Comprobación de que las unidades de una expresión son coherentes; detecta errores de planteamiento.</dd>
+          <dt>Brazo</dt><dd>Distancia perpendicular entre la línea de acción de una fuerza y el punto respecto al que se toma el momento.</dd>
+          <dt>Cifras significativas</dt><dd>Dígitos de un resultado que la precisión de los datos permite sostener.</dd>
+          <dt>Coeficiente de seguridad</dt><dd>Factor que reduce la tensión admisible para absorber la incertidumbre de cargas, material y fabricación.</dd>
+          <dt>Diámetro primitivo</dt><dd>Diámetro teórico de un engranaje sobre el que se calcula la transmisión; es el módulo por el número de dientes.</dd>
+          <dt>Fluencia</dt><dd>Deformación lenta y progresiva de un material sometido a carga constante durante mucho tiempo.</dd>
+          <dt>Fuerza tangencial</dt><dd>Componente de la fuerza en el diente en la dirección del movimiento; es el par dividido por el radio.</dd>
+          <dt>Hipótesis de cálculo</dt><dd>Suposición declarada que se adopta ante un dato desconocido, y que debe comprobarse después.</dd>
+          <dt>Memoria de cálculo</dt><dd>Documento que recoge datos, hipótesis, ecuaciones, resultados y conclusiones de un dimensionado.</dd>
+          <dt>Momento</dt><dd>Producto de una fuerza por su brazo respecto a un punto o eje.</dd>
+          <dt>Par de arranque</dt><dd>Par que un motor entrega con el eje parado; suele ser mayor que el nominal y es el que decide si el mecanismo arranca.</dd>
+          <dt>Par resistente</dt><dd>Par que la carga opone al movimiento y que el accionamiento debe vencer.</dd>
+          <dt>Rozamiento estático</dt><dd>Resistencia al inicio del movimiento, mayor que la que aparece una vez en marcha.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Un cálculo de ingeniería se presenta con datos, hipótesis, ecuaciones simbólicas, sustitución, resultado y comprobación; si no se puede revisar, no vale.</li>
+          <li>Las unidades son la mitad del trabajo: pasar todo al Sistema Internacional y usar el análisis dimensional como comprobación.</li>
+          <li>En un tren compuesto las relaciones se multiplican; las ruedas locas se cancelan y solo cambian el sentido.</li>
+          <li>La potencia de un eje es el par por la velocidad angular; al reducir la velocidad, el par se multiplica por la relación y por el rendimiento.</li>
+          <li>Los rendimientos se multiplican entre sí, de modo que encadenar elementos degrada el conjunto más deprisa de lo que parece.</li>
+          <li>El par que decide si el mecanismo arranca es el de arranque, no el nominal, porque el rozamiento estático es mayor.</li>
+          <li>Un par pequeño produce fuerzas grandes cuando el radio es pequeño: 2,68 N·m dan 119 N en un engranaje de módulo 1.</li>
+          <li>El coeficiente de seguridad no se copia de una tabla: expresa cuánta incertidumbre hay en tu cálculo, y se justifica por escrito.</li>
+          <li>Diseñar es ir del requisito de movimiento al par, de ahí a la potencia, de ahí al catálogo y de ahí al dimensionado de las piezas.</li>
+          <li>El catálogo manda sobre el cálculo: se elige entre lo que existe y se rehace el cálculo con el valor real.</li>
+          <li>La simulación devuelve lo que se le ha metido: sirve para decidir qué medir, no para sustituir la medida.</li>
+          <li>Un mecanismo que no gira suave con la mano no girará mejor con el motor.</li>
+          <li>Medir sirve para encontrar lo que no sabías; cada desviación entre lo calculado y lo medido identifica una hipótesis que faltaba.</li>
+          <li>Un cálculo que demuestra que el diseño no cumple ha hecho su trabajo: es la forma más barata de equivocarse.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.cem.es/">Centro Español de Metrología</a>. Unidades del Sistema Internacional y expresión de resultados de medida.</li>
+          <li id="fuente_2">[2] <a href="https://www.geogebra.org/">GeoGebra</a>. Construcción y análisis dinámico de mecanismos y de sus leyes de movimiento.</li>
+          <li id="fuente_3">[3] <a href="https://algodoo.com/">Algodoo</a>. Simulación dinámica con gravedad y rozamiento.</li>
+          <li id="fuente_4">[4] <a href="https://www.freecad.org/">FreeCAD</a>. Ensamblaje, comprobación de interferencias y análisis estructural por elementos finitos.</li>
+          <li id="fuente_5">[5] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Cálculo de la capacidad de carga de engranajes cilíndricos (serie UNE-ISO 6336).</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque C, competencia 4 y criterio 4.1.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema08.html">← Tema 8</a>
+  <a href="tema10.html">Tema 10 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

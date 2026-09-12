@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img" aria-labelledby="t9c_title t9c_desc">
+<title id="t9c_title">Cadena de potencia de un accionamiento con reductor</title>
+<desc id="t9c_desc">Un motor de corriente continua entrega 0,35 newton metro a 1800 revoluciones por minuto, lo que equivale a 66 vatios. Pasa por un reductor de relación nueve y rendimiento 0,85, que pierde unos 10 vatios en rozamiento y calor. A la salida quedan 56 vatios: 2,68 newton metro a 200 revoluciones por minuto, que es lo que mueve el mecanismo de la válvula.</desc>
+<defs><marker id="t9c_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker></defs>
+<rect width="900" height="340" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">La potencia se conserva menos las pérdidas; el par y la velocidad se intercambian</text>
+
+<rect x="40" y="80" width="200" height="110" rx="12" fill="#dff3ef" stroke="#2b8c7f" stroke-width="3"/>
+<rect x="330" y="80" width="200" height="110" rx="12" fill="#e7f3f6" stroke="#0b6680" stroke-width="3"/>
+<rect x="620" y="80" width="230" height="110" rx="12" fill="#e9f5ee" stroke="#167e78" stroke-width="3"/>
+
+<g font-family="system-ui,sans-serif" text-anchor="middle">
+<text x="140" y="108" font-size="15" font-weight="700" fill="#245c49">Motor de CC</text>
+<text x="140" y="132" font-size="13.5" fill="#17262d">M = 0,35 N·m</text>
+<text x="140" y="152" font-size="13.5" fill="#17262d">n = 1800 min⁻¹</text>
+<text x="140" y="176" font-size="14" font-weight="700" fill="#0b6680">P = 66 W</text>
+
+<text x="430" y="108" font-size="15" font-weight="700" fill="#164d5f">Reductor</text>
+<text x="430" y="132" font-size="13.5" fill="#17262d">i = 9</text>
+<text x="430" y="152" font-size="13.5" fill="#17262d">η = 0,85</text>
+<text x="430" y="176" font-size="13" fill="#46616a">tren compuesto del Tema 7</text>
+
+<text x="735" y="108" font-size="15" font-weight="700" fill="#245c49">Salida: válvula</text>
+<text x="735" y="132" font-size="13.5" fill="#17262d">M = 2,68 N·m</text>
+<text x="735" y="152" font-size="13.5" fill="#17262d">n = 200 min⁻¹</text>
+<text x="735" y="176" font-size="14" font-weight="700" fill="#0b6680">P = 56 W</text>
+</g>
+
+<g fill="none" stroke="#1a6b7a" stroke-width="3" marker-end="url(#t9c_a)">
+<path d="M240 135 H324"/><path d="M530 135 H614"/><path d="M430 190 V244"/>
+</g>
+<rect x="330" y="248" width="200" height="42" rx="10" fill="#fff0ec" stroke="#c85c40" stroke-width="2.5"/>
+<text x="430" y="275" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#8f3a24">pérdidas: 10 W en rozamiento y calor</text>
+
+<g font-family="system-ui,sans-serif" font-size="13.5" fill="#46616a">
+<text x="40" y="322">P = M · ω</text>
+<text x="170" y="322">ω = 2π n / 60</text>
+<text x="330" y="322">M salida = M entrada · i · η</text>
+<text x="620" y="322">n salida = n entrada / i</text>
+</g>
+</svg>

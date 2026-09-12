@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img" aria-labelledby="t8b_title t8b_desc">
+<title id="t8b_title">Biela-manivela y leva-seguidor</title>
+<desc id="t8b_desc">A la izquierda, un mecanismo de biela-manivela: la manivela gira sobre su eje y, a través de la biela, desplaza un patín entre dos posiciones extremas; la carrera del patín es el doble del radio de la manivela y no depende de la longitud de la biela. A la derecha, una leva excéntrica: el eje de giro está desplazado una distancia e respecto al centro del disco, y al girar levanta el seguidor una carrera igual al doble de esa excentricidad.</desc>
+<defs>
+  <marker id="t8b_a1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#46616a"/></marker>
+  <marker id="t8b_a2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto"><path d="M9,0 L9,6 L0,3 z" fill="#46616a"/></marker>
+</defs>
+<rect width="900" height="380" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Dos maneras de convertir un giro en un desplazamiento</text>
+
+<text x="220" y="70" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0b6680">Biela-manivela</text>
+<g stroke="#58707a" stroke-width="3" fill="none"><path d="M270 158 H420"/><path d="M270 202 H420"/></g>
+<circle cx="140" cy="180" r="55" fill="none" stroke="#d8e0df" stroke-width="2" stroke-dasharray="6 5"/>
+<path d="M140 180 L182 145" stroke="#2b8c7f" stroke-width="7" stroke-linecap="round"/>
+<path d="M182 145 L348 180" stroke="#0b6680" stroke-width="5" stroke-linecap="round"/>
+<rect x="328" y="166" width="40" height="28" rx="4" fill="#e7f3f6" stroke="#0b6680" stroke-width="3"/>
+<circle cx="140" cy="180" r="6" fill="#46616a"/><circle cx="182" cy="145" r="5" fill="#2b8c7f"/>
+<g font-family="system-ui,sans-serif" font-size="12" fill="#46616a">
+<text x="104" y="214">eje</text><text x="148" y="130" fill="#245c49" font-weight="700">manivela</text><text x="244" y="148" fill="#0b6680" font-weight="700">biela</text><text x="348" y="216" text-anchor="middle">patín</text>
+</g>
+<path d="M255 252 H365" stroke="#46616a" stroke-width="1.2" marker-start="url(#t8b_a2)" marker-end="url(#t8b_a1)"/>
+<g stroke="#46616a" stroke-width="1" stroke-dasharray="4 3"><path d="M255 196 V252"/><path d="M365 196 V252"/></g>
+<text x="310" y="274" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#18384a">carrera = 2 · radio de manivela</text>
+<text x="310" y="292" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">la longitud de la biela no cambia la carrera</text>
+
+<path d="M450 60 V340" stroke="#d8e0df" stroke-width="2"/>
+
+<text x="700" y="70" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0b6680">Leva excéntrica y seguidor</text>
+<g stroke="#58707a" stroke-width="3" fill="none"><path d="M678 100 H722"/></g>
+<path d="M700 140 V102" stroke="#0b6680" stroke-width="6" stroke-linecap="round"/>
+<rect x="665" y="140" width="70" height="12" rx="3" fill="#e7f3f6" stroke="#0b6680" stroke-width="3"/>
+<circle cx="700" cy="210" r="58" fill="#fff4d9" stroke="#c6922d" stroke-width="3"/>
+<path d="M700 230 V210" stroke="#c6922d" stroke-width="2.5"/>
+<circle cx="700" cy="230" r="6" fill="#46616a"/>
+<circle cx="700" cy="210" r="3.5" fill="#c6922d"/>
+<text x="712" y="226" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#8a6317">e</text>
+<path d="M700 236 V282" stroke="#46616a" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="700" y="298" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">eje de giro, desplazado e del centro</text>
+<text x="658" y="116" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">seguidor</text>
+
+<path d="M850 152 V192" stroke="#46616a" stroke-width="1.2" marker-start="url(#t8b_a2)" marker-end="url(#t8b_a1)"/>
+<g stroke="#46616a" stroke-width="1" stroke-dasharray="4 3"><path d="M735 152 H850"/><path d="M756 192 H850"/></g>
+<text x="850" y="142" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#18384a">carrera = 2 · e</text>
+<text x="470" y="326" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">La excentricidad e es el único dato que fija cuánto sube el seguidor.</text>
+</svg>

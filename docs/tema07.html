@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 7 del Bloque C de Tecnología e Ingeniería I: máquinas y sistemas mecánicos, magnitudes del movimiento, engranajes, poleas y correas, cadenas de rodillos, caja de cambios y representación de cadenas cinemáticas.">
+  <title>Tema 7. Máquinas y mecanismos de transmisión del movimiento · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 07 · Bloque C · Sistemas mecánicos</p>
+        <h1>Tema 7. Máquinas y mecanismos de transmisión del movimiento</h1>
+        <p class="hero-lead">Cómo se lleva el movimiento desde donde se genera hasta donde hace falta, y qué se gana y qué se pierde en el camino.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 7">
+        <strong>Pregunta guía</strong>
+        <p>El motor que has comprado para el KR-1 gira a 1800 vueltas por minuto y tiene un par ridículo. La válvula necesita justo lo contrario: girar despacio con fuerza. ¿Cómo se convierte lo uno en lo otro sin cambiar de motor?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#maquina">Anatomía de una máquina</a></li>
+        <li><a href="#magnitudes">Velocidad, par y potencia</a></li>
+        <li><a href="#relacion">La relación de transmisión</a></li>
+        <li><a href="#engranajes">Engranajes</a></li>
+        <li><a href="#trenes">Trenes de engranajes</a></li>
+        <li><a href="#poleas">Poleas y correas</a></li>
+        <li><a href="#cadenas">Cadenas de rodillos</a></li>
+        <li><a href="#cambios">La caja de cambios</a></li>
+        <li><a href="#eleccion">Elegir la transmisión</a></li>
+        <li><a href="#esquemas">La cadena cinemática</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Con el Bloque C empieza el Proyecto 2: el KR-1 deja de ser un objeto y empieza a moverse. Y aparece la primera ley de hierro de la mecánica: <strong>una transmisión no crea energía</strong>. Lo único que puede hacer es cambiar el reparto entre velocidad y fuerza, y siempre perdiendo algo por el camino. Entender bien ese intercambio es lo que permite elegir un motor pequeño para mover algo pesado, que es el noventa por ciento de lo que hace un ingeniero mecánico.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> en una bicicleta, ¿qué haces cuando llegas a una cuesta? Pones un «desarrollo más corto»: pedaleas más veces para avanzar lo mismo, pero cada pedalada te cuesta menos. No has cambiado de piernas ni de bicicleta. Has cambiado la relación de transmisión, y este tema es exactamente eso, escrito con números.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>identificar en una máquina el motor, la transmisión, el elemento de trabajo y el bastidor;</li>
+          <li>distinguir velocidad de giro, velocidad lineal, par, potencia y rendimiento, y relacionarlos;</li>
+          <li>calcular la relación de transmisión de un par de engranajes, de poleas o de cadena;</li>
+          <li>explicar por qué al reducir la velocidad se multiplica el par, y en qué se paga eso;</li>
+          <li>describir los tipos de engranaje y saber cuándo se usa cada uno;</li>
+          <li>resolver un tren de engranajes compuesto multiplicando las relaciones de sus etapas;</li>
+          <li>comparar engranajes, correas y cadenas por deslizamiento, ruido, mantenimiento y coste;</li>
+          <li>explicar qué hace una caja de cambios y por qué existe;</li>
+          <li>interpretar y dibujar el esquema de una cadena cinemática.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="maquina">
+        <h2 id="maquina">1. Anatomía de una máquina</h2>
+        <p>Una <strong>máquina</strong> es un conjunto de elementos que transforma energía para realizar un trabajo. Y por dentro, casi todas responden al mismo esquema de cuatro partes, cualquiera que sea su tamaño: una batidora, un ascensor y el KR-1 se organizan igual.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Motor</h3><p>Convierte energía —eléctrica, térmica, muscular— en movimiento. En el KR-1, un motor de corriente continua, que estudiaremos en el Tema 10.</p></div>
+          <div class="ti1-card"><h3>Transmisión</h3><p>Lleva el movimiento hasta donde hace falta y lo adapta: cambia velocidad, par, dirección o naturaleza del movimiento. Es el objeto de este tema y del siguiente.</p></div>
+          <div class="ti1-card"><h3>Elemento de trabajo</h3><p>Lo que realmente hace la tarea: la cuchilla, la cabina, el obturador de la válvula.</p></div>
+          <div class="ti1-card"><h3>Bastidor</h3><p>Sostiene todo y absorbe las reacciones. Invisible en los esquemas y decisivo en la realidad: sin un bastidor rígido, la transmisión se desalinea y se destruye.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Mecanismo, máquina y sistema mecánico</strong>Un <strong>mecanismo</strong> es un conjunto de piezas que transmite o transforma movimiento: un par de engranajes es un mecanismo. Una <strong>máquina</strong> reúne uno o varios mecanismos con una fuente de energía para producir trabajo útil. Un <strong>sistema mecánico</strong> es el conjunto completo con su bastidor, sus apoyos y sus uniones. El currículo usa las tres palabras, y conviene no intercambiarlas.</div>
+
+        <h3>Transmitir no es lo mismo que transformar</h3>
+        <div class="comparacion">
+          <div><h3>Mecanismos de transmisión</h3><p>El movimiento <strong>conserva su naturaleza</strong> y cambia de magnitud o de eje: un giro sigue siendo un giro, más lento o más rápido. Engranajes, poleas, cadenas. <strong>Son este tema.</strong></p></div>
+          <div><h3>Mecanismos de transformación</h3><p>El movimiento <strong>cambia de naturaleza</strong>: un giro se convierte en un desplazamiento rectilíneo, o al revés. Biela-manivela, piñón-cremallera, leva, tornillo-tuerca. <strong>Son el Tema 8.</strong></p></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="magnitudes">
+        <h2 id="magnitudes">2. Velocidad, par y potencia</h2>
+        <p>Estas tres magnitudes son el vocabulario de todo el bloque. Aquí las presentamos y las relacionamos; el cálculo aplicado, con problemas completos, es el Tema 9.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: magnitudes del movimiento de rotación">
+          <table>
+            <caption>Las magnitudes de un eje que gira</caption>
+            <thead><tr><th scope="col">Magnitud</th><th scope="col">Qué es</th><th scope="col">Símbolo</th><th scope="col">Unidad</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Velocidad de giro</strong></th><td>Vueltas que da el eje por unidad de tiempo.</td><td>n</td><td>min⁻¹ (rpm)</td></tr>
+              <tr><th scope="row"><strong>Velocidad angular</strong></th><td>La misma magnitud en unidades del Sistema Internacional.</td><td>ω</td><td>rad/s</td></tr>
+              <tr><th scope="row"><strong>Velocidad lineal</strong></th><td>Velocidad de un punto de la periferia, o del cable de una polea.</td><td>v</td><td>m/s</td></tr>
+              <tr><th scope="row"><strong>Par o momento</strong></th><td>Capacidad de giro: fuerza por la distancia al eje.</td><td>M</td><td>N·m</td></tr>
+              <tr><th scope="row"><strong>Potencia</strong></th><td>Trabajo por unidad de tiempo; en giro, par por velocidad angular.</td><td>P</td><td>W</td></tr>
+              <tr><th scope="row"><strong>Rendimiento</strong></th><td>Fracción de la potencia de entrada que sale aprovechable.</td><td>η</td><td>—  (0 a 1, o %)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="ti1-formula">ω = 2π n / 60 <span class="ti1-formula-leyenda">de vueltas por minuto a radianes por segundo</span></p>
+        <p class="ti1-formula">v = ω · r <span class="ti1-formula-leyenda">velocidad lineal en la periferia, r en metros</span></p>
+        <p class="ti1-formula">M = F · d <span class="ti1-formula-leyenda">par: fuerza por la distancia perpendicular al eje</span></p>
+        <p class="ti1-formula">P = M · ω <span class="ti1-formula-leyenda">potencia en rotación, con M en N·m y ω en rad/s</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El par es lo que aprietas, la potencia es lo rápido que lo haces</strong>Cuando aflojas un tornillo muy apretado necesitas <strong>par</strong>: fuerza aplicada lejos del eje, y de ahí que una llave larga funcione mejor. Cuando quieres aflojar cincuenta tornillos en un minuto necesitas <strong>potencia</strong>. Un destornillador eléctrico de juguete puede tener mucha velocidad y poco par; una llave de carraca tiene todo el par que quieras y ninguna potencia, porque la das tú. El motor del KR-1 tiene el problema del destornillador de juguete.</div>
+
+        <div class="ti1-note"><strong>Por qué el par depende de la distancia.</strong> Empuja una puerta junto a la bisagra y no se mueve; empújala en el canto opuesto con la misma fuerza y se abre sola. La fuerza es idéntica: lo que cambia es el brazo, la distancia perpendicular entre la línea de acción de la fuerza y el eje. Un par de 2 N·m puede ser 20 N a 10 cm o 4 N a 50 cm: mecánicamente son lo mismo.</div>
+      </section>
+
+      <section aria-labelledby="relacion">
+        <h2 id="relacion">3. La relación de transmisión</h2>
+        <p>Aquí está la idea central del bloque. La <strong>relación de transmisión</strong> compara la velocidad de entrada con la de salida de un mecanismo:</p>
+
+        <p class="ti1-formula">i = n<sub>entrada</sub> / n<sub>salida</sub> <span class="ti1-formula-leyenda">i &gt; 1 reduce la velocidad; i &lt; 1 la aumenta</span></p>
+
+        <p>Y lo importante es lo que ocurre al par. Si la transmisión fuera perfecta, la potencia de salida sería igual a la de entrada. Como <em>P = M · ω</em>, si la velocidad baja nueve veces, el par tiene que subir nueve veces para que el producto no cambie:</p>
+
+        <p class="ti1-formula">M<sub>salida</sub> = M<sub>entrada</sub> · i · η <span class="ti1-formula-leyenda">el rendimiento η se come una parte de la ganancia</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">No hay ganancia gratis</strong>Una transmisión <strong>no puede aumentar la potencia</strong>: solo reparte de otra manera lo que recibe, y encima pierde una fracción en rozamiento y calor. Multiplicar el par por nueve se paga dividiendo la velocidad por nueve. Quien busque «un mecanismo que dé más fuerza sin perder velocidad» está buscando un móvil perpetuo. Esto es el principio de conservación de la energía visto desde el taller.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: reductores y multiplicadores">
+          <table>
+            <caption>Reducir o multiplicar: dos usos de la misma idea</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Relación</th><th scope="col">Efecto</th><th scope="col">Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Reductor</strong></th><td>i &gt; 1</td><td>Menos velocidad y más par.</td><td>El reductor del KR-1, o el de un ascensor.</td></tr>
+              <tr><th scope="row"><strong>Multiplicador</strong></th><td>i &lt; 1</td><td>Más velocidad y menos par.</td><td>El plato grande de una bicicleta en llano; un aerogenerador.</td></tr>
+              <tr><th scope="row"><strong>Acoplamiento directo</strong></th><td>i = 1</td><td>Solo transmite: cambia de eje, no de magnitudes.</td><td>Un acoplamiento entre motor y bomba, del Tema 8.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el motor del KR-1 da 0,35 N·m a 1800 min⁻¹ y la válvula necesita unos 2,5 N·m a la velocidad que sea. ¿Qué relación de transmisión mínima necesitas, contando con un rendimiento del 85 %? (Despeja de la fórmula del par: hace falta i ≥ 2,5 / (0,35 · 0,85) ≈ 8,4. De ahí sale el i = 9 del tren que viene a continuación.)</div>
+      </section>
+
+      <section aria-labelledby="engranajes">
+        <h2 id="engranajes">4. Engranajes</h2>
+        <p>Un <strong>engranaje</strong> transmite el giro entre dos ejes mediante dientes que encajan. Es la transmisión más precisa que existe: no patina, de modo que la relación entre las velocidades es exacta y se mantiene sin ajustes. Su precio es el ruido, el coste de fabricación y la necesidad de lubricación.</p>
+
+        <p class="ti1-formula">i = Z<sub>salida</sub> / Z<sub>entrada</sub> <span class="ti1-formula-leyenda">Z es el número de dientes; también vale con los diámetros</span></p>
+
+        <div class="ti1-note"><strong>Los engranajes invierten el sentido de giro.</strong> Dos ruedas dentadas que engranan directamente giran en sentidos contrarios. Si hace falta conservar el sentido, se intercala una tercera rueda —una <strong>rueda loca</strong>— que no altera la relación de transmisión y solo cambia el sentido. Es un detalle que se olvida en el papel y se descubre cuando el mecanismo gira al revés.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de engranaje">
+          <table>
+            <caption>Tipos de engranaje y su uso</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Ejes</th><th scope="col">Característica</th><th scope="col">Dónde aparece</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Cilíndrico de dientes rectos</strong></th><td>Paralelos</td><td>El más simple y barato; algo ruidoso.</td><td>Reductores sencillos, juguetes, el KR-1.</td></tr>
+              <tr><th scope="row"><strong>Cilíndrico de dientes helicoidales</strong></th><td>Paralelos</td><td>Más silencioso y aguanta más carga; genera empuje axial.</td><td>Cajas de cambios de automóvil.</td></tr>
+              <tr><th scope="row"><strong>Cónico</strong></th><td>Que se cortan, normalmente a 90°</td><td>Cambia la dirección del eje.</td><td>Diferencial de un vehículo, taladros de ángulo.</td></tr>
+              <tr><th scope="row"><strong>Tornillo sin fin y corona</strong></th><td>Perpendiculares y cruzados</td><td>Relaciones enormes en muy poco espacio; suele ser irreversible.</td><td>Limpiaparabrisas, clavijas de guitarra, portones.</td></tr>
+              <tr><th scope="row"><strong>Piñón-cremallera</strong></th><td>Giro a desplazamiento</td><td>Ya es transformación, no transmisión.</td><td>Tema 8.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El módulo: para que dos engranajes encajen</strong>Dos ruedas dentadas solo engranan si comparten el <strong>módulo</strong>, que relaciona el diámetro con el número de dientes y fija el tamaño del diente. Es una magnitud normalizada: se compran engranajes de módulo 1, 1,5, 2… No basta con que los diámetros «parezcan» compatibles. Es la normalización del Tema 2 en su forma más tangible: sin módulos normalizados, cada engranaje solo serviría con los de su propio fabricante.</div>
+
+        <div class="ti1-curio"><strong>El tornillo sin fin que no se puede empujar hacia atrás.</strong> En la mayoría de las parejas tornillo sin fin y corona, el tornillo mueve la corona pero la corona no puede mover el tornillo: es <em>irreversible</em>. Eso lo convierte en un freno automático, y es la razón de que se use en portones y elevadores: si falla el motor, la carga se queda donde está en lugar de caerse. Un mecanismo que pierde mucho rendimiento pero gana una propiedad de seguridad.</div>
+      </section>
+
+      <section aria-labelledby="trenes">
+        <h2 id="trenes">5. Trenes de engranajes</h2>
+        <p>Con un solo par de engranajes no se llega muy lejos: una relación de 9 exigiría una rueda nueve veces mayor que el piñón, imposible de alojar. La solución es encadenar etapas, y el resultado es un <strong>tren de engranajes</strong>.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de un tren de engranajes compuesto">
+          <img src="assets/tema07_trenes.svg" alt="Tren compuesto de dos etapas: un piñón de 20 dientes engrana con una rueda de 60, que comparte eje con un piñón de 15 dientes, que engrana con una rueda de 45. Cada etapa reduce 3 veces y la relación total es 9: de 1800 a 200 revoluciones por minuto.">
+          <figcaption>El reductor del KR-1. Dos etapas de relación 3 dan una relación total de 9 en un espacio que una sola etapa no podría ocupar.</figcaption>
+        </figure>
+
+        <div class="comparacion">
+          <div><h3>Tren simple</h3><p>Cada eje lleva una sola rueda. Las ruedas intermedias solo cambian el sentido: la relación total es la de la primera con la última, como si las de en medio no existieran.</p></div>
+          <div><h3>Tren compuesto</h3><p>Algún eje lleva <strong>dos ruedas solidarias</strong>. Cada etapa aporta su relación y <strong>las relaciones se multiplican</strong>. Es la única forma de conseguir relaciones grandes en poco espacio.</p></div>
+        </div>
+
+        <p class="ti1-formula">i<sub>total</sub> = i<sub>1</sub> · i<sub>2</sub> · … · i<sub>n</sub> <span class="ti1-formula-leyenda">en un tren compuesto, las relaciones se multiplican</span></p>
+
+        <div class="aviso"><strong>Y los rendimientos también se multiplican</strong>Una etapa de engranajes tiene un rendimiento del orden del 0,95. Dos etapas dan 0,95 × 0,95 = 0,90; cuatro etapas, 0,81. Encadenar etapas para conseguir una relación enorme tiene un coste creciente en energía perdida, y toda esa energía se convierte en calor. Por eso un reductor de muchas etapas se calienta, y por eso no se resuelve cualquier problema añadiendo más engranajes.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> en el tren del diagrama, ¿qué pasaría si montáramos las dos ruedas de la etapa 2 al revés, con el piñón de 15 en el eje de salida y la rueda de 45 en el intermedio? (La segunda etapa pasaría a multiplicar en lugar de reducir: i = 15/45 = 1/3, y la relación total caería de 9 a 1. El mismo mecanismo, montado al revés, hace justo lo contrario.)</div>
+      </section>
+
+      <section aria-labelledby="poleas">
+        <h2 id="poleas">6. Poleas y correas</h2>
+        <p>Una <strong>transmisión por correa</strong> une dos poleas mediante una cinta flexible. Es silenciosa, barata, tolera desalineaciones y permite separar mucho los ejes. Y tiene una propiedad que puede ser virtud o defecto según el caso: <strong>patina</strong>.</p>
+
+        <p class="ti1-formula">i = D<sub>salida</sub> / D<sub>entrada</sub> <span class="ti1-formula-leyenda">con los diámetros de las poleas; la correa no cambia su longitud</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de correa">
+          <table>
+            <caption>Tipos de correa y su comportamiento</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Sección</th><th scope="col">Desliza</th><th scope="col">Uso típico</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Plana</strong></th><td>Rectangular</td><td>Bastante</td><td>Máquinas antiguas, transportadores.</td></tr>
+              <tr><th scope="row"><strong>Trapezoidal</strong></th><td>En V, se acuña en la garganta</td><td>Poco</td><td>Alternador y bomba de un motor; herramientas.</td></tr>
+              <tr><th scope="row"><strong>Dentada o de distribución</strong></th><td>Con dientes que encajan en la polea</td><td>Nada</td><td>Distribución de un motor, impresoras 3D, ejes de robots.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Cuando el deslizamiento es una ventaja</strong>Si la máquina se bloquea, una correa plana o trapezoidal patina y el motor sigue girando: la correa actúa como <strong>fusible mecánico</strong> y se sacrifica en lugar de romper el eje o quemar el motor. Es una protección barata. Pero implica que la relación de transmisión real nunca es exactamente la calculada, y que la posición no se conserva. Por eso una impresora 3D usa correa <em>dentada</em>: si patinara medio diente, la pieza saldría mal.</div>
+
+        <div class="ti1-note"><strong>La tensión de la correa es un ajuste crítico.</strong> Floja, patina y se desgasta por calor; demasiado tensa, carga los rodamientos y acorta la vida de todo el conjunto. Es uno de los pocos mecanismos que exige mantenimiento periódico, y es la razón por la que muchos diseños incluyen un tensor regulable o una polea loca.</div>
+      </section>
+
+      <section aria-labelledby="cadenas">
+        <h2 id="cadenas">7. Cadenas de rodillos</h2>
+        <p>Una <strong>cadena de rodillos</strong> engrana con los dientes de dos ruedas dentadas. Combina lo mejor de los dos mundos anteriores: transmite sin deslizamiento, como los engranajes, y permite separar mucho los ejes, como las correas. Es la transmisión de la bicicleta y de la motocicleta.</p>
+
+        <p class="ti1-formula">i = Z<sub>salida</sub> / Z<sub>entrada</sub> <span class="ti1-formula-leyenda">como en los engranajes: cuenta los dientes, no los diámetros</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación entre engranajes, correas y cadenas">
+          <table>
+            <caption>Las tres transmisiones de giro, comparadas</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">Engranajes</th><th scope="col">Correa</th><th scope="col">Cadena</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Deslizamiento</th><td>Ninguno</td><td>Sí, salvo la dentada</td><td>Ninguno</td></tr>
+              <tr><th scope="row">Distancia entre ejes</th><td>Muy corta</td><td>Grande</td><td>Grande</td></tr>
+              <tr><th scope="row">Rendimiento</th><td>Alto (≈0,95 por etapa)</td><td>Medio-alto</td><td>Alto</td></tr>
+              <tr><th scope="row">Ruido</th><td>Medio-alto</td><td>Bajo</td><td>Alto</td></tr>
+              <tr><th scope="row">Mantenimiento</th><td>Lubricación</td><td>Tensado y sustitución</td><td>Lubricación, tensado y limpieza</td></tr>
+              <tr><th scope="row">Carga admisible</th><td>Muy alta</td><td>Media</td><td>Alta</td></tr>
+              <tr><th scope="row">Protección ante bloqueo</th><td>No: rompe algo</td><td>Sí: patina</td><td>No: rompe algo</td></tr>
+              <tr><th scope="row">Coste</th><td>Alto</td><td>Bajo</td><td>Medio</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-curio"><strong>El cigüeñal, en el sitio equivocado.</strong> El currículo de la materia enumera el cigüeñal entre los elementos de transmisión. En rigor no transmite: <em>transforma</em> el movimiento alternativo de los pistones en giro, y por eso en este programa se estudia en el Tema 8, con la biela-manivela, que es exactamente el mecanismo del que forma parte. Es un buen ejemplo de que un texto normativo puede tener una clasificación discutible, y de que conviene saber justificar por qué se aparta de ella.</div>
+      </section>
+
+      <section aria-labelledby="cambios">
+        <h2 id="cambios">8. La caja de cambios</h2>
+        <p>Una <strong>caja de cambios</strong> es un conjunto de varias relaciones de transmisión entre las que se puede escoger. Existe por una razón muy concreta: <strong>un motor solo rinde bien en un intervalo estrecho de velocidades</strong>, y la máquina tiene que trabajar en condiciones muy distintas.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">El problema</div><p>Un motor de combustión da su par máximo en torno a un régimen determinado. Por debajo se ahoga; por encima, se desboca sin ganar fuerza. La rueda, en cambio, tiene que girar despacio al arrancar y rápido en autopista.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">La solución</div><p>Varios pares de engranajes con relaciones distintas y un mecanismo para seleccionar cuál está activo, de modo que el motor trabaje siempre cerca de su régimen bueno.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Marchas cortas</div><p>Relación alta: mucho par en la rueda y poca velocidad. Para arrancar y para subir cuestas.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Marchas largas</div><p>Relación baja: mucha velocidad y poco par. Para ir rápido en llano con el motor tranquilo.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Marcha atrás</div><p>Se intercala una rueda loca que invierte el sentido sin alterar apenas la relación.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La bicicleta es la caja de cambios más clara que existe</strong>Los platos y los piñones son ruedas dentadas de distinto tamaño unidas por cadena: cada combinación es una relación de transmisión, es decir, una marcha. Plato grande y piñón pequeño da relación baja —mucha velocidad, poco par—; plato pequeño y piñón grande, lo contrario. Y como la potencia la pones tú y es limitada, el cambio no te hace más fuerte: solo te permite repartir tu potencia entre velocidad y fuerza según lo que exija el terreno.</div>
+
+        <div class="ti1-note"><strong>Un motor eléctrico necesita menos cambio.</strong> A diferencia de un motor de combustión, un motor eléctrico da par desde la primera vuelta y funciona bien en un intervalo de velocidades muy amplio. Por eso los vehículos eléctricos llevan normalmente una sola relación fija, y por eso el KR-1 necesita un reductor pero no una caja de cambios: su motor no tiene que adaptarse a condiciones cambiantes, solo abrir y cerrar una válvula.</div>
+      </section>
+
+      <section aria-labelledby="eleccion">
+        <h2 id="eleccion">9. Elegir la transmisión</h2>
+        <p>Con lo anterior, elegir deja de ser cuestión de gusto. Las preguntas, en orden:</p>
+
+        <ol>
+          <li><strong>¿Qué relación necesito?</strong> Se obtiene del par que exige la carga y del par que da el motor, como en el ejercicio de la sección 3.</li>
+          <li><strong>¿Qué distancia hay entre los ejes?</strong> Ejes juntos: engranajes. Ejes separados: correa o cadena.</li>
+          <li><strong>¿Importa la posición exacta?</strong> Si hay que saber dónde está el mecanismo en cada momento, nada que patine: engranajes, cadena o correa dentada.</li>
+          <li><strong>¿Qué carga transmito?</strong> Cargas altas piden engranajes o cadena; una correa plana se rinde.</li>
+          <li><strong>¿Hay que protegerse de un bloqueo?</strong> Si sí, una correa que patine puede ser mejor que un engranaje que rompa.</li>
+          <li><strong>¿Quién va a mantenerlo?</strong> En el huerto de un instituto, en agosto, no habrá nadie tensando una correa.</li>
+        </ol>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué el KR-1 lleva un reductor de engranajes</strong>Necesita relación 9 (pregunta 1), el motor está pegado a la válvula (2), conviene conocer la posición del obturador (3), la carga es pequeña (4), el bloqueo se resuelve por programa cortando la alimentación (5) y nadie va a mantener nada en verano (6). Un motorreductor de engranajes cerrado y lubricado de fábrica gana en cinco de las seis preguntas. La sexta —el bloqueo— se resuelve en el Bloque F, con un límite de tiempo en el programa de control.</div>
+      </section>
+
+      <section aria-labelledby="esquemas">
+        <h2 id="esquemas">10. La cadena cinemática y su esquema</h2>
+        <p>La <strong>cadena cinemática</strong> es la sucesión de elementos por los que pasa el movimiento desde el motor hasta el elemento de trabajo. Representarla es aplicar lo aprendido en el Tema 3: un esquema que renuncia a la forma real y conserva la función y la conexión.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: la cadena cinemática del KR-1 con sus magnitudes">
+          <table>
+            <caption>Cadena cinemática del KR-1, eslabón por eslabón</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Velocidad</th><th scope="col">Par</th><th scope="col">Qué hace</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Motor de CC</th><td>1800 min⁻¹</td><td>0,35 N·m</td><td>Convierte electricidad en giro.</td></tr>
+              <tr><th scope="row">Etapa 1: Z₁ 20 → Z₂ 60</th><td>600 min⁻¹</td><td>≈1,00 N·m</td><td>Reduce 3 veces.</td></tr>
+              <tr><th scope="row">Etapa 2: Z₃ 15 → Z₄ 45</th><td>200 min⁻¹</td><td>≈2,68 N·m</td><td>Reduce otras 3 veces.</td></tr>
+              <tr><th scope="row">Obturador de la válvula</th><td>200 min⁻¹</td><td>2,68 N·m</td><td>Abre y cierra el paso del agua.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Cómo se dibuja un esquema cinemático.</strong> Los ejes, líneas gruesas; las ruedas dentadas, círculos con su número de dientes anotado; las poleas, círculos con la correa como línea que las envuelve. Las ruedas solidarias del mismo eje se unen con el trazo del eje. Y se rotula cada elemento con su referencia, para que remita a la lista de materiales. Nada de dibujar dientes: un esquema cinemático que dibuja los dientes uno a uno está confundiendo el esquema con el plano.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> en la tabla, el par de la etapa 1 es 1,00 N·m y no 1,05, que es lo que daría 0,35 × 3. ¿De dónde sale la diferencia? (Del rendimiento: 0,35 × 3 × 0,95 ≈ 1,00. Y en la segunda etapa vuelve a aplicarse, de ahí que el resultado final sea 2,68 y no 3,15.)</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con una cadena cinemática razonada y con números que cuadran.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 7">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Magnitudes</th><td>Que distingues velocidad, par, potencia y rendimiento y sabes pasar de unas unidades a otras.</td><td>Conversión de min⁻¹ a rad/s, cálculo de la potencia de un eje y su comprobación por dos caminos.</td></tr>
+              <tr><th scope="row">Relación de transmisión</th><td>Que la calculas en engranajes, poleas y cadena, y que sabes qué le ocurre al par.</td><td>Relación de un tren compuesto obtenida multiplicando etapas, con el rendimiento aplicado.</td></tr>
+              <tr><th scope="row">Elegir el mecanismo</th><td>Que eliges por criterios y no por costumbre, y que justificas los descartes.</td><td>Comparación de engranaje, correa y cadena para tu caso, con la tabla de criterios cumplimentada.</td></tr>
+              <tr><th scope="row">Representar</th><td>Que dibujas la cadena cinemática con simbología y la rotulas.</td><td>Esquema cinemático con dientes anotados, referencias que remiten a la lista de materiales y tabla de magnitudes por eslabón.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Comprobación práctica: monta el tren con las piezas del taller, marca una referencia en el eje de entrada y en el de salida, da nueve vueltas a la entrada y comprueba que la salida da exactamente una. Si no cuadra, o el montaje tiene juego o el tren no es el que creías.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Bastidor</dt><dd>Estructura que sostiene los elementos de una máquina y absorbe sus reacciones.</dd>
+          <dt>Cadena cinemática</dt><dd>Sucesión de elementos por los que pasa el movimiento desde el motor hasta el elemento de trabajo.</dd>
+          <dt>Caja de cambios</dt><dd>Conjunto de relaciones de transmisión seleccionables, que permite al motor trabajar cerca de su régimen óptimo.</dd>
+          <dt>Correa dentada</dt><dd>Correa con dientes que engranan en la polea, de modo que no desliza y conserva la posición.</dd>
+          <dt>Engranaje</dt><dd>Mecanismo que transmite el giro entre ejes mediante ruedas con dientes que encajan.</dd>
+          <dt>Máquina</dt><dd>Conjunto de mecanismos con una fuente de energía que produce un trabajo útil.</dd>
+          <dt>Mecanismo</dt><dd>Conjunto de piezas que transmite o transforma un movimiento.</dd>
+          <dt>Módulo</dt><dd>Magnitud normalizada que fija el tamaño del diente de un engranaje; dos engranajes solo encajan si comparten módulo.</dd>
+          <dt>Motorreductor</dt><dd>Conjunto cerrado de motor y reductor, montado y lubricado de fábrica.</dd>
+          <dt>Multiplicador</dt><dd>Transmisión con relación menor que uno: aumenta la velocidad y reduce el par.</dd>
+          <dt>Par o momento</dt><dd>Producto de una fuerza por su distancia perpendicular al eje; mide la capacidad de hacer girar.</dd>
+          <dt>Potencia</dt><dd>Trabajo por unidad de tiempo; en un eje que gira, producto del par por la velocidad angular.</dd>
+          <dt>Reductor</dt><dd>Transmisión con relación mayor que uno: reduce la velocidad y multiplica el par.</dd>
+          <dt>Relación de transmisión</dt><dd>Cociente entre la velocidad de entrada y la de salida de un mecanismo.</dd>
+          <dt>Rendimiento</dt><dd>Fracción de la potencia de entrada que se recupera a la salida; el resto se pierde en rozamiento y calor.</dd>
+          <dt>Rueda loca</dt><dd>Rueda dentada intercalada que invierte el sentido de giro sin alterar la relación de transmisión.</dd>
+          <dt>Tornillo sin fin</dt><dd>Mecanismo de tornillo y corona que da relaciones muy grandes en poco espacio y suele ser irreversible.</dd>
+          <dt>Tren compuesto</dt><dd>Tren de engranajes con dos ruedas solidarias en algún eje, de modo que las relaciones de sus etapas se multiplican.</dd>
+          <dt>Tren simple</dt><dd>Tren en el que cada eje lleva una sola rueda y las intermedias solo cambian el sentido.</dd>
+          <dt>Velocidad angular</dt><dd>Ángulo girado por unidad de tiempo, en radianes por segundo.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Casi toda máquina se organiza en motor, transmisión, elemento de trabajo y bastidor.</li>
+          <li>Transmitir conserva la naturaleza del movimiento; transformar la cambia, y eso es el Tema 8.</li>
+          <li>El par es fuerza por distancia al eje; la potencia es par por velocidad angular. No son lo mismo y se confunden constantemente.</li>
+          <li>La relación de transmisión es el cociente de velocidades; si reduce la velocidad, multiplica el par en la misma proporción.</li>
+          <li>Una transmisión no crea potencia: solo reparte de otro modo lo que recibe, y además pierde una parte en calor.</li>
+          <li>En engranajes y cadena la relación se calcula con los dientes; en poleas, con los diámetros.</li>
+          <li>Dos engranajes solo encajan si comparten módulo, que es una magnitud normalizada.</li>
+          <li>Dos ruedas que engranan giran en sentidos contrarios; una rueda loca invierte el sentido sin cambiar la relación.</li>
+          <li>En un tren compuesto las relaciones se multiplican, y los rendimientos también: cuatro etapas del 95 % dan un 81 %.</li>
+          <li>Una correa que patina es un fusible mecánico, pero pierde la posición; la dentada no patina y por eso mueve una impresora 3D.</li>
+          <li>La cadena de rodillos combina la precisión del engranaje con la distancia entre ejes de la correa, a cambio de ruido y mantenimiento.</li>
+          <li>Una caja de cambios existe porque el motor rinde bien en un intervalo estrecho; un motor eléctrico, que no tiene ese problema, apenas la necesita.</li>
+          <li>La transmisión se elige con seis preguntas: relación, distancia entre ejes, necesidad de posición exacta, carga, protección ante bloqueo y mantenimiento.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Normalización de engranajes cilíndricos y de su módulo (serie UNE-EN ISO 53 y 54).</li>
+          <li id="fuente_2">[2] <a href="https://www.geogebra.org/">GeoGebra</a>. Construcciones dinámicas para simular relaciones de transmisión y cadenas cinemáticas.</li>
+          <li id="fuente_3">[3] <a href="https://algodoo.com/">Algodoo</a>. Simulador de mecánica en dos dimensiones para montar y probar mecanismos.</li>
+          <li id="fuente_4">[4] <a href="https://www.cem.es/">Centro Español de Metrología</a>. Unidades del Sistema Internacional de par, potencia y velocidad angular.</li>
+          <li id="fuente_5">[5] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque C y criterio 4.1.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema06.html">← Tema 6</a>
+  <a href="tema08.html">Tema 8 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>
