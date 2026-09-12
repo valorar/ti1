@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="t19_title t19_desc">
+<title id="t19_title">Grados de libertad y espacio de trabajo de un brazo de dos articulaciones</title>
+<desc id="t19_desc">Un brazo plano con dos articulaciones de giro y dos eslabones de 130 y 95 milímetros. Los dos ángulos son sus dos grados de libertad. La zona sombreada es el espacio de trabajo: la corona que el extremo puede alcanzar, con radio máximo igual a la suma de las longitudes, 225 milímetros, y radio mínimo igual a su diferencia, 35 milímetros. Cada punto de la corona se alcanza normalmente con dos configuraciones distintas, codo arriba y codo abajo.</desc>
+<rect width="900" height="420" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Dos ángulos, un espacio de trabajo</text>
+
+<path d="M55 330 A225 225 0 0 1 505 330 L315 330 A35 35 0 0 0 245 330 Z" fill="#dff3ef" opacity=".65" stroke="#2b8c7f" stroke-width="2" stroke-dasharray="7 5"/>
+<path d="M40 330 H520" stroke="#58707a" stroke-width="2.5"/>
+<path d="M240 360 L250 330 H310 L320 360 Z" fill="#eef2f4" stroke="#58707a" stroke-width="2.5"/>
+
+<path d="M280 330 L355 224" stroke="#2b8c7f" stroke-width="9" stroke-linecap="round"/>
+<path d="M355 224 L447 199" stroke="#0b6680" stroke-width="8" stroke-linecap="round"/>
+<path d="M280 330 H370" stroke="#8aa0a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<path d="M355 224 L440 202" stroke="#8aa0a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<path d="M320 330 A40 40 0 0 0 303 298" fill="none" stroke="#8a6317" stroke-width="2"/>
+<path d="M392 215 A38 38 0 0 0 381 200" fill="none" stroke="#8a6317" stroke-width="2"/>
+<circle cx="280" cy="330" r="9" fill="#fff" stroke="#17262d" stroke-width="3"/>
+<circle cx="355" cy="224" r="8" fill="#fff" stroke="#17262d" stroke-width="3"/>
+<path d="M443 190 L459 186 M443 208 L459 212" stroke="#0b6680" stroke-width="5" stroke-linecap="round"/>
+
+<g font-family="system-ui,sans-serif" font-size="14" font-weight="700">
+<text x="326" y="292" fill="#8a6317">θ₁</text>
+<text x="386" y="208" fill="#8a6317">θ₂</text>
+<text x="300" y="288" fill="#245c49" text-anchor="end">L₁</text>
+<text x="408" y="182" fill="#164d5f">L₂</text>
+<text x="470" y="188" fill="#0b6680">efector</text>
+<text x="280" y="382" text-anchor="middle" fill="#46616a" font-size="12.5">base fija</text>
+</g>
+<text x="120" y="196" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#245c49">espacio de trabajo</text>
+
+<path d="M540 60 V380" stroke="#d8e0df" stroke-width="2"/>
+<g font-family="system-ui,sans-serif" fill="#17262d">
+<text x="570" y="90" font-size="16" font-weight="700" fill="#18384a">Dos grados de libertad</text>
+<text x="570" y="120" font-size="13.5" fill="#46616a">Cada articulación de giro aporta un grado</text>
+<text x="570" y="138" font-size="13.5" fill="#46616a">de libertad: θ₁ y θ₂ se fijan por separado.</text>
+
+<text x="570" y="176" font-size="16" font-weight="700" fill="#18384a">Espacio de trabajo</text>
+<text x="570" y="204" font-size="14">radio máximo = L₁ + L₂ = 225 mm</text>
+<text x="570" y="228" font-size="14">radio mínimo = L₁ − L₂ = 35 mm</text>
+<text x="570" y="252" font-size="13.5" fill="#46616a">Fuera de esa corona no llega, por mucho</text>
+<text x="570" y="270" font-size="13.5" fill="#46616a">que se programe.</text>
+
+<text x="570" y="308" font-size="16" font-weight="700" fill="#18384a">Dos soluciones por punto</text>
+<text x="570" y="336" font-size="13.5" fill="#46616a">Casi cualquier punto se alcanza de dos</text>
+<text x="570" y="354" font-size="13.5" fill="#46616a">maneras: codo arriba y codo abajo. Elegir</text>
+<text x="570" y="372" font-size="13.5" fill="#46616a">una es parte del problema del robot.</text>
+</g>
+</svg>

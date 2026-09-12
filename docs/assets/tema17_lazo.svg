@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" role="img" aria-labelledby="t17_title t17_desc">
+<title id="t17_title">Lazo abierto y lazo cerrado</title>
+<desc id="t17_desc">Arriba, un sistema en lazo abierto: la consigna entra en el controlador, que acciona el actuador, que actúa sobre la planta y produce una salida; nadie mide el resultado. Abajo, un sistema en lazo cerrado: la salida se mide con un sensor y se lleva de vuelta a un comparador, que la resta de la consigna para obtener el error; el controlador actúa sobre ese error, de modo que el sistema corrige por sí solo las perturbaciones.</desc>
+<defs><marker id="t17_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker></defs>
+<rect width="900" height="450" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">La diferencia que lo cambia todo: medir el resultado</text>
+
+<text x="30" y="64" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#8f3a24">Lazo abierto</text>
+<g fill="#eef2f4" stroke="#58707a" stroke-width="2.5">
+<rect x="156" y="80" width="120" height="54" rx="8"/><rect x="318" y="80" width="100" height="54" rx="8"/><rect x="460" y="80" width="120" height="54" rx="8"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="13.5" text-anchor="middle" fill="#46616a">
+<text x="216" y="112">Controlador</text><text x="368" y="112">Actuador</text><text x="520" y="112">Planta</text>
+</g>
+<g fill="none" stroke="#1a6b7a" stroke-width="2.5" marker-end="url(#t17_a)">
+<path d="M108 107 H150"/><path d="M276 107 H312"/><path d="M418 107 H454"/><path d="M580 107 H640"/>
+</g>
+<text x="30" y="112" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">consigna</text>
+<text x="650" y="112" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">salida</text>
+<text x="30" y="166" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Nadie mide el resultado: si aparece una perturbación —sol, viento, una fuga— el error no se corrige.</text>
+<text x="30" y="184" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Riega 30 segundos tanto si el sustrato lo necesita como si no.</text>
+
+<path d="M20 214 H880" stroke="#d8e0df" stroke-width="2"/>
+
+<text x="30" y="252" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#245c49">Lazo cerrado</text>
+<g fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5">
+<rect x="218" y="290" width="120" height="54" rx="8"/><rect x="370" y="290" width="100" height="54" rx="8"/><rect x="502" y="290" width="120" height="54" rx="8"/>
+</g>
+<rect x="380" y="378" width="100" height="44" rx="8" fill="#fff4d9" stroke="#c6922d" stroke-width="2.5"/>
+<circle cx="166" cy="317" r="20" fill="#dff3ef" stroke="#2b8c7f" stroke-width="2.5"/>
+<g font-family="system-ui,sans-serif" font-size="13.5" text-anchor="middle" fill="#164d5f">
+<text x="278" y="322">Controlador</text><text x="420" y="322">Actuador</text><text x="562" y="322">Planta</text>
+<text x="430" y="406" fill="#705015">Sensor</text>
+</g>
+<text x="158" y="312" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">+</text>
+<text x="158" y="338" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#8f3a24">−</text>
+<g fill="none" stroke="#1a6b7a" stroke-width="2.5" marker-end="url(#t17_a)">
+<path d="M108 317 H142"/><path d="M186 317 H212"/><path d="M338 317 H364"/><path d="M470 317 H496"/><path d="M622 317 H690"/>
+</g>
+<g fill="none" stroke="#8f3a24" stroke-width="2.5">
+<path d="M660 317 V400 H484"/><path d="M376 400 H166 V343"/>
+</g>
+<path d="M166 343 L162 351 H170 Z" fill="#8f3a24"/>
+<text x="700" y="322" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">salida</text>
+<text x="30" y="322" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">consigna</text>
+<text x="199" y="304" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#8f3a24">error</text>
+<text x="560" y="440" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#8f3a24">realimentación: la salida medida vuelve al comparador</text>
+</svg>

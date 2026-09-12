@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 17 del Bloque F de Tecnología e Ingeniería I: concepto de sistema de control, entrada, salida y perturbación, controlador, sensor, comparador, actuador y planta, lazo abierto y lazo cerrado, realimentación, estabilidad y precisión, modelización por diagramas de bloques, control todo-nada, proporcional e histéresis.">
+  <title>Tema 17. Sistemas de control: conceptos, elementos y modelización · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 17 · Bloque F · Sistemas automáticos</p>
+        <h1>Tema 17. Sistemas de control: conceptos, elementos y modelización</h1>
+        <p class="hero-lead">Qué es un sistema de control, de qué piezas consta y cómo se representa para poder estudiarlo.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 17">
+        <strong>Pregunta guía</strong>
+        <p>Un temporizador que riega treinta segundos cada mañana cuesta ocho euros y funciona. El KR-1 mide la humedad antes de decidir y cuesta cuarenta y seis. ¿Qué compras exactamente con esa diferencia, y en qué situaciones no merece la pena?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#concepto">Qué es un sistema de control</a></li>
+        <li><a href="#elementos">Los elementos</a></li>
+        <li><a href="#lazos">Lazo abierto y lazo cerrado</a></li>
+        <li><a href="#respuesta">Cómo se juzga un sistema</a></li>
+        <li><a href="#bloques">Modelizar con diagramas de bloques</a></li>
+        <li><a href="#leyes">Todo-nada, histéresis y proporcional</a></li>
+        <li><a href="#ejemplos">Sistemas de control a tu alrededor</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">El Bloque F reúne todo lo anterior. La mecánica del Bloque C movía, la electrónica del D accionaba y la programación del E decidía; aquí esas tres cosas se convierten en <strong>un sistema que se gobierna a sí mismo</strong>. Y empieza con el vocabulario, porque es el tema donde se aprende a hablar de control: consigna, error, realimentación, estabilidad. Con esas palabras se puede analizar cualquier automatismo, desde un termostato hasta un vehículo.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> cuando conduces por una carretera recta no giras el volante y lo dejas quieto: lo corriges constantemente, mirando la línea de la calzada. Ese pequeño vaivén no es torpeza: es exactamente lo que hace un sistema de control en lazo cerrado, y es la razón de que puedas ir recto con viento lateral. El coche no sabe ir recto; tú lo corriges cien veces por minuto.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>definir sistema de control e identificar entradas, salidas y perturbaciones;</li>
+          <li>reconocer el controlador, el sensor, el comparador, el actuador y la planta en un sistema real;</li>
+          <li>distinguir lazo abierto de lazo cerrado y decidir cuál conviene en cada caso;</li>
+          <li>explicar qué es la realimentación y por qué permite corregir perturbaciones;</li>
+          <li>juzgar un sistema por su estabilidad, su precisión y su tiempo de respuesta;</li>
+          <li>modelizar un sistema sencillo mediante un diagrama de bloques;</li>
+          <li>explicar el control todo-nada, el problema del ciclado y cómo lo resuelve la histéresis;</li>
+          <li>describir el control proporcional y en qué mejora al todo-nada;</li>
+          <li>analizar un sistema de control cotidiano identificando todos sus elementos.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="concepto">
+        <h2 id="concepto">1. Qué es un sistema de control</h2>
+        <p>Un <strong>sistema de control</strong> es un conjunto de elementos que gobierna el comportamiento de otro sistema para que una magnitud tome el valor que queremos. Esa magnitud es la <strong>variable controlada</strong>, y el valor que queremos, la <strong>consigna</strong>.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: las tres clases de señal de un sistema de control">
+          <table>
+            <caption>Lo que entra, lo que sale y lo que estorba</caption>
+            <thead><tr><th scope="col">Señal</th><th scope="col">Qué es</th><th scope="col">En el KR-1</th><th scope="col">En un termostato</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Entrada o consigna</strong></th><td>El valor deseado de la variable controlada; lo fija quien manda.</td><td>30 % de humedad del sustrato.</td><td>21 °C.</td></tr>
+              <tr><th scope="row"><strong>Salida o variable controlada</strong></th><td>La magnitud que se quiere gobernar.</td><td>La humedad real del bancal.</td><td>La temperatura real de la habitación.</td></tr>
+              <tr><th scope="row"><strong>Perturbación</strong></th><td>Todo lo que afecta a la salida y no controlamos.</td><td>Sol, viento, lluvia, una fuga, la planta que crece.</td><td>Una ventana abierta, gente en la sala, el sol de la tarde.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La perturbación es la razón de ser del control</strong>Si no hubiera perturbaciones, no haría falta controlar nada: bastaría calcular una vez cuánta agua necesita el bancal y echarla siempre igual. El control automático existe porque <strong>el mundo cambia y no avisa</strong>. Y de ahí sale el criterio para decidir entre lazo abierto y cerrado: cuanto más impredecibles sean las perturbaciones, más necesario es medir el resultado.</div>
+
+        <div class="ti1-note"><strong>Automático no es lo mismo que programado.</strong> Un temporizador está <em>programado</em>: hace lo mismo siempre. Un sistema <em>automático</em> de verdad <strong>se adapta</strong> porque conoce el resultado de sus acciones. La diferencia parece sutil y separa un enchufe con reloj de un sistema de control, que es lo que el currículo pide construir en este bloque.</div>
+      </section>
+
+      <section aria-labelledby="elementos">
+        <h2 id="elementos">2. Los elementos de un sistema de control</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elementos de un sistema de control">
+          <table>
+            <caption>Los cinco elementos, y de dónde viene cada uno en el KR-1</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Función</th><th scope="col">En el KR-1</th><th scope="col">Se estudió en</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Sensor o transductor</strong></th><td>Convierte la magnitud física en una señal medible.</td><td>Sonda capacitiva de humedad.</td><td>Tema 11</td></tr>
+              <tr><th scope="row"><strong>Comparador</strong></th><td>Resta la medida de la consigna y obtiene el error.</td><td>Una línea de código: <code>error = consigna − medida</code>.</td><td>Tema 14</td></tr>
+              <tr><th scope="row"><strong>Controlador</strong></th><td>Decide qué hacer a partir del error.</td><td>El ESP32 y su programa.</td><td>Temas 12 a 16</td></tr>
+              <tr><th scope="row"><strong>Actuador</strong></th><td>Ejecuta la acción sobre el proceso.</td><td>Electroválvula y su MOSFET.</td><td>Temas 8 y 11</td></tr>
+              <tr><th scope="row"><strong>Planta o proceso</strong></th><td>El sistema que se quiere gobernar.</td><td>El bancal con su sustrato y sus plantas.</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El comparador ya no es una pieza</strong>En un sistema antiguo el comparador era un circuito físico —un amplificador diferencial, un puente de resistencias—. En un sistema con microcontrolador es <strong>una resta dentro del programa</strong>. Ese desplazamiento de lo físico a lo lógico es lo que ha cambiado en el control en los últimos cuarenta años: el controlador y el comparador, que eran electrónica, hoy son código. Y eso significa que <strong>cambiar el comportamiento del sistema es cambiar un programa</strong>, no rehacer un circuito.</div>
+
+        <div class="ti1-note"><strong>Sensor y transductor: la distinción fina.</strong> Un <strong>transductor</strong> convierte una magnitud física en otra; un <strong>sensor</strong> es un transductor usado para medir. En la práctica se usan como sinónimos, y el currículo también. Lo que sí conviene distinguir es sensor de <strong>actuador</strong>: uno lee el mundo y el otro lo modifica, y confundirlos en un esquema es confundir la entrada con la salida.</div>
+      </section>
+
+      <section aria-labelledby="lazos">
+        <h2 id="lazos">3. Lazo abierto y lazo cerrado</h2>
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de lazo abierto y lazo cerrado">
+          <img src="assets/tema17_lazo.svg" alt="Arriba, lazo abierto: consigna, controlador, actuador y planta en cadena, sin medir la salida. Abajo, lazo cerrado: la salida se mide con un sensor y vuelve a un comparador que la resta de la consigna para obtener el error, sobre el que actúa el controlador.">
+          <figcaption>La única diferencia de dibujo es la flecha de retorno. La diferencia de comportamiento es enorme: solo el segundo sabe si ha conseguido su objetivo.</figcaption>
+        </figure>
+
+        <div class="comparacion">
+          <div><h3>Lazo abierto</h3><p>La acción depende solo de la consigna. Es simple, barato y estable por naturaleza. <strong>No corrige errores ni perturbaciones</strong>, porque no sabe que existen. El temporizador de riego, un microondas, una lavadora con programa fijo.</p></div>
+          <div><h3>Lazo cerrado</h3><p>La acción depende del <strong>error</strong>: la diferencia entre lo que se quiere y lo que hay. Corrige perturbaciones y tolera imprecisiones del actuador. A cambio, necesita un sensor y puede volverse inestable si se ajusta mal.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación entre lazo abierto y cerrado">
+          <table>
+            <caption>Cuándo cada uno</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">Lazo abierto</th><th scope="col">Lazo cerrado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Necesita sensor</th><td>No</td><td>Sí: es su elemento definitorio</td></tr>
+              <tr><th scope="row">Corrige perturbaciones</th><td>No</td><td>Sí</td></tr>
+              <tr><th scope="row">Coste y complejidad</th><td>Bajos</td><td>Mayores</td></tr>
+              <tr><th scope="row">Riesgo de inestabilidad</th><td>Ninguno</td><td>Existe si se ajusta mal</td></tr>
+              <tr><th scope="row">Si el sensor falla</th><td>No aplica</td><td>El sistema decide con datos falsos: es su punto débil</td></tr>
+              <tr><th scope="row">Cuándo conviene</th><td>Perturbaciones pequeñas o previsibles, y consecuencias leves del error</td><td>Perturbaciones grandes o impredecibles, o precisión exigente</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La respuesta a la pregunta guía</strong>Con los 38 € de diferencia compras <strong>adaptación</strong>: el KR-1 no riega si ha llovido, riega más si hace calor y avisa si el depósito está vacío. En un balcón con macetas iguales y clima estable, el temporizador es la solución correcta y la más sensata. En un huerto con sol desigual, lluvias imprevistas y tres semanas sin nadie, el lazo cerrado se paga solo en agua y en plantas vivas. <strong>Elegir lazo abierto cuando basta no es simplificar de más: es buena ingeniería.</strong></div>
+
+        <div class="aviso"><strong>El punto débil del lazo cerrado es el sensor</strong>Un sistema en lazo abierto con un actuador averiado no hace nada, y eso se nota. Un sistema en lazo cerrado con un <strong>sensor averiado</strong> hace algo activamente equivocado: si la sonda se desconecta y lee «seco», riega sin parar hasta agotar el depósito. Por eso todo lazo cerrado necesita comprobar la <em>plausibilidad</em> de sus medidas —las lecturas imposibles del Tema 14— y un límite de seguridad que actúe aunque el sensor mienta.</div>
+      </section>
+
+      <section aria-labelledby="respuesta">
+        <h2 id="respuesta">4. Cómo se juzga un sistema de control</h2>
+        <p>Tres propiedades, y las tres se pueden medir. Están relacionadas entre sí, y mejorar una suele empeorar otra.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Estabilidad</h3><p>Que la salida acabe quedándose quieta en un valor, en lugar de oscilar o dispararse. Es la propiedad imprescindible: un sistema inestable no sirve para nada.</p></div>
+          <div class="ti1-card"><h3>Precisión</h3><p>Lo cerca que la salida acaba de la consigna. El resto que queda se llama <strong>error en régimen permanente</strong>.</p></div>
+          <div class="ti1-card"><h3>Tiempo de respuesta</h3><p>Lo que tarda en llegar. Un sistema muy rápido suele pasarse de largo —<strong>sobreoscilación</strong>— y tardar más en asentarse.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El compromiso que define todo el control</strong><strong>Rapidez, precisión y estabilidad no se pueden maximizar a la vez.</strong> Si haces que el sistema reaccione con mucha energía al error, llegará rápido y se pasará; si lo haces prudente, llegará suave y tarde. Ajustar un control es elegir un punto en ese compromiso, y depende de la aplicación: un ascensor prioriza no pasarse; un airbag, la rapidez a cualquier precio. El tratamiento matemático de esto —con transformadas y criterios de estabilidad— es Tecnología e Ingeniería II; aquí basta con entender el compromiso y reconocerlo al medir.</div>
+
+        <div class="ti1-note"><strong>Y hay un cuarto factor que suele decidir: la inercia de la planta.</strong> El bancal del KR-1 tarda horas en cambiar su humedad; una habitación, decenas de minutos en cambiar de temperatura; un motor, milisegundos en cambiar de velocidad. <strong>La velocidad del control tiene que ser acorde con la de la planta</strong>: medir la humedad del sustrato cada segundo no mejora nada y solo gasta batería. De ahí que el KR-1 mida cada quince minutos, y no es una cifra arbitraria: es una decisión de ingeniería sobre la inercia del proceso.</div>
+      </section>
+
+      <section aria-labelledby="bloques">
+        <h2 id="bloques">5. Modelizar con diagramas de bloques</h2>
+        <p><strong>Modelizar</strong> un sistema es representarlo de forma que se pueda razonar sobre él sin tenerlo delante. En este curso la herramienta es el <strong>diagrama de bloques</strong>, que ya conocemos del Tema 3 y ahora recibe su vocabulario propio.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elementos de un diagrama de bloques de control">
+          <table>
+            <caption>Los símbolos del diagrama de bloques</caption>
+            <thead><tr><th scope="col">Símbolo</th><th scope="col">Significa</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Rectángulo</th><td>Un elemento que transforma su entrada en su salida: controlador, actuador, planta, sensor.</td></tr>
+              <tr><th scope="row">Flecha</th><td>Una señal, con su nombre. No es un cable: es información o energía.</td></tr>
+              <tr><th scope="row">Círculo con signos</th><td>Comparador o sumador: combina dos señales, sumando y restando según los signos.</td></tr>
+              <tr><th scope="row">Punto de bifurcación</th><td>La misma señal va a dos sitios a la vez.</td></tr>
+              <tr><th scope="row">Rama de retorno</th><td>Realimentación: la salida —medida— vuelve hacia la entrada.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Cómo se modeliza un sistema paso a paso</h3>
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Identificar la variable controlada</div><p>¿Qué magnitud quiero gobernar? Humedad del sustrato. Todo lo demás se ordena a partir de aquí.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Identificar la consigna</div><p>Qué valor quiero y quién lo fija. El 30 %, fijado en la configuración y modificable desde el panel.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Localizar el actuador</div><p>Qué elemento puede modificar la variable. La electroválvula, que añade agua.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Localizar el sensor</div><p>Qué elemento puede medirla. La sonda capacitiva, en el propio bancal.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Enumerar las perturbaciones</div><p>Sol, viento, lluvia, crecimiento de la planta, fuga. Se dibujan como flechas que entran en la planta.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">6 · Dibujar y comprobar el lazo</div><p>Seguir la flecha desde la consigna hasta la salida y de vuelta. Si el recorrido no se cierra, no hay realimentación.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un modelo no es un dibujo bonito: sirve para responder preguntas</strong>Con el diagrama delante se puede razonar sin tocar el sistema: si el sensor se avería, ¿qué error ve el controlador? Si la perturbación es muy grande, ¿puede el actuador compensarla? ¿Qué pasa si la realimentación llega con retraso? Esas tres preguntas se responden mirando el diagrama, y las tres son las que causan fallos reales. <strong>Un sistema que no se ha dibujado no se ha entendido.</strong></div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> en el KR-1 el actuador solo puede <em>añadir</em> agua; no puede quitarla. ¿Qué consecuencia tiene eso para el control? (Que ante una perturbación en un sentido —lluvia— el sistema no puede hacer nada, solo esperar. Se llama <strong>acción unidireccional</strong>, y es lo mismo que le pasa a una calefacción sin aire acondicionado: puede calentar, no refrescar.)</div>
+      </section>
+
+      <section aria-labelledby="leyes">
+        <h2 id="leyes">6. Todo-nada, histéresis y control proporcional</h2>
+        <p>La <strong>ley de control</strong> es la regla que decide qué hace el actuador según el error. Hay muchas; aquí las dos que se pueden implementar y entender en este curso.</p>
+
+        <h3>Control todo-nada</h3>
+        <p>El actuador solo tiene dos estados, y se activa cuando el error supera cero. Es lo que hace una nevera, un termostato sencillo y el KR-1.</p>
+
+        <pre><code># Control todo-nada, en su forma más simple
+if humedad &lt; CONSIGNA:
+    abrir_valvula()
+else:
+    cerrar_valvula()</code></pre>
+
+        <div class="aviso"><strong>El problema del todo-nada: el ciclado</strong>Imagina que la humedad está justo en el 30 % y el sensor tiene un poco de ruido. Una lectura da 29,9 y el sistema abre; la siguiente da 30,1 y cierra; la siguiente 29,8 y abre otra vez. El actuador conmuta continuamente: se llama <strong>ciclado</strong> y destruye relés, electroválvulas y compresores. Es el fallo más común de un control todo-nada mal escrito, y no se arregla con un sensor mejor: se arregla con histéresis.</div>
+
+        <h3>Histéresis: dos umbrales en lugar de uno</h3>
+        <pre><code># Con histéresis: se abre por debajo de un umbral y se cierra por encima de otro
+UMBRAL_ABRIR = 28      # %
+UMBRAL_CERRAR = 34     # %
+
+if not valvula_abierta and humedad &lt; UMBRAL_ABRIR:
+    abrir_valvula()
+elif valvula_abierta and humedad &gt; UMBRAL_CERRAR:
+    cerrar_valvula()
+# Entre 28 y 34 no se hace nada: se mantiene el estado actual</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La histéresis es una banda muerta deliberada</strong>Entre los dos umbrales el sistema <strong>no reacciona</strong>: mantiene lo que estaba haciendo. Eso elimina el ciclado a cambio de perder precisión, porque la variable oscila entre 28 y 34 en lugar de quedarse en 30. Es un compromiso explícito: <strong>más ancha la banda, menos conmutaciones y menos precisión</strong>. Y fíjate en un detalle importante del código: la decisión depende del <em>estado actual</em> de la válvula, no solo de la medida. Eso es un sistema con memoria, y es el germen de la máquina de estados del Tema 18.</div>
+
+        <h3>Control proporcional</h3>
+        <p>Si el actuador admite grados —y con el PWM del Tema 10 muchos los admiten—, la acción puede ser <strong>proporcional al error</strong>: mucho error, mucha acción; poco error, poca acción.</p>
+
+        <p class="ti1-formula">acción = K · error <span class="ti1-formula-leyenda">K es la ganancia: cuánto se reacciona por unidad de error</span></p>
+
+        <pre><code># Control proporcional del caudal, con PWM y con límites
+GANANCIA = 4.0
+
+error = CONSIGNA - humedad          # % de humedad que falta
+accion = GANANCIA * error           # en % de apertura
+accion = max(0, min(100, accion))   # saturación: nunca fuera de 0-100
+valvula.duty_pct(accion)</code></pre>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación de leyes de control">
+          <table>
+            <caption>Las tres leyes comparadas</caption>
+            <thead><tr><th scope="col">Ley</th><th scope="col">Actuador</th><th scope="col">Ventaja</th><th scope="col">Inconveniente</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Todo-nada</strong></th><td>Dos estados</td><td>Simplísimo y barato</td><td>Ciclado; desgaste del actuador</td></tr>
+              <tr><th scope="row"><strong>Todo-nada con histéresis</strong></th><td>Dos estados</td><td>Elimina el ciclado; es lo que usa el KR-1</td><td>La variable oscila dentro de la banda</td></tr>
+              <tr><th scope="row"><strong>Proporcional</strong></th><td>Regulable, con PWM</td><td>Suave, sin conmutaciones bruscas</td><td>Deja un error residual; hay que ajustar la ganancia</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Dos advertencias sobre la ganancia.</strong> Si es <strong>demasiado baja</strong>, el sistema reacciona con pereza y tarda una eternidad. Si es <strong>demasiado alta</strong>, se pasa de largo, vuelve, se pasa otra vez y oscila: es el camino a la inestabilidad. Y hay un límite inevitable: el control proporcional puro <strong>deja siempre un error residual</strong>, porque si el error llegara a cero la acción también sería cero y el sistema dejaría de actuar. Corregir eso exige términos integral y derivativo —el control PID—, que no son de este curso.</div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Y la saturación no es un detalle</strong>La línea <code>max(0, min(100, accion))</code> es imprescindible: si el error es enorme, la fórmula puede pedir un 400 % de apertura, que no existe. Todo actuador real tiene límites físicos, y el programa tiene que respetarlos explícitamente. Omitir esa línea es la causa de que un control «funcione en la simulación» y se comporte de forma extraña en el montaje: la simulación no tiene topes, la válvula sí.</div>
+      </section>
+
+      <section aria-labelledby="ejemplos">
+        <h2 id="ejemplos">7. Sistemas de control a tu alrededor</h2>
+        <p>Identificar los elementos en sistemas cotidianos es el mejor ejercicio del tema, y además es lo que pide el currículo: reconocer el control en máquinas, vehículos e instalaciones.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: sistemas de control cotidianos y sus elementos">
+          <table>
+            <caption>Siete sistemas y sus elementos</caption>
+            <thead><tr><th scope="col">Sistema</th><th scope="col">Variable</th><th scope="col">Sensor</th><th scope="col">Actuador</th><th scope="col">Lazo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Cisterna del inodoro</th><td>Nivel de agua</td><td>Flotador</td><td>Válvula de entrada</td><td>Cerrado, y totalmente mecánico</td></tr>
+              <tr><th scope="row">Termostato de calefacción</th><td>Temperatura</td><td>Termómetro</td><td>Caldera o válvula</td><td>Cerrado, todo-nada con histéresis</td></tr>
+              <tr><th scope="row">Microondas</th><td>Tiempo, no temperatura</td><td>Ninguno</td><td>Magnetrón</td><td>Abierto</td></tr>
+              <tr><th scope="row">Control de velocidad de un coche</th><td>Velocidad</td><td>Sensor de rueda</td><td>Acelerador</td><td>Cerrado</td></tr>
+              <tr><th scope="row">Depósito de una impresora 3D</th><td>Temperatura de la boquilla</td><td>Termistor</td><td>Resistencia calefactora</td><td>Cerrado, con control PID</td></tr>
+              <tr><th scope="row">Alumbrado público</th><td>Iluminación</td><td>Célula fotoeléctrica</td><td>Contactor</td><td>Cerrado, todo-nada con histéresis</td></tr>
+              <tr><th scope="row">Semáforo de tiempos fijos</th><td>Flujo de tráfico</td><td>Ninguno</td><td>Luces</td><td>Abierto</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-curio"><strong>La cisterna es un sistema de control completo sin una sola línea de código.</strong> El flotador es sensor y comparador a la vez: su posición <em>es</em> la medida y su geometría fija la consigna. La palanca es el controlador y la válvula el actuador. Funciona desde el siglo XIX, no consume energía, no tiene programa y su fiabilidad es enorme. Antes de programar un control conviene preguntarse si un mecanismo bien pensado lo resuelve, porque el mejor sistema de control suele ser el que no necesita electricidad.</div>
+
+        <div class="ti1-note"><strong>El regulador que dio nombre a todo esto.</strong> El <em>regulador de bolas</em> de James Watt mantenía constante la velocidad de una máquina de vapor: al girar más rápido, la fuerza centrífuga separaba dos bolas y esa separación cerraba la admisión de vapor. Realimentación mecánica pura, en 1788. Cuando Maxwell lo estudió matemáticamente en 1868 nació la teoría del control, y de ahí procede la palabra inglesa <em>governor</em>. El lazo cerrado no es una invención de la informática: es una idea de la ingeniería mecánica.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con diagramas de bloques correctos y con una ley de control razonada y medida.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 17">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Vocabulario</th><td>Que identificas consigna, variable controlada, perturbaciones y error.</td><td>Análisis de tres sistemas cotidianos con sus cinco elementos y su tipo de lazo.</td></tr>
+              <tr><th scope="row">Elegir el lazo</th><td>Que decides entre abierto y cerrado con criterios, y admites cuándo basta el abierto.</td><td>Comparación razonada del KR-1 frente a un temporizador, con el coste de cada uno.</td></tr>
+              <tr><th scope="row">Modelizar</th><td>Que dibujas el diagrama de bloques y respondes preguntas con él.</td><td>Diagrama con perturbaciones dibujadas y respuesta a qué ocurre si falla el sensor.</td></tr>
+              <tr><th scope="row">Ley de control</th><td>Que implementas histéresis y explicas qué ciclado evita.</td><td>Código con los dos umbrales, registro de conmutaciones con y sin histéresis.</td></tr>
+              <tr><th scope="row">Medir el comportamiento</th><td>Que juzgas el sistema por estabilidad, precisión y tiempo de respuesta.</td><td>Gráfica de la variable frente al tiempo, con la consigna marcada y la banda de histéresis.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Experimento revelador: registra la humedad cada minuto durante un ciclo completo de riego y dibuja la gráfica del Tema 15. Verás la sobreoscilación —el agua sigue infiltrándose después de cerrar la válvula— y entenderás por qué la banda de histéresis tiene que ser más ancha de lo que parecía necesario.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Acción unidireccional</dt><dd>Situación en la que el actuador solo puede modificar la variable en un sentido.</dd>
+          <dt>Actuador</dt><dd>Elemento que ejecuta la acción del controlador sobre el proceso.</dd>
+          <dt>Banda muerta</dt><dd>Intervalo de error en el que el sistema deliberadamente no reacciona.</dd>
+          <dt>Ciclado</dt><dd>Conmutación repetida y rápida del actuador en torno al umbral, que lo desgasta.</dd>
+          <dt>Comparador</dt><dd>Elemento que resta la medida de la consigna para obtener el error.</dd>
+          <dt>Consigna</dt><dd>Valor deseado de la variable controlada.</dd>
+          <dt>Controlador</dt><dd>Elemento que decide la acción a partir del error.</dd>
+          <dt>Error</dt><dd>Diferencia entre la consigna y el valor medido de la variable controlada.</dd>
+          <dt>Error en régimen permanente</dt><dd>Diferencia que queda entre consigna y salida cuando el sistema se ha estabilizado.</dd>
+          <dt>Estabilidad</dt><dd>Propiedad de un sistema cuya salida acaba quedándose en un valor en lugar de oscilar o dispararse.</dd>
+          <dt>Ganancia</dt><dd>Factor que relaciona la acción del controlador con el error en un control proporcional.</dd>
+          <dt>Histéresis</dt><dd>Uso de dos umbrales distintos para activar y desactivar, con el fin de evitar el ciclado.</dd>
+          <dt>Inercia de la planta</dt><dd>Lentitud con la que el proceso responde a una acción; fija la cadencia razonable del control.</dd>
+          <dt>Lazo abierto</dt><dd>Sistema cuya acción depende solo de la consigna, sin medir la salida.</dd>
+          <dt>Lazo cerrado</dt><dd>Sistema cuya acción depende del error entre la consigna y la salida medida.</dd>
+          <dt>Ley de control</dt><dd>Regla que determina la acción del controlador en función del error.</dd>
+          <dt>Modelizar</dt><dd>Representar un sistema de forma que permita razonar sobre él sin tenerlo delante.</dd>
+          <dt>Perturbación</dt><dd>Influencia externa que afecta a la variable controlada y no se gobierna.</dd>
+          <dt>Planta</dt><dd>Proceso o sistema físico cuyo comportamiento se quiere gobernar.</dd>
+          <dt>Realimentación</dt><dd>Retorno de la salida medida hacia la entrada del sistema, que permite corregir el error.</dd>
+          <dt>Saturación</dt><dd>Límite físico del actuador, que el programa debe respetar explícitamente.</dd>
+          <dt>Sobreoscilación</dt><dd>Exceso por el que la salida se pasa de la consigna antes de estabilizarse.</dd>
+          <dt>Variable controlada</dt><dd>Magnitud cuyo valor se quiere gobernar.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Un sistema de control gobierna una variable para que alcance una consigna, y existe porque hay perturbaciones que no se controlan.</li>
+          <li>Automático no es lo mismo que programado: un temporizador hace siempre lo mismo, un sistema automático se adapta porque conoce el resultado.</li>
+          <li>Los cinco elementos son sensor, comparador, controlador, actuador y planta; con microcontrolador, el comparador y el controlador son código.</li>
+          <li>En lazo abierto la acción depende solo de la consigna; en lazo cerrado depende del error entre la consigna y la salida medida.</li>
+          <li>Elegir lazo abierto cuando basta no es simplificar de más: es buena ingeniería.</li>
+          <li>El punto débil del lazo cerrado es el sensor: si miente, el sistema hace algo activamente equivocado.</li>
+          <li>Un sistema se juzga por estabilidad, precisión y tiempo de respuesta, y las tres no se pueden maximizar a la vez.</li>
+          <li>La cadencia del control debe ser acorde con la inercia de la planta: medir más a menudo no mejora nada y gasta energía.</li>
+          <li>Un diagrama de bloques sirve para responder preguntas sin tocar el sistema; un sistema que no se ha dibujado no se ha entendido.</li>
+          <li>El control todo-nada produce ciclado, y el ciclado destruye actuadores.</li>
+          <li>La histéresis usa dos umbrales y elimina el ciclado a cambio de precisión; y obliga a que el programa recuerde su estado actual.</li>
+          <li>El control proporcional hace la acción proporcional al error, es más suave y deja siempre un error residual.</li>
+          <li>Toda acción calculada debe saturarse a los límites físicos del actuador: la simulación no tiene topes y la válvula sí.</li>
+          <li>La cisterna de un inodoro es un sistema de control completo sin una línea de código: antes de programar, conviene preguntarse si un mecanismo lo resuelve.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Simbología de esquemas funcionales y de diagramas de bloques de sistemas de control.</li>
+          <li id="fuente_2">[2] <a href="https://www.geogebra.org/">GeoGebra</a>. Simulación de la respuesta de un sistema de primer orden y del efecto de la ganancia.</li>
+          <li id="fuente_3">[3] <a href="https://wokwi.com/">Wokwi</a>. Simulación del lazo cerrado con ESP32, sensor y actuador.</li>
+          <li id="fuente_4">[4] <a href="https://docs.micropython.org/en/latest/esp32/quickref.html">MicroPython — Referencia rápida del ESP32</a> (en inglés). Salidas PWM para el control proporcional.</li>
+          <li id="fuente_5">[5] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque F y criterio 5.1.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema16.html">← Tema 16</a>
+  <a href="tema18.html">Tema 18 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

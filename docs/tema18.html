@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 18 del Bloque F de Tecnología e Ingeniería I: automatización programada de procesos, entradas y salidas digitales y analógicas, programación estructurada del control, máquinas de estados, enclavamientos y seguridad, sistemas de supervisión SCADA, telemetría, monitorización, alarmas y documentación del sistema automatizado.">
+  <title>Tema 18. Automatización programada de procesos, supervisión y telemetría · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 18 · Bloque F · Sistemas automáticos</p>
+        <h1>Tema 18. Automatización programada de procesos, supervisión y telemetría</h1>
+        <p class="hero-lead">Cómo se automatiza un proceso con una placa programable y cómo se vigila y se registra su funcionamiento a distancia.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 18">
+        <strong>Pregunta guía</strong>
+        <p>El KR-1 tiene que funcionar solo veintiún días de agosto. ¿Cómo se escribe un programa del que se pueda <em>demostrar</em> que no va a inundar el huerto, aunque falle el sensor, se corte la red o alguien mande una orden absurda?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#automatizar">Del requisito al automatismo</a></li>
+        <li><a href="#es">Entradas y salidas</a></li>
+        <li><a href="#estados">Máquinas de estados</a></li>
+        <li><a href="#codigo">El automatismo del KR-1</a></li>
+        <li><a href="#seguridad">Enclavamientos y seguridad</a></li>
+        <li><a href="#scada">Sistemas de supervisión SCADA</a></li>
+        <li><a href="#telemetria">Telemetría y monitorización</a></li>
+        <li><a href="#alarmas">Alarmas y registro</a></li>
+        <li><a href="#verificar">Verificar y documentar</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este es el tema donde el KR-1 se convierte de verdad en un sistema automático. El Tema 17 dio el vocabulario y la ley de control; aquí se escribe el programa completo, con una estructura —la <strong>máquina de estados</strong>— que permite algo que un montón de <code>if</code> no permite: <strong>demostrar</strong> que el sistema no puede hacer lo que no debe. Y se le añade lo que el currículo llama supervisión y telemetría: la capacidad de vigilarlo y registrarlo desde lejos.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> «he probado el programa y funciona» no es una demostración. Funciona <em>con las condiciones que has probado</em>. Un automatismo que va a estar tres semanas solo necesita algo más fuerte: una estructura en la que los estados posibles estén enumerados y las transiciones prohibidas, simplemente, no existan.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>pasar de un requisito de proceso a la especificación de un automatismo;</li>
+          <li>clasificar las señales de un sistema en entradas y salidas, digitales y analógicas;</li>
+          <li>explicar qué es una máquina de estados y por qué estructura mejor que una cadena de condicionales;</li>
+          <li>escribir un automatismo con estados, transiciones y temporizaciones en MicroPython;</li>
+          <li>identificar los enclavamientos de seguridad de un proceso y programarlos;</li>
+          <li>explicar qué es un SCADA, sus cuatro componentes y sus ventajas;</li>
+          <li>distinguir telemetría de monitorización y diseñar la cadencia de envío de datos;</li>
+          <li>definir alarmas útiles y un registro que permita reconstruir lo ocurrido;</li>
+          <li>verificar un sistema automatizado y documentarlo para que otro equipo lo mantenga.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="automatizar">
+        <h2 id="automatizar">1. Del requisito al automatismo</h2>
+        <p><strong>Automatizar</strong> un proceso es conseguir que se ejecute sin intervención humana. El criterio 5.1 pide diseñar, programar, construir y simular o montar ese proceso, y el trabajo empieza por escribir con precisión lo que tiene que ocurrir.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: especificación del automatismo del KR-1">
+          <table>
+            <caption>Especificación del automatismo del KR-1</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Requisito</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Funcional</strong></th><td>Medir la humedad del sustrato cada 15 min y regar 30 s si está por debajo del umbral.</td></tr>
+              <tr><th scope="row"><strong>Funcional</strong></th><td>Regar solo entre las 7:00 y las 10:00, para reducir la evaporación.</td></tr>
+              <tr><th scope="row"><strong>Funcional</strong></th><td>Publicar el estado cada 15 min y ante cada suceso relevante.</td></tr>
+              <tr><th scope="row"><strong>De seguridad</strong></th><td>Nunca mantener la válvula abierta más de 60 s seguidos, por ninguna causa.</td></tr>
+              <tr><th scope="row"><strong>De seguridad</strong></th><td>No más de 4 riegos al día.</td></tr>
+              <tr><th scope="row"><strong>De seguridad</strong></th><td>Si una lectura es imposible, no regar y pasar a fallo.</td></tr>
+              <tr><th scope="row"><strong>De seguridad</strong></th><td>Si tras regar la humedad no sube en dos ciclos, pasar a fallo: fuga o depósito vacío.</td></tr>
+              <tr><th scope="row"><strong>De disponibilidad</strong></th><td>Funcionar sin red: se riega igual y se registra en local.</td></tr>
+              <tr><th scope="row"><strong>De disponibilidad</strong></th><td>Tras un corte de alimentación, arrancar con la válvula cerrada.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Los requisitos de seguridad se escriben aparte, y no se negocian</strong>Fíjate en la diferencia de redacción: los funcionales dicen qué <em>hace</em> el sistema; los de seguridad dicen qué <strong>no puede hacer nunca</strong>, y llevan las palabras «nunca», «por ninguna causa» y «no más de». Se escriben aparte porque su tratamiento es distinto: un requisito funcional se puede renegociar si falta tiempo; uno de seguridad, no. Y porque cada uno de ellos se convertirá en una comprobación explícita del programa, no en una confianza.</div>
+
+        <div class="ti1-note"><strong>Y hay un requisito que casi siempre se olvida:</strong> qué hace el sistema <strong>al arrancar</strong>. Tras un corte de luz, la placa se reinicia y no sabe nada de lo anterior. Si el programa no fija explícitamente el estado inicial, el comportamiento depende de cómo quede el hardware, lo que en el caso de una electroválvula significa un huerto inundado. De ahí la elección de válvula <em>normalmente cerrada</em> del Tema 8: la seguridad empieza en el mecanismo, y el programa la confirma.</div>
+      </section>
+
+      <section aria-labelledby="es">
+        <h2 id="es">2. Entradas y salidas, digitales y analógicas</h2>
+        <p>Un automatismo se comunica con el proceso por sus señales. Clasificarlas es el primer paso del diseño, y se hace en una tabla que después sirve de índice del cableado y del programa.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tabla de entradas y salidas del KR-1">
+          <table>
+            <caption>Tabla de entradas y salidas del KR-1</caption>
+            <thead><tr><th scope="col">Señal</th><th scope="col">Tipo</th><th scope="col">Pin</th><th scope="col">Margen</th><th scope="col">Elemento</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Humedad del sustrato</th><td>Entrada analógica</td><td>GPIO 34</td><td>0–4095 cuentas</td><td>Sonda capacitiva</td></tr>
+              <tr><th scope="row">Nivel del depósito</th><td>Entrada digital</td><td>GPIO 18</td><td>0 = vacío</td><td>Interruptor de flotador</td></tr>
+              <tr><th scope="row">Pulsador de riego manual</th><td>Entrada digital</td><td>GPIO 19</td><td>0 = pulsado</td><td>Pulsador con <em>pull-up</em></td></tr>
+              <tr><th scope="row">Electroválvula</th><td>Salida digital</td><td>GPIO 26</td><td>1 = abierta</td><td>MOSFET del Tema 11</td></tr>
+              <tr><th scope="row">Indicador de estado</th><td>Salida digital</td><td>GPIO 23</td><td>1 = encendido</td><td>LED con su resistencia</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La tabla de entradas y salidas es el contrato entre el hardware y el programa</strong>Es el documento que evita el error más frecuente de un montaje: que el esquema diga GPIO 26 y el programa use el 25. Se escribe <strong>antes</strong> de programar, se pega junto a la placa y forma parte de la documentación del Tema 4. Y cuando un pin cambia, se cambia en la tabla y en el bloque de constantes del programa, en ese orden. En un automatismo industrial esta tabla se llama <em>lista de señales</em> y puede tener miles de filas; la lógica es idéntica.</div>
+
+        <div class="ti1-note"><strong>Una entrada digital más de lo previsto.</strong> El nivel del depósito no estaba en el proyecto inicial y aparece aquí: es el requisito de seguridad «si tras regar la humedad no sube, pasar a fallo» resuelto por la vía directa. Detectar la causa —depósito vacío— es mejor que inferirla de un síntoma, y cuesta un interruptor de flotador de tres euros. <strong>A veces el problema de programación más difícil se resuelve añadiendo un sensor.</strong></div>
+      </section>
+
+      <section aria-labelledby="estados">
+        <h2 id="estados">3. Máquinas de estados</h2>
+        <p>Un automatismo no es una función matemática: su respuesta no depende solo de lo que mide ahora, sino de <strong>lo que estaba haciendo</strong>. Ya lo vimos en la histéresis del Tema 17, cuya decisión dependía de si la válvula estaba abierta. Esa memoria, organizada, es una <strong>máquina de estados</strong>.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de la máquina de estados del riego">
+          <img src="assets/tema18_estados.svg" alt="Cinco estados: reposo, midiendo, regando, espera y fallo. Desde reposo se pasa a midiendo cada quince minutos; de midiendo a regando si está seco y en horario, o a espera si está húmedo; de regando a espera al cumplirse los treinta segundos; de espera a reposo al terminar el ciclo. Dos transiciones llevan al fallo: lectura imposible y tiempo máximo excedido. Del fallo no se sale sin intervención.">
+          <figcaption>Todo lo que el KR-1 puede hacer está en este dibujo. Lo que no está dibujado no puede ocurrir, y eso es lo que convierte el automatismo en algo demostrable.</figcaption>
+        </figure>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elementos de una máquina de estados">
+          <table>
+            <caption>Los cuatro conceptos</caption>
+            <thead><tr><th scope="col">Concepto</th><th scope="col">Qué es</th><th scope="col">En el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Estado</strong></th><td>Situación en la que el sistema puede encontrarse. Solo puede estar en uno a la vez.</td><td>REPOSO, MIDIENDO, REGANDO, ESPERA, FALLO.</td></tr>
+              <tr><th scope="row"><strong>Transición</strong></th><td>Cambio de un estado a otro.</td><td>De MIDIENDO a REGANDO.</td></tr>
+              <tr><th scope="row"><strong>Condición de transición</strong></th><td>Lo que tiene que cumplirse para que el cambio ocurra.</td><td>Sustrato seco y hora entre 7 y 10.</td></tr>
+              <tr><th scope="row"><strong>Acción</strong></th><td>Lo que se hace al entrar en un estado o mientras se está en él.</td><td>Al entrar en REGANDO: abrir la válvula y anotar la hora.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué una máquina de estados y no veinte <code>if</code></strong>Con condicionales sueltos, el comportamiento del sistema está repartido por todo el programa y nadie puede afirmar qué combinaciones son posibles. Con una máquina de estados, <strong>los estados están enumerados y las transiciones dibujadas</strong>, de modo que se pueden responder por escrito tres preguntas que un tribunal —o una inspección industrial— hará: ¿en qué estados puede estar el sistema? ¿Cómo se llega a cada uno? ¿Se puede llegar a un estado peligroso? Eso es demostrable; «lo he probado y funciona», no.</div>
+
+        <div class="ti1-note"><strong>Es la misma idea del árbol de levas del Tema 8.</strong> Una máquina automática antigua se programaba tallando levas: el perfil imponía la secuencia, ciclo tras ciclo, y ninguna otra secuencia era mecánicamente posible. Una máquina de estados hace lo mismo con software: enumera la secuencia y hace imposible lo demás. La diferencia es que la leva hay que llevarla al torno y el programa se cambia en un minuto.</div>
+      </section>
+
+      <section aria-labelledby="codigo">
+        <h2 id="codigo">4. El automatismo del KR-1, escrito</h2>
+        <p>La máquina de estados se implementa con una variable que guarda el estado y una estructura que, en cada vuelta del bucle principal, decide si hay transición. Es el patrón estándar y cabe en una página.</p>
+
+        <pre><code>"""Automatismo del KR-1. Máquina de estados de cinco estados.
+Requisitos de seguridad implementados: tiempo máximo de válvula,
+número máximo de riegos diarios, lectura plausible y fallo persistente.
+"""
+from machine import Pin, ADC
+import time
+
+# --- Tabla de entradas y salidas (Tema 18, sección 2) ---
+sonda = ADC(Pin(34)); sonda.atten(ADC.ATTN_11DB)
+deposito = Pin(18, Pin.IN, Pin.PULL_UP)
+valvula = Pin(26, Pin.OUT)
+led = Pin(23, Pin.OUT)
+
+# --- Constantes de configuración ---
+UMBRAL_PCT = 30
+DURACION_RIEGO_S = 30
+TIEMPO_MAX_VALVULA_S = 60     # requisito de seguridad
+RIEGOS_MAX_DIA = 4            # requisito de seguridad
+PERIODO_CICLO_S = 900
+HORA_INICIO, HORA_FIN = 7, 10
+CUENTAS_MIN, CUENTAS_MAX = 200, 4000   # fuera de esto, lectura imposible
+
+# --- Estado ---
+estado = "REPOSO"
+t_estado = time.time()        # instante de entrada en el estado
+riegos_hoy = 0
+
+def cerrar_valvula():
+    valvula.value(0)
+
+def entrar(nuevo):
+    """Cambia de estado, cierra la válvula por defecto y anota el instante."""
+    global estado, t_estado
+    cerrar_valvula()
+    estado = nuevo
+    t_estado = time.time()
+    registrar_evento(nuevo)
+
+def en_estado_s():
+    return time.time() - t_estado</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La función <code>entrar()</code> es la clave de todo</strong>Cierra la válvula <strong>en cada cambio de estado</strong>, sea cual sea. Eso significa que la válvula solo puede estar abierta si algo la abre activamente dentro del estado REGANDO: cualquier transición, prevista o no, la cierra. Es una decisión de diseño que convierte un requisito de seguridad en una propiedad estructural del programa, en lugar de en una comprobación que alguien podría olvidar. <strong>Lo seguro tiene que ser lo que ocurre por omisión.</strong></div>
+
+        <pre><code># --- Bucle principal: una vuelta, una decisión ---
+entrar("REPOSO")
+
+while True:
+    lectura = leer_cuentas()
+    plausible = CUENTAS_MIN &lt;= lectura &lt;= CUENTAS_MAX
+    humedad = cuentas_a_porcentaje(lectura) if plausible else None
+    hora = hora_actual()
+
+    if estado == "REPOSO":
+        led.value(0)
+        if en_estado_s() &gt;= PERIODO_CICLO_S:
+            entrar("MIDIENDO")
+
+    elif estado == "MIDIENDO":
+        if not plausible:
+            entrar("FALLO")
+        elif deposito.value() == 0:
+            entrar("FALLO")
+        elif (humedad &lt; UMBRAL_PCT
+              and HORA_INICIO &lt;= hora &lt; HORA_FIN
+              and riegos_hoy &lt; RIEGOS_MAX_DIA):
+            entrar("REGANDO")
+            valvula.value(1)
+            riegos_hoy += 1
+        else:
+            entrar("ESPERA")
+
+    elif estado == "REGANDO":
+        led.value(1)
+        if en_estado_s() &gt;= TIEMPO_MAX_VALVULA_S:
+            entrar("FALLO")                    # seguridad: manda siempre
+        elif en_estado_s() &gt;= DURACION_RIEGO_S:
+            entrar("ESPERA")
+        elif not plausible or deposito.value() == 0:
+            entrar("FALLO")
+
+    elif estado == "ESPERA":
+        if en_estado_s() &gt;= 5:
+            entrar("REPOSO")
+
+    elif estado == "FALLO":
+        cerrar_valvula()
+        led.value(1 if int(time.time()) % 2 else 0)   # parpadeo de aviso
+        publicar_alarma()
+
+    publicar_estado(estado, humedad, valvula.value())
+    time.sleep(1)</code></pre>
+
+        <div class="ti1-note"><strong>Fíjate en el orden de las comprobaciones dentro de REGANDO.</strong> El tiempo máximo de seguridad se comprueba <strong>antes</strong> que la duración normal de riego. No es indiferente: si estuviera después y alguien cambiara la duración normal a 90 s por error, el límite de 60 s no llegaría a evaluarse nunca. <strong>En un automatismo, las comprobaciones de seguridad van primero</strong>, para que ninguna modificación posterior las pueda dejar inalcanzables.</div>
+
+        <div class="aviso"><strong>Un bucle de control no debe bloquearse nunca</strong>Observa que no hay ningún <code>time.sleep(30)</code> para esperar el riego: se comprueba el tiempo transcurrido en cada vuelta. La diferencia es esencial. Con una espera bloqueante de 30 s, el programa estaría treinta segundos ciego: no vería vaciarse el depósito, no atendería una orden remota y no podría cerrar la válvula. Con el bucle de un segundo, cada vuelta reevalúa todo. <strong>Se mide el tiempo, no se duerme.</strong></div>
+      </section>
+
+      <section aria-labelledby="seguridad">
+        <h2 id="seguridad">5. Enclavamientos y condiciones de seguridad</h2>
+        <p>Un <strong>enclavamiento</strong> es una condición que impide una acción mientras no se cumpla algo, independientemente de lo que pida la lógica normal. Son las barreras del automatismo, y se diseñan enumerando qué puede ir mal.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: enclavamientos del KR-1">
+          <table>
+            <caption>Qué puede ir mal y qué lo impide</caption>
+            <thead><tr><th scope="col">Fallo</th><th scope="col">Consecuencia sin protección</th><th scope="col">Enclavamiento</th><th scope="col">Dónde vive</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Sonda desconectada</th><td>Lee «seco» y riega sin parar.</td><td>Lectura plausible obligatoria antes de decidir.</td><td>Programa</td></tr>
+              <tr><th scope="row">Programa colgado con válvula abierta</th><td>Huerto inundado.</td><td>Válvula normalmente cerrada, más <em>watchdog</em>.</td><td>Mecanismo y hardware</td></tr>
+              <tr><th scope="row">Corte de alimentación durante el riego</th><td>La válvula quedaría abierta.</td><td>Válvula normalmente cerrada: cierra por muelle.</td><td>Mecanismo (Tema 8)</td></tr>
+              <tr><th scope="row">Depósito vacío</th><td>La bomba trabaja en seco y se destruye.</td><td>Interruptor de flotador: sin agua no se riega.</td><td>Sensor y programa</td></tr>
+              <tr><th scope="row">Orden remota errónea o maliciosa</th><td>Riego indefinido.</td><td>El límite de tiempo y el de riegos diarios no se pueden anular por red.</td><td>Programa (Tema 16)</td></tr>
+              <tr><th scope="row">Fuga en la línea</th><td>Se gasta el depósito sin humedecer nada.</td><td>Si tras regar la humedad no sube en dos ciclos, fallo.</td><td>Programa</td></tr>
+              <tr><th scope="row">Rebote del pulsador manual</th><td>Riegos múltiples con una pulsación.</td><td>Antirrebote del Tema 14 y límite diario.</td><td>Programa</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La seguridad se reparte en tres capas, y ninguna basta sola</strong><strong>1. Mecánica:</strong> la válvula normalmente cerrada actúa aunque no haya electricidad ni programa. <strong>2. Hardware:</strong> el <em>watchdog</em> reinicia la placa si el programa deja de responder; el fusible limita el daño de un cortocircuito. <strong>3. Programa:</strong> los límites de tiempo, los de cantidad y la comprobación de plausibilidad. La capa mecánica es la más fiable porque no depende de nada, y la de programa la más flexible. <strong>Un requisito de seguridad importante se implementa en más de una capa.</strong></div>
+
+        <div class="ti1-note"><strong>El <em>watchdog</em>: el vigilante del programa.</strong> Es un temporizador del propio microcontrolador que reinicia la placa si el programa no lo «tranquiliza» periódicamente. Si el bucle principal se cuelga —un bucle infinito por error, una espera que no termina— el <em>watchdog</em> salta y reinicia, y como el arranque deja la válvula cerrada, el sistema queda seguro. En MicroPython son dos líneas, y para un automatismo que va a estar solo tres semanas son las dos líneas más rentables del programa.</div>
+      </section>
+
+      <section aria-labelledby="scada">
+        <h2 id="scada">6. Sistemas de supervisión SCADA</h2>
+        <p><strong>SCADA</strong> son las siglas de <em>Supervisory Control And Data Acquisition</em>: supervisión, control y adquisición de datos. Es el conjunto de software y equipos que permite a una persona <strong>vigilar y gobernar</strong> un proceso automatizado desde un puesto de control, sin estar junto a la máquina.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: componentes de un SCADA">
+          <table>
+            <caption>Los cuatro componentes de un SCADA</caption>
+            <thead><tr><th scope="col">Componente</th><th scope="col">Función</th><th scope="col">En el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Adquisición</strong></th><td>Tomar las medidas y los estados del proceso.</td><td>El ESP32 leyendo la sonda y el flotador.</td></tr>
+              <tr><th scope="row"><strong>Comunicación</strong></th><td>Llevar esos datos al puesto de supervisión y las órdenes de vuelta.</td><td>Wi-Fi y MQTT del Tema 16.</td></tr>
+              <tr><th scope="row"><strong>Base de datos histórica</strong></th><td>Guardar la evolución para poder consultarla después.</td><td>El archivo CSV del Tema 15 y la base del servidor.</td></tr>
+              <tr><th scope="row"><strong>Interfaz de operador</strong></th><td>Mostrar el estado, las gráficas y las alarmas, y permitir mandar.</td><td>El panel web y el móvil.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Las ventajas que el currículo pide enumerar</h3>
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Visión de conjunto</h3><p>Una sola pantalla muestra el estado de decenas de equipos repartidos. Nadie tiene que recorrer la instalación para saber si algo va mal.</p></div>
+          <div class="ti1-card"><h3>Reacción rápida</h3><p>Las alarmas llegan al instante y el operador puede actuar sin desplazarse, lo que reduce el tiempo de parada.</p></div>
+          <div class="ti1-card"><h3>Histórico y trazabilidad</h3><p>Se puede reconstruir qué pasó y cuándo: el Tema 2 aplicado al funcionamiento, no solo a la fabricación.</p></div>
+          <div class="ti1-card"><h3>Optimización</h3><p>Con los datos de meses se detectan consumos anómalos y se ajusta el proceso. Sin datos, solo hay opiniones.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Supervisión no es control</strong>La distinción es la razón de ser del SCADA y se olvida constantemente. El <strong>control</strong> —el lazo cerrado del Tema 17— ocurre en el propio equipo, en milisegundos o segundos, y <strong>debe seguir funcionando sin el SCADA</strong>. La <strong>supervisión</strong> ocurre en el puesto de operador, en segundos o minutos, y sirve para vigilar, ajustar consignas y atender alarmas. Un sistema en el que el lazo de control se cierra a través de la red es un sistema frágil: si se corta la red, se para el proceso. Es exactamente la razón por la que el KR-1 riega sin internet.</div>
+
+        <div class="ti1-note"><strong>Y a esta escala, un SCADA es un panel web.</strong> Un SCADA industrial gobierna una planta entera con miles de señales, redundancia y registro auditable. El del KR-1 es un panel con tres números, una gráfica y un botón, y tiene exactamente los cuatro componentes de la tabla. Lo que se aprende no es el producto, es la <strong>arquitectura</strong>: adquirir, comunicar, guardar y presentar. Con esa arquitectura entendida, cualquier SCADA comercial resulta reconocible.</div>
+      </section>
+
+      <section aria-labelledby="telemetria">
+        <h2 id="telemetria">7. Telemetría y monitorización</h2>
+        <div class="comparacion">
+          <div><h3>Telemetría</h3><p>La <strong>transmisión de medidas a distancia</strong>. Es un problema de comunicación: qué se envía, en qué formato, cada cuánto y con qué fiabilidad. Es el Tema 16.</p></div>
+          <div><h3>Monitorización</h3><p>La <strong>vigilancia continua</strong> del proceso a partir de esos datos: representarlos, compararlos con límites y avisar. Es un problema de interpretación.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Diseñar la cadencia es diseñar el sistema</strong>La pregunta «¿cada cuánto envío datos?» parece menor y decide el consumo, el coste y la utilidad. Enviar cada segundo gasta batería y produce ocho millones de puntos al verano que nadie mirará. Enviar cada hora deja ciegos los riegos, que duran treinta segundos. La solución es <strong>cadencia fija más eventos</strong>: un dato cada quince minutos para la gráfica, y un mensaje inmediato cada vez que ocurre algo —empieza a regar, termina, entra en fallo—. Con eso, el histórico es manejable y ningún suceso relevante se pierde.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué se monitoriza en el KR-1">
+          <table>
+            <caption>Las variables que se monitorizan y por qué</caption>
+            <thead><tr><th scope="col">Variable</th><th scope="col">Cadencia</th><th scope="col">Para qué sirve</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Humedad del sustrato</th><td>15 min</td><td>La variable controlada: es el objeto del sistema.</td></tr>
+              <tr><th scope="row">Estado de la máquina</th><td>Cada cambio</td><td>Saber qué está haciendo y reconstruir la secuencia.</td></tr>
+              <tr><th scope="row">Riegos acumulados hoy</th><td>Cada riego</td><td>Comprobar el límite diario y estimar el agua usada.</td></tr>
+              <tr><th scope="row">Nivel del depósito</th><td>Cada cambio</td><td>Avisar antes de que se agote.</td></tr>
+              <tr><th scope="row">Tensión de la batería</th><td>1 h</td><td>Predecir un fallo de alimentación antes de que ocurra.</td></tr>
+              <tr><th scope="row">Señal Wi-Fi y reconexiones</th><td>1 h</td><td>Diagnosticar problemas de cobertura sin ir al huerto.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Las dos últimas variables no son del proceso: son del propio sistema.</strong> La tensión de la batería y el número de reconexiones no le importan a la planta, y son las que permiten <strong>mantenimiento predictivo</strong>: ver que la batería baja cada día un poco más y cambiarla antes de que falle, en lugar de descubrirlo cuando el huerto ya se ha secado. Monitorizar el estado del propio sistema, y no solo el del proceso, es una de las diferencias entre un montaje escolar y una instalación seria.</div>
+      </section>
+
+      <section aria-labelledby="alarmas">
+        <h2 id="alarmas">8. Alarmas y registro</h2>
+        <p>Una <strong>alarma</strong> es un aviso de que algo requiere atención. Diseñarlas mal tiene una consecuencia muy conocida en la industria: si hay demasiadas, se ignoran todas.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: alarmas del KR-1">
+          <table>
+            <caption>Alarmas del KR-1, con su prioridad</caption>
+            <thead><tr><th scope="col">Prioridad</th><th scope="col">Alarma</th><th scope="col">Qué exige</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Crítica</strong></th><td>Estado de FALLO: lectura imposible o tiempo de válvula excedido.</td><td>Ir al huerto. El riego está detenido.</td></tr>
+              <tr><th scope="row"><strong>Alta</strong></th><td>Depósito vacío.</td><td>Rellenar en las próximas horas.</td></tr>
+              <tr><th scope="row"><strong>Alta</strong></th><td>Sin mensajes del nodo en 45 min.</td><td>Comprobar alimentación o cobertura.</td></tr>
+              <tr><th scope="row"><strong>Media</strong></th><td>Batería por debajo del 20 %.</td><td>Revisar el panel solar esta semana.</td></tr>
+              <tr><th scope="row"><strong>Baja</strong></th><td>Límite de riegos diarios alcanzado.</td><td>Informativa: revisar el umbral o el clima.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>La inundación de alarmas</strong>Es un problema documentado en accidentes industriales graves: un sistema que genera cientos de avisos al día entrena a los operadores para ignorarlos, y cuando llega el importante nadie lo atiende. Las reglas para evitarlo son tres: <strong>una alarma solo si alguien tiene que hacer algo</strong>; <strong>prioridad explícita</strong>, porque «todo es urgente» equivale a «nada lo es»; y <strong>ninguna alarma repetida</strong> mientras la causa persista. Si la sonda está desconectada, se avisa una vez, no cada segundo.</div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La alarma más útil es la ausencia de mensajes</strong>Un sistema averiado no siempre puede avisar: si se queda sin batería, sin red o con el programa colgado, se calla. Por eso la vigilancia no puede consistir solo en esperar avisos: el panel tiene que detectar <strong>que el nodo ha dejado de hablar</strong>. MQTT ofrece el mensaje de última voluntad, que el broker publica automáticamente cuando un cliente desaparece. Vigilar el silencio es más fiable que confiar en el aviso.</div>
+
+        <h3>El registro de sucesos</h3>
+        <pre><code># Cada cambio de estado y cada alarma, al registro local y a la red
+def registrar_evento(nuevo_estado):
+    linea = f"{marca_de_tiempo()};{nuevo_estado};{riegos_hoy}\n"
+    with open("eventos.csv", "a") as f:
+        f.write(linea)
+    if hay_red():
+        publicar_evento(nuevo_estado)</code></pre>
+
+        <div class="ti1-note"><strong>El registro tiene que servir para reconstruir, no solo para constatar.</strong> «Falló» no es información. «A las 8:15 pasó de MIDIENDO a REGANDO; a las 8:16, de REGANDO a FALLO por tiempo excedido, con 2 riegos ese día y una lectura de 4095 cuentas» permite deducir qué ocurrió sin haber estado allí. Es el mismo criterio del registro de cambios del Tema 1 y de la trazabilidad del Tema 2: <strong>se registra el suceso con su contexto</strong>, porque quien lo lea en septiembre no recordará nada.</div>
+      </section>
+
+      <section aria-labelledby="verificar">
+        <h2 id="verificar">9. Verificar y documentar el automatismo</h2>
+        <p>Verificar un automatismo no es comprobar que riega. Es comprobar, uno a uno, que cada requisito —y sobre todo cada requisito de seguridad— se cumple. Y eso exige <strong>provocar los fallos a propósito</strong>.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: plan de pruebas del automatismo">
+          <table>
+            <caption>Plan de pruebas: cómo se provoca cada fallo</caption>
+            <thead><tr><th scope="col">Requisito</th><th scope="col">Cómo se prueba</th><th scope="col">Resultado esperado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Riega si está seco y en horario</th><td>Sonda al aire con la hora simulada a las 8:00.</td><td>Pasa a REGANDO 30 s y vuelve a ESPERA.</td></tr>
+              <tr><th scope="row">No riega fuera de horario</th><td>Lo mismo con la hora a las 15:00.</td><td>Pasa a ESPERA sin abrir la válvula.</td></tr>
+              <tr><th scope="row">Tiempo máximo de válvula</th><td>Forzar <code>DURACION_RIEGO_S = 120</code>.</td><td>A los 60 s pasa a FALLO y cierra.</td></tr>
+              <tr><th scope="row">Lectura imposible</th><td>Desconectar la sonda en marcha.</td><td>Pasa a FALLO sin regar.</td></tr>
+              <tr><th scope="row">Depósito vacío</th><td>Abrir el interruptor de flotador.</td><td>No riega; alarma de depósito.</td></tr>
+              <tr><th scope="row">Límite de riegos diarios</th><td>Forzar <code>riegos_hoy = 4</code>.</td><td>No riega aunque esté seco.</td></tr>
+              <tr><th scope="row">Corte de alimentación</th><td>Desenchufar durante el riego.</td><td>La válvula cierra; al volver, arranca en REPOSO.</td></tr>
+              <tr><th scope="row">Pérdida de red</th><td>Apagar el router.</td><td>Sigue riegando y registrando en local.</td></tr>
+              <tr><th scope="row">Programa colgado</th><td>Introducir un bucle infinito a propósito.</td><td>El <em>watchdog</em> reinicia y la válvula queda cerrada.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un requisito de seguridad no verificado no existe</strong>Está escrito en la especificación, está implementado en el código y nadie ha comprobado que actúe. La experiencia dice que una parte de esas protecciones no funciona: un signo invertido, una comparación que nunca se alcanza, un límite en la unidad equivocada. <strong>La única forma de saberlo es provocar el fallo</strong>, y hay que hacerlo en el aula, con el depósito sobre un cubo, no en el huerto en agosto. Es el mismo principio del Tema 9: medir para encontrar lo que no sabías.</div>
+
+        <div class="ti1-note"><strong>Qué documentar del automatismo.</strong> Cinco cosas, todas del Tema 4: la <strong>tabla de entradas y salidas</strong>; el <strong>diagrama de estados</strong>; la lista de <strong>requisitos de seguridad</strong> con su prueba y su resultado; las <strong>constantes de configuración</strong> con su significado y su valor; y un <strong>procedimiento de puesta en marcha y de parada</strong> que pueda seguir alguien que no programó el sistema. Sin ese último documento, el KR-1 solo lo puede mantener quien lo hizo, y eso es un defecto de diseño, no una virtud.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un automatismo que sobrevive a los fallos que le provoques y con un panel que te permita verlo desde casa.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 18">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Especificar</th><td>Que separas los requisitos funcionales de los de seguridad.</td><td>Tabla de requisitos con las dos categorías y el comportamiento al arrancar definido.</td></tr>
+              <tr><th scope="row">Señales</th><td>Que la tabla de entradas y salidas coincide con el esquema y con el programa.</td><td>Tabla pegada junto a la placa y bloque de constantes que la reproduce.</td></tr>
+              <tr><th scope="row">Máquina de estados</th><td>Que el automatismo está estructurado en estados y transiciones dibujadas.</td><td>Diagrama de estados y el código con un solo punto de cambio de estado.</td></tr>
+              <tr><th scope="row">Seguridad</th><td>Que los enclavamientos están en más de una capa y se comprueban primero.</td><td>Tabla de fallos y enclavamientos, válvula normalmente cerrada y <em>watchdog</em> activo.</td></tr>
+              <tr><th scope="row">Supervisión</th><td>Que tienes los cuatro componentes de un SCADA y que el control funciona sin la red.</td><td>Panel con estado, gráfica y alarmas; prueba con el router apagado.</td></tr>
+              <tr><th scope="row">Verificación</th><td>Que has provocado cada fallo y anotado el resultado.</td><td>Plan de pruebas cumplimentado con las nueve filas y el registro de sucesos de cada ensayo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba que lo demuestra todo: dale el sistema a otro equipo con la especificación y el procedimiento de puesta en marcha, y que intenten romperlo. Cada fallo que encuentren y tu programa no contemple es un requisito de seguridad que faltaba.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Alarma</dt><dd>Aviso de que una situación requiere la atención de una persona.</dd>
+          <dt>Automatizar</dt><dd>Conseguir que un proceso se ejecute sin intervención humana.</dd>
+          <dt>Cadencia</dt><dd>Intervalo con el que se toman o se envían las medidas.</dd>
+          <dt>Enclavamiento</dt><dd>Condición que impide una acción mientras no se cumpla un requisito, al margen de la lógica normal.</dd>
+          <dt>Estado</dt><dd>Situación en la que puede encontrarse un automatismo; solo una a la vez.</dd>
+          <dt>Inundación de alarmas</dt><dd>Situación en la que el exceso de avisos hace que se ignoren todos.</dd>
+          <dt>Lista de señales</dt><dd>Tabla que relaciona cada entrada y salida con su tipo, su pin y su elemento físico.</dd>
+          <dt>Mantenimiento predictivo</dt><dd>Intervención anticipada basada en la evolución de variables del propio sistema.</dd>
+          <dt>Máquina de estados</dt><dd>Modelo de automatismo formado por estados, transiciones, condiciones y acciones.</dd>
+          <dt>Mensaje de última voluntad</dt><dd>Aviso que el broker publica automáticamente cuando un cliente desaparece de la red.</dd>
+          <dt>Monitorización</dt><dd>Vigilancia continua de un proceso a partir de los datos recibidos.</dd>
+          <dt>SCADA</dt><dd>Sistema de supervisión, control y adquisición de datos de un proceso automatizado.</dd>
+          <dt>Telemetría</dt><dd>Transmisión de medidas a distancia.</dd>
+          <dt>Transición</dt><dd>Cambio de un estado a otro, sujeto a una condición.</dd>
+          <dt>Watchdog</dt><dd>Temporizador del microcontrolador que reinicia la placa si el programa deja de responder.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Los requisitos de seguridad se escriben aparte de los funcionales, con las palabras «nunca» y «no más de», y no se renegocian.</li>
+          <li>Todo automatismo necesita un requisito sobre qué hace al arrancar, porque tras un corte de luz no recuerda nada.</li>
+          <li>La tabla de entradas y salidas es el contrato entre el hardware y el programa, y se escribe antes de programar.</li>
+          <li>A veces el problema de programación más difícil se resuelve añadiendo un sensor.</li>
+          <li>Un automatismo tiene memoria: su respuesta depende del estado en que se encuentra, no solo de lo que mide.</li>
+          <li>Una máquina de estados enumera los estados y dibuja las transiciones, de modo que lo no dibujado no puede ocurrir: eso es demostrable.</li>
+          <li>Si el cambio de estado cierra la válvula por omisión, la seguridad deja de ser una comprobación y pasa a ser una propiedad estructural.</li>
+          <li>Las comprobaciones de seguridad se evalúan antes que la lógica normal, para que ninguna modificación posterior las deje inalcanzables.</li>
+          <li>Un bucle de control mide el tiempo transcurrido; no se duerme, porque dormido está ciego.</li>
+          <li>La seguridad se reparte en tres capas —mecánica, hardware y programa— y un requisito importante se implementa en más de una.</li>
+          <li>Un SCADA tiene cuatro componentes: adquisición, comunicación, base de datos histórica e interfaz de operador.</li>
+          <li>Supervisión no es control: el lazo de control vive en el equipo y debe funcionar sin el SCADA.</li>
+          <li>La cadencia se diseña: un dato fijo cada cierto tiempo para la gráfica y un mensaje inmediato ante cada suceso.</li>
+          <li>Monitorizar el propio sistema —batería, reconexiones— es lo que permite el mantenimiento predictivo.</li>
+          <li>Una alarma solo existe si alguien tiene que hacer algo; sin prioridades y sin evitar repeticiones, se ignoran todas.</li>
+          <li>La alarma más fiable es detectar que el nodo ha dejado de hablar, porque un sistema averiado no siempre puede avisar.</li>
+          <li>Un requisito de seguridad que no se ha verificado provocando el fallo, no existe.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://docs.micropython.org/en/latest/esp32/quickref.html">MicroPython — Referencia rápida del ESP32</a> (en inglés). Temporizadores, <em>watchdog</em> y modos de arranque.</li>
+          <li id="fuente_2">[2] <a href="https://mqtt.org/">MQTT.org</a> (en inglés). Mensaje de última voluntad y calidad de servicio.</li>
+          <li id="fuente_3">[3] <a href="https://www.insst.es/">INSST</a>. Seguridad de máquinas: enclavamientos, resguardos y parada de emergencia.</li>
+          <li id="fuente_4">[4] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Seguridad de las máquinas y sistemas de mando relativos a la seguridad (UNE-EN ISO 13849).</li>
+          <li id="fuente_5">[5] <a href="https://wokwi.com/">Wokwi</a>. Simulación del automatismo completo con ESP32, sensores y actuadores.</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque F: automatización programada, SCADA, telemetría y monitorización.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema17.html">← Tema 17</a>
+  <a href="tema19.html">Tema 19 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

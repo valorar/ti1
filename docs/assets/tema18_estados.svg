@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-labelledby="t18_title t18_desc">
+<title id="t18_title">Máquina de estados del riego automático</title>
+<desc id="t18_desc">Cinco estados. Desde reposo, cada quince minutos se pasa a midiendo. Si el sustrato está seco y es horario de riego, se pasa a regando; si está húmedo, a espera. Desde regando se pasa a espera cuando se cumplen los treinta segundos. Desde espera se vuelve a reposo al terminar el ciclo. Hay dos caminos hacia el estado de fallo: una lectura imposible desde midiendo, o exceder el tiempo máximo desde regando. En fallo la válvula queda cerrada, el sistema avisa y espera intervención.</desc>
+<defs><marker id="t18_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker>
+<marker id="t18_r" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#c85c40"/></marker></defs>
+<rect width="900" height="440" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">El automatismo del KR-1 como máquina de estados</text>
+
+<rect x="90" y="85" width="120" height="50" rx="25" fill="#eef2f4" stroke="#58707a" stroke-width="2.5"/>
+<rect x="350" y="85" width="140" height="50" rx="25" fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5"/>
+<rect x="350" y="265" width="140" height="50" rx="25" fill="#dff3ef" stroke="#2b8c7f" stroke-width="3"/>
+<rect x="90" y="265" width="120" height="50" rx="25" fill="#e9f5ee" stroke="#167e78" stroke-width="2.5"/>
+<rect x="650" y="175" width="140" height="50" rx="25" fill="#fff0ec" stroke="#c85c40" stroke-width="3"/>
+
+<g font-family="system-ui,sans-serif" font-size="14" font-weight="700" text-anchor="middle">
+<text x="150" y="116" fill="#46616a">REPOSO</text>
+<text x="420" y="116" fill="#164d5f">MIDIENDO</text>
+<text x="420" y="296" fill="#245c49">REGANDO</text>
+<text x="150" y="296" fill="#245c49">ESPERA</text>
+<text x="720" y="206" fill="#8f3a24">FALLO</text>
+</g>
+
+<g fill="none" stroke="#1a6b7a" stroke-width="2.5" marker-end="url(#t18_a)">
+<path d="M210 110 H344"/>
+<path d="M420 135 V259"/>
+<path d="M362 137 L204 262"/>
+<path d="M344 290 H216"/>
+<path d="M150 265 V141"/>
+</g>
+<g fill="none" stroke="#c85c40" stroke-width="2.5" marker-end="url(#t18_r)">
+<path d="M490 105 H560 V190 H644"/>
+<path d="M490 295 H600 V212 H644"/>
+</g>
+
+<g font-family="system-ui,sans-serif" font-size="12" font-weight="700">
+<text x="277" y="100" text-anchor="middle" fill="#1a6b7a">cada 15 min</text>
+<text x="432" y="200" fill="#1a6b7a">seco y en horario</text>
+<text x="215" y="196" text-anchor="end" fill="#1a6b7a">húmedo</text>
+<text x="280" y="280" text-anchor="middle" fill="#1a6b7a">30 s cumplidos</text>
+<text x="140" y="205" text-anchor="end" fill="#1a6b7a">fin del ciclo</text>
+<text x="498" y="96" fill="#8f3a24">lectura imposible</text>
+<text x="498" y="312" fill="#8f3a24">tiempo máximo excedido</text>
+</g>
+<text x="720" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#8f3a24">válvula cerrada,</text>
+<text x="720" y="268" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#8f3a24">avisa y espera</text>
+<text x="720" y="284" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#8f3a24">intervención</text>
+
+<text x="30" y="378" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">En cada instante el sistema está en <tspan font-weight="700">un solo estado</tspan>, y solo puede cambiar por las transiciones dibujadas.</text>
+<text x="30" y="398" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Todo lo que no está dibujado no puede ocurrir: eso es lo que convierte el automatismo en algo demostrable.</text>
+<text x="30" y="420" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#8f3a24">Del estado de fallo no se sale solo: hace falta que alguien intervenga.</text>
+</svg>

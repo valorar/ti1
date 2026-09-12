@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 19 del Bloque F de Tecnología e Ingeniería I: concepto de robot, grados de libertad y espacio de trabajo, modelización de movimientos y acciones mecánicas, sensores y actuadores de un robot, algoritmos de desplazamiento y evitación de obstáculos, simulación, tecnologías emergentes e inteligencia artificial aplicada al control.">
+  <title>Tema 19. Robótica e inteligencia artificial aplicadas al control · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 19 · Bloque F · Sistemas automáticos</p>
+        <h1>Tema 19. Robótica e inteligencia artificial aplicadas al control</h1>
+        <p class="hero-lead">Cómo se modela y se programa el movimiento de un robot y qué aportan las tecnologías emergentes al control de un sistema.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 19">
+        <strong>Pregunta guía</strong>
+        <p>El KR-1 riega un bancal fijo. Si en lugar de una válvula tuviera un brazo que moviera el gotero de maceta en maceta, ¿qué tendría que saber para llegar a cada una sin chocar, y en qué momento dejaría de bastar un programa de reglas?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#robot">Qué es un robot</a></li>
+        <li><a href="#gdl">Grados de libertad y espacio de trabajo</a></li>
+        <li><a href="#modelizar">Modelizar el movimiento</a></li>
+        <li><a href="#sensores">Sensores y actuadores</a></li>
+        <li><a href="#algoritmos">Algoritmos de movimiento</a></li>
+        <li><a href="#simular">Simular y evaluar</a></li>
+        <li><a href="#emergentes">Tecnologías emergentes</a></li>
+        <li><a href="#ia">Inteligencia artificial aplicada al control</a></li>
+        <li><a href="#limites">Límites, sesgos y responsabilidad</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este tema cierra el Bloque F con lo que el currículo llama robótica —modelización de movimientos y acciones mecánicas— y con la inteligencia artificial aplicada al control. Y lo hace con una advertencia de fondo: un robot no es un sistema nuevo, es <strong>el sistema del Tema 18 con más grados de libertad</strong>. Los mismos estados, los mismos enclavamientos y los mismos límites de seguridad, con la diferencia de que ahora el actuador puede alcanzar muchos sitios, y eso incluye los sitios donde no debe.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> pon la mano sobre la mesa y toca un punto cualquiera con la punta del dedo. Ahora toca el mismo punto con el codo alto, y otra vez con el codo bajo. El punto es el mismo y la configuración del brazo es distinta. Esa multiplicidad es el problema central de la robótica, y explica por qué mover un brazo es más difícil que abrir una válvula.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>definir robot y distinguirlo de un automatismo de un solo eje;</li>
+          <li>contar los grados de libertad de un mecanismo y determinar su espacio de trabajo;</li>
+          <li>explicar la diferencia entre modelo directo e inverso y por qué el inverso tiene varias soluciones;</li>
+          <li>identificar los sensores y actuadores propios de un robot y su papel;</li>
+          <li>programar algoritmos de desplazamiento, seguimiento y evitación de obstáculos;</li>
+          <li>evaluar un robot por su repetibilidad, su exactitud y su seguridad;</li>
+          <li>situar las tecnologías emergentes aplicadas al control y qué aporta cada una;</li>
+          <li>explicar qué es el aprendizaje automático y cuándo mejora a un sistema de reglas;</li>
+          <li>valorar los límites, los sesgos y la responsabilidad de un sistema que decide con datos.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="robot">
+        <h2 id="robot">1. Qué es un robot</h2>
+        <p>Un <strong>robot</strong> es una máquina programable capaz de percibir su entorno, decidir y actuar sobre él, con varios grados de libertad. Las tres capacidades juntas —<strong>percibir, decidir, actuar</strong>— son la definición práctica, y la tercera palabra clave es <em>programable</em>: un mecanismo que hace siempre lo mismo no es un robot, es una máquina automática.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de robot">
+          <table>
+            <caption>Familias de robot</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Característica</th><th scope="col">Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Manipulador</strong></th><td>Base fija y un brazo con varias articulaciones.</td><td>Brazo de soldadura, brazo educativo, el del huerto.</td></tr>
+              <tr><th scope="row"><strong>Móvil</strong></th><td>Se desplaza: ruedas, orugas o patas.</td><td>Robot aspirador, vehículo guiado de almacén.</td></tr>
+              <tr><th scope="row"><strong>Cartesiano</strong></th><td>Tres ejes perpendiculares de desplazamiento.</td><td>Impresora 3D, fresadora de control numérico.</td></tr>
+              <tr><th scope="row"><strong>Colaborativo</strong></th><td>Diseñado para trabajar junto a personas, con detección de contacto.</td><td>Brazos de montaje ligero en línea de producción.</td></tr>
+              <tr><th scope="row"><strong>Aéreo o submarino</strong></th><td>Se mueve en un medio fluido.</td><td>Dron de inspección, vehículo submarino.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Una impresora 3D es un robot cartesiano</strong>Percibe —finales de carrera y termistores—, decide —el programa interpreta el código G del Tema 3— y actúa con tres ejes de movimiento independientes. Que nadie la llame robot es una cuestión de costumbre, no de definición. Reconocerlo tiene una consecuencia útil: todo lo que se aprende aquí sobre grados de libertad, espacio de trabajo, repetibilidad y límites de recorrido se aplica directamente a la máquina con la que se fabricó la caja del KR-1.</div>
+
+        <div class="ti1-note"><strong>Y la estructura de un robot es la del Tema 7.</strong> Motor, transmisión, elemento de trabajo y bastidor. Lo que un robot añade es que hay <em>varias</em> de esas cadenas, una por articulación, y que el elemento de trabajo —el <strong>efector</strong>— es intercambiable: una pinza, una herramienta, un gotero. El bastidor sigue siendo decisivo: un brazo sobre una base que se mueve no puede repetir una posición, por muy bueno que sea su programa.</div>
+      </section>
+
+      <section aria-labelledby="gdl">
+        <h2 id="gdl">2. Grados de libertad y espacio de trabajo</h2>
+        <p>Los <strong>grados de libertad</strong> son el número de movimientos independientes que puede realizar un mecanismo. Cada articulación motorizada aporta uno: un giro o un desplazamiento.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de grados de libertad y espacio de trabajo">
+          <img src="assets/tema19_gdl.svg" alt="Brazo plano de dos articulaciones con eslabones de 130 y 95 milímetros. Los dos ángulos son los dos grados de libertad. La zona sombreada es el espacio de trabajo: una corona de radio máximo 225 milímetros y radio mínimo 35 milímetros. Cada punto se alcanza con dos configuraciones, codo arriba y codo abajo.">
+          <figcaption>Con dos eslabones, el espacio de trabajo es una corona. Ni el centro ni el exterior son alcanzables, y eso no se arregla programando.</figcaption>
+        </figure>
+
+        <p class="ti1-formula">radio máximo = L<sub>1</sub> + L<sub>2</sub>  ·  radio mínimo = |L<sub>1</sub> − L<sub>2</sub>|</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: grados de libertad de distintos mecanismos">
+          <table>
+            <caption>Cuántos grados de libertad hacen falta</caption>
+            <thead><tr><th scope="col">Mecanismo</th><th scope="col">GDL</th><th scope="col">Qué puede hacer</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Electroválvula del KR-1</th><td>1</td><td>Abrir o cerrar. No es un robot.</td></tr>
+              <tr><th scope="row">Brazo plano de dos eslabones</th><td>2</td><td>Alcanzar cualquier punto de una corona en un plano.</td></tr>
+              <tr><th scope="row">Impresora 3D</th><td>3</td><td>Alcanzar cualquier punto de un volumen, sin orientar nada.</td></tr>
+              <tr><th scope="row">Brazo industrial típico</th><td>6</td><td>Alcanzar cualquier punto <strong>con cualquier orientación</strong>.</td></tr>
+              <tr><th scope="row">Robot móvil de dos ruedas</th><td>2 motrices</td><td>Avanzar y girar; el plano completo, pero no lateralmente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué seis, y no cuatro ni diez</strong>Situar un objeto en el espacio exige <strong>tres coordenadas de posición y tres de orientación</strong>: seis números. De ahí que los brazos industriales tengan seis grados de libertad: es el mínimo para colocar una herramienta en cualquier punto con cualquier inclinación. Con menos, hay tareas imposibles; con más, el robot es <em>redundante</em> y puede alcanzar el mismo punto de infinitas maneras, lo que se aprovecha para esquivar obstáculos a costa de un problema de cálculo mucho más difícil.</div>
+
+        <div class="aviso"><strong>El espacio de trabajo es un límite físico, no una limitación del programa</strong>Un punto fuera de la corona no se alcanza, y ningún algoritmo lo arregla. Lo mismo ocurre con el radio mínimo: la zona pegada a la base es inalcanzable porque el brazo no se puede plegar más. Esto tiene una consecuencia práctica inmediata: <strong>antes de programar un robot hay que comprobar que la tarea cabe en su espacio de trabajo</strong>, y esa comprobación es geométrica y se hace con el CAD del Tema 3. El error contrario —diseñar la tarea y descubrir después que el brazo no llega— se paga rehaciendo el mecanismo.</div>
+      </section>
+
+      <section aria-labelledby="modelizar">
+        <h2 id="modelizar">3. Modelizar el movimiento</h2>
+        <p>El currículo pide «modelización de movimientos y acciones mecánicas». Modelizar el movimiento de un robot es relacionar dos cosas: los <strong>ángulos de sus articulaciones</strong> y la <strong>posición de su efector</strong>. Se puede hacer en los dos sentidos, y no cuestan lo mismo.</p>
+
+        <div class="comparacion">
+          <div><h3>Modelo directo</h3><p>Conozco los ángulos y quiero saber dónde está el efector. Es <strong>trigonometría del Tema 9</strong> y tiene <strong>una sola solución</strong>: dados θ₁ y θ₂, el extremo está donde está.</p></div>
+          <div><h3>Modelo inverso</h3><p>Conozco el punto al que quiero llegar y necesito los ángulos. Es el problema útil y el difícil: puede tener <strong>dos soluciones, infinitas o ninguna</strong>.</p></div>
+        </div>
+
+        <p class="ti1-formula">x = L<sub>1</sub>·cos θ<sub>1</sub> + L<sub>2</sub>·cos(θ<sub>1</sub> + θ<sub>2</sub>) <span class="ti1-formula-leyenda">modelo directo, coordenada horizontal</span></p>
+        <p class="ti1-formula">y = L<sub>1</sub>·sen θ<sub>1</sub> + L<sub>2</sub>·sen(θ<sub>1</sub> + θ<sub>2</sub>) <span class="ti1-formula-leyenda">modelo directo, coordenada vertical</span></p>
+
+        <pre><code>import math
+
+L1, L2 = 130.0, 95.0      # mm
+
+def posicion_efector(t1_grados, t2_grados):
+    """Modelo directo: de los ángulos a la posición del efector, en mm."""
+    t1 = math.radians(t1_grados)
+    t2 = math.radians(t2_grados)
+    x = L1 * math.cos(t1) + L2 * math.cos(t1 + t2)
+    y = L1 * math.sin(t1) + L2 * math.sin(t1 + t2)
+    return x, y
+
+print(posicion_efector(55, -40))    # (166.8, 130.5)
+
+def alcanzable(x, y):
+    """Comprueba si un punto está dentro del espacio de trabajo."""
+    r = math.sqrt(x * x + y * y)
+    return abs(L1 - L2) &lt;= r &lt;= L1 + L2
+
+print(alcanzable(200, 100))    # True
+print(alcanzable(300, 0))      # False: fuera del radio máximo
+print(alcanzable(10, 5))       # False: dentro del radio mínimo</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Las dos soluciones del modelo inverso: codo arriba y codo abajo</strong>Salvo en los bordes del espacio de trabajo, cada punto se alcanza con <strong>dos configuraciones</strong> distintas del brazo. Las dos son correctas geométricamente, y elegir una es un problema de ingeniería, no de matemáticas: una puede chocar con un obstáculo, exigir más par a un motor o pasar por una zona prohibida. En un robot industrial esa elección se llama <em>configuración</em> y se especifica en el programa junto a la posición. Es el experimento del dedo y el codo con el que empezaba el tema.</div>
+
+        <div class="ti1-note"><strong>Y hay una tercera posibilidad que hay que comprobar siempre: ninguna solución.</strong> Si el punto está fuera de la corona, el modelo inverso no tiene respuesta. Un programa que no compruebe eso antes de calcular producirá un error matemático —la raíz de un número negativo, un arco coseno fuera de rango— o, peor, un ángulo absurdo que el robot intentará alcanzar. La función <code>alcanzable()</code> del código anterior es la comprobación de plausibilidad del Tema 18, aplicada a la geometría.</div>
+      </section>
+
+      <section aria-labelledby="sensores">
+        <h2 id="sensores">4. Sensores y actuadores de un robot</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: sensores y actuadores de un robot">
+          <table>
+            <caption>Qué lleva un robot, y para qué</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Qué aporta</th><th scope="col">En un robot educativo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Final de carrera</strong></th><td>Detecta el extremo del recorrido; sirve para el origen y como límite de seguridad.</td><td>Microinterruptor en cada eje.</td></tr>
+              <tr><th scope="row"><strong>Encóder</strong></th><td>Mide el giro del eje: es la realimentación de posición del Tema 17.</td><td>Disco ranurado o encóder magnético en el motor.</td></tr>
+              <tr><th scope="row"><strong>Servomotor</strong></th><td>Actuador con su propio lazo cerrado interno: se le pide un ángulo y lo mantiene.</td><td>El actuador habitual de un brazo educativo.</td></tr>
+              <tr><th scope="row"><strong>Motor paso a paso</strong></th><td>Gira un ángulo exacto por impulso, sin necesitar sensor.</td><td>Ejes de una impresora 3D.</td></tr>
+              <tr><th scope="row"><strong>Sensor de distancia</strong></th><td>Detecta obstáculos antes del contacto.</td><td>Ultrasonido o infrarrojo.</td></tr>
+              <tr><th scope="row"><strong>Sensor de contacto o fuerza</strong></th><td>Detecta el choque o la presión ejercida.</td><td>Parachoques con microinterruptor.</td></tr>
+              <tr><th scope="row"><strong>Cámara</strong></th><td>Permite visión artificial: reconocer y localizar objetos.</td><td>Módulo de cámara; es la puerta a la sección 8.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El servomotor ya es un sistema de control completo</strong>Dentro de un servo hay un motor, un reductor, un potenciómetro que mide la posición y un circuito que compara con la consigna: <strong>el lazo cerrado del Tema 17, encapsulado</strong>. Por eso se le pide un ángulo y no una tensión. Y por eso tiene los límites de todo lazo cerrado: si la carga excede su par, el servo forzará indefinidamente sin alcanzar la consigna, se calentará y se destruirá. Un servo que zumba y no llega es un servo sobrecargado, no averiado.</div>
+
+        <div class="ti1-note"><strong>Y el origen: la primera cosa que hace un robot al encenderse.</strong> Un encóder mide <em>incrementos</em>, no posiciones absolutas: al arrancar, el robot no sabe dónde está. Por eso lo primero que hace es un <strong>ciclo de búsqueda de origen</strong>: mover cada eje lentamente hasta activar su final de carrera, y tomar ese punto como referencia. Es lo mismo que hace una impresora 3D al empezar, y es la razón de que cualquier robot deba tener finales de carrera aunque su programa «no los necesite».</div>
+      </section>
+
+      <section aria-labelledby="algoritmos">
+        <h2 id="algoritmos">5. Algoritmos de movimiento</h2>
+        <p>El currículo pide algoritmos sencillos, y esa palabra hay que tomársela en serio: los algoritmos que siguen tienen pocas líneas y resuelven los problemas reales de un robot educativo.</p>
+
+        <h3>Desplazamiento a un punto</h3>
+        <pre><code>def ir_a(x, y):
+    """Lleva el efector a un punto, si es alcanzable."""
+    if not alcanzable(x, y):
+        registrar_evento("PUNTO_INALCANZABLE")
+        return False
+    t1, t2 = angulos_para(x, y, codo="arriba")   # modelo inverso
+    if not (T1_MIN &lt;= t1 &lt;= T1_MAX and T2_MIN &lt;= t2 &lt;= T2_MAX):
+        registrar_evento("ANGULO_FUERA_DE_LIMITE")
+        return False
+    mover_articulaciones(t1, t2)
+    return True</code></pre>
+
+        <div class="ti1-note"><strong>Dos comprobaciones antes de mover nada:</strong> que el punto está en el espacio de trabajo y que los ángulos resultantes están dentro de los límites mecánicos de cada articulación. La segunda no es redundante: un punto puede ser alcanzable y exigir una configuración que haga chocar el brazo con su propia base. Son los enclavamientos del Tema 18, aplicados al movimiento, y van <strong>antes</strong> de la orden al motor.</div>
+
+        <h3>Seguimiento de línea</h3>
+        <pre><code># Dos sensores infrarrojos apuntando al suelo
+while True:
+    izq = sensor_izq.value()     # 1 = ve línea oscura
+    der = sensor_der.value()
+    if izq and der:
+        avanzar()                # la línea está centrada
+    elif izq and not der:
+        girar_izquierda()        # se ha salido por la derecha
+    elif der and not izq:
+        girar_derecha()
+    else:
+        buscar_linea()           # perdida: gira sobre sí mismo
+    time.sleep(0.02)</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un seguidor de línea es un lazo cerrado</strong>Consigna: la línea centrada. Sensor: los dos infrarrojos. Error: la diferencia entre ellos. Actuador: los dos motores. Y el algoritmo es un <strong>control todo-nada</strong> del Tema 17, con su característico zigzag: el robot no va recto, oscila en torno a la línea, igual que el coche del inicio de ese tema. Sustituyendo los dos sensores digitales por uno analógico y aplicando control proporcional, el zigzag desaparece: la misma mejora de ley de control, en un caso que se ve con los ojos.</div>
+
+        <h3>Evitación de obstáculos</h3>
+        <pre><code>DISTANCIA_SEGURA_CM = 20
+
+while True:
+    d = distancia_cm()
+    if d &gt; DISTANCIA_SEGURA_CM:
+        avanzar()
+    else:
+        parar()
+        retroceder(0.3)
+        girar_derecha(0.5)       # maniobra fija: sencilla y limitada
+    if choque.value() == 0:      # el parachoques manda sobre todo
+        parar()
+        entrar_en_fallo("CHOQUE")
+    time.sleep(0.05)</code></pre>
+
+        <div class="aviso"><strong>El sensor de contacto manda sobre el de distancia</strong>Un ultrasonido no detecta superficies muy inclinadas, ni tejidos, ni objetos muy estrechos: son sus puntos ciegos conocidos. Por eso un robot móvil lleva además un <strong>parachoques con microinterruptor</strong>, que es el último recurso y tiene prioridad sobre cualquier otra lógica. Es la capa mecánica de seguridad del Tema 18: la que funciona cuando el sensor sofisticado falla. Y la maniobra tras el choque no continúa la tarea: pasa a fallo, porque un choque significa que el modelo del entorno era incorrecto.</div>
+      </section>
+
+      <section aria-labelledby="simular">
+        <h2 id="simular">6. Simular y evaluar</h2>
+        <p>Un robot mal programado rompe cosas, así que se simula antes. Y se evalúa después con dos magnitudes que no son lo mismo.</p>
+
+        <div class="comparacion">
+          <div><h3>Repetibilidad</h3><p>Cuánto se aproxima el robot a <strong>la misma posición</strong> al repetir la orden muchas veces. Es lo que más importa en producción, y es lo que arruina el juego mecánico del Tema 8.</p></div>
+          <div><h3>Exactitud</h3><p>Cuánto se aproxima a <strong>la posición pedida</strong>. Depende además de la calibración y de que las longitudes reales coincidan con las del modelo.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un robot puede ser muy repetible y poco exacto</strong>Es la situación normal, y es exactamente la distinción entre <em>precisión</em> y <em>exactitud</em> del Tema 2 aplicada al movimiento. Si vas siempre al mismo sitio equivocado, el problema es de calibración y se corrige midiendo y ajustando el modelo. Si vas cada vez a un sitio distinto, el problema es mecánico —juego, holgura, flexión— y no lo arregla ningún programa. <strong>Primero se resuelve la repetibilidad y después la exactitud</strong>, nunca al revés.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué comprobar en un robot">
+          <table>
+            <caption>Plan de pruebas de un robot</caption>
+            <thead><tr><th scope="col">Prueba</th><th scope="col">Cómo</th><th scope="col">Qué revela</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Repetibilidad</th><td>Ir veinte veces al mismo punto desde direcciones distintas y medir la dispersión.</td><td>Juego mecánico y retroceso del Tema 8.</td></tr>
+              <tr><th scope="row">Exactitud</th><td>Ir a cinco puntos conocidos y medir la desviación.</td><td>Errores de calibración y de longitudes del modelo.</td></tr>
+              <tr><th scope="row">Límites de recorrido</th><td>Pedir un punto fuera del espacio de trabajo.</td><td>Que el programa lo rechaza en lugar de intentarlo.</td></tr>
+              <tr><th scope="row">Búsqueda de origen</th><td>Reiniciar en una posición cualquiera.</td><td>Que encuentra la referencia sin forzar nada.</td></tr>
+              <tr><th scope="row">Choque</th><td>Interponer un obstáculo blando a propósito.</td><td>Que se detiene y pasa a fallo.</td></tr>
+              <tr><th scope="row">Corte de alimentación</th><td>Desconectar durante un movimiento.</td><td>Qué hace el efector al caer: una pinza debería sujetar.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Y la seguridad de un robot es distinta de la de una válvula.</strong> Un actuador que solo abre agua es poco peligroso; un brazo con par suficiente para mover una carga puede lesionar. Las medidas son las del Tema 6 y el Tema 18: limitar la velocidad y el par en la programación, delimitar físicamente la zona de trabajo, parada accesible y la regla básica de un aula-taller: <strong>nadie dentro del espacio de trabajo con el robot alimentado</strong>. Los robots industriales trabajan dentro de vallas por este motivo, y los colaborativos son la excepción porque están diseñados para detectar el contacto y detenerse.</div>
+      </section>
+
+      <section aria-labelledby="emergentes">
+        <h2 id="emergentes">7. Tecnologías emergentes aplicadas al control</h2>
+        <p>El currículo pide la «aplicación de las tecnologías emergentes a los sistemas de control». Conviene ordenarlas, porque se nombran juntas y hacen cosas muy distintas.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tecnologías emergentes aplicadas al control">
+          <table>
+            <caption>Qué aporta cada una a un sistema de control</caption>
+            <thead><tr><th scope="col">Tecnología</th><th scope="col">Qué aporta</th><th scope="col">En el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Internet de las cosas</strong></th><td>Vigilar y ajustar a distancia; reunir datos de muchos equipos.</td><td>Ya implementado en el Tema 16.</td></tr>
+              <tr><th scope="row"><strong>Big data</strong></th><td>Encontrar patrones en históricos grandes que un ojo no ve.</td><td>Tres veranos de datos de varios bancales.</td></tr>
+              <tr><th scope="row"><strong>Aprendizaje automático</strong></th><td>Deducir la regla de decisión a partir de ejemplos, en lugar de escribirla.</td><td>Predecir cuánto va a secarse mañana. Sección 8.</td></tr>
+              <tr><th scope="row"><strong>Visión artificial</strong></th><td>Extraer información de imágenes: presencia, posición, estado.</td><td>Detectar si una planta está marchita antes de que el sensor lo note.</td></tr>
+              <tr><th scope="row"><strong>Gemelo digital</strong></th><td>Un modelo del sistema que se alimenta de sus datos reales y permite ensayar cambios.</td><td>Probar un umbral nuevo sobre los datos del verano pasado antes de aplicarlo.</td></tr>
+              <tr><th scope="row"><strong>Computación en el borde</strong></th><td>Decidir en el propio dispositivo en lugar de en la nube.</td><td>Es lo que ya hace: el riego no depende de la red.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El gemelo digital es la idea más útil de la tabla</strong>Y está al alcance de este curso: con el histórico del Tema 15 se puede <strong>simular qué habría hecho el sistema con otro umbral</strong>, sin esperar un verano. Se recorre el archivo, se aplica la lógica nueva a las lecturas reales y se cuenta cuántos riegos habría habido y cuánta agua se habría usado. Eso es evaluar un cambio de diseño con datos en lugar de con opiniones, y es exactamente el ciclo de mejora continua del Tema 2 hecho con software.</div>
+      </section>
+
+      <section aria-labelledby="ia">
+        <h2 id="ia">8. Inteligencia artificial aplicada al control</h2>
+        <p>El contenido del currículo es preciso: <strong>inteligencia artificial <em>aplicada a los sistemas de control</em></strong>. No es un panorama del campo —eso pertenece a 2.º de Bachillerato— sino una pregunta concreta: cuándo conviene que la regla de decisión se aprenda de los datos en lugar de escribirla.</p>
+
+        <div class="comparacion">
+          <div><h3>Sistema de reglas</h3><p>Alguien escribe la lógica: «si la humedad baja del 30 %, riega». Es <strong>explicable, comprobable y predecible</strong>, y es lo que hace el KR-1. Su límite aparece cuando la regla depende de demasiadas variables a la vez.</p></div>
+          <div><h3>Aprendizaje automático</h3><p>Se le dan <strong>ejemplos</strong> —situaciones con su resultado— y el sistema deduce la regla. Sirve cuando la relación existe pero nadie sabe escribirla. Su precio es que la regla obtenida es difícil de explicar.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El criterio para decidir</strong>Si puedes escribir la regla, escríbela. Un sistema de reglas es más fácil de depurar, más fácil de certificar y no falla de formas sorprendentes. El aprendizaje automático tiene sentido cuando <strong>existe una relación entre los datos y el resultado que nadie es capaz de formular</strong>: reconocer una planta marchita en una foto, predecir la evaporación a partir de temperatura, viento, humedad ambiente y hora. Usar aprendizaje automático donde basta un <code>if</code> es añadir una caja negra a un problema resuelto.</div>
+
+        <h3>Un experimento honesto y hacible</h3>
+        <p>Con el histórico del KR-1 se puede hacer aprendizaje automático de verdad, sin bibliotecas complicadas: <strong>predecir cuánto bajará la humedad mañana</strong> a partir de la temperatura máxima del día.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Reunir ejemplos</div><p>Del archivo del verano: para cada día, la temperatura máxima y la bajada de humedad observada. Son los pares de entrada y resultado.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Separar entrenamiento y prueba</div><p>Dos tercios de los días para ajustar el modelo y <strong>un tercio que el modelo no verá</strong>. Este paso es el que distingue un experimento de un autoengaño.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Ajustar el modelo</div><p>Una recta: bajada = a · temperatura + b. Es el modelo más simple posible y casi siempre el punto de partida correcto.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Medir el acierto</div><p>Con los días reservados: cuánto se equivoca de media. Un número, no una impresión.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Comparar con la solución tonta</div><p>Frente a «mañana bajará lo mismo que la media de todos los días». Si el modelo no gana a eso, no sirve.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">6 · Decidir si se usa</div><p>Y si se usa, <strong>como consejo, no como orden</strong>: el umbral de seguridad sigue siendo el del Tema 18.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Los dos pasos que casi todo el mundo se salta</strong>El <strong>2</strong> y el <strong>5</strong>. Si mides el acierto con los mismos datos con que ajustaste el modelo, el resultado será magnífico y no significará nada: has comprobado que el modelo recuerda, no que predice. Y si no comparas con la solución más tonta posible, no sabes si tu modelo aporta algo: muchísimos modelos complicados no ganan a la media. Estos dos pasos son el equivalente, en aprendizaje automático, de los casos de prueba del Tema 13.</div>
+
+        <div class="ti1-note"><strong>Y dónde encaja la inteligencia artificial en el KR-1.</strong> No sustituyendo al control, sino <strong>por encima de él</strong>: la máquina de estados del Tema 18 sigue decidiendo si riega, con sus enclavamientos intactos, y el modelo predictivo solo <em>ajusta el umbral</em> según lo que espera del día siguiente. Esa arquitectura en dos niveles —control determinista abajo, optimización aprendida arriba— es la que se usa en la industria, y por una razón: <strong>las protecciones no pueden depender de algo que no se puede explicar</strong>.</div>
+      </section>
+
+      <section aria-labelledby="limites">
+        <h2 id="limites">9. Límites, sesgos y responsabilidad</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: límites de un sistema que decide con datos">
+          <table>
+            <caption>Qué puede salir mal cuando un sistema aprende de datos</caption>
+            <thead><tr><th scope="col">Problema</th><th scope="col">En qué consiste</th><th scope="col">Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Datos no representativos</strong></th><td>El modelo solo ha visto una parte de la realidad.</td><td>Entrenado con un verano seco, falla el año que llueve.</td></tr>
+              <tr><th scope="row"><strong>Sobreajuste</strong></th><td>Memoriza los ejemplos en lugar de aprender la relación.</td><td>Acierta el 100 % en los datos de entrenamiento y falla en los nuevos.</td></tr>
+              <tr><th scope="row"><strong>Correlación sin causa</strong></th><td>Dos cosas van juntas sin que una provoque la otra.</td><td>«Riega más los martes»: es que el martes hay clase y alguien pisa el bancal.</td></tr>
+              <tr><th scope="row"><strong>Sesgo de los datos</strong></th><td>Los datos arrastran un desequilibrio del mundo real y el modelo lo perpetúa.</td><td>Un sistema entrenado con decisiones humanas repite sus prejuicios.</td></tr>
+              <tr><th scope="row"><strong>Opacidad</strong></th><td>El modelo acierta y nadie puede explicar por qué.</td><td>Imposible certificar; imposible depurar cuando falla.</td></tr>
+              <tr><th scope="row"><strong>Deriva</strong></th><td>El mundo cambia y el modelo sigue igual.</td><td>La planta crece y consume más: el modelo del año pasado ya no vale.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El sesgo no es un problema técnico menor</strong>En un riego, un modelo sesgado gasta algo más de agua. En un sistema que decide sobre personas —quién recibe un crédito, qué curriculum pasa a entrevista, a quién vigila una cámara— el sesgo se convierte en discriminación, y a escala. La causa es casi siempre la misma: <strong>el modelo aprende del pasado</strong>, y si el pasado era injusto, el modelo lo automatiza y le añade una apariencia de objetividad. Es un asunto que aparece aquí porque la responsabilidad de quien diseña un sistema no termina en que funcione.</div>
+
+        <div class="aviso"><strong>La responsabilidad no se delega en el sistema</strong>«Lo decidió el algoritmo» no es una explicación ni una excusa: alguien eligió los datos, el modelo y el umbral, y alguien decidió ponerlo en producción. De ahí tres reglas de diseño que valen tanto para el KR-1 como para cualquier sistema mayor: <strong>una persona identificable responde</strong> de lo que el sistema hace; <strong>las decisiones quedan registradas</strong> para poder revisarlas, como en el Tema 18; y <strong>existe una forma de intervenir y de desactivarlo</strong>. Un sistema automático sin interruptor no es un logro de ingeniería: es un problema.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el KR-1 podría aprender a ahorrar agua reduciendo el umbral hasta el mínimo con el que las plantas sobreviven. Si el objetivo que le damos es «gastar menos agua», eso es exactamente lo que hará, y tendrá razón: cumplió su objetivo. ¿Quién es responsable de que las plantas estén al límite? Elegir bien la magnitud que se optimiza es la decisión más importante —y la que menos se discute— de cualquier sistema automático.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un mecanismo que se mueve donde debe, se detiene donde no debe, y con un experimento de datos honesto.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 19">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Grados de libertad</th><td>Que cuentas los GDL y calculas el espacio de trabajo de tu mecanismo.</td><td>Cálculo de los radios máximo y mínimo y comprobación de que la tarea cabe dentro.</td></tr>
+              <tr><th scope="row">Modelizar</th><td>Que implementas el modelo directo y compruebas la alcanzabilidad antes de mover.</td><td>Función de posición del efector contrastada con la medida real, y función <code>alcanzable()</code>.</td></tr>
+              <tr><th scope="row">Algoritmos</th><td>Que programas un desplazamiento, un seguimiento y una evitación con sus límites.</td><td>Los tres algoritmos funcionando, con el sensor de contacto por encima de la lógica normal.</td></tr>
+              <tr><th scope="row">Evaluar</th><td>Que distingues repetibilidad de exactitud y las mides.</td><td>Veinte repeticiones al mismo punto con su dispersión, y cinco puntos conocidos con su desviación.</td></tr>
+              <tr><th scope="row">Seguridad</th><td>Que el robot se detiene ante un obstáculo y nadie entra en su zona con el robot alimentado.</td><td>Plan de pruebas con las seis filas y el procedimiento de trabajo seguro escrito.</td></tr>
+              <tr><th scope="row">Datos e IA</th><td>Que haces un experimento con datos separados y lo comparas con la solución tonta.</td><td>Modelo ajustado, error medido sobre datos no vistos, comparación con la media y decisión razonada.</td></tr>
+              <tr><th scope="row">Responsabilidad</th><td>Que identificas los límites y los riesgos de tu propio sistema.</td><td>Apartado de la memoria con los sesgos posibles, quién responde y cómo se desactiva.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cierre del Bloque F: el KR-1 ya es un sistema automático, supervisado y documentado. Solo queda la pregunta que lo justifica todo, y es el Bloque G: cuánta agua y cuánta energía ahorra de verdad.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Aprendizaje automático</dt><dd>Técnica por la que un sistema deduce una regla de decisión a partir de ejemplos, en lugar de recibirla escrita.</dd>
+          <dt>Búsqueda de origen</dt><dd>Maniobra inicial en la que cada eje busca su final de carrera para establecer una referencia de posición.</dd>
+          <dt>Computación en el borde</dt><dd>Procesamiento de los datos en el propio dispositivo en lugar de en un servidor remoto.</dd>
+          <dt>Configuración</dt><dd>Cada una de las combinaciones de ángulos con las que un robot alcanza el mismo punto.</dd>
+          <dt>Deriva</dt><dd>Pérdida de validez de un modelo porque el proceso que describe ha cambiado.</dd>
+          <dt>Efector</dt><dd>Elemento terminal de un robot que realiza la tarea: pinza, herramienta o útil.</dd>
+          <dt>Encóder</dt><dd>Sensor que mide el giro de un eje; realimenta la posición al controlador.</dd>
+          <dt>Espacio de trabajo</dt><dd>Conjunto de puntos que el efector puede alcanzar.</dd>
+          <dt>Exactitud</dt><dd>Proximidad entre la posición alcanzada y la posición pedida.</dd>
+          <dt>Gemelo digital</dt><dd>Modelo del sistema alimentado con sus datos reales, que permite ensayar cambios sin tocarlo.</dd>
+          <dt>Grado de libertad</dt><dd>Movimiento independiente que puede realizar un mecanismo; cada articulación motorizada aporta uno.</dd>
+          <dt>Modelo directo</dt><dd>Cálculo de la posición del efector a partir de los ángulos de las articulaciones; tiene solución única.</dd>
+          <dt>Modelo inverso</dt><dd>Cálculo de los ángulos necesarios para alcanzar una posición; puede tener dos soluciones, infinitas o ninguna.</dd>
+          <dt>Redundante</dt><dd>Robot con más grados de libertad de los estrictamente necesarios para su tarea.</dd>
+          <dt>Repetibilidad</dt><dd>Dispersión de las posiciones alcanzadas al repetir muchas veces la misma orden.</dd>
+          <dt>Servomotor</dt><dd>Actuador con lazo cerrado interno al que se le ordena un ángulo y lo mantiene.</dd>
+          <dt>Sesgo</dt><dd>Desequilibrio presente en los datos que el modelo aprende y reproduce.</dd>
+          <dt>Sobreajuste</dt><dd>Situación en la que un modelo memoriza los ejemplos de entrenamiento y falla con datos nuevos.</dd>
+          <dt>Visión artificial</dt><dd>Extracción de información útil a partir de imágenes.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Un robot percibe, decide y actúa, es programable y tiene varios grados de libertad; una impresora 3D cumple la definición.</li>
+          <li>La estructura de un robot es la del Tema 7 repetida por articulación, con un efector intercambiable y un bastidor decisivo.</li>
+          <li>Cada articulación motorizada aporta un grado de libertad; hacen falta seis para situar un objeto con cualquier orientación.</li>
+          <li>El espacio de trabajo de un brazo de dos eslabones es una corona, y ni su centro ni su exterior se alcanzan por mucho que se programe.</li>
+          <li>El modelo directo tiene solución única; el modelo inverso puede tener dos soluciones, infinitas o ninguna.</li>
+          <li>Elegir entre codo arriba y codo abajo es un problema de ingeniería, no de matemáticas.</li>
+          <li>Antes de mover hay que comprobar que el punto es alcanzable y que los ángulos están dentro de los límites mecánicos.</li>
+          <li>Un servomotor es un lazo cerrado encapsulado: si la carga excede su par, forzará hasta destruirse.</li>
+          <li>Un encóder mide incrementos, así que todo robot empieza buscando su origen con los finales de carrera.</li>
+          <li>Un seguidor de línea es un control todo-nada, con su zigzag característico; el control proporcional lo elimina.</li>
+          <li>El sensor de contacto tiene prioridad sobre el de distancia, porque los ultrasonidos tienen puntos ciegos conocidos.</li>
+          <li>Repetibilidad y exactitud no son lo mismo: primero se resuelve la repetibilidad, que es mecánica, y después la exactitud, que es calibración.</li>
+          <li>Nadie entra en el espacio de trabajo con el robot alimentado.</li>
+          <li>El gemelo digital permite evaluar un cambio de umbral sobre datos reales sin esperar un verano.</li>
+          <li>Si puedes escribir la regla, escríbela: el aprendizaje automático solo tiene sentido cuando la relación existe y nadie sabe formularla.</li>
+          <li>Los dos pasos que se saltan en todo experimento con datos son separar los datos de prueba y comparar con la solución más tonta.</li>
+          <li>El control determinista va abajo con sus enclavamientos, y la optimización aprendida por encima: las protecciones no dependen de lo que no se puede explicar.</li>
+          <li>«Lo decidió el algoritmo» no es una explicación: alguien eligió los datos, el modelo y el umbral, y alguien responde.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Seguridad de robots industriales y robots colaborativos (serie UNE-EN ISO 10218).</li>
+          <li id="fuente_2">[2] <a href="https://docs.micropython.org/en/latest/esp32/quickref.html">MicroPython — Referencia rápida del ESP32</a> (en inglés). Control de servomotores con PWM.</li>
+          <li id="fuente_3">[3] <a href="https://wokwi.com/">Wokwi</a>. Simulación de servomotores, ultrasonidos y sensores infrarrojos con ESP32.</li>
+          <li id="fuente_4">[4] <a href="https://www.geogebra.org/">GeoGebra</a>. Construcción del espacio de trabajo y del modelo directo de un brazo de dos eslabones.</li>
+          <li id="fuente_5">[5] <a href="https://digital-strategy.ec.europa.eu/es/policies/regulatory-framework-ai">Comisión Europea — Marco regulador de la inteligencia artificial</a> (en español). Requisitos de transparencia, supervisión humana y gestión de riesgos.</li>
+          <li id="fuente_6">[6] <a href="https://www.aepd.es/">Agencia Española de Protección de Datos</a>. Decisiones automatizadas y datos personales.</li>
+          <li id="fuente_7">[7] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque F: robótica e inteligencia artificial aplicada a los sistemas de control.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema18.html">← Tema 18</a>
+  <a href="tema20.html">Tema 20 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>
