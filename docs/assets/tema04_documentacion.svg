@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="t4d_title t4d_desc">
+<title id="t4d_title">Mapa de la documentación técnica de un proyecto</title>
+<desc id="t4d_desc">La documentación técnica del proyecto se compone de seis documentos. A la izquierda: la memoria, que explica por qué esta solución; los planos, que definen qué forma tiene cada pieza; y los esquemas, que indican cómo se conecta. A la derecha: la lista de materiales, que dice qué se compra; el presupuesto, que dice cuánto cuesta; y el manual, que explica cómo se usa y se mantiene. Todos los documentos comparten el mismo número de versión y la misma fecha.</desc>
+<defs><marker id="t4d_arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker></defs>
+<rect width="900" height="420" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">La documentación técnica del KR-1</text>
+
+<rect x="350" y="140" width="200" height="100" rx="14" fill="#dff3ef" stroke="#2b8c7f" stroke-width="3"/>
+<text x="450" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#245c49">Proyecto KR-1</text>
+<text x="450" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#245c49">documentación</text>
+<text x="450" y="218" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#245c49">técnica completa</text>
+
+<g fill="#e7f3f6" stroke="#0b6680" stroke-width="2">
+<rect x="40" y="40" width="250" height="70" rx="12"/>
+<rect x="40" y="155" width="250" height="70" rx="12"/>
+<rect x="40" y="270" width="250" height="70" rx="12"/>
+</g>
+<g fill="#fff4d9" stroke="#c6922d" stroke-width="2">
+<rect x="610" y="40" width="250" height="70" rx="12"/>
+<rect x="610" y="155" width="250" height="70" rx="12"/>
+<rect x="610" y="270" width="250" height="70" rx="12"/>
+</g>
+
+<g font-family="system-ui,sans-serif">
+<text x="60" y="70" font-size="14" font-weight="700" fill="#164d5f">Memoria</text>
+<text x="60" y="92" font-size="12.5" fill="#46616a">por qué esta solución y no otra</text>
+<text x="60" y="185" font-size="14" font-weight="700" fill="#164d5f">Planos</text>
+<text x="60" y="207" font-size="12.5" fill="#46616a">qué forma y qué medidas tiene</text>
+<text x="60" y="300" font-size="14" font-weight="700" fill="#164d5f">Esquemas</text>
+<text x="60" y="322" font-size="12.5" fill="#46616a">cómo se conecta y cómo funciona</text>
+
+<text x="630" y="70" font-size="14" font-weight="700" fill="#705015">Lista de materiales</text>
+<text x="630" y="92" font-size="12.5" fill="#46616a">qué se compra, cuánto y a quién</text>
+<text x="630" y="185" font-size="14" font-weight="700" fill="#705015">Presupuesto</text>
+<text x="630" y="207" font-size="12.5" fill="#46616a">cuánto cuesta cada unidad</text>
+<text x="630" y="300" font-size="14" font-weight="700" fill="#705015">Manual de uso</text>
+<text x="630" y="322" font-size="12.5" fill="#46616a">cómo se usa, se repara y se retira</text>
+</g>
+
+<g fill="none" stroke="#1a6b7a" stroke-width="2.5" marker-end="url(#t4d_arrow)">
+<path d="M350 165 H320 V75 H296"/>
+<path d="M350 190 H296"/>
+<path d="M350 215 H320 V305 H296"/>
+<path d="M550 165 H580 V75 H604"/>
+<path d="M550 190 H604"/>
+<path d="M550 215 H580 V305 H604"/>
+</g>
+
+<text x="450" y="384" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#8f3a24">Los seis documentos comparten el mismo número de versión y la misma fecha</text>
+<text x="450" y="404" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">si cambia un plano, cambia la versión del conjunto</text>
+</svg>

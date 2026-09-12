@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 2 del Bloque A de Tecnología e Ingeniería I: el producto como respuesta a una necesidad, ciclo de vida comercial, ciclo de Deming y mejora continua, metrología, tolerancias e incertidumbre, normalización, control de calidad, logística y comercialización.">
+  <title>Tema 2. El producto: ciclo de vida, calidad, normalización y comercialización · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 02 · Bloque A · Proyectos de investigación y desarrollo</p>
+        <h1>Tema 2. El producto: ciclo de vida, calidad, normalización y comercialización</h1>
+        <p class="hero-lead">Cómo nace, se fabrica, se mide, se distribuye y se retira un producto, y con qué criterios se afirma que está bien hecho.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 2">
+        <strong>Pregunta guía</strong>
+        <p>El prototipo del KR-1 funciona en el huerto del centro. ¿Qué hay que decidir, medir y documentar para poder fabricar cien unidades iguales, venderlas a un precio que cubra los costes y responder si una falla?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#producto">Del prototipo al producto</a></li>
+        <li><a href="#ciclo">El ciclo de vida del producto</a></li>
+        <li><a href="#deming">Mejora continua: el ciclo de Deming</a></li>
+        <li><a href="#metrologia">Metrología: medir con criterio</a></li>
+        <li><a href="#tolerancias">Tolerancias e incertidumbre</a></li>
+        <li><a href="#normalizacion">Normalización</a></li>
+        <li><a href="#calidad">Control de calidad</a></li>
+        <li><a href="#logistica">Logística y trazabilidad</a></li>
+        <li><a href="#comercializacion">Coste, precio y responsabilidad</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">En el Tema 1 pusimos en marcha el <strong>KR-1</strong> como proyecto. Aquí cambia la mirada: deja de ser «lo que estamos haciendo» y pasa a ser <strong>un producto</strong>, algo que alguien fabricará muchas veces, comprará, usará durante años y acabará tirando o reparando. Esa mirada obliga a responder preguntas que un prototipo nunca plantea: cuánto cuesta, cuánto se desvía una unidad de otra, qué norma debe cumplir, quién responde si falla y qué pasa con él cuando deja de servir.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> tu prototipo funciona. Ahora imagina cien unidades fabricadas por otras personas, con otro lote de sensores, montadas un viernes por la tarde. ¿Cuántas funcionarían? Si no puedes responder con un número, no tienes un producto: tienes un ejemplar afortunado.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>distinguir prototipo y producto, y planificar las etapas del desarrollo de un diseño;</li>
+          <li>identificar las cuatro etapas del ciclo de vida comercial y las decisiones propias de cada una;</li>
+          <li>aplicar el ciclo de Deming para formular un plan de mejora concreto;</li>
+          <li>elegir el instrumento de medida adecuado y expresar un resultado con su unidad e incertidumbre;</li>
+          <li>interpretar una cota con tolerancia y decidir si una medida permite aceptar o rechazar una pieza;</li>
+          <li>explicar qué es una norma técnica, quién la elabora y por qué no es lo mismo que una ley;</li>
+          <li>situar los controles de calidad a lo largo de las etapas, del diseño a la comercialización;</li>
+          <li>describir la cadena logística de un producto y para qué sirve la trazabilidad;</li>
+          <li>estimar el coste unitario de un producto y razonar su precio y su responsabilidad social.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="producto">
+        <h2 id="producto">1. Del prototipo al producto</h2>
+        <p>Un <strong>producto</strong> es la respuesta material a una necesidad, concebida para repetirse. Esa palabra —repetirse— es la que lo separa de un prototipo. El prototipo responde a la pregunta «¿puede funcionar?»; el producto responde a «¿puede funcionar siempre, hecho por cualquiera, a un coste conocido?».</p>
+
+        <div class="comparacion">
+          <div><h3>Prototipo</h3><p>Ejemplar único. Se ajusta a mano hasta que funciona. Su coste real no importa. Su documentación puede estar en la cabeza de quien lo hizo.</p></div>
+          <div><h3>Producto</h3><p>Muchas unidades iguales. No admite ajustes individuales. Su coste unitario decide si existe. Su documentación <em>es</em> el producto: sin ella no se puede fabricar.</p></div>
+        </div>
+
+        <h3>Planificación y desarrollo del diseño</h3>
+        <p>El paso de uno a otro no es un salto: es una secuencia de decisiones que estrechan progresivamente las opciones. Cada etapa cierra grados de libertad y, a cambio, permite calcular con más precisión.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: etapas del desarrollo del diseño del KR-1">
+          <table>
+            <caption>Etapas del desarrollo del diseño y qué se fija en cada una</caption>
+            <thead><tr><th scope="col">Etapa</th><th scope="col">Qué se decide</th><th scope="col">En el KR-1</th><th scope="col">Qué ya no se puede cambiar sin coste</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Diseño conceptual</strong></th><td>Qué principio de funcionamiento se elige entre los posibles.</td><td>Riego por electroválvula gobernada por una sonda capacitiva.</td><td>Nada todavía: es la etapa más barata para equivocarse.</td></tr>
+              <tr><th scope="row"><strong>Diseño de detalle</strong></th><td>Geometría, materiales, componentes concretos y cotas con tolerancia.</td><td>Caja IP65 de 120 × 80 × 55 mm, sonda de 3,3 V, válvula normalmente cerrada.</td><td>La arquitectura. Cambiar de válvula obliga a rehacer la caja.</td></tr>
+              <tr><th scope="row"><strong>Diseño para la fabricación</strong></th><td>Cómo se hará cada pieza y cómo se montará sin errores.</td><td>Caja impresa con paredes de 2 mm y taladros guiados; montaje en un solo orden posible.</td><td>El proceso. Cambiar de impresión a inyección cambia todo el diseño.</td></tr>
+              <tr><th scope="row"><strong>Preserie</strong></th><td>Se fabrican unas pocas unidades con el proceso real y se mide la dispersión.</td><td>Diez kits montados por personas distintas; cuántos funcionan a la primera.</td><td>El coste unitario, que ahora ya es medible y no estimado.</td></tr>
+              <tr><th scope="row"><strong>Producción y comercialización</strong></th><td>Series, precio, embalaje, manual, distribución y atención posterior.</td><td>Lotes de cincuenta kits con manual y repuesto de sonda.</td><td>Casi todo: a partir de aquí, cada cambio afecta a unidades ya vendidas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La regla del coste creciente</strong>Corregir un error cuesta muy poco en el diseño conceptual, bastante en el diseño de detalle, mucho en la preserie y muchísimo cuando hay producto vendido. De ahí el sentido del hito H1 del Tema 1: aprobar los requisitos <em>antes</em> de dibujar. Cada hora dedicada a especificar bien ahorra varias en el taller.</div>
+      </section>
+
+      <section aria-labelledby="ciclo">
+        <h2 id="ciclo">2. El ciclo de vida del producto</h2>
+        <p>Ningún producto se vende igual durante toda su existencia. El <strong>ciclo de vida comercial</strong> describe cómo evoluciona su demanda desde que aparece en el mercado hasta que se retira, y sirve para anticipar qué decisiones toca tomar en cada momento.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable del ciclo de vida comercial de un producto">
+          <img src="assets/tema02_ciclo_vida.svg" alt="Curva de ventas frente al tiempo con cuatro etapas: introducción con ventas bajas, crecimiento con subida rápida, madurez con ventas máximas y estables, y declive con descenso. Al final de la madurez se marca el punto en el que se decide el rediseño.">
+          <figcaption>La decisión importante no está en el declive, sino al final de la madurez: es entonces cuando queda tiempo y dinero para rediseñar.</figcaption>
+        </figure>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: las cuatro etapas del ciclo de vida y sus decisiones técnicas">
+          <table>
+            <caption>Qué ocurre y qué se decide en cada etapa</caption>
+            <thead><tr><th scope="col">Etapa</th><th scope="col">Ventas y coste</th><th scope="col">Decisión técnica típica</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Introducción</strong></th><td>Ventas bajas; coste unitario alto porque la serie es corta y el proceso no está afinado.</td><td>Corregir los fallos que aparecen en los primeros usuarios y estabilizar el montaje.</td></tr>
+              <tr><th scope="row"><strong>Crecimiento</strong></th><td>Ventas en fuerte aumento; el coste unitario baja al ampliar la serie.</td><td>Rediseñar para fabricar más rápido y asegurar el suministro de componentes.</td></tr>
+              <tr><th scope="row"><strong>Madurez</strong></th><td>Ventas máximas y estables; aparece competencia y el precio se ajusta.</td><td>Reducir coste sin perder calidad, añadir variantes y preparar el siguiente producto.</td></tr>
+              <tr><th scope="row"><strong>Declive</strong></th><td>Ventas descendentes; puede dejar de ser rentable.</td><td>Retirar, rediseñar o reorientar a otro uso; garantizar repuestos a quien ya lo compró.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Dos «ciclos de vida» que conviene no confundir.</strong> El de este tema es el <strong>comercial</strong>: cómo evolucionan las ventas. Existe otro, el <strong>ciclo de vida ambiental</strong>, que sigue el producto desde la extracción de las materias primas hasta su residuo, y que se estudia con criterios de sostenibilidad en el Tema 5. El criterio 2.1 habla del primero; el criterio 2.2, del segundo. Un producto puede estar en plena madurez comercial y ser un desastre ambiental.</div>
+
+        <div class="ti1-curio"><strong>Obsolescencia: tres clases distintas.</strong> Un producto puede quedar obsoleto porque se rompe y no se puede reparar (<em>obsolescencia funcional</em>), porque aparece algo mejor (<em>tecnológica</em>) o porque deja de parecer deseable aunque funcione (<em>percibida</em>). Solo la primera es un problema de ingeniería, y es la única que el diseñador controla del todo: piezas de repuesto disponibles, tornillos accesibles y esquemas publicados alargan la vida útil más que cualquier campaña.</div>
+      </section>
+
+      <section aria-labelledby="deming">
+        <h2 id="deming">3. Mejora continua: el ciclo de Deming</h2>
+        <p>Mejorar un producto no consiste en cambiar cosas que parecen mejorables, sino en repetir un ciclo corto de cuatro pasos sobre <strong>un</strong> problema medido. Ese ciclo se conoce como <strong>PDCA</strong> o <strong>ciclo de Deming</strong>: planificar, hacer, verificar y actuar.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Planificar (<em>Plan</em>)</div><p>Definir el problema con un dato, fijar el objetivo con un número y proponer una causa probable. «El 30 % de los kits de la preserie riegan de más; queremos bajar al 5 %; sospechamos de la calibración de la sonda.»</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Hacer (<em>Do</em>)</div><p>Aplicar el cambio <strong>a pequeña escala</strong>: calibrar cinco unidades con el procedimiento nuevo, no las cien.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Verificar (<em>Check</em>)</div><p>Medir el resultado con el mismo indicador de partida y comparar. Si no hay medida previa, no hay forma de saber si mejoró.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Actuar (<em>Act</em>)</div><p>Si funcionó, normalizar: incorporarlo al procedimiento, al plano y al manual. Si no funcionó, descartar la causa y volver a planificar con otra hipótesis.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué es un ciclo y no una lista</strong>El cuarto paso vuelve al primero. La mejora continua no busca el producto perfecto, sino que cada vuelta deje el proceso un poco mejor <strong>y documentado</strong>. Si una mejora no acaba escrita en el procedimiento, se pierde en cuanto cambie la persona que la descubrió.</div>
+
+        <h3>Un plan de mejora del KR-1</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: plan de mejora con indicador, objetivo y responsable">
+          <table>
+            <caption>Plan de mejora: tres acciones con indicador y objetivo</caption>
+            <thead><tr><th scope="col">Problema medido</th><th scope="col">Acción</th><th scope="col">Indicador</th><th scope="col">Objetivo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">3 de 10 kits riegan de más.</th><td>Procedimiento de calibración de la sonda en seco y en saturación.</td><td>% de kits fuera del umbral de riego.</td><td>Menos del 5 % en el siguiente lote.</td></tr>
+              <tr><th scope="row">El montaje tarda 42 min de media.</th><td>Preformar los cables y numerar los conectores.</td><td>Minutos de montaje por unidad.</td><td>Menos de 25 min.</td></tr>
+              <tr><th scope="row">2 devoluciones por entrada de agua.</th><td>Junta en la tapa y prensaestopas en el paso de cables.</td><td>Devoluciones por cada 100 unidades.</td><td>Cero en tres meses.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ti1-think"><strong>Piensa:</strong> las tres acciones se pueden aplicar a la vez, y es tentador hacerlo. Pero si después el indicador de devoluciones mejora, ¿fue por la junta, por el prensaestopas o porque el lote nuevo de cajas venía mejor impreso? Cambiar una cosa a la vez es más lento y es la única forma de saber qué funcionó.</div>
+      </section>
+
+      <section aria-labelledby="metrologia">
+        <h2 id="metrologia">4. Metrología: medir con criterio</h2>
+        <p>La <strong>metrología</strong> es la ciencia de la medida. Aparece en el currículo junto a la normalización y al control de calidad porque las tres responden a la misma necesidad: que dos personas distintas, en dos sitios distintos, obtengan el mismo resultado y se entiendan.</p>
+
+        <h3>Magnitudes, unidades y patrones</h3>
+        <p>Medir es comparar una magnitud con una unidad. Para que esa comparación signifique lo mismo en todas partes, el Sistema Internacional de Unidades define siete unidades básicas a partir de constantes físicas, y no de objetos: desde 2019, el kilogramo se define a partir de la constante de Planck en lugar de un cilindro guardado en París.<sup><a href="#fuente_1">[1]</a></sup> En España, el Centro Español de Metrología custodia los patrones nacionales y da soporte a la cadena de calibración que llega hasta el calibre del taller.<sup><a href="#fuente_2">[2]</a></sup></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: instrumentos de medida, resolución y uso">
+          <table>
+            <caption>Instrumentos que se usarán a lo largo del curso</caption>
+            <thead><tr><th scope="col">Instrumento</th><th scope="col">Magnitud</th><th scope="col">Resolución típica</th><th scope="col">Cuándo usarlo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Regla graduada</th><td>Longitud</td><td>1 mm</td><td>Croquis, replanteo y comprobaciones gruesas.</td></tr>
+              <tr><th scope="row">Calibre (pie de rey)</th><td>Longitud, diámetro, profundidad</td><td>0,05 mm o 0,01 mm</td><td>Cotas de piezas mecanizadas o impresas.</td></tr>
+              <tr><th scope="row">Micrómetro</th><td>Longitud</td><td>0,01 mm o 0,001 mm</td><td>Espesores y ajustes finos.</td></tr>
+              <tr><th scope="row">Polímetro</th><td>Tensión, intensidad, resistencia</td><td>Según escala</td><td>Circuitos del Bloque D; hay que elegir escala antes de medir.</td></tr>
+              <tr><th scope="row">Balanza</th><td>Masa</td><td>0,1 g o 0,01 g</td><td>Consumo de material en fabricación y estudios de coste.</td></tr>
+              <tr><th scope="row">Cronómetro</th><td>Tiempo</td><td>0,01 s</td><td>Tiempos de respuesta del sistema de control.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Resolución no es exactitud.</strong> Un polímetro barato puede mostrar 4,8231 V —cuatro decimales de resolución— y equivocarse en dos décimas. La resolución es cuántas cifras muestra; la exactitud, cuánto se aproxima al valor verdadero. Copiar todos los dígitos de la pantalla sin conocer la exactitud del aparato es el error de medida más frecuente en un laboratorio escolar.</div>
+
+        <h3>Calibración y trazabilidad metrológica</h3>
+        <p><strong>Calibrar</strong> es comparar lo que marca un instrumento con un patrón de referencia mejor conocido, para saber cuánto se desvía. Si ese patrón se ha comparado a su vez con otro superior, y así hasta llegar al patrón nacional, se dice que la medida tiene <strong>trazabilidad metrológica</strong>. Sin esa cadena, un valor medido es un número sin aval: no se puede usar para aceptar o rechazar una pieza ni para reclamar a un proveedor.</p>
+      </section>
+
+      <section aria-labelledby="tolerancias">
+        <h2 id="tolerancias">5. Tolerancias e incertidumbre</h2>
+        <p>Ninguna pieza sale con la medida exacta del plano, y ningún instrumento da el valor exacto de lo que mide. La ingeniería no resuelve esto persiguiendo la perfección, sino declarando de antemano cuánta desviación se admite.</p>
+
+        <p class="ti1-formula">cota = 40,0 ± 0,2 mm <span class="ti1-formula-leyenda">→ se acepta cualquier valor entre 39,8 mm y 40,2 mm</span></p>
+
+        <p>La <strong>tolerancia</strong> es esa franja admisible, y la fija el diseñador: es una decisión, no un descuido. Estrecharla encarece la fabricación; ampliarla puede impedir que las piezas encajen. La <strong>incertidumbre de medida</strong> es algo distinto: es la franja de duda del resultado obtenido con nuestro instrumento y nuestro procedimiento. Las dos se dibujan sobre la misma escala, y ahí surge una consecuencia que sorprende:</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de tolerancia, medida e incertidumbre">
+          <img src="assets/tema02_tolerancias.svg" alt="Escala de una cota de 40 milímetros con tolerancia de más menos dos décimas. La pieza A, 39,95 más menos 0,03 milímetros, queda entera dentro de la banda y se acepta. La pieza B, 40,19 más menos 0,05 milímetros, cruza el límite superior y su medida no permite decidir.">
+          <figcaption>La pieza B mide 40,19 mm, dentro de tolerancia. Pero su intervalo de incertidumbre cruza el límite: con esta medida no se puede afirmar que cumpla. Hace falta un instrumento mejor o aceptar el riesgo, y decirlo.</figcaption>
+        </figure>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Regla práctica</strong>Un instrumento sirve para verificar una tolerancia cuando su incertidumbre es del orden de la <strong>décima parte</strong> de la franja admitida. Para una tolerancia de ±0,2 mm hace falta medir con una incertidumbre de unas 0,02 mm: un calibre de 0,01 mm bien usado, no una regla.</div>
+
+        <h3>Cómo se escribe un resultado de medida</h3>
+        <ul>
+          <li><strong>Con su unidad, siempre.</strong> «12,4» no es un resultado; «12,4 mm» sí.</li>
+          <li><strong>Con su incertidumbre y las cifras coherentes.</strong> Se escribe 39,95 ± 0,03 mm, no 39,9512 ± 0,03 mm: los decimales que la incertidumbre no sostiene no son información.</li>
+          <li><strong>Con su procedimiento.</strong> Instrumento, número de repeticiones y condiciones. Una medida que no se puede repetir no es una medida.</li>
+        </ul>
+        <div class="ti1-think"><strong>Piensa:</strong> si mides la misma pieza cinco veces y obtienes 39,94; 39,96; 39,95; 39,97 y 39,95 mm, la dispersión te da una idea de la incertidumbre. Si la mides cinco veces y obtienes exactamente 39,95 mm siempre, ¿significa que tu medida es perfecta, o que el instrumento no tiene resolución suficiente para ver la dispersión?</div>
+      </section>
+
+      <section aria-labelledby="normalizacion">
+        <h2 id="normalizacion">6. Normalización</h2>
+        <p>Una <strong>norma técnica</strong> es un documento acordado por las partes interesadas de un sector —fabricantes, laboratorios, administraciones, usuarios— que fija requisitos, métodos de ensayo o vocabulario comunes. Su objetivo es que las cosas encajen, se puedan comparar y se puedan comprobar.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: organismos de normalización y su ámbito">
+          <table>
+            <caption>Quién elabora las normas</caption>
+            <thead><tr><th scope="col">Ámbito</th><th scope="col">Organismo</th><th scope="col">Prefijo de la norma</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Internacional</th><td>ISO (general) e IEC (electrotecnia)</td><td>ISO, IEC</td></tr>
+              <tr><th scope="row">Europeo</th><td>CEN, CENELEC y ETSI<sup><a href="#fuente_3">[3]</a></sup></td><td>EN</td></tr>
+              <tr><th scope="row">Español</th><td>UNE, Asociación Española de Normalización<sup><a href="#fuente_4">[4]</a></sup></td><td>UNE</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cuando una norma se adopta en varios niveles, los prefijos se acumulan: <strong>UNE-EN 60529</strong> es la versión española de la norma europea que a su vez recoge la internacional IEC 60529, la que define los grados de protección IP que citaremos al elegir la caja del KR-1.</p>
+
+        <div class="aviso"><strong>Una norma no es una ley</strong>Cumplir una norma técnica es, en principio, voluntario. Se vuelve obligatorio cuando una disposición legal la cita —un reglamento de seguridad, por ejemplo— o cuando un contrato la exige. El <strong>marcado CE</strong> no es un sello de calidad ni lo concede nadie: es la declaración del propio fabricante de que su producto cumple la legislación europea que le aplica.<sup><a href="#fuente_5">[5]</a></sup> Quien lo pone, responde.</div>
+
+        <h3>Qué normaliza una norma</h3>
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Dimensiones e intercambio</h3><p>Roscas, tornillería, conectores y tuberías. Es lo que permite que un tornillo M4 de cualquier marca entre en tu pieza.</p></div>
+          <div class="ti1-card"><h3>Métodos de ensayo</h3><p>Cómo se mide la dureza o la estanqueidad, para que dos laboratorios obtengan lo mismo.</p></div>
+          <div class="ti1-card"><h3>Seguridad</h3><p>Distancias, aislamientos, protecciones y grados IP. Es la parte que más a menudo se convierte en obligatoria.</p></div>
+          <div class="ti1-card"><h3>Vocabulario y símbolos</h3><p>Simbología de esquemas eléctricos, mecánicos y de control: el idioma común de los temas 3, 10 y 17.</p></div>
+        </div>
+        <div class="ti1-curio"><strong>La normalización se nota cuando falta.</strong> Los conectores de carga de los teléfonos móviles convivieron durante años en una docena de formatos incompatibles. Cada cambio de móvil obligaba a tirar cargadores perfectamente útiles. Cuando el mercado no converge por sí solo, acaba llegando una norma o una ley que lo fuerza: la normalización no es solo una comodidad técnica, también es una decisión sobre residuos.</div>
+      </section>
+
+      <section aria-labelledby="calidad">
+        <h2 id="calidad">7. Control de calidad, del diseño a la comercialización</h2>
+        <p>El criterio 2.1 pide planificar y aplicar medidas de control de calidad «en sus distintas etapas, desde el diseño a la comercialización». La palabra clave es <strong>etapas</strong>: un control al final solo sirve para separar lo bueno de lo malo, cuando el dinero ya está gastado.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: controles de calidad por etapa del KR-1">
+          <table>
+            <caption>Qué se controla en cada etapa</caption>
+            <thead><tr><th scope="col">Etapa</th><th scope="col">Control</th><th scope="col">Criterio de aceptación en el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Diseño</th><td>Revisión de requisitos: cada uno con su prueba asociada.</td><td>Ningún requisito sin método de comprobación escrito.</td></tr>
+              <tr><th scope="row">Aprovisionamiento</th><td>Inspección de entrada del material recibido.</td><td>La sonda del lote nuevo mide en el mismo rango que la de referencia.</td></tr>
+              <tr><th scope="row">Fabricación</th><td>Autocontrol durante el proceso, con una plantilla o un útil de verificación.</td><td>Los taladros de la caja pasan el calibre de comprobación.</td></tr>
+              <tr><th scope="row">Montaje</th><td>Comprobación funcional unitaria, unidad por unidad.</td><td>La válvula abre y cierra en menos de 2 s y no gotea en 5 min.</td></tr>
+              <tr><th scope="row">Producto terminado</th><td>Ensayo por muestreo del lote.</td><td>En 5 unidades de cada 50 se comprueba la estanqueidad con agua pulverizada.</td></tr>
+              <tr><th scope="row">Comercialización y uso</th><td>Registro de incidencias y devoluciones; realimentación al diseño.</td><td>Toda devolución genera una entrada en el plan de mejora.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Control frente a aseguramiento</strong><strong>Controlar</strong> la calidad es detectar lo defectuoso. <strong>Asegurarla</strong> es organizar el proceso para que no aparezca: procedimientos escritos, personas formadas, instrumentos calibrados y registros. Los sistemas de gestión de la calidad —como el que describe la norma ISO 9001— formalizan esa segunda idea. Un producto escolar no necesita certificarse, pero sí conviene entender la diferencia: cuanto mejor el aseguramiento, menos falta hace el control.</div>
+
+        <div class="ti1-note"><strong>Todo control tiene un coste, y no controlar también.</strong> Comprobar la estanqueidad de las cien unidades cuesta horas; comprobar cinco cuesta minutos y deja pasar defectos. La decisión no es técnica sino económica: se compara el coste del control con el coste de una devolución, una reparación o un huerto inundado. Lo que no es aceptable es no haber hecho esa cuenta.</div>
+      </section>
+
+      <section aria-labelledby="logistica">
+        <h2 id="logistica">8. Logística, transporte, distribución y trazabilidad</h2>
+        <p>Un producto terminado que está en el almacén no sirve a nadie. La <strong>logística</strong> es la organización del flujo de materiales e información desde los proveedores hasta la persona que usará el producto —y, cada vez más, de vuelta, para reparación o reciclaje.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Aprovisionamiento</div><p>Compra de componentes: plazo de entrega, pedido mínimo y proveedor alternativo. Un solo proveedor es un riesgo de proyecto, no un ahorro.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Almacenamiento</div><p>Espacio, condiciones —humedad, temperatura— y rotación de existencias. Un lote de sondas guardado dos años puede haberse degradado.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Embalaje</div><p>Protege durante el transporte, informa e influye en el coste: un envío se paga por volumen tanto como por peso.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Transporte y distribución</div><p>Elección del medio según coste, plazo, distancia y emisiones; entrega al punto de venta o al domicilio.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Logística inversa</div><p>Devoluciones, reparaciones, repuestos y recogida al final de la vida útil. Es la parte que el diseño suele olvidar.</p></div>
+        </div>
+
+        <h3>Trazabilidad: saber qué hay dentro de cada unidad</h3>
+        <p>La <strong>trazabilidad</strong> es la capacidad de reconstruir el historial de un producto: de qué lote salió cada componente, quién lo montó, qué día y con qué resultado en los controles. Requiere identificar cada unidad —un número de serie o un código— y registrar lo que le va ocurriendo.</p>
+        <div class="ti1-think"><strong>Piensa:</strong> han fallado tres kits y los tres llevaban sondas del mismo lote. Con trazabilidad, sabes cuántos kits más llevan ese lote y a quién avisar; sin ella, tienes que revisar los cien o esperar a que te llamen. La trazabilidad no evita el fallo: acota su alcance. ¿Cuánto trabajo estarías dispuesto a invertir en registrar lotes antes de fabricar?</div>
+      </section>
+
+      <section aria-labelledby="comercializacion">
+        <h2 id="comercializacion">9. Coste, precio, mercado y responsabilidad social</h2>
+        <p>El criterio 1.2 habla de proyectos de productos «viables y socialmente responsables». Viable significa que las cuentas salen; socialmente responsable, que salen sin trasladar el coste a otras personas o al entorno. Las dos cosas se deciden en el diseño, no en la factura.</p>
+
+        <h3>Del coste al precio</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: estructura de coste de una unidad del KR-1 en una serie de cien">
+          <table>
+            <caption>Estimación de coste unitario del KR-1 en una serie de 100 unidades</caption>
+            <thead><tr><th scope="col">Concepto</th><th scope="col">Tipo</th><th scope="col">Cálculo</th><th scope="col">Por unidad</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Componentes electrónicos y válvula</th><td>Variable</td><td>Lista de materiales</td><td>18,40 €</td></tr>
+              <tr><th scope="row">Filamento y consumibles</th><td>Variable</td><td>95 g × 0,024 €/g</td><td>2,28 €</td></tr>
+              <tr><th scope="row">Mano de obra de montaje</th><td>Variable</td><td>25 min × 12 €/h</td><td>5,00 €</td></tr>
+              <tr><th scope="row">Diseño y documentación</th><td>Fijo</td><td>120 h repartidas entre 100 unidades</td><td>9,60 €</td></tr>
+              <tr><th scope="row">Amortización de impresora y utillaje</th><td>Fijo</td><td>800 € entre 100 unidades</td><td>8,00 €</td></tr>
+              <tr><th scope="row">Embalaje y transporte</th><td>Variable</td><td>—</td><td>3,10 €</td></tr>
+              <tr><th scope="row"><strong>Coste unitario total</strong></th><td>—</td><td>—</td><td><strong>46,38 €</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ti1-formula">precio = coste unitario + margen <span class="ti1-formula-leyenda">y el margen debe cubrir garantía, devoluciones e imprevistos</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El efecto de la serie</strong>Los costes fijos —diseño, utillaje— se reparten entre las unidades fabricadas. En la tabla, 17,60 € de los 46,38 € son coste fijo repartido. Con 500 unidades en lugar de 100, esos 17,60 € bajan a 3,52 € y el coste unitario cae a 32,30 €. Esta es la razón de fondo por la que el coste unitario desciende en la etapa de crecimiento del ciclo de vida.</div>
+
+        <h3>Mercado y responsabilidad</h3>
+        <ul>
+          <li><strong>Conocer a quién va dirigido.</strong> Un kit para un instituto y otro para un balcón particular no comparten precio, embalaje ni manual, aunque el circuito sea el mismo.</li>
+          <li><strong>Comparar con lo que ya existe.</strong> Si un producto comercial equivalente cuesta 35 €, el argumento del KR-1 no puede ser el precio: será la reparabilidad, la documentación abierta o la adaptación al huerto escolar.</li>
+          <li><strong>Responsabilidad en la cadena.</strong> Un componente barato puede serlo por condiciones laborales o ambientales que nadie paga en la factura. Elegir proveedor es una decisión técnica <em>y</em> ética.</li>
+          <li><strong>Responsabilidad en el uso y en el final.</strong> Instrucciones claras, advertencias de seguridad reales, repuestos disponibles y desmontaje posible al final de la vida útil.</li>
+        </ul>
+        <div class="ti1-note"><strong>Lo que no aparece en la tabla de costes.</strong> El agua que el KR-1 ahorra cada verano, el tiempo de las personas que ya no tienen que venir a regar y los residuos que genera cuando se tira son consecuencias reales del producto y no figuran en su coste. El Tema 5 y el Bloque G las incorporan al análisis; aquí basta con no olvidar que existen.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra pasando de «funciona» a «puedo fabricarlo, medirlo, justificar su precio y responder por él».</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 2">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Ciclo de vida y mejora</th><td>Que sitúas el producto en una etapa y propones una mejora medida, no una ocurrencia.</td><td>Etapa razonada del producto, un ciclo PDCA completo con indicador, objetivo y resultado medido.</td></tr>
+              <tr><th scope="row">Medir y tolerar</th><td>Que eliges el instrumento adecuado, expresas el resultado con unidad e incertidumbre y decides sobre una tolerancia.</td><td>Acta de medidas con instrumento y repeticiones, una cota con tolerancia justificada y un caso de decisión indeterminada.</td></tr>
+              <tr><th scope="row">Normalizar y controlar</th><td>Que citas al menos una norma aplicable a tu producto y planificas controles en varias etapas.</td><td>Norma citada por código y año, tabla de controles por etapa con criterio de aceptación.</td></tr>
+              <tr><th scope="row">Comercializar con responsabilidad</th><td>Que estimas el coste unitario, distingues fijo de variable y razonas el precio y los impactos.</td><td>Lista de materiales valorada, cálculo del efecto de la serie y un párrafo sobre impacto social y ambiental.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba de realidad: entrega a otro equipo tus planos, tu lista de materiales y tu procedimiento de montaje, y que fabriquen una unidad sin preguntarte nada. Lo que tengan que preguntarte es exactamente lo que falta en tu documentación.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Amortización</dt><dd>Reparto del coste de un equipo o utillaje entre las unidades que contribuye a producir.</dd>
+          <dt>Aseguramiento de la calidad</dt><dd>Conjunto de medidas organizativas que evitan que aparezcan defectos, frente al control, que los detecta.</dd>
+          <dt>Calibración</dt><dd>Comparación de lo que indica un instrumento con un patrón de referencia para conocer su desviación.</dd>
+          <dt>Ciclo de Deming (PDCA)</dt><dd>Ciclo de mejora continua en cuatro pasos: planificar, hacer, verificar y actuar.</dd>
+          <dt>Ciclo de vida comercial</dt><dd>Evolución de las ventas de un producto en cuatro etapas: introducción, crecimiento, madurez y declive.</dd>
+          <dt>Coste fijo</dt><dd>Coste que no depende del número de unidades producidas y se reparte entre ellas.</dd>
+          <dt>Coste variable</dt><dd>Coste que se repite en cada unidad producida.</dd>
+          <dt>Control de calidad</dt><dd>Comprobación planificada de que un producto o proceso cumple los criterios establecidos.</dd>
+          <dt>Exactitud</dt><dd>Proximidad entre el valor medido y el valor verdadero de la magnitud.</dd>
+          <dt>Incertidumbre de medida</dt><dd>Intervalo dentro del cual se estima que se encuentra el valor verdadero de una magnitud medida.</dd>
+          <dt>Logística</dt><dd>Organización del flujo de materiales e información desde los proveedores hasta el uso y la retirada del producto.</dd>
+          <dt>Logística inversa</dt><dd>Flujo de retorno del producto para devolución, reparación, repuesto o reciclaje.</dd>
+          <dt>Marcado CE</dt><dd>Declaración del fabricante de que su producto cumple la legislación europea aplicable; no es un certificado de calidad.</dd>
+          <dt>Metrología</dt><dd>Ciencia de la medida: magnitudes, unidades, instrumentos, procedimientos e incertidumbre.</dd>
+          <dt>Muestreo</dt><dd>Control realizado sobre una parte del lote, elegida de modo que permita conclusiones sobre el conjunto.</dd>
+          <dt>Norma técnica</dt><dd>Documento consensuado que fija requisitos, métodos de ensayo o vocabulario de aplicación voluntaria.</dd>
+          <dt>Normalización</dt><dd>Actividad de elaborar y difundir normas técnicas para que los productos encajen, se comparen y se comprueben.</dd>
+          <dt>Obsolescencia</dt><dd>Pérdida de utilidad de un producto por avería irreparable, por aparición de algo mejor o por dejar de parecer deseable.</dd>
+          <dt>Preserie</dt><dd>Pequeña producción realizada con el proceso definitivo para medir su dispersión y su coste real antes de fabricar en serie.</dd>
+          <dt>Resolución</dt><dd>Menor variación que un instrumento es capaz de mostrar; no indica por sí sola su exactitud.</dd>
+          <dt>Tolerancia</dt><dd>Franja de desviación admitida respecto a una cota nominal, fijada por el diseñador.</dd>
+          <dt>Trazabilidad</dt><dd>Posibilidad de reconstruir el historial de un producto: lotes, operaciones y resultados de control.</dd>
+          <dt>Trazabilidad metrológica</dt><dd>Cadena de calibraciones que une una medida con el patrón nacional o internacional de su unidad.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Un producto es un prototipo que puede repetirse: exige documentación, coste conocido y dispersión acotada.</li>
+          <li>El desarrollo del diseño avanza cerrando grados de libertad —concepto, detalle, fabricación, preserie, producción— y corregir un error cuesta más en cada etapa.</li>
+          <li>El ciclo de vida comercial tiene cuatro etapas y la decisión de rediseñar se toma al final de la madurez, no en el declive.</li>
+          <li>El ciclo de vida comercial no es el ciclo de vida ambiental: el primero mide ventas; el segundo, impacto desde la materia prima al residuo.</li>
+          <li>El ciclo de Deming mejora un problema medido en cuatro pasos y termina normalizando el cambio por escrito.</li>
+          <li>Medir es comparar con una unidad; el Sistema Internacional define las unidades a partir de constantes físicas y una cadena de calibración las lleva hasta el taller.</li>
+          <li>Resolución no es exactitud: un instrumento puede mostrar muchas cifras y equivocarse.</li>
+          <li>La tolerancia es una decisión del diseñador; la incertidumbre, una propiedad de la medida. Si el intervalo de medida cruza el límite de tolerancia, la medida no decide.</li>
+          <li>Una norma técnica es un acuerdo voluntario que se vuelve obligatorio cuando una ley o un contrato la cita; el marcado CE lo declara el propio fabricante.</li>
+          <li>La calidad se controla por etapas, del diseño a la comercialización; asegurarla organizando el proceso es mejor que detectarla al final.</li>
+          <li>La logística abarca aprovisionamiento, almacenamiento, embalaje, transporte y retorno; la trazabilidad permite acotar el alcance de un fallo.</li>
+          <li>El coste unitario suma costes variables y costes fijos repartidos; ampliar la serie reduce el segundo término.</li>
+          <li>Un producto responsable no traslada su coste a las personas ni al entorno, y eso se decide al diseñar.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.bipm.org/es/measurement-units">Oficina Internacional de Pesas y Medidas (BIPM) — Unidades de medida del Sistema Internacional</a>.</li>
+          <li id="fuente_2">[2] <a href="https://www.cem.es/">Centro Español de Metrología</a>. Patrones nacionales, calibración y trazabilidad metrológica.</li>
+          <li id="fuente_3">[3] <a href="https://www.cencenelec.eu/">CEN-CENELEC — Organismos europeos de normalización</a> (en inglés).</li>
+          <li id="fuente_4">[4] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>.</li>
+          <li id="fuente_5">[5] <a href="https://single-market-economy.ec.europa.eu/single-market/ce-marking_en">Comisión Europea — Marcado CE</a> (en inglés).</li>
+          <li id="fuente_6">[6] <a href="https://www.aenor.com/">AENOR — Certificación y evaluación de la conformidad</a>.</li>
+          <li id="fuente_7">[7] <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2022-5521">Real Decreto 243/2022, de 5 de abril</a>. Enseñanzas mínimas del Bachillerato.</li>
+          <li id="fuente_8">[8] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque A y competencia específica 2.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema01.html">← Tema 1</a>
+  <a href="tema03.html">Tema 3 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

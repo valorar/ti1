@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 1 del Bloque A de Tecnología e Ingeniería I: proyectos de I+D+i, técnicas de investigación y referenciación, ideación y Design Thinking, diagramas de Gantt, metodologías Agile, roles de equipo y tratamiento del error.">
+  <title>Tema 1. El proyecto tecnológico: investigación, ideación y gestión · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 01 · Bloque A · Proyectos de investigación y desarrollo</p>
+        <h1>Tema 1. El proyecto tecnológico: investigación, ideación y gestión</h1>
+        <p class="hero-lead">Cómo se plantea un proyecto de I+D+i, cómo se investiga sin fabricar certezas, cómo se generan y se eligen ideas y cómo se organiza el trabajo de un equipo que tiene que entregar.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 1">
+        <strong>Pregunta guía</strong>
+        <p>El huerto del centro se pierde cada verano. ¿Cómo organizaríais un equipo para diseñar, en doce semanas, un sistema de riego automatizado y monitorizado a distancia, sabiendo que nadie del grupo lo ha hecho antes?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#idi">Qué es un proyecto de I+D+i</a></li>
+        <li><a href="#investigacion">Investigar: buscar, seleccionar, interpretar</a></li>
+        <li><a href="#referenciacion">Referenciar y no plagiar</a></li>
+        <li><a href="#ideacion">Ideación y <em>Design Thinking</em></a></li>
+        <li><a href="#planificacion">Planificar: tareas, Gantt e hitos</a></li>
+        <li><a href="#agile">Metodologías ágiles</a></li>
+        <li><a href="#equipo">El equipo: roles y acuerdos</a></li>
+        <li><a href="#actitudes">Iniciativa, perseverancia y error</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">A lo largo de todo el Bloque A seguiremos un mismo proyecto: el <strong>KR-1</strong>, un kit de riego automatizado y monitorizado para el huerto escolar y, más adelante, para huertos urbanos. En este tema lo ponemos en marcha —investigación, ideas y plan de trabajo—; en el Tema 2 lo miraremos como producto con ciclo de vida y calidad; en el Tema 3 lo dibujaremos; y en el Tema 4 lo documentaremos y lo presentaremos. El objeto es un pretexto: el método sirve para cualquier proyecto de ingeniería.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> ante «hay que poner riego automático», la tentación es comprar una electroválvula y empezar a montar. Pero, ¿cuánta agua necesita cada bancal?, ¿quién va a mantener el sistema en agosto?, ¿hay toma de agua y de corriente?, ¿qué pasa si falla el sensor y la válvula queda abierta? Un proyecto de ingeniería se gana o se pierde en las preguntas que se hacen antes de comprar la primera pieza.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>distinguir investigación, desarrollo e innovación, y decir qué resultados cabe esperar de cada una;</li>
+          <li>buscar información técnica, valorar su procedencia y separar el dato de su interpretación;</li>
+          <li>referenciar fuentes con rigor y reconocer qué constituye plagio;</li>
+          <li>generar alternativas con técnicas de ideación y elegir una con criterios explícitos;</li>
+          <li>descomponer un proyecto en tareas, secuenciarlas y representarlas en un diagrama de Gantt con hitos, dependencias y holguras;</li>
+          <li>explicar en qué se diferencia una planificación en cascada de un desarrollo iterativo y qué aportan las metodologías ágiles;</li>
+          <li>priorizar el alcance de una entrega y definir una solución mínima viable;</li>
+          <li>asumir un rol dentro de un equipo, escuchar el razonamiento ajeno y contribuir al bienestar del grupo;</li>
+          <li>tratar el error como información de proyecto y reevaluar una decisión sin vivirlo como fracaso.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="idi">
+        <h2 id="idi">1. Qué es un proyecto de investigación y desarrollo</h2>
+        <p>En el lenguaje corriente, «investigar» significa buscar información y «desarrollar» significa construir algo. En ingeniería, las tres letras de <strong>I+D+i</strong> designan actividades distintas, con objetivos distintos y con resultados que se miden de forma distinta. Conviene separarlas desde el principio, porque de ello depende qué se considera un éxito del proyecto.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: investigación, desarrollo e innovación en el proyecto KR-1">
+          <table>
+            <caption>Las tres actividades de la I+D+i aplicadas al KR-1</caption>
+            <thead>
+              <tr><th scope="col">Actividad</th><th scope="col">Qué persigue</th><th scope="col">En el KR-1</th><th scope="col">Resultado esperado</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><strong>Investigación</strong></th><td>Ampliar el conocimiento disponible, sin una aplicación concreta decidida de antemano.</td><td>Medir cómo varía la humedad del sustrato con la temperatura y el riego en los bancales del centro.</td><td>Datos, gráficas y conclusiones: una respuesta a una pregunta que antes no teníamos.</td></tr>
+              <tr><th scope="row"><strong>Desarrollo</strong></th><td>Aplicar el conocimiento a la creación de un producto, proceso o sistema nuevo o mejorado.</td><td>Diseñar el controlador, el soporte y el programa que abren la válvula cuando hace falta.</td><td>Un prototipo que funciona y su documentación técnica.</td></tr>
+              <tr><th scope="row"><strong>Innovación</strong></th><td>Introducir el resultado en un uso real, de modo que aporte valor a alguien.</td><td>Que el instituto lo adopte, que se mantenga solo en verano y que otro centro pueda replicarlo.</td><td>Una solución en uso, con instrucciones, coste conocido y mantenimiento previsto.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Criterio del dato nuevo</strong>La estadística internacional considera que una actividad es I+D cuando contiene un <strong>elemento apreciable de novedad</strong> y resuelve una <strong>incertidumbre científica o técnica</strong>.<sup><a href="#fuente_1">[1]</a></sup> Montar un kit comercial siguiendo el manual no es I+D. Averiguar cuánto tarda en secarse <em>este</em> sustrato, con <em>este</em> sol, y ajustar el control a esa medida, sí lo es.</div>
+
+        <h3>Las fases y lo que produce cada una</h3>
+        <p>Un proyecto de ingeniería no es una sucesión de tareas sueltas: cada fase termina con un <strong>entregable</strong> que la siguiente necesita. Si una fase no produce nada revisable, es imposible saber si se ha terminado.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Análisis</div><p>Comprender la necesidad, el entorno y las restricciones. <em>Entregable:</em> informe de necesidad con datos del huerto, tomas disponibles y personas implicadas.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Especificación</div><p>Convertir la necesidad en requisitos verificables. <em>Entregable:</em> lista de requisitos priorizados, con su criterio de comprobación.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Diseño</div><p>Decidir la solución: arquitectura, geometría, circuito y programa. <em>Entregable:</em> planos, esquemas y diagrama funcional.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Fabricación</div><p>Construir el prototipo con las técnicas elegidas. <em>Entregable:</em> prototipo físico y lista de materiales con costes reales.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Verificación</div><p>Comprobar requisito por requisito, midiendo. <em>Entregable:</em> informe de pruebas con valores medidos y desviaciones.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Cierre</div><p>Documentar, entregar, formar a quien lo usará y evaluar el propio proyecto. <em>Entregable:</em> memoria, manual y balance de lo aprendido.</p></div>
+        </div>
+
+        <div class="ti1-note"><strong>Ojo con dos palabras que se confunden.</strong> <strong>Verificar</strong> es comprobar que el sistema cumple los requisitos que escribimos («la válvula cierra en menos de 2 s»). <strong>Validar</strong> es comprobar que esos requisitos resolvían de verdad la necesidad («el huerto sobrevive a agosto»). Un proyecto puede quedar perfectamente verificado y, aun así, no servir para nada.</div>
+
+        <div class="ti1-curio"><strong>Del prototipo a la patente.</strong> Cuando un desarrollo aporta una solución técnica nueva, quien lo ha hecho puede proteger la invención mediante una <strong>patente</strong>, que concede un derecho de explotación exclusivo durante un tiempo limitado a cambio de publicar cómo funciona.<sup><a href="#fuente_2">[2]</a></sup> Esa publicación obligatoria explica por qué las bases de datos de patentes son una de las mejores fuentes técnicas gratuitas que existen: contienen descripciones detalladas de millones de soluciones reales.</div>
+      </section>
+
+      <section aria-labelledby="investigacion">
+        <h2 id="investigacion">2. Investigar: buscar, seleccionar e interpretar</h2>
+        <p>El criterio de evaluación 1.1 pide investigar y diseñar proyectos «seleccionando, referenciando e interpretando información relacionada». Son tres verbos distintos y los tres se evalúan. Buscar es fácil; seleccionar exige criterio; interpretar exige entender qué dice el dato y qué no dice.</p>
+
+        <h3>Dónde se busca información técnica</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de fuente técnica, qué aportan y qué precaución exigen">
+          <table>
+            <caption>Tipos de fuente y su valor en un proyecto técnico</caption>
+            <thead><tr><th scope="col">Fuente</th><th scope="col">Qué aporta</th><th scope="col">Ejemplo para el KR-1</th><th scope="col">Precaución</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Hoja de características</strong> (<em>datasheet</em>)</th><td>Los valores garantizados por el fabricante de un componente.</td><td>Tensión de trabajo, consumo y rango del sensor de humedad.</td><td>Los valores «típicos» no son los «máximos»: hay que leer la columna correcta.</td></tr>
+              <tr><th scope="row"><strong>Norma técnica</strong></th><td>Requisitos y métodos de ensayo acordados por un sector.</td><td>Grado de protección IP exigible a una caja instalada a la intemperie.</td><td>Suelen ser de pago; se citan por su código y año.</td></tr>
+              <tr><th scope="row"><strong>Documentación de patentes</strong></th><td>Descripciones técnicas completas de soluciones ya inventadas.</td><td>Mecanismos de dosificación de agua ya patentados.</td><td>Una patente vigente no se puede copiar para explotarla, pero sí estudiar.</td></tr>
+              <tr><th scope="row"><strong>Artículo científico o informe oficial</strong></th><td>Datos obtenidos con método y revisados por otros.</td><td>Necesidades hídricas de un cultivo en clima mediterráneo.</td><td>Comprobar la fecha y si el contexto es comparable al nuestro.</td></tr>
+              <tr><th scope="row"><strong>Medición propia</strong></th><td>El dato de nuestro caso concreto, que nadie más tiene.</td><td>Humedad del bancal a las 8:00 y a las 16:00 durante dos semanas.</td><td>Anotar instrumento, unidades, procedimiento e incertidumbre.</td></tr>
+              <tr><th scope="row"><strong>Foro, vídeo o blog</strong></th><td>Pistas rápidas, trucos de montaje y errores frecuentes.</td><td>Cómo se corroe un sensor de humedad resistivo.</td><td>No es fuente para justificar una decisión: sirve para orientar la búsqueda.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Seleccionar: cuatro preguntas antes de dar por buena una fuente</h3>
+        <ul>
+          <li><strong>¿Quién lo firma?</strong> Una persona u organización identificable, con competencia en el asunto y responsabilidad sobre lo que publica.</li>
+          <li><strong>¿Cuándo se publicó?</strong> En tecnología, cinco años pueden dejar obsoleto un componente, un protocolo o un precio.</li>
+          <li><strong>¿Con qué intención?</strong> Informar, enseñar, normalizar o vender. Un catálogo comercial es una fuente legítima para conocer especificaciones y precios, y una fuente sesgada para comparar alternativas.</li>
+          <li><strong>¿Se puede contrastar?</strong> Si dos fuentes independientes coinciden, la confianza aumenta. Si una cifra solo aparece copiada de sitio en sitio sin origen, es una cifra huérfana.</li>
+        </ul>
+
+        <div class="ti1-note"><strong>La fuente cero.</strong> Un asistente de inteligencia artificial puede ayudarte a entender un concepto o a ordenar un texto, pero <strong>no es una fuente</strong>: no se puede citar, no garantiza la cifra que da y no responde de ella. Si te propone un dato, el trabajo consiste en ir a buscar quién lo publicó de verdad. Lo mismo vale para un resumen de un compañero: es una ayuda, no una referencia.</div>
+
+        <h3>Interpretar: el dato, su unidad y su límite</h3>
+        <p>Interpretar es responder a «¿qué puedo afirmar con esto?». Tres errores aparecen sin falta en los primeros proyectos:</p>
+        <div class="comparacion">
+          <div><h3>Confundir dato e interpretación</h3><p>«El sensor marca 430» es un dato. «El sustrato está seco» es una interpretación, y depende de la calibración. El informe debe distinguir las dos cosas.</p></div>
+          <div><h3>Extrapolar sin base</h3><p>Dos días de medidas en marzo no permiten decidir el riego de agosto. Se puede decidir con ellas, pero declarando el margen de duda.</p></div>
+          <div><h3>Perder la unidad</h3><p>Un valor sin unidad no es información. «Consume 250» puede ser mA, mW o mL de agua por minuto, y cambia por completo el diseño.</p></div>
+        </div>
+        <div class="ti1-think"><strong>Piensa:</strong> el fabricante del sensor indica un consumo «típico» de 5 mA y un «máximo» de 35 mA. Si dimensionas la batería con el valor típico y el sensor trabaja en el peor caso, el sistema se apagará una noche cualquiera. ¿Con qué valor dimensionarías tú, y qué escribirías en la memoria para justificarlo?</div>
+      </section>
+
+      <section aria-labelledby="referenciacion">
+        <h2 id="referenciacion">3. Referenciar y no plagiar</h2>
+        <p>Referenciar es indicar de dónde procede cada afirmación que no es tuya, de modo que otra persona pueda ir a comprobarla. No es un trámite burocrático: es lo que convierte una opinión en un argumento y lo que permite que un tercero repita tu trabajo. En ingeniería tiene además un efecto práctico inmediato: cuando el prototipo no funciona, las referencias son el mapa que te dice dónde volver a mirar.</p>
+
+        <h3>Qué debe llevar una referencia</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elementos de una referencia según el tipo de documento">
+          <table>
+            <caption>Elementos mínimos de una referencia</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Elementos</th><th scope="col">Ejemplo abreviado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Página web</th><td>Autoría, título, entidad responsable, dirección y fecha de consulta.</td><td>Design Council. <em>The Double Diamond</em>. designcouncil.org.uk [consulta: 12-09-2026].</td></tr>
+              <tr><th scope="row">Hoja de características</th><td>Fabricante, referencia exacta del componente, revisión del documento y año.</td><td>Espressif Systems. <em>ESP32 Series Datasheet</em>, v4.4, 2024.</td></tr>
+              <tr><th scope="row">Norma</th><td>Organismo, código completo y año de la versión.</td><td>UNE-EN 60529:1993 «Grados de protección IP».</td></tr>
+              <tr><th scope="row">Norma legal</th><td>Rango, número, fecha, título y boletín de publicación.</td><td>Decreto 64/2022, de 20 de julio (BOCM 26-07-2022).</td></tr>
+              <tr><th scope="row">Medición propia</th><td>Fecha, lugar, instrumento, procedimiento y responsable.</td><td>Medida de humedad, bancal 2, 03-10-2026, sonda capacitiva, equipo B.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Existen estilos normalizados para ordenar esos elementos —la norma ISO 690 y su versión española UNE-ISO 690 son las más usadas en documentación técnica—. Para este curso basta con una regla: <strong>elige un estilo, sé coherente en todo el documento y no omitas nunca la fecha de consulta de un recurso en línea</strong>.</p>
+
+        <div class="aviso"><strong>Qué es plagio</strong>Copiar texto, imágenes, planos o código sin indicar su origen; parafrasear una idea ajena presentándola como propia; y también reutilizar un trabajo entero de otro curso o de otro equipo. Citar la fuente no autoriza a copiar cualquier cosa en cualquier cantidad: un plano o una fotografía tienen además una licencia que hay que respetar. Lo veremos en el Tema 4, al preparar la documentación del proyecto.</div>
+
+        <div class="ti1-curio"><strong>El estado de la técnica.</strong> Antes de conceder una patente, la oficina correspondiente elabora un <em>informe sobre el estado de la técnica</em>: una lista de todo lo publicado que se parece a la invención. Es exactamente lo que hace un buen equipo de proyecto al empezar —averiguar qué se ha hecho ya— y explica por qué en ingeniería «investigar» empieza casi siempre por leer, no por construir.</div>
+      </section>
+
+      <section aria-labelledby="ideacion">
+        <h2 id="ideacion">4. Ideación y <em>Design Thinking</em></h2>
+        <p>Con la necesidad comprendida y los datos en la mano hay que producir alternativas. La trampa habitual es llegar a esta fase con una sola idea —la primera que apareció— y dedicar el resto del proyecto a justificarla. El <em>Design Thinking</em> reúne un conjunto de modos de trabajo centrados en las personas que usarán la solución: comprender, definir, idear, prototipar y probar, empleados con flexibilidad y no como una receta en fila.<sup><a href="#fuente_3">[3]</a></sup></p>
+
+        <h3>Abrir y cerrar: divergencia y convergencia</h3>
+        <p>El modelo del doble diamante del Design Council describe dos movimientos consecutivos de apertura y cierre: primero se explora el problema y se concreta su definición; después se exploran muchas respuestas y se concreta una.<sup><a href="#fuente_4">[4]</a></sup> Las dos mitades necesitan maneras de pensar opuestas, y mezclarlas es la causa más común de que una sesión de ideas no produzca nada.</p>
+        <div class="comparacion">
+          <div><h3>Pensamiento divergente</h3><p>Busca cantidad y variedad. Se aplaza el juicio, se admiten propuestas improbables y se construye sobre las ideas ajenas. Criticar aquí mata la sesión.</p></div>
+          <div><h3>Pensamiento convergente</h3><p>Agrupa, compara y descarta con criterios explícitos: requisitos, coste, tiempo, seguridad y sostenibilidad. Decidir aquí sin criterios escritos es votar por simpatía.</p></div>
+        </div>
+
+        <h3>Cinco técnicas de ideación que funcionan en clase</h3>
+        <ul>
+          <li><strong><em>Brainwriting</em>:</strong> cada persona escribe o dibuja sus propuestas en silencio antes de compartirlas. Evita que la sesión la dominen las dos voces más rápidas.</li>
+          <li><strong>Ideación por funciones:</strong> descomponer el sistema en funciones —medir, decidir, abrir el paso del agua, avisar, alimentarse de energía— y generar alternativas para cada una por separado. Después se combinan.</li>
+          <li><strong>Matriz morfológica:</strong> una tabla con una función por fila y sus alternativas por columna. Cada recorrido por la tabla es una solución candidata distinta, y aparecen combinaciones que nadie habría propuesto entera.</li>
+          <li><strong>Analogía:</strong> preguntar cómo resuelve un problema parecido un gotero de hospital, una cisterna de inodoro o una cafetera. Las soluciones maduras de otro campo son ideas gratis.</li>
+          <li><strong>Hipótesis extrema:</strong> «¿y si no hubiera electricidad?», «¿y si nadie pudiera venir en tres semanas?». No se fabrica el extremo: se extrae el principio que aparece al pensarlo.</li>
+        </ul>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Matriz morfológica del KR-1</strong>Función <em>medir humedad</em>: sonda resistiva · sonda capacitiva · sin sensor, por temporizador. Función <em>abrir el agua</em>: electroválvula · bomba sumergible · gotero por gravedad con servo. Función <em>alimentar</em>: red eléctrica · batería · panel solar. Función <em>avisar</em>: LED local · mensaje al móvil · panel web. Tres, tres, tres y tres opciones dan <strong>81 combinaciones</strong> posibles: la ideación deja de depender de la inspiración y pasa a ser un trabajo sistemático.</div>
+
+        <h3>Cerrar: elegir con una matriz de decisión</h3>
+        <p>Para converger, se puntúa cada alternativa frente a los criterios que importan y se pondera cada criterio según su peso. El resultado no decide por ti, pero obliga a que la decisión sea explicable.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: matriz de decisión ponderada entre tres alternativas del KR-1">
+          <table>
+            <caption>Matriz de decisión ponderada (1 = malo, 5 = muy bueno)</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">Peso</th><th scope="col">A. Temporizador</th><th scope="col">B. Sonda capacitiva + electroválvula</th><th scope="col">C. Gotero por gravedad + servo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Ahorro de agua</th><td>0,30</td><td>2</td><td>5</td><td>4</td></tr>
+              <tr><th scope="row">Fiabilidad en verano</th><td>0,25</td><td>4</td><td>3</td><td>4</td></tr>
+              <tr><th scope="row">Coste del material</th><td>0,20</td><td>5</td><td>3</td><td>4</td></tr>
+              <tr><th scope="row">Valor didáctico</th><td>0,15</td><td>1</td><td>5</td><td>3</td></tr>
+              <tr><th scope="row">Facilidad de mantenimiento</th><td>0,10</td><td>5</td><td>3</td><td>3</td></tr>
+              <tr><th scope="row"><strong>Total ponderado</strong></th><td><strong>1,00</strong></td><td><strong>3,15</strong></td><td><strong>3,85</strong></td><td><strong>3,75</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ti1-think"><strong>Piensa:</strong> B y C quedan a una décima. Una diferencia así no es una victoria: significa que los criterios no discriminan o que faltan datos. ¿Qué harías, elegir B porque «ha ganado» o medir el consumo real de agua de ambas antes de decidir? La matriz sirve para descubrir que hay que seguir investigando, no solo para dar un ganador.</div>
+      </section>
+
+      <section aria-labelledby="planificacion">
+        <h2 id="planificacion">5. Planificar: identificar tareas, secuenciarlas y dibujarlas</h2>
+        <p>Planificar es convertir una intención en un compromiso comprobable. El currículo lo concreta en tres pasos: <strong>identificación de tareas, secuenciación</strong> y <strong>diagramas de Gantt con seguimiento</strong>. Se hacen en ese orden, y saltarse el primero es la causa habitual de que un proyecto escolar se entregue a medias.</p>
+
+        <h3>Identificar: descomponer hasta poder estimar</h3>
+        <p>Una tarea está bien definida cuando tiene un <strong>responsable</strong>, un <strong>entregable</strong> y una <strong>duración estimable</strong>. «Hacer el circuito» no cumple ninguna de las tres. «Montar y medir el divisor de tensión del sensor en placa de pruebas, con acta de medidas» cumple las tres. La regla práctica: si no eres capaz de estimar cuánto durará, la tarea todavía es demasiado grande.</p>
+
+        <h3>Secuenciar: qué depende de qué</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tareas, duración y dependencias del proyecto KR-1">
+          <table>
+            <caption>Tareas, duración y precedencias del KR-1</caption>
+            <thead><tr><th scope="col">#</th><th scope="col">Tarea</th><th scope="col">Duración</th><th scope="col">Depende de</th><th scope="col">Entregable</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>Análisis de la necesidad y del entorno</td><td>2 semanas</td><td>—</td><td>Informe de necesidad</td></tr>
+              <tr><th scope="row">2</th><td>Búsqueda, selección y referenciación de información</td><td>2 semanas</td><td>1 (parcial)</td><td>Dosier de fuentes</td></tr>
+              <tr><th scope="row">3</th><td>Especificación de requisitos</td><td>1 semana</td><td>2</td><td>Lista de requisitos priorizada</td></tr>
+              <tr><th scope="row">4</th><td>Diseño CAD del soporte y de la caja</td><td>2 semanas</td><td>3</td><td>Planos y modelo 3D</td></tr>
+              <tr><th scope="row">5</th><td>Circuito de control y programa</td><td>3 semanas</td><td>3</td><td>Esquema y programa probado</td></tr>
+              <tr><th scope="row">6</th><td>Fabricación del prototipo</td><td>1 semana</td><td>4 y 5</td><td>Prototipo y lista de materiales</td></tr>
+              <tr><th scope="row">7</th><td>Pruebas, medida y ajuste</td><td>2 semanas</td><td>6</td><td>Informe de pruebas</td></tr>
+              <tr><th scope="row">8</th><td>Documentación y presentación</td><td>2 semanas</td><td>7</td><td>Memoria y presentación</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Dibujar: el diagrama de Gantt</h3>
+        <p>Un diagrama de Gantt coloca las tareas en filas y el tiempo en columnas, de modo que la longitud de cada barra es su duración y su posición, su fecha. Añadiendo las dependencias se ve de un golpe de vista qué tareas pueden retrasarse sin daño y qué tareas arrastran a todo el proyecto.</p>
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama de Gantt desplazable del proyecto KR-1">
+          <img src="assets/tema01_gantt.svg" alt="Diagrama de Gantt de doce semanas con ocho tareas. El camino crítico recorre análisis, búsqueda de información, requisitos, circuito y programa, fabricación, pruebas y documentación. El diseño CAD del soporte tiene una semana de holgura. Hay un hito de requisitos aprobados al final de la semana cuatro y un hito de entrega al final de la semana doce.">
+          <figcaption>Las barras oscuras forman el camino crítico: cualquier retraso en ellas retrasa la entrega. El diseño CAD tiene una semana de holgura, así que un retraso ahí no mueve el hito final.</figcaption>
+        </figure>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Tres conceptos que se leen en el diagrama</strong><strong>Hito:</strong> fecha sin duración en la que se comprueba algo y se decide seguir o rectificar. <strong>Camino crítico:</strong> la cadena de tareas dependientes más larga; marca la duración mínima del proyecto. <strong>Holgura:</strong> el tiempo que una tarea puede retrasarse sin mover la entrega. Las tareas del camino crítico tienen holgura cero, y son las que hay que vigilar cada semana.</div>
+
+        <div class="ti1-note"><strong>El plan sirve para detectar desvíos, no para adivinar el futuro.</strong> Ninguna estimación de doce semanas acierta. Lo valioso del Gantt no es la predicción, sino que al final de la semana cinco puedas ver que la tarea 5 va con tres días de retraso <em>y que está en el camino crítico</em>, con tiempo para reaccionar. Un plan que no se revisa cada semana es un dibujo, no una herramienta.</div>
+      </section>
+
+      <section aria-labelledby="agile">
+        <h2 id="agile">6. Metodologías ágiles</h2>
+        <p>El Gantt supone que se puede definir todo al principio y ejecutarlo después. Eso funciona cuando se sabe lo que hay que hacer —construir un muro— y falla cuando hay incertidumbre técnica, que es la situación normal en I+D. Las <strong>metodologías ágiles</strong> nacieron para eso: en lugar de una entrega al final, muchas entregas pequeñas, cada una probada con quien va a usarla.</p>
+
+        <div class="comparacion">
+          <div><h3>Planificación en cascada</h3><p>Fases completas y consecutivas, una entrega final. Bueno cuando los requisitos son estables. Riesgo: el error se descubre al final, cuando corregirlo cuesta todo el proyecto.</p></div>
+          <div><h3>Desarrollo iterativo y ágil</h3><p>Ciclos cortos que terminan en algo que funciona, aunque incompleto. Bueno cuando hay que aprender mientras se construye. Riesgo: sin disciplina de cierre, se convierte en improvisar.</p></div>
+        </div>
+
+        <p>El texto que dio nombre al movimiento, el <em>Manifiesto por el desarrollo ágil de software</em>, se resume en cuatro preferencias: las personas y su interacción sobre los procesos; el producto que funciona sobre la documentación exhaustiva; la colaboración con el cliente sobre la negociación del contrato; y la respuesta al cambio sobre el seguimiento de un plan.<sup><a href="#fuente_5">[5]</a></sup> Obsérvese que dice «sobre», no «en lugar de»: la documentación y el plan siguen siendo necesarios.</p>
+
+        <h3>Cómo se organiza una iteración</h3>
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Pila de trabajo</div><p>Lista única y ordenada de todo lo que falta, escrita en términos de valor para quien usará el sistema: «que avise al móvil si el depósito se vacía».</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Planificación</div><p>El equipo toma de la pila lo que se compromete a terminar en esta iteración —dos o tres semanas— y no más.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Ejecución y seguimiento</div><p>Reunión breve y diaria o semanal: qué he terminado, qué voy a hacer, qué me bloquea. El tablero con columnas <em>por hacer</em>, <em>en curso</em> y <em>hecho</em> hace visible el trabajo.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Revisión</div><p>Se muestra lo que funciona a quien lo va a usar —el profesorado del huerto— y se recoge lo que dice. Aquí se descubre lo que ninguna reunión interna habría descubierto.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Retrospectiva</div><p>El equipo revisa su propia forma de trabajar y elige <strong>una</strong> mejora concreta para la iteración siguiente. Una, no diez.</p></div>
+        </div>
+        <p>Los marcos ágiles más extendidos, como Scrum, formalizan estos elementos con roles y reuniones definidas.<sup><a href="#fuente_6">[6]</a></sup> En un proyecto de aula basta con conservar lo esencial: una pila ordenada, iteraciones con fecha, un tablero visible y una retrospectiva honesta.</p>
+
+        <h3>Priorizar: qué entra en la primera versión</h3>
+        <p>Si todo es importante, nada se termina. Una técnica sencilla de priorización clasifica cada requisito en cuatro grupos —imprescindible, importante, deseable y descartado por ahora—, con la condición de que el primer grupo no supere la mitad del esfuerzo disponible.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: priorización del alcance del KR-1">
+          <table>
+            <caption>Priorización del alcance del KR-1</caption>
+            <thead><tr><th scope="col">Prioridad</th><th scope="col">Requisito</th><th scope="col">Por qué</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Imprescindible</strong></th><td>Regar según la humedad medida y cerrar el paso del agua si el sensor falla.</td><td>Sin esto no hay producto, y un fallo abierto inunda el huerto.</td></tr>
+              <tr><th scope="row"><strong>Importante</strong></th><td>Registrar las lecturas para poder revisarlas después.</td><td>Necesario para ajustar el sistema, pero el riego funciona sin ello.</td></tr>
+              <tr><th scope="row"><strong>Deseable</strong></th><td>Consultar el estado del huerto desde el móvil.</td><td>Aporta mucho valor percibido; entra si sobra tiempo en la iteración 3.</td></tr>
+              <tr><th scope="row"><strong>Por ahora, no</strong></th><td>Predecir el riego con datos meteorológicos.</td><td>Interesante y fuera de alcance en doce semanas. Se anota para el futuro.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Solución mínima viable</strong>Es la versión más pequeña que ya resuelve la necesidad y puede probarse de verdad: en el KR-1, un sensor, una válvula y un programa que riega cuando el sustrato está seco. Ni pantalla, ni carcasa bonita, ni aviso al móvil. Sirve para aprender pronto lo que de otro modo se aprendería tarde. Una maqueta que no riega no es una solución mínima viable: es una maqueta.</div>
+      </section>
+
+      <section aria-labelledby="equipo">
+        <h2 id="equipo">7. El equipo: roles, escucha y acuerdos</h2>
+        <p>El criterio 1.3 no evalúa la simpatía del grupo: evalúa colaborar «escuchando el razonamiento de los demás, aportando al equipo a través del rol asignado y fomentando el bienestar grupal y las relaciones saludables e inclusivas». Son tres conductas observables, y las tres se aprenden.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: roles de un equipo de proyecto y sus responsabilidades">
+          <table>
+            <caption>Roles rotatorios en un equipo de cuatro o cinco personas</caption>
+            <thead><tr><th scope="col">Rol</th><th scope="col">De qué responde</th><th scope="col">Qué entrega cada semana</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Coordinación</strong></th><td>Que el plan esté actualizado y que los bloqueos se resuelvan o se comuniquen.</td><td>Tablero al día y lista de bloqueos.</td></tr>
+              <tr><th scope="row"><strong>Documentación</strong></th><td>Que lo decidido quede escrito con sus razones y sus fuentes.</td><td>Acta breve de decisiones y dosier de fuentes.</td></tr>
+              <tr><th scope="row"><strong>Diseño técnico</strong></th><td>Que los planos, esquemas y modelos sean coherentes entre sí.</td><td>Versión fechada de planos y esquemas.</td></tr>
+              <tr><th scope="row"><strong>Fabricación y ensayo</strong></th><td>Que el prototipo se construya con seguridad y que las medidas se anoten.</td><td>Registro de montaje y acta de medidas.</td></tr>
+              <tr><th scope="row"><strong>Calidad</strong></th><td>Que cada requisito tenga una prueba y que se compruebe de verdad.</td><td>Tabla de requisitos con su estado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Los roles rotan.</strong> Si quien dibuja bien dibuja siempre y quien escribe bien escribe siempre, el equipo entrega más y aprende menos. Rotar cada iteración cuesta eficiencia a corto plazo y es la razón de ser de un proyecto escolar.</div>
+
+        <h3>Escuchar el razonamiento, no solo la conclusión</h3>
+        <p>En una discusión técnica lo que importa no es qué defiende cada cual, sino por qué. Dos hábitos cambian por completo la calidad de las decisiones de un equipo:</p>
+        <ul>
+          <li><strong>Reformular antes de responder:</strong> «entiendo que prefieres la sonda capacitiva porque la resistiva se corroe, ¿es eso?». Si la reformulación es correcta, la discusión avanza; si no, acabas de evitar media hora de malentendido.</li>
+          <li><strong>Separar la idea de quien la propone:</strong> se descartan propuestas, no personas. Y quien propone una alternativa no está atacando a nadie: está haciendo su trabajo.</li>
+        </ul>
+
+        <div class="ti1-curio"><strong>El equipo que se atreve a decir que algo va mal.</strong> La investigación sobre equipos eficaces señala la <em>seguridad psicológica</em> —la confianza en que plantear una duda o un error no traerá represalias— como uno de los factores que mejor predicen el rendimiento de un grupo. Tiene una consecuencia muy concreta en ingeniería: en un equipo donde nadie se atreve a decir «creo que esto no va a funcionar», el fallo no desaparece; solo se descubre más tarde y más caro.</div>
+
+        <h3>Acuerdos de equipo: cuatro decisiones que evitan casi todos los conflictos</h3>
+        <ol>
+          <li><strong>Dónde vive la información.</strong> Una única carpeta compartida, con una convención de nombres de archivo y de versiones acordada el primer día.</li>
+          <li><strong>Cómo se decide.</strong> Por consenso razonado y, si no lo hay en quince minutos, con el criterio del rol responsable de ese asunto, dejándolo anotado.</li>
+          <li><strong>Cuándo se responde.</strong> Un compromiso realista de respuesta fuera de clase, para que nadie quede bloqueado un fin de semana entero.</li>
+          <li><strong>Qué se hace si alguien no entrega.</strong> Se habla en la siguiente reunión, se replanifica y se avisa al profesorado si se repite. Ni se tapa ni se reparte el trabajo en silencio.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="actitudes">
+        <h2 id="actitudes">8. Iniciativa, perseverancia y el error como información</h2>
+        <p>El currículo incluye entre los contenidos del bloque el emprendimiento, la perseverancia, la creatividad, la autoconfianza, la iniciativa y «el error y la reevaluación como parte del proceso de aprendizaje y como herramienta para la mejora de los proyectos». No son adornos: son las conductas que distinguen un proyecto que llega a funcionar de uno que se queda a medias.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Emprendimiento</h3><p>Detectar una oportunidad y movilizar recursos para aprovecharla. No significa montar una empresa: significa ser quien dice «esto se puede resolver» y da el primer paso.</p></div>
+          <div class="ti1-card"><h3>Iniciativa</h3><p>Empezar sin que te lo pidan y sin esperar instrucciones completas. En un proyecto, la información nunca está completa: se avanza y se corrige.</p></div>
+          <div class="ti1-card"><h3>Perseverancia</h3><p>Sostener el esfuerzo cuando el prototipo falla por cuarta vez. La mayor parte del trabajo de ingeniería ocurre después del primer intento.</p></div>
+          <div class="ti1-card"><h3>Autoconfianza</h3><p>Confiar en que puedes aprender lo que aún no sabes. Se construye con evidencias pequeñas: un circuito que mide, un programa que arranca.</p></div>
+        </div>
+
+        <h3>Reevaluar: el error como dato de proyecto</h3>
+        <p>Un prototipo que falla no es un accidente: es la respuesta a una pregunta que el equipo había planteado sin saberlo. Convertir ese fallo en información exige tratarlo con método, igual que una medida.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: del fallo a la decisión, con cuatro ejemplos del KR-1">
+          <table>
+            <caption>Del fallo a la decisión</caption>
+            <thead><tr><th scope="col">Qué ocurrió</th><th scope="col">Qué hipótesis cae</th><th scope="col">Qué se decide</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">El sensor da lecturas distintas cada mañana.</th><td>«Una sola medida basta para decidir el riego.»</td><td>Promediar varias lecturas y registrar la hora de cada una.</td></tr>
+              <tr><th scope="row">La válvula no cierra al cortar la alimentación.</th><td>«Si falla la corriente, el sistema queda seguro.»</td><td>Elegir una válvula normalmente cerrada. Requisito de seguridad nuevo.</td></tr>
+              <tr><th scope="row">La caja impresa se deforma al sol.</th><td>«El material del prototipo sirve para la versión final.»</td><td>Revisar el material en el Tema 5 y proteger la caja de la radiación directa.</td></tr>
+              <tr><th scope="row">Nadie sabe usarlo cuando falta el equipo.</th><td>«Con que funcione, basta.»</td><td>Añadir manual de una página al alcance de la entrega.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ti1-think"><strong>Piensa:</strong> el tercer fallo de la tabla no se descubre probando el prototipo en el aula, sino dejándolo una semana al sol. ¿Qué otras condiciones reales de uso —lluvia, polvo, insectos, un balonazo— no aparecerán nunca en una prueba de laboratorio? Diseñar la prueba es parte del diseño del producto.</div>
+        <div class="ti1-note"><strong>Un fallo, un cambio anotado.</strong> La costumbre profesional es sencilla: cada fallo relevante genera una línea en el registro de cambios, con fecha, causa probable y decisión tomada. Cuando llegue el momento de escribir la memoria (Tema 4), esa lista <em>es</em> la historia del proyecto, y es lo que demuestra que hubo ingeniería y no suerte.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema no se demuestra recitando las fases de un proyecto, sino mostrando el rastro que deja un equipo que trabaja con método.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 1">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Investigar y referenciar</th><td>Que has seleccionado fuentes pertinentes, las has interpretado y las has citado de forma que otra persona pueda comprobarlas.</td><td>Dosier de fuentes con autoría y fecha, tabla de datos con unidades e instrumento, distinción explícita entre dato e interpretación.</td></tr>
+              <tr><th scope="row">Idear y decidir</th><td>Que has generado alternativas diversas y has elegido una con criterios escritos, no por descarte perezoso.</td><td>Matriz morfológica, tres alternativas desarrolladas, matriz de decisión ponderada y una frase que explique la elección.</td></tr>
+              <tr><th scope="row">Planificar y seguir</th><td>Que el proyecto tiene tareas con responsable y entregable, un Gantt con hitos y dependencias, y un seguimiento semanal real.</td><td>Tabla de tareas, diagrama de Gantt, tablero de iteración y actas breves con los desvíos detectados.</td></tr>
+              <tr><th scope="row">Colaborar</th><td>Que hay roles asignados y rotados, decisiones registradas y una gestión honesta de los desacuerdos.</td><td>Reparto de roles por iteración, acuerdos de equipo, actas de decisión y retrospectivas con una mejora concreta.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba final antes de entregar: dale tu documentación a alguien de otro equipo y pídele que reconstruya el camino. Si no puede explicar por qué elegisteis la sonda capacitiva, la culpa no es suya.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Camino crítico</dt><dd>Cadena más larga de tareas dependientes de un proyecto; determina su duración mínima y sus tareas no admiten retraso.</dd>
+          <dt>Dependencia</dt><dd>Relación por la que una tarea no puede empezar o terminar hasta que otra alcanza un estado determinado.</dd>
+          <dt>Design Thinking</dt><dd>Conjunto flexible de modos de trabajo centrados en las personas para comprender un problema, definirlo, idear, prototipar y probar.</dd>
+          <dt>Diagrama de Gantt</dt><dd>Representación del plan de un proyecto con las tareas en filas y el tiempo en columnas, donde la longitud de cada barra es su duración.</dd>
+          <dt>Entregable</dt><dd>Resultado concreto y revisable que produce una tarea o una fase.</dd>
+          <dt>Especificación</dt><dd>Documento que recoge los requisitos que la solución debe cumplir y cómo se comprobará cada uno.</dd>
+          <dt>Estado de la técnica</dt><dd>Conjunto de lo ya publicado sobre un problema técnico; se revisa antes de diseñar y antes de conceder una patente.</dd>
+          <dt>Hito</dt><dd>Punto del plan, sin duración, en el que se comprueba un avance y se decide continuar o rectificar.</dd>
+          <dt>Holgura</dt><dd>Tiempo que una tarea puede retrasarse sin afectar a la fecha de entrega del proyecto.</dd>
+          <dt>I+D+i</dt><dd>Investigación, desarrollo e innovación: generar conocimiento nuevo, aplicarlo a una solución y ponerla en uso real.</dd>
+          <dt>Iteración</dt><dd>Ciclo corto de trabajo que termina en un resultado utilizable y en lo aprendido que modifica el ciclo siguiente.</dd>
+          <dt>Matriz de decisión</dt><dd>Tabla que puntúa cada alternativa frente a criterios ponderados para hacer explícita la elección.</dd>
+          <dt>Matriz morfológica</dt><dd>Tabla de funciones y alternativas cuya combinación genera sistemáticamente soluciones candidatas.</dd>
+          <dt>Patente</dt><dd>Derecho de explotación exclusiva de una invención durante un tiempo limitado, concedido a cambio de publicar su descripción.</dd>
+          <dt>Pila de trabajo</dt><dd>Lista única y ordenada de lo que falta por hacer, expresada en términos de valor para quien usará el sistema.</dd>
+          <dt>Plagio</dt><dd>Presentar como propio un texto, imagen, plano, dato o código ajeno, con o sin modificaciones.</dd>
+          <dt>Referencia</dt><dd>Conjunto de datos que identifican una fuente y permiten localizarla y comprobarla.</dd>
+          <dt>Requisito</dt><dd>Condición que la solución debe cumplir, redactada de modo que pueda comprobarse.</dd>
+          <dt>Retrospectiva</dt><dd>Reunión en la que un equipo revisa su forma de trabajar y elige una mejora para la iteración siguiente.</dd>
+          <dt>Solución mínima viable</dt><dd>Versión más reducida que ya satisface la necesidad y permite probarla con personas reales.</dd>
+          <dt>Trazabilidad</dt><dd>Posibilidad de seguir el rastro que une una característica de la solución con su requisito, su necesidad y su evidencia.</dd>
+          <dt>Validación</dt><dd>Comprobación de que la solución responde a la necesidad real.</dd>
+          <dt>Verificación</dt><dd>Comprobación de que la solución cumple los requisitos especificados.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Investigación genera conocimiento, desarrollo lo convierte en una solución e innovación la pone en uso real; se reconoce I+D cuando hay novedad apreciable e incertidumbre técnica que resolver.</li>
+          <li>Cada fase de un proyecto debe terminar en un entregable revisable; sin entregable no se sabe si la fase ha terminado.</li>
+          <li>Verificar es comprobar los requisitos; validar es comprobar que esos requisitos resolvían la necesidad.</li>
+          <li>Investigar son tres verbos distintos: buscar, seleccionar con criterio e interpretar declarando unidades y límites.</li>
+          <li>Referenciar convierte una opinión en un argumento; un dato sin origen comprobable no sostiene una decisión y un texto ajeno sin cita es plagio.</li>
+          <li>La ideación necesita divergir antes de converger: primero cantidad y variedad, después criterios explícitos y ponderados.</li>
+          <li>La matriz morfológica convierte la ideación en trabajo sistemático, y la matriz de decisión obliga a que la elección sea explicable.</li>
+          <li>Planificar es identificar tareas con responsable, entregable y duración; secuenciarlas por dependencias; y representarlas en un Gantt con hitos, camino crítico y holguras.</li>
+          <li>El valor del plan está en detectar desvíos a tiempo, no en acertar la predicción.</li>
+          <li>Las metodologías ágiles responden a la incertidumbre con iteraciones cortas que terminan en algo que funciona, pila de trabajo priorizada, seguimiento visible y retrospectiva.</li>
+          <li>Una solución mínima viable es la versión más pequeña que ya resuelve la necesidad y puede probarse de verdad.</li>
+          <li>Colaborar es asumir un rol, escuchar el razonamiento ajeno y cuidar que el equipo pueda decir en voz alta que algo va mal.</li>
+          <li>El error es información de proyecto: cada fallo relevante invalida una hipótesis y genera una decisión anotada.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Research_and_development_(R_%26_D)">Eurostat — Glosario: investigación y desarrollo (I+D)</a> (en inglés). Definición estadística basada en el Manual de Frascati de la OCDE.</li>
+          <li id="fuente_2">[2] <a href="https://www.oepm.es/es/invenciones/index.html">Oficina Española de Patentes y Marcas — Invenciones: patentes y modelos de utilidad</a>.</li>
+          <li id="fuente_3">[3] <a href="https://dschool.stanford.edu/resources/design-thinking-bootleg">Stanford d.school — Design Thinking Bootleg</a> (en inglés).</li>
+          <li id="fuente_4">[4] <a href="https://www.designcouncil.org.uk/our-resources/the-double-diamond/">Design Council — The Double Diamond</a> (en inglés).</li>
+          <li id="fuente_5">[5] <a href="https://agilemanifesto.org/iso/es/manifesto.html">Manifiesto por el desarrollo ágil de software</a> (versión en español).</li>
+          <li id="fuente_6">[6] <a href="https://scrumguides.org/scrum-guide.html">Schwaber, K. y Sutherland, J. — The Scrum Guide</a> (en inglés; hay traducción al español en el mismo sitio).</li>
+          <li id="fuente_7">[7] <a href="https://pm2.europa.eu/pm2-methodologies/pm2-project-management_en">Comisión Europea — Metodología de gestión de proyectos PM²</a> (en inglés).</li>
+          <li id="fuente_8">[8] <a href="https://www.wipo.int/patents/es/">Organización Mundial de la Propiedad Intelectual — Patentes</a>.</li>
+          <li id="fuente_9">[9] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque A y competencia específica 1.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="index.html">← Índice</a>
+  <a href="tema02.html">Tema 2 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

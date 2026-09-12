@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img" aria-labelledby="t2c_title t2c_desc">
+<title id="t2c_title">Ciclo de vida comercial de un producto</title>
+<desc id="t2c_desc">Curva de ventas frente al tiempo dividida en cuatro etapas. En la introducción las ventas son bajas y crecen despacio; en el crecimiento suben con rapidez; en la madurez se estabilizan en su valor máximo; en el declive descienden. Al final de la madurez se señala el momento de decidir un rediseño o la retirada del producto.</desc>
+<defs><marker id="t2c_arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#46616a"/></marker></defs>
+<rect width="900" height="400" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Ciclo de vida comercial del producto</text>
+
+<g stroke="#386da0" stroke-width="1.5" stroke-dasharray="6 5">
+<path d="M255 60 V330"/><path d="M450 60 V330"/><path d="M680 60 V330"/>
+</g>
+<rect x="80" y="60" width="175" height="270" fill="#eef6f5" opacity=".7"/>
+<rect x="450" y="60" width="230" height="270" fill="#e9f5ee" opacity=".7"/>
+
+<path d="M80 325 C160 320 200 315 255 295 C330 265 390 190 450 140 C500 100 530 92 600 90 C650 89 660 92 680 100 C740 125 800 185 860 240"
+      fill="none" stroke="#167e78" stroke-width="4"/>
+
+<g stroke="#46616a" stroke-width="2" fill="none" marker-end="url(#t2c_arrow)">
+<path d="M80 330 H872"/><path d="M80 330 V52"/>
+</g>
+<text x="866" y="352" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" fill="#46616a">tiempo</text>
+<text x="44" y="60" font-family="system-ui,sans-serif" font-size="13" fill="#46616a" transform="rotate(-90 44 60)" text-anchor="end">ventas</text>
+
+<g font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#18384a" text-anchor="middle">
+<text x="167" y="375">1 · Introducción</text><text x="352" y="375">2 · Crecimiento</text><text x="565" y="375">3 · Madurez</text><text x="770" y="375">4 · Declive</text>
+</g>
+<g font-family="system-ui,sans-serif" font-size="12" fill="#46616a" text-anchor="middle">
+<text x="167" y="393">coste alto, pocas ventas</text><text x="352" y="393">se amplía la producción</text><text x="565" y="393">competencia y ajuste de precio</text><text x="770" y="393">retirada o rediseño</text>
+</g>
+
+<circle cx="600" cy="90" r="6" fill="#e4a83d" stroke="#a9761c" stroke-width="2"/>
+<text x="600" y="74" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#705015">máximo de ventas</text>
+<circle cx="680" cy="100" r="6" fill="#c85c40" stroke="#8f3a24" stroke-width="2"/>
+<text x="700" y="128" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#8f3a24">aquí se decide el rediseño</text>
+</svg>

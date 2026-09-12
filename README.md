@@ -3,7 +3,7 @@
 Materiales de la asignatura Tecnología e Ingeniería I de 1.º de Bachillerato (materia de modalidad, Comunidad de Madrid).
 
 - La web pública para GitHub Pages está en `docs/`.
-- Abre `docs/index.html` para navegar por los temas publicados.
+- Abre `docs/index.html` para navegar por los temas. **Los cuatro temas del Bloque A (1 a 4) están redactados**; los bloques B a G están en preparación.
 - Consulta `programa_tecnologia_ingenieria_1.md` para ver el programa teórico completo de la asignatura (bloques A, B, C, D, E, F y G; temas 1 a 22).
 - Consulta `analisis_y_decision.md` para ver la justificación de la estructura.
 - `generar_indice.py` vuelve a escribir `docs/index.html` a partir de la lista de temas: cada tarjeta enlaza al tema si existe `docs/temaNN.html` y, si no, se muestra como «En preparación».

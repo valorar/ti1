@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="t1g_title t1g_desc">
+<title id="t1g_title">Diagrama de Gantt del proyecto de riego automatizado</title>
+<desc id="t1g_desc">Ocho tareas repartidas en doce semanas. Las barras oscuras forman el camino crítico: análisis, búsqueda de información, requisitos, circuito y programa, fabricación, pruebas y documentación. El diseño CAD del soporte es una tarea con holgura. Dos hitos marcan la aprobación de los requisitos al final de la semana cuatro y la entrega al final de la semana doce.</desc>
+<defs>
+  <marker id="t1g_arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker>
+</defs>
+<rect width="900" height="430" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Diagrama de Gantt del proyecto KR-1 · 12 semanas</text>
+
+<g font-family="system-ui,sans-serif" font-size="11" fill="#58707a" text-anchor="middle">
+<text x="285" y="70">S1</text><text x="335" y="70">S2</text><text x="385" y="70">S3</text><text x="435" y="70">S4</text>
+<text x="485" y="70">S5</text><text x="535" y="70">S6</text><text x="585" y="70">S7</text><text x="635" y="70">S8</text>
+<text x="685" y="70">S9</text><text x="735" y="70">S10</text><text x="785" y="70">S11</text><text x="835" y="70">S12</text>
+</g>
+<g stroke="#d8e0df" stroke-width="1">
+<path d="M260 78 V389"/><path d="M310 78 V389"/><path d="M360 78 V389"/><path d="M410 78 V389"/><path d="M460 78 V389"/><path d="M510 78 V389"/>
+<path d="M560 78 V389"/><path d="M610 78 V389"/><path d="M660 78 V389"/><path d="M710 78 V389"/><path d="M760 78 V389"/><path d="M810 78 V389"/><path d="M860 78 V389"/>
+</g>
+
+<g font-family="system-ui,sans-serif" font-size="13" fill="#17262d">
+<text x="20" y="108">1 · Análisis de la necesidad</text>
+<text x="20" y="146">2 · Búsqueda de información</text>
+<text x="20" y="184">3 · Especificación de requisitos</text>
+<text x="20" y="222">4 · Diseño CAD del soporte</text>
+<text x="20" y="260">5 · Circuito y programa</text>
+<text x="20" y="298">6 · Fabricación del prototipo</text>
+<text x="20" y="336">7 · Pruebas, medida y ajuste</text>
+<text x="20" y="374">8 · Documentación y entrega</text>
+</g>
+
+<g stroke="#1d6a5f" stroke-width="2">
+<rect x="260" y="93" width="100" height="20" rx="6" fill="#2b8c7f"/>
+<rect x="310" y="131" width="100" height="20" rx="6" fill="#2b8c7f"/>
+<rect x="410" y="169" width="50" height="20" rx="6" fill="#2b8c7f"/>
+<rect x="460" y="245" width="150" height="20" rx="6" fill="#2b8c7f"/>
+<rect x="610" y="283" width="50" height="20" rx="6" fill="#2b8c7f"/>
+<rect x="660" y="321" width="100" height="20" rx="6" fill="#2b8c7f"/>
+<rect x="760" y="359" width="100" height="20" rx="6" fill="#2b8c7f"/>
+</g>
+<rect x="460" y="207" width="100" height="20" rx="6" fill="#c3e2e9" stroke="#386da0" stroke-width="2"/>
+<path d="M560 217 H585 V293" fill="none" stroke="#386da0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#t1g_arrow)"/>
+<text x="592" y="238" font-family="system-ui,sans-serif" font-size="11" fill="#386da0">holgura</text>
+
+<g fill="none" stroke="#1a6b7a" stroke-width="2" marker-end="url(#t1g_arrow)">
+<path d="M410 141 V163"/>
+<path d="M460 179 V201"/>
+<path d="M460 189 V239"/>
+<path d="M610 265 V277"/>
+<path d="M660 303 V315"/>
+<path d="M760 341 V353"/>
+</g>
+
+<g>
+<path d="M460 179 l9 -9 l9 9 l-9 9 z" fill="#e4a83d" stroke="#a9761c" stroke-width="2"/>
+<text x="484" y="166" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#705015">H1 requisitos aprobados</text>
+<path d="M860 369 l9 -9 l9 9 l-9 9 z" fill="#e4a83d" stroke="#a9761c" stroke-width="2"/>
+<text x="797" y="394" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#705015">H2 entrega</text>
+</g>
+
+<g font-family="system-ui,sans-serif" font-size="12">
+<rect x="20" y="404" width="14" height="12" rx="3" fill="#2b8c7f" stroke="#1d6a5f" stroke-width="2"/><text x="40" y="414" fill="#46616a">camino crítico</text>
+<rect x="150" y="404" width="14" height="12" rx="3" fill="#c3e2e9" stroke="#386da0" stroke-width="2"/><text x="170" y="414" fill="#46616a">tarea con holgura</text>
+<path d="M300 410 l7 -7 l7 7 l-7 7 z" fill="#e4a83d" stroke="#a9761c" stroke-width="2"/><text x="318" y="414" fill="#46616a">hito</text>
+</g>
+</svg>

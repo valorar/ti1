@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="t3v_title t3v_desc">
+<title id="t3v_title">Vistas acotadas de una escuadra en primer diedro</title>
+<desc id="t3v_desc">Tres vistas de una escuadra en L de 60 por 40 por 30 milímetros y 10 milímetros de espesor. El alzado, un rectángulo de 60 por 40 con la arista del pie a 10 milímetros del borde inferior, ocupa la posición central. El perfil izquierdo, con la forma de L, se coloca a su derecha. La planta, un rectángulo de 60 por 30, se coloca debajo. Líneas de correspondencia discontinuas unen las vistas. A la derecha, un esquema indica dónde se sitúa cada vista en el primer diedro.</desc>
+<defs>
+  <marker id="t3v_a1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#46616a"/></marker>
+  <marker id="t3v_a2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto"><path d="M9,0 L9,6 L0,3 z" fill="#46616a"/></marker>
+</defs>
+<rect width="900" height="430" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Vistas de una escuadra · primer diedro · cotas en mm</text>
+
+<g stroke="#386da0" stroke-width="1" stroke-dasharray="7 5">
+<path d="M130 230 V292"/><path d="M310 230 V292"/><path d="M310 110 H368"/><path d="M310 230 H368"/>
+</g>
+
+<g fill="#e7f3f6" stroke="#18384a" stroke-width="2.5">
+<rect x="130" y="110" width="180" height="120"/>
+<path d="M370 110 H400 V200 H460 V230 H370 Z"/>
+<rect x="130" y="290" width="180" height="90"/>
+</g>
+<g stroke="#18384a" stroke-width="2">
+<path d="M130 200 H310"/><path d="M130 320 H310"/>
+</g>
+
+<g stroke="#46616a" stroke-width="1.2" marker-start="url(#t3v_a2)" marker-end="url(#t3v_a1)">
+<path d="M130 88 H310"/><path d="M370 88 H460"/><path d="M105 110 V230"/><path d="M370 252 H400"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="13" fill="#46616a">
+<text x="220" y="82" text-anchor="middle">60</text>
+<text x="415" y="82" text-anchor="middle">30</text>
+<text x="96" y="174" text-anchor="end">40</text>
+<text x="385" y="270" text-anchor="middle">10</text>
+</g>
+
+<g font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0b6680">
+<text x="220" y="250">Alzado</text>
+<text x="415" y="300">Perfil izquierdo</text>
+<text x="220" y="400">Planta</text>
+</g>
+
+<path d="M540 60 V390" stroke="#d8e0df" stroke-width="2"/>
+<text x="580" y="94" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#18384a">Dónde va cada vista</text>
+<g fill="#eef6f5" stroke="#386da0" stroke-width="1.5" stroke-dasharray="5 4">
+<rect x="580" y="120" width="86" height="66"/><rect x="780" y="120" width="86" height="66"/><rect x="680" y="200" width="86" height="66"/>
+</g>
+<rect x="680" y="120" width="86" height="66" fill="#dff3ef" stroke="#2b8c7f" stroke-width="2.5"/>
+<g font-family="system-ui,sans-serif" font-size="11" fill="#46616a" text-anchor="middle">
+<text x="623" y="150">perfil</text><text x="623" y="164">derecho</text>
+<text x="723" y="150" font-weight="700" fill="#245c49">alzado</text><text x="723" y="164" font-weight="700" fill="#245c49">(vista principal)</text>
+<text x="823" y="150">perfil</text><text x="823" y="164">izquierdo</text>
+<text x="723" y="230">planta</text>
+</g>
+<text x="580" y="300" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">En primer diedro cada vista se dibuja</text>
+<text x="580" y="318" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">al lado <tspan font-weight="700">opuesto</tspan> a aquel desde el que se mira:</text>
+<text x="580" y="336" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">lo que se ve desde la izquierda se coloca</text>
+<text x="580" y="354" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">a la derecha, y lo que se ve desde arriba,</text>
+<text x="580" y="372" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">debajo. Es el sistema habitual en Europa.</text>
+</svg>

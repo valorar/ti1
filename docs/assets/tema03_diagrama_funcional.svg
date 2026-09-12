@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img" aria-labelledby="t3f_title t3f_desc">
+<title id="t3f_title">Diagrama funcional por bloques del sistema de riego KR-1</title>
+<desc id="t3f_desc">La sonda de humedad entrega su lectura al controlador. El controlador recibe también la consigna de humedad y la alimentación eléctrica, y acciona la electroválvula, que da paso al riego por goteo sobre el sustrato. El estado se envía a un panel web de aviso. La humedad del sustrato vuelve a ser medida por la sonda, cerrando el lazo de realimentación.</desc>
+<defs><marker id="t3f_arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker></defs>
+<rect width="900" height="400" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Diagrama funcional del KR-1</text>
+
+<g font-family="system-ui,sans-serif" font-size="13" text-anchor="middle">
+<rect x="250" y="52" width="160" height="48" rx="10" fill="#fff4d9" stroke="#c6922d" stroke-width="2"/>
+<text x="330" y="74" fill="#705015" font-weight="700">Consigna</text><text x="330" y="90" fill="#705015">humedad deseada</text>
+
+<rect x="640" y="52" width="180" height="48" rx="10" fill="#efeffa" stroke="#6869bc" stroke-width="2"/>
+<text x="730" y="74" fill="#383974" font-weight="700">Panel web y aviso</text><text x="730" y="90" fill="#383974">estado y registro</text>
+
+<rect x="50" y="160" width="150" height="66" rx="10" fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5"/>
+<text x="125" y="188" fill="#164d5f" font-weight="700">Sonda</text><text x="125" y="206" fill="#164d5f">de humedad</text>
+
+<rect x="250" y="160" width="160" height="66" rx="10" fill="#dff3ef" stroke="#2b8c7f" stroke-width="3"/>
+<text x="330" y="188" fill="#245c49" font-weight="700">Controlador</text><text x="330" y="206" fill="#245c49">programa de decisión</text>
+
+<rect x="460" y="160" width="150" height="66" rx="10" fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5"/>
+<text x="535" y="188" fill="#164d5f" font-weight="700">Electroválvula</text><text x="535" y="206" fill="#164d5f">paso del agua</text>
+
+<rect x="660" y="160" width="180" height="66" rx="10" fill="#e9f5ee" stroke="#167e78" stroke-width="2.5"/>
+<text x="750" y="188" fill="#245c49" font-weight="700">Riego por goteo</text><text x="750" y="206" fill="#245c49">y sustrato del bancal</text>
+
+<rect x="250" y="292" width="160" height="46" rx="10" fill="#f8faf8" stroke="#58707a" stroke-width="2"/>
+<text x="330" y="321" fill="#46616a">Alimentación eléctrica</text>
+</g>
+
+<g fill="none" stroke="#1a6b7a" stroke-width="2.5" marker-end="url(#t3f_arrow)">
+<path d="M200 193 H244"/>
+<path d="M410 193 H454"/>
+<path d="M610 193 H654"/>
+<path d="M330 100 V154"/>
+<path d="M330 292 V232"/>
+<path d="M390 160 L390 120 H634"/>
+<path d="M750 226 V370 H125 V232"/>
+</g>
+<text x="440" y="362" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#1a6b7a" text-anchor="middle">realimentación: la humedad del sustrato se vuelve a medir</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img" aria-labelledby="t2t_title t2t_desc">
+<title id="t2t_title">Tolerancia, medida e incertidumbre</title>
+<desc id="t2t_desc">Escala de una cota nominal de cuarenta milímetros con una tolerancia de más menos dos décimas. La pieza A mide 39,95 milímetros con una incertidumbre de tres centésimas y su intervalo queda completamente dentro de la banda de tolerancia, por lo que se acepta. La pieza B mide 40,19 milímetros con una incertidumbre de cinco centésimas y su intervalo cruza el límite superior, por lo que la medida no permite afirmar que cumple.</desc>
+<rect width="900" height="300" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Cota 40,0 mm con tolerancia ±0,2 mm</text>
+
+<rect x="300" y="140" width="320" height="60" fill="#dff3ef" stroke="#2b8c7f" stroke-width="2"/>
+<text x="460" y="194" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">banda de tolerancia</text>
+
+<path d="M100 170 H820" stroke="#46616a" stroke-width="2"/>
+<g stroke="#46616a" stroke-width="2">
+<path d="M140 163 V177"/><path d="M300 132 V208"/><path d="M460 160 V180"/><path d="M620 132 V208"/><path d="M780 163 V177"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="12" fill="#46616a" text-anchor="middle">
+<text x="140" y="226">39,6</text><text x="300" y="226">39,8</text><text x="460" y="226">40,0</text><text x="620" y="226">40,2</text><text x="780" y="226">40,4</text>
+<text x="460" y="244" font-weight="700" fill="#18384a">milímetros</text>
+</g>
+<text x="300" y="124" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#245c49">límite inferior</text>
+<text x="620" y="124" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#245c49">límite superior</text>
+
+<g stroke="#167e78" stroke-width="3">
+<path d="M396 96 H444"/><path d="M396 88 V104"/><path d="M444 88 V104"/>
+</g>
+<circle cx="420" cy="96" r="5" fill="#167e78"/>
+<text x="456" y="92" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#14564f">Pieza A: 39,95 ± 0,03 mm → se acepta</text>
+<text x="456" y="110" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">todo el intervalo cae dentro de la banda</text>
+
+<g stroke="#c85c40" stroke-width="3">
+<path d="M572 268 H652"/><path d="M572 260 V276"/><path d="M652 260 V276"/>
+</g>
+<circle cx="612" cy="268" r="5" fill="#c85c40"/>
+<path d="M620 208 V262" stroke="#c85c40" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="100" y="264" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#8f3a24">Pieza B: 40,19 ± 0,05 mm → indeterminada</text>
+<text x="100" y="282" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">el intervalo cruza el límite: la medida no decide</text>
+</svg>

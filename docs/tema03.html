@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 3 del Bloque A de Tecnología e Ingeniería I: expresión gráfica del proyecto, croquis y bocetos, vistas y acotación, esquemas normalizados, diagramas funcionales por bloques y aplicaciones CAD, CAE y CAM.">
+  <title>Tema 3. Expresión gráfica del proyecto: croquis, esquemas y CAD, CAE y CAM · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 03 · Bloque A · Proyectos de investigación y desarrollo</p>
+        <h1>Tema 3. Expresión gráfica del proyecto: croquis, esquemas y CAD, CAE y CAM</h1>
+        <p class="hero-lead">Cómo se representa una solución técnica para que otra persona pueda entenderla, calcularla y fabricarla sin preguntar nada.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 3">
+        <strong>Pregunta guía</strong>
+        <p>Tienes que encargar la caja del KR-1 a un taller que está a 400 km y con el que solo hablarás por correo. ¿Qué documentos gráficos tienes que enviar para que la pieza que te llegue sea exactamente la que imaginas?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#para-que">Para qué se dibuja en ingeniería</a></li>
+        <li><a href="#croquis">Croquis y bocetos a mano alzada</a></li>
+        <li><a href="#vistas">Vistas: el sistema de proyección</a></li>
+        <li><a href="#acotacion">Acotación y escalas</a></li>
+        <li><a href="#esquemas">Esquemas normalizados</a></li>
+        <li><a href="#funcional">Diagramas funcionales</a></li>
+        <li><a href="#cad">CAD: la geometría</a></li>
+        <li><a href="#cae">CAE: la simulación</a></li>
+        <li><a href="#cam">CAM: la fabricación</a></li>
+        <li><a href="#cadena">La cadena completa</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Un proyecto de ingeniería se comunica dibujando. No porque el dibujo sea bonito, sino porque es el único lenguaje capaz de decir, sin ambigüedad, <em>qué forma tiene</em>, <em>cómo se conecta</em> y <em>cómo funciona</em> una solución. En este tema pasaremos por los cuatro registros gráficos que necesita el KR-1 —croquis, vistas acotadas, esquemas y diagrama funcional— y por las tres familias de aplicaciones que el currículo nombra expresamente: CAD, CAE y CAM.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> describe con palabras la forma exacta de la escuadra que sujeta el depósito. Inténtalo de verdad, en dos frases. Después mira el dibujo de la sección 3. Esa diferencia de esfuerzo es la razón de que exista el dibujo técnico.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>elegir el registro gráfico adecuado a cada fase del proyecto y a cada destinatario;</li>
+          <li>levantar un croquis a mano alzada con proporción y cotas legibles;</li>
+          <li>interpretar y dibujar las vistas de una pieza en primer diedro;</li>
+          <li>acotar una pieza sin sobrar ni faltar cotas, y usar escalas normalizadas;</li>
+          <li>leer un esquema eléctrico, electrónico, mecánico, neumático o de control reconociendo su simbología;</li>
+          <li>representar el funcionamiento de un sistema mediante un diagrama funcional por bloques;</li>
+          <li>explicar qué hace cada aplicación de la cadena CAD, CAE y CAM y qué información se transmite entre ellas;</li>
+          <li>valorar la utilidad de esa cadena en el diseño, el dimensionado y la fabricación de un producto industrial.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="para-que">
+        <h2 id="para-que">1. Para qué se dibuja en ingeniería</h2>
+        <p>En un proyecto hay al menos cuatro preguntas gráficas distintas, y cada una tiene su tipo de dibujo. Confundirlas es la causa habitual de que un plano no sirva para fabricar o de que un esquema no explique nada.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de representación gráfica según la pregunta que responden">
+          <table>
+            <caption>Cuatro preguntas, cuatro tipos de dibujo</caption>
+            <thead><tr><th scope="col">Pregunta</th><th scope="col">Tipo de dibujo</th><th scope="col">Quién lo usa</th><th scope="col">En el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">¿Qué idea tengo?</th><td>Boceto o croquis a mano alzada</td><td>El propio equipo, en la fase de ideación</td><td>Tres disposiciones posibles del depósito, la válvula y la caja.</td></tr>
+              <tr><th scope="row">¿Qué forma exacta tiene?</th><td>Plano de piezas: vistas acotadas</td><td>Quien fabrica la pieza</td><td>Escuadra de sujeción y caja con sus taladros.</td></tr>
+              <tr><th scope="row">¿Cómo se conecta?</th><td>Esquema normalizado</td><td>Quien monta y quien repara</td><td>Esquema eléctrico del controlador y esquema hidráulico del riego.</td></tr>
+              <tr><th scope="row">¿Cómo funciona?</th><td>Diagrama funcional por bloques</td><td>Cualquiera que deba entender el sistema</td><td>Sonda, controlador, válvula y realimentación.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un dibujo técnico se juzga por una sola cosa</strong>Si una persona competente que no ha participado en el proyecto puede fabricar, montar o entender lo representado <strong>sin preguntar</strong>, el dibujo es correcto. Si tiene que preguntar, falta información, sobra ambigüedad o el registro elegido era el equivocado. No hay más criterio.</div>
+
+        <div class="ti1-note"><strong>El dibujo también sirve para pensar.</strong> El criterio 1.1 pide investigar y diseñar proyectos «que muestren de forma gráfica la creación y mejora de un producto». Dibujar obliga a decidir: no se puede trazar una sección sin haber resuelto cómo entra el cable, ni acotar una pieza sin saber qué tolerancia admite. Buena parte del diseño ocurre mientras se dibuja, no antes.</div>
+      </section>
+
+      <section aria-labelledby="croquis">
+        <h2 id="croquis">2. Croquis y bocetos a mano alzada</h2>
+        <p>Un <strong>boceto</strong> explora una idea; un <strong>croquis</strong> ya representa una pieza concreta con sus proporciones y sus cotas, pero sin instrumentos de precisión. Los dos se hacen a mano alzada, y los dos siguen siendo imprescindibles en un mundo con software: son más rápidos que cualquier programa y no obligan a decidir lo que aún no está decidido.</p>
+
+        <div class="comparacion">
+          <div><h3>Boceto</h3><p>Rápido, sin cotas, a veces varios en la misma hoja. Sirve para comparar alternativas y para discutir en equipo. Se tira sin pena.</p></div>
+          <div><h3>Croquis</h3><p>Proporcionado, con cotas y con las vistas necesarias. Se levanta delante de la pieza o del espacio real. Es el documento de partida del plano.</p></div>
+          <div><h3>Plano</h3><p>A escala, normalizado, con cuadro de rotulación y tolerancias. Es un documento contractual: define qué se acepta y qué se rechaza.</p></div>
+        </div>
+
+        <h3>Cómo se levanta un croquis útil</h3>
+        <ol>
+          <li><strong>Encaja primero.</strong> Traza con líneas suaves el rectángulo que contiene la pieza y divídelo para situar los elementos. La proporción se decide aquí, no al final.</li>
+          <li><strong>Dibuja después.</strong> Repasa las aristas reales con trazo firme y borra el encaje. Las líneas de la pieza deben distinguirse de las auxiliares.</li>
+          <li><strong>Mide y anota.</strong> Toma las cotas con calibre o metro y escríbelas inmediatamente: una medida que se recuerda de vuelta al aula es una medida perdida.</li>
+          <li><strong>Anota lo que no se ve.</strong> Material, acabado, espesor de pared, sentido de montaje, roscas. Un croquis con anotaciones vale más que un dibujo perfecto sin ellas.</li>
+          <li><strong>Fecha y firma.</strong> Un croquis sin fecha no se puede comparar con la versión siguiente, y en un proyecto siempre hay versión siguiente.</li>
+        </ol>
+        <div class="ti1-think"><strong>Piensa:</strong> en el taller que va a fabricar tu caja trabajan con el croquis pegado a la máquina, no con el modelo 3D en una pantalla. ¿Qué tres datos pondrías tú en grande, para que no se puedan leer mal ni de lejos ni con las manos sucias?</div>
+      </section>
+
+      <section aria-labelledby="vistas">
+        <h2 id="vistas">3. Vistas: el sistema de proyección</h2>
+        <p>Una pieza es tridimensional y el papel no. La solución normalizada consiste en proyectar la pieza sobre planos perpendiculares y colocar cada proyección —cada <strong>vista</strong>— en una posición convenida, de modo que quien lo lee sepa desde dónde se está mirando sin que haya que decírselo.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de las vistas acotadas de una escuadra">
+          <img src="assets/tema03_vistas.svg" alt="Alzado, perfil izquierdo y planta de una escuadra en L de 60 por 40 por 30 milímetros con 10 milímetros de espesor, con líneas de correspondencia discontinuas entre las vistas, y un esquema de la colocación de cada vista en el primer diedro.">
+          <figcaption>La escuadra de sujeción del depósito del KR-1. Las líneas discontinuas de correspondencia garantizan que las tres vistas hablan de la misma pieza: lo que se alinea, coincide.</figcaption>
+        </figure>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: las vistas normalizadas y su nombre">
+          <table>
+            <caption>Las seis vistas posibles y las que se usan de verdad</caption>
+            <thead><tr><th scope="col">Vista</th><th scope="col">Desde dónde se mira</th><th scope="col">Posición en primer diedro</th><th scope="col">¿Se dibuja?</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Alzado</strong></th><td>De frente</td><td>Centro; es la vista principal</td><td>Siempre</td></tr>
+              <tr><th scope="row"><strong>Planta</strong></th><td>Desde arriba</td><td>Debajo del alzado</td><td>Casi siempre</td></tr>
+              <tr><th scope="row"><strong>Perfil izquierdo</strong></th><td>Desde la izquierda</td><td>A la derecha del alzado</td><td>Si aporta información nueva</td></tr>
+              <tr><th scope="row">Perfil derecho</th><td>Desde la derecha</td><td>A la izquierda del alzado</td><td>Solo si la pieza no es simétrica</td></tr>
+              <tr><th scope="row">Vista inferior</th><td>Desde abajo</td><td>Encima del alzado</td><td>Raramente</td></tr>
+              <tr><th scope="row">Alzado posterior</th><td>Desde detrás</td><td>En un extremo de la fila</td><td>Raramente</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Primer diedro y tercer diedro</strong>En el <strong>primer diedro</strong>, el sistema habitual en Europa, cada vista se coloca al lado <em>opuesto</em> a aquel desde el que se mira: lo que se ve desde la izquierda se dibuja a la derecha. En el <strong>tercer diedro</strong>, habitual en Estados Unidos, se coloca del mismo lado. Los planos llevan un símbolo que indica cuál se ha usado, porque leer un plano con el sistema equivocado produce piezas en espejo.</div>
+
+        <div class="ti1-note"><strong>Elige el alzado antes de dibujar.</strong> La vista principal debe ser la que muestra la pieza en su posición de uso y con más información. Si el alzado está mal elegido, harán falta más vistas, más secciones y más cotas para decir lo mismo. Es la decisión que más ahorra trabajo en todo el plano.</div>
+
+        <h3>Cuando las vistas no bastan</h3>
+        <ul>
+          <li><strong>Corte o sección:</strong> se «parte» la pieza por un plano para mostrar su interior, y el material cortado se raya. Imprescindible en la caja del KR-1, que es hueca.</li>
+          <li><strong>Detalle:</strong> una zona pequeña se repite ampliada, con su propia escala indicada.</li>
+          <li><strong>Perspectiva:</strong> una vista axonométrica o isométrica no sustituye a las vistas, pero ayuda a entender la pieza de un golpe. Se añade como apoyo, nunca como plano de fabricación.</li>
+          <li><strong>Aristas ocultas:</strong> se dibujan con línea discontinua fina; solo se representan cuando aclaran algo, no todas por sistema.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="acotacion">
+        <h2 id="acotacion">4. Acotación y escalas</h2>
+        <p><strong>Acotar</strong> es indicar las dimensiones necesarias para fabricar la pieza. La palabra clave es <em>necesarias</em>: ni una menos, porque entonces el taller tendría que inventarse una medida; ni una más, porque dos cotas que dicen lo mismo acaban contradiciéndose en la siguiente revisión del plano.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Cada cota, una vez</h3><p>Una dimensión se acota en la vista donde se ve con más claridad, y solo en esa. Repetirla es sembrar un error futuro.</p></div>
+          <div class="ti1-card"><h3>Fuera de la pieza</h3><p>Las cotas se colocan en el exterior del contorno, con líneas auxiliares finas que no toquen las aristas.</p></div>
+          <div class="ti1-card"><h3>Desde una referencia</h3><p>Los taladros se sitúan desde una cara o un eje de referencia, no en cadena: así los errores no se acumulan.</p></div>
+          <div class="ti1-card"><h3>Legible siempre</h3><p>Las cifras se leen en horizontal o girando el plano 90° en un solo sentido, nunca al revés.</p></div>
+        </div>
+
+        <p>Las <strong>escalas</strong> normalizadas son múltiplos y submúltiplos convenidos: 1:1 (tamaño natural), reducciones como 1:2, 1:5, 1:10, 1:20 y ampliaciones como 2:1, 5:1, 10:1. La escala se indica siempre en el cuadro de rotulación, y una regla de oro acompaña a esa indicación:</p>
+
+        <p class="ti1-formula">las cotas se escriben en dimensiones reales <span class="ti1-formula-leyenda">independientemente de la escala del dibujo</span></p>
+
+        <p>Es decir: un agujero de 8 mm dibujado a escala 2:1 mide 16 mm en el papel y lleva escrito «8». Nadie mide un plano con una regla para fabricar; se lee la cota.</p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La cota y su tolerancia</strong>Una cota sin tolerancia no está completa. Del Tema 2: <strong>40,0 ± 0,2</strong> significa que se acepta cualquier valor entre 39,8 y 40,2 mm. Cuando muchas cotas comparten la misma exigencia, no se repite en cada una: se indica una <em>tolerancia general</em> en el cuadro de rotulación y solo se acotan aparte las dimensiones críticas. En el KR-1, la crítica es el diámetro del paso de la válvula; el resto de la caja admite mucha más holgura.</div>
+
+        <div class="ti1-curio"><strong>El cuadro de rotulación no es burocracia.</strong> El recuadro inferior derecho de un plano contiene quién lo dibujó, quién lo revisó, la fecha, la escala, el sistema de proyección, el material, el acabado, la tolerancia general y —sobre todo— el <strong>número de versión</strong>. En un taller, dos planos idénticos con versiones distintas son el origen clásico de un lote entero de piezas mal hechas. Por eso los planos se archivan por versión y las antiguas se marcan como obsoletas, no se borran.</div>
+      </section>
+
+      <section aria-labelledby="esquemas">
+        <h2 id="esquemas">5. Esquemas normalizados</h2>
+        <p>Un plano dice qué forma tiene una pieza. Un <strong>esquema</strong> dice cómo se conectan los elementos de un sistema, y renuncia deliberadamente a la forma y a la posición reales: lo que le importa es la <em>función</em> y la <em>conexión</em>. Un esquema eléctrico no indica por dónde va el cable, sino qué está unido con qué.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de esquema, qué representan y ejemplos de símbolos">
+          <table>
+            <caption>Los cinco tipos de esquema que aparecen en este curso</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Qué representa</th><th scope="col">Símbolos característicos</th><th scope="col">Dónde se estudia</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Eléctrico</strong></th><td>Fuentes, conductores, protecciones, receptores y su conexión.</td><td>Generador, interruptor, lámpara, motor, fusible, toma de tierra.</td><td>Temas 10 y 21</td></tr>
+              <tr><th scope="row"><strong>Electrónico</strong></th><td>Componentes de señal y su interconexión.</td><td>Resistencia, condensador, diodo, LED, transistor.</td><td>Tema 11</td></tr>
+              <tr><th scope="row"><strong>Mecánico o cinemático</strong></th><td>Cadena de transmisión: qué mueve a qué y con qué relación.</td><td>Engranaje, polea, correa, eje, soporte.</td><td>Temas 7 a 9</td></tr>
+              <tr><th scope="row"><strong>Neumático o hidráulico</strong></th><td>Circuito de fluido: generación, mando y actuadores.</td><td>Cilindro, válvula, bomba, depósito, conducción.</td><td>Tema 21 (agua); neumática en 2.º</td></tr>
+              <tr><th scope="row"><strong>De control</strong></th><td>Flujo de la señal entre sensores, controlador y actuadores.</td><td>Bloques, sumadores, punto de realimentación.</td><td>Temas 17 a 19</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>La simbología está normalizada, y por eso funciona.</strong> Los símbolos eléctricos y electrónicos siguen la serie de normas IEC 60617, recogida en España como UNE-EN 60617.<sup><a href="#fuente_1">[1]</a></sup> Inventarse un símbolo «porque se entiende» rompe lo único que da valor al esquema: que cualquier persona formada lo lea igual. Si necesitas representar algo que no tiene símbolo, se dibuja como bloque rectangular con su nombre dentro.</div>
+
+        <h3>Cómo se lee un esquema sin perderse</h3>
+        <ol>
+          <li><strong>Localiza la alimentación</strong> y decide un sentido de lectura: en los esquemas eléctricos, habitualmente de la fuente hacia los receptores; en los de control, de la entrada hacia la salida.</li>
+          <li><strong>Sigue una sola rama</strong> hasta el final antes de empezar otra. Intentar entender todo a la vez es lo que hace que un esquema parezca incomprensible.</li>
+          <li><strong>Identifica los elementos de mando</strong> —interruptores, válvulas, contactos— y pregúntate qué cambia cuando cada uno actúa.</li>
+          <li><strong>Comprueba las referencias.</strong> Cada componente lleva una marca (R1, K2, Y1) que remite a la lista de materiales. El esquema y la lista se leen juntos.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="funcional">
+        <h2 id="funcional">6. Diagramas funcionales</h2>
+        <p>El criterio 1.4 pide elaborar documentación técnica «generando diagramas funcionales». Un <strong>diagrama funcional</strong> representa un sistema como un conjunto de bloques unidos por flechas: cada bloque es una función —medir, decidir, accionar— y cada flecha, la información, la energía o la materia que pasa de uno a otro. Es el dibujo más abstracto de todos y, por eso, el que mejor se entiende.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama funcional desplazable del sistema KR-1">
+          <img src="assets/tema03_diagrama_funcional.svg" alt="Diagrama de bloques: la sonda de humedad entrega su lectura al controlador, que recibe la consigna y la alimentación eléctrica y acciona la electroválvula, que da paso al riego por goteo sobre el sustrato; el estado se envía a un panel web y la humedad del sustrato vuelve a la sonda cerrando el lazo.">
+          <figcaption>El KR-1 en diez segundos. Este mismo diagrama reaparecerá en el Tema 17 con su vocabulario propio de sistemas de control: la flecha de retorno es la realimentación que convierte el sistema en un lazo cerrado.</figcaption>
+        </figure>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Cinco reglas para que un diagrama funcional sirva</strong><strong>1.</strong> Un bloque, una función, expresada con un verbo. <strong>2.</strong> Toda flecha lleva una etiqueta o un significado evidente. <strong>3.</strong> Las entradas entran por la izquierda o por arriba; las salidas salen por la derecha. <strong>4.</strong> Un solo nivel de detalle por diagrama: si un bloque necesita explicarse, se dibuja aparte y ampliado. <strong>5.</strong> Debe caber en una página y leerse sin leyenda.</div>
+
+        <h3>Tres cosas que un diagrama funcional deja ver y un esquema esconde</h3>
+        <ul>
+          <li><strong>Los lazos.</strong> Si hay una flecha que vuelve atrás, hay realimentación, y eso cambia por completo el comportamiento del sistema.</li>
+          <li><strong>Los puntos únicos de fallo.</strong> Un bloque por el que pasa todo —el controlador— es el que hay que proteger y el que hay que poder sustituir.</li>
+          <li><strong>Las fronteras del proyecto.</strong> Lo que queda fuera de los bloques es lo que no vas a construir. Dibujar el límite es la manera más rápida de negociar el alcance de una entrega.</li>
+        </ul>
+        <div class="ti1-think"><strong>Piensa:</strong> en el diagrama del KR-1, el bloque «Panel web y aviso» recibe información pero no devuelve ninguna. ¿Qué significaría añadir una flecha de vuelta desde ese bloque hasta el controlador? ¿Qué nueva función —y qué nuevo riesgo— aparecería en el sistema?</div>
+      </section>
+
+      <section aria-labelledby="cad">
+        <h2 id="cad">7. CAD: el diseño de la geometría</h2>
+        <p><strong>CAD</strong> son las siglas de <em>Computer Aided Design</em>, diseño asistido por ordenador. Sustituye al tablero de dibujo, pero aporta algo que el tablero no podía dar: el modelo deja de ser un conjunto de líneas y pasa a ser una <strong>descripción de la geometría</strong> que el ordenador entiende y puede recalcular.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: modos de trabajo en CAD">
+          <table>
+            <caption>Qué se puede hacer en CAD</caption>
+            <thead><tr><th scope="col">Modo</th><th scope="col">En qué consiste</th><th scope="col">Para qué se usa en el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Dibujo 2D</strong></th><td>Vistas, cotas y esquemas con precisión numérica.</td><td>Plano de la escuadra y de la plantilla de taladros.</td></tr>
+              <tr><th scope="row"><strong>Modelado 3D de sólidos</strong></th><td>Construir el volumen por operaciones: extruir, revolucionar, vaciar, redondear.</td><td>La caja hueca con su tapa, sus nervios y su paso de cables.</td></tr>
+              <tr><th scope="row"><strong>Modelado paramétrico</strong></th><td>Las medidas son variables con restricciones; cambiar una recalcula el modelo.</td><td>Cambiar el diámetro de la válvula y que el alojamiento se adapte solo.</td></tr>
+              <tr><th scope="row"><strong>Ensamblaje</strong></th><td>Montar varias piezas con sus relaciones de posición.</td><td>Comprobar que la placa, la válvula y los cables caben dentro de la caja.</td></tr>
+              <tr><th scope="row"><strong>Generación de planos</strong></th><td>Obtener vistas, cortes y detalles automáticamente desde el modelo 3D.</td><td>El plano de fabricación, que se actualiza si cambia el modelo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Lo que de verdad cambia con el CAD paramétrico</strong>En un dibujo a mano, cambiar una medida obliga a rehacerlo. En un modelo paramétrico bien construido, cambiar la medida recalcula la pieza, el ensamblaje y el plano. Eso convierte el rediseño —el trabajo habitual en I+D— en algo barato. El precio es que hay que construir el modelo con orden: si las restricciones están puestas de cualquier manera, el modelo se rompe al primer cambio.</div>
+
+        <div class="ti1-note"><strong>Interferencias: la comprobación que más disgustos evita.</strong> Un ensamblaje CAD permite preguntar al programa si dos piezas ocupan el mismo espacio. Descubrir en la pantalla que el tornillo de la tapa choca con el cuerpo de la válvula cuesta cinco minutos; descubrirlo con la caja ya impresa cuesta una impresión y dos días.</div>
+
+        <h3>Formatos: el detalle que decide si podrás seguir trabajando</h3>
+        <p>Cada programa guarda su modelo en un formato propio. Para intercambiar geometría entre programas distintos se usan formatos neutros: <strong>STEP</strong> conserva la geometría exacta y es el adecuado para seguir editando o para enviar a un taller; <strong>STL</strong> aproxima la superficie con triángulos y sirve para imprimir en 3D, pero pierde la información de diseño. Guardar solo el STL de una pieza equivale a guardar la fotografía de un documento en lugar del documento.</p>
+      </section>
+
+      <section aria-labelledby="cae">
+        <h2 id="cae">8. CAE: el análisis y la simulación</h2>
+        <p><strong>CAE</strong>, <em>Computer Aided Engineering</em>, agrupa las aplicaciones que <strong>analizan el comportamiento</strong> de lo que el CAD ha definido. El CAD responde a «¿qué forma tiene?»; el CAE, a «¿aguantará?», «¿se calentará?», «¿circulará el agua?».</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Análisis estructural</h3><p>Tensiones y deformaciones bajo carga. ¿Se dobla la escuadra con el depósito lleno?</p></div>
+          <div class="ti1-card"><h3>Análisis térmico</h3><p>Temperaturas y disipación. ¿Cuánto sube la temperatura dentro de una caja cerrada al sol?</p></div>
+          <div class="ti1-card"><h3>Fluidos</h3><p>Caudales y pérdidas de carga. ¿Llega suficiente agua al último gotero?</p></div>
+          <div class="ti1-card"><h3>Cinemática y dinámica</h3><p>Movimientos, choques y esfuerzos en mecanismos. Se usará en el Bloque C.</p></div>
+          <div class="ti1-card"><h3>Simulación de circuitos</h3><p>Tensiones y corrientes antes de montar. Se usará en los bloques D y F.</p></div>
+          <div class="ti1-card"><h3>Simulación de control</h3><p>Respuesta del lazo cerrado ante una perturbación. Tema 17.</p></div>
+        </div>
+
+        <p>La técnica más extendida en análisis estructural y térmico es el <strong>método de los elementos finitos</strong>: el programa divide la pieza en muchos elementos pequeños, plantea las ecuaciones en cada uno y resuelve el conjunto. El resultado se presenta como un mapa de colores muy convincente, y ahí está el peligro.</p>
+
+        <div class="aviso"><strong>Una simulación no es una medida</strong>El resultado depende de los datos que has introducido: propiedades del material, cargas, apoyos y calidad de la malla. Si el material que declaras no es el que vas a usar, o si supones un apoyo perfectamente rígido que en realidad es un tornillo con juego, el mapa de colores será precioso y falso. El CAE reduce el número de prototipos; no sustituye al ensayo. La regla profesional es simular para decidir <em>qué</em> ensayar.</div>
+
+        <div class="ti1-curio"><strong>Optimizar quitando material.</strong> Con CAE se puede hacer algo imposible a mano: pedirle al programa que elimine el material que no trabaja, dejando solo lo que soporta carga. El resultado —piezas con formas orgánicas, casi óseas— se llama optimización topológica, y es una de las razones por las que la impresión 3D industrial ha crecido tanto: esas formas no se pueden mecanizar, pero sí imprimir.</div>
+      </section>
+
+      <section aria-labelledby="cam">
+        <h2 id="cam">9. CAM: la definición y el control de la fabricación</h2>
+        <p><strong>CAM</strong>, <em>Computer Aided Manufacturing</em>, traduce la geometría en <strong>instrucciones de máquina</strong>. Su pregunta es «¿cómo se hace?»: qué herramienta, en qué orden, a qué velocidad y siguiendo qué trayectoria.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Geometría de partida</div><p>El modelo procedente del CAD, con las cotas y tolerancias que hay que conseguir.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Estrategia de fabricación</div><p>Decidir el proceso y el orden de operaciones: qué se desbasta, qué se acaba, cómo se sujeta la pieza, cuántas caras hay que mecanizar.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Parámetros</div><p>Herramienta, velocidad de corte, avance, profundidad de pasada; o, en impresión 3D, altura de capa, relleno, temperatura y soportes.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Generación del programa</div><p>El CAM calcula las trayectorias y produce el código de control numérico (<strong>código G</strong>) que la máquina ejecutará.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Simulación del mecanizado</div><p>Se comprueba en pantalla que la herramienta no choca con la mordaza ni con la propia pieza, y cuánto va a tardar.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">6 · Fabricación y verificación</div><p>Se ejecuta el programa y se mide la pieza obtenida contra el plano: vuelta al Tema 2.</p></div>
+        </div>
+
+        <div class="ti1-note"><strong>El laminador de una impresora 3D es un CAM.</strong> Puede parecer que el CAM es cosa de talleres industriales, pero el programa que convierte tu STL en el archivo que entiende la impresora hace exactamente lo mismo: decide el orden, calcula las trayectorias y genera código G. Cuando ajustas la altura de capa o el relleno, estás fijando parámetros de fabricación, igual que quien elige una velocidad de corte.</div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Diseñar pensando en cómo se fabrica</strong>Un voladizo de 60° se imprime; uno de 80° necesita soportes y sale mal. Un ángulo interior perfectamente recto no se puede mecanizar con una fresa cilíndrica, que siempre deja un radio. Conocer el proceso cambia el diseño: es lo que en la industria se llama <em>diseño para la fabricación</em>, y es la razón de que el CAD, el CAE y el CAM no sean tres asignaturas separadas sino una sola conversación.</div>
+      </section>
+
+      <section aria-labelledby="cadena">
+        <h2 id="cadena">10. La cadena CAD-CAE-CAM completa</h2>
+        <p>El criterio 3.3 pide conocer estos programas «valorando su utilidad en los procesos de diseño, dimensionado y fabricación de un producto industrial». La utilidad no está en cada uno por separado, sino en que el modelo geométrico es <strong>el mismo</strong> a lo largo de todo el recorrido: se define una vez y se reutiliza para analizar y para fabricar.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: las tres familias de aplicaciones y lo que aportan">
+          <table>
+            <caption>Qué aporta cada eslabón</caption>
+            <thead><tr><th scope="col">Aplicación</th><th scope="col">Pregunta que responde</th><th scope="col">Entrada</th><th scope="col">Salida</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>CAD</strong></th><td>¿Qué forma y qué medidas tiene?</td><td>Requisitos y croquis</td><td>Modelo 3D, planos acotados y lista de piezas</td></tr>
+              <tr><th scope="row"><strong>CAE</strong></th><td>¿Se comportará como esperamos?</td><td>Modelo 3D, material y cargas</td><td>Tensiones, temperaturas, caudales; propuestas de cambio</td></tr>
+              <tr><th scope="row"><strong>CAM</strong></th><td>¿Cómo se fabrica y en cuánto tiempo?</td><td>Modelo 3D y proceso elegido</td><td>Trayectorias, código G y tiempo estimado</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La cadena es un bucle, no una flecha</strong>Si el CAE dice que la escuadra se deforma, se vuelve al CAD a engrosar el nervio. Si el CAM avisa de que el alojamiento no se puede mecanizar, se vuelve al CAD a cambiar el radio. Esa ida y vuelta —barata, porque solo cambia un modelo— es la misma idea iterativa del Tema 1 aplicada al dibujo: se itera en la pantalla para no iterar en el taller.</div>
+
+        <div class="ti1-note"><strong>Qué software usaremos.</strong> En el aula bastan herramientas gratuitas o de licencia educativa: un CAD paramétrico de sólidos para modelar y generar planos, su módulo de análisis para una primera comprobación estructural y el laminador de la impresora como CAM. Lo que se aprende no es el programa —cambiará— sino el método: modelar con restricciones, simular para decidir qué ensayar y fabricar sabiendo qué limita el proceso.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con documentos gráficos que otra persona pueda usar, no con dibujos bonitos.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 3">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Croquis y vistas</th><td>Que levantas un croquis proporcionado y pasas de él a un plano con las vistas necesarias.</td><td>Croquis fechado con anotaciones, plano en primer diedro con alzado bien elegido y líneas de correspondencia coherentes.</td></tr>
+              <tr><th scope="row">Acotación</th><td>Que acotas lo necesario, desde referencias, sin repetir cotas y con tolerancia en las dimensiones críticas.</td><td>Plano acotado, cuadro de rotulación completo con escala, sistema de proyección y tolerancia general.</td></tr>
+              <tr><th scope="row">Esquemas y diagrama funcional</th><td>Que usas simbología normalizada y que tu diagrama de bloques explica el sistema sin leyenda.</td><td>Esquema eléctrico con referencias que remiten a la lista de materiales; diagrama funcional de una página con el lazo de realimentación visible.</td></tr>
+              <tr><th scope="row">CAD, CAE y CAM</th><td>Que modelas con restricciones, compruebas interferencias, simulas con criterio y conoces los límites del proceso de fabricación.</td><td>Modelo paramétrico con un cambio de cota propagado, informe de interferencias, una simulación con sus hipótesis declaradas y los parámetros de fabricación elegidos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba definitiva: manda tus planos a otro equipo y pídeles que fabriquen la pieza. Si sale distinta, el problema está en el plano, no en sus manos.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Acotación</dt><dd>Indicación en un plano de las dimensiones necesarias para fabricar la pieza, con sus tolerancias.</dd>
+          <dt>Alzado</dt><dd>Vista principal de una pieza, obtenida al proyectarla mirándola de frente.</dd>
+          <dt>Arista oculta</dt><dd>Borde de la pieza que no se ve desde el punto de vista de la vista dibujada; se representa con línea discontinua fina.</dd>
+          <dt>Boceto</dt><dd>Dibujo rápido a mano alzada usado para explorar y comparar ideas, sin cotas.</dd>
+          <dt>CAD</dt><dd>Diseño asistido por ordenador: definición de la geometría, el ensamblaje y los planos.</dd>
+          <dt>CAE</dt><dd>Ingeniería asistida por ordenador: análisis y simulación del comportamiento de lo diseñado.</dd>
+          <dt>CAM</dt><dd>Fabricación asistida por ordenador: definición del proceso y generación del programa de máquina.</dd>
+          <dt>Código G</dt><dd>Lenguaje de instrucciones que gobierna el movimiento de una máquina de control numérico.</dd>
+          <dt>Croquis</dt><dd>Dibujo a mano alzada de una pieza concreta, proporcionado y acotado, sin escala rigurosa.</dd>
+          <dt>Cuadro de rotulación</dt><dd>Recuadro de un plano con autoría, fecha, escala, sistema de proyección, material, tolerancia general y versión.</dd>
+          <dt>Diagrama funcional</dt><dd>Representación de un sistema por bloques de función unidos por flechas de información, energía o materia.</dd>
+          <dt>Elementos finitos</dt><dd>Método de cálculo que divide una pieza en elementos pequeños para resolver su comportamiento por aproximación.</dd>
+          <dt>Ensamblaje</dt><dd>Conjunto de piezas modeladas con sus relaciones de posición, que permite comprobar encajes e interferencias.</dd>
+          <dt>Escala</dt><dd>Relación entre la dimensión dibujada y la dimensión real de la pieza.</dd>
+          <dt>Esquema</dt><dd>Representación de la conexión funcional entre los elementos de un sistema, con simbología normalizada, sin forma ni posición reales.</dd>
+          <dt>Interferencia</dt><dd>Situación en la que dos piezas de un ensamblaje ocupan el mismo espacio.</dd>
+          <dt>Modelado paramétrico</dt><dd>Modelado en el que las dimensiones son variables con restricciones, de modo que un cambio recalcula el modelo.</dd>
+          <dt>Optimización topológica</dt><dd>Técnica de CAE que elimina el material que no soporta carga para reducir el peso de una pieza.</dd>
+          <dt>Planta</dt><dd>Vista de una pieza obtenida al proyectarla mirándola desde arriba.</dd>
+          <dt>Primer diedro</dt><dd>Sistema de proyección europeo en el que cada vista se coloca al lado opuesto a aquel desde el que se mira.</dd>
+          <dt>Sección o corte</dt><dd>Representación de la pieza cortada por un plano para mostrar su interior, con el material cortado rayado.</dd>
+          <dt>STEP</dt><dd>Formato neutro de intercambio que conserva la geometría exacta de un modelo y permite seguir editándolo.</dd>
+          <dt>STL</dt><dd>Formato que aproxima la superficie de un modelo con triángulos; sirve para fabricar, no para editar.</dd>
+          <dt>Vista</dt><dd>Proyección de una pieza sobre un plano, colocada en la posición que fija el sistema de proyección.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>En un proyecto hay cuatro preguntas gráficas —qué idea, qué forma, cómo se conecta, cómo funciona— y cada una tiene su tipo de dibujo.</li>
+          <li>Un dibujo técnico es correcto si alguien competente puede fabricar, montar o entender sin preguntar.</li>
+          <li>El boceto explora, el croquis representa una pieza concreta con cotas y el plano es un documento contractual a escala y normalizado.</li>
+          <li>En primer diedro, la planta se dibuja debajo del alzado y el perfil izquierdo a su derecha; el símbolo del sistema evita piezas en espejo.</li>
+          <li>Elegir bien el alzado ahorra vistas, secciones y cotas en todo el plano.</li>
+          <li>Se acotan las dimensiones necesarias, una sola vez, desde referencias y fuera del contorno; las cifras se escriben siempre en medidas reales, sea cual sea la escala.</li>
+          <li>Una cota sin tolerancia está incompleta; lo habitual es una tolerancia general en el cuadro de rotulación y tolerancias propias solo en las cotas críticas.</li>
+          <li>Un esquema renuncia a la forma y a la posición para mostrar la conexión funcional, y usa simbología normalizada: inventarse un símbolo destruye su utilidad.</li>
+          <li>Un diagrama funcional por bloques revela los lazos de realimentación, los puntos únicos de fallo y las fronteras del proyecto.</li>
+          <li>CAD define la geometría; el modelado paramétrico hace barato el rediseño y el ensamblaje detecta interferencias antes de fabricar.</li>
+          <li>CAE analiza el comportamiento, pero su resultado depende de las hipótesis: sirve para decidir qué ensayar, no para sustituir el ensayo.</li>
+          <li>CAM traduce la geometría en trayectorias y código G; el laminador de una impresora 3D es un CAM.</li>
+          <li>La cadena CAD-CAE-CAM vale porque el modelo es el mismo en los tres pasos, y funciona como un bucle: se itera en la pantalla para no iterar en el taller.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Catálogo de normas de dibujo técnico y simbología (series UNE-EN ISO 5457, UNE-EN ISO 129 y UNE-EN 60617).</li>
+          <li id="fuente_2">[2] <a href="https://www.cencenelec.eu/">CEN-CENELEC — Organismos europeos de normalización</a> (en inglés).</li>
+          <li id="fuente_3">[3] <a href="https://www.freecad.org/">FreeCAD — CAD paramétrico de código abierto</a>. Documentación y tutoriales.</li>
+          <li id="fuente_4">[4] <a href="https://www.tinkercad.com/">Tinkercad</a>. Modelado 3D y simulación de circuitos en el navegador.</li>
+          <li id="fuente_5">[5] <a href="https://www.steptools.com/stds/step/">STEP Tools — Resumen de la norma ISO 10303 (STEP) de intercambio de modelos de producto</a> (en inglés).</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque A y criterios 1.4 y 3.3.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema02.html">← Tema 2</a>
+  <a href="tema04.html">Tema 4 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>
