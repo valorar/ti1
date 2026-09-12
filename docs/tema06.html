@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 6 del Bloque B de Tecnología e Ingeniería I: técnicas de conformación, prototipado rápido, fabricación bajo demanda, fabricación digital con impresión 3D, corte láser y control numérico, diseño para la fabricación y normas de seguridad e higiene en el taller.">
+  <title>Tema 6. Técnicas de fabricación, prototipado y seguridad en el trabajo · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 06 · Bloque B · Materiales y fabricación</p>
+        <h1>Tema 6. Técnicas de fabricación, prototipado y seguridad en el trabajo</h1>
+        <p class="hero-lead">Cómo se transforma el material en pieza, qué aporta la fabricación digital y cómo se trabaja en el taller sin correr riesgos.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 6">
+        <strong>Pregunta guía</strong>
+        <p>Tienes el material elegido y los planos aprobados. ¿Qué técnica usas para la caja, cuál para el soporte y cuál para la plantilla de taladros, y qué tienes que cambiar en el diseño para que cada una sea posible?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#familias">Las cuatro familias de procesos</a></li>
+        <li><a href="#prototipado">Prototipado rápido</a></li>
+        <li><a href="#bajo-demanda">Fabricación bajo demanda</a></li>
+        <li><a href="#digital">Fabricación digital</a></li>
+        <li><a href="#impresion">Impresión 3D: parámetros</a></li>
+        <li><a href="#dfm">Diseñar para fabricar</a></li>
+        <li><a href="#eleccion">Elegir la técnica</a></li>
+        <li><a href="#seguridad">Seguridad e higiene</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este tema cierra el Proyecto 1 del KR-1: es donde el plano se convierte en pieza. Y contiene la lección más difícil de aceptar del bloque: <strong>el proceso de fabricación cambia el diseño</strong>. Una pieza que en la pantalla es perfecta puede ser imposible de imprimir, imposible de desmoldear o imposible de mecanizar, y el problema no es de la máquina. Aprender a diseñar sabiendo cómo se va a fabricar es lo que separa un modelo bonito de una pieza que existe.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> mira cualquier objeto de plástico que tengas a mano y busca tres marcas: la línea fina que lo recorre por la mitad, un pequeño círculo rugoso en alguna cara, y un espesor de pared sospechosamente uniforme. Las tres son huellas del proceso con el que se fabricó, no decisiones estéticas. Al final del tema sabrás qué te está contando cada una.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>clasificar un proceso de fabricación en una de las cuatro familias y prever qué geometrías permite;</li>
+          <li>distinguir prototipado rápido, preserie y producción, y decir para qué sirve cada uno;</li>
+          <li>explicar qué es la fabricación bajo demanda y en qué cambia el coste por unidad;</li>
+          <li>describir la cadena que va del modelo 3D al archivo de máquina en impresión, corte láser y control numérico;</li>
+          <li>ajustar los parámetros de impresión relevantes y justificar su efecto en resistencia, tiempo y coste;</li>
+          <li>aplicar reglas de diseño para la fabricación: voladizos, espesores, radios, orientación y tolerancias;</li>
+          <li>elegir la técnica adecuada según geometría, cantidad, material, tolerancia, coste y medios disponibles;</li>
+          <li>trabajar en el aula-taller con las medidas de seguridad e higiene que exige cada máquina.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="familias">
+        <h2 id="familias">1. Las cuatro familias de procesos de fabricación</h2>
+        <p>Hay cientos de procesos industriales, pero todos responden a una de estas cuatro ideas: <strong>quitar</strong> material, <strong>deformarlo</strong>, <strong>darle forma en estado fluido</strong> o <strong>añadirlo</strong>. Y a esas cuatro se suma la que une las piezas entre sí. Clasificar un proceso en su familia permite anticipar lo que se puede y lo que no se puede pedirle.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: familias de procesos de fabricación">
+          <table>
+            <caption>Las familias de procesos y su lógica</caption>
+            <thead><tr><th scope="col">Familia</th><th scope="col">Idea</th><th scope="col">Procesos</th><th scope="col">Permite</th><th scope="col">No permite</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Por arranque de material</strong></th><td>Se parte de un bloque y se quita lo que sobra.</td><td>Serrado, taladrado, torneado, fresado, rectificado, corte láser.</td><td>Tolerancias muy finas y buen acabado.</td><td>Huecos internos cerrados; genera viruta y desperdicio.</td></tr>
+              <tr><th scope="row"><strong>Por deformación</strong></th><td>El material cambia de forma sin perder masa.</td><td>Plegado, laminado, embutición, forja, estampación, extrusión.</td><td>Series grandes, muy rápido y sin desperdicio.</td><td>Requiere utillaje caro; solo materiales dúctiles.</td></tr>
+              <tr><th scope="row"><strong>Por moldeo</strong></th><td>El material fluido toma la forma de un molde.</td><td>Fundición, inyección de plástico, termoconformado, colada de resina.</td><td>Formas complejas repetidas miles de veces, coste unitario bajísimo.</td><td>El molde cuesta mucho: no vale para una unidad.</td></tr>
+              <tr><th scope="row"><strong>Aditiva</strong></th><td>Se añade material capa a capa donde hace falta.</td><td>Impresión 3D por filamento, por resina o por sinterizado.</td><td>Geometrías imposibles por otras vías, sin utillaje y en una unidad.</td><td>Lenta para series; propiedades dependen de la dirección.</td></tr>
+              <tr><th scope="row"><strong>De unión</strong></th><td>Se juntan piezas ya conformadas.</td><td>Atornillado, remachado, soldadura, encolado, encaje a presión.</td><td>Combinar materiales distintos y permitir el desmontaje.</td><td>La unión suele ser el punto débil del conjunto.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Aditiva frente a sustractiva: la inversión de la regla</strong>En fabricación por arranque, <strong>cuanto más complicada es la pieza, más cuesta</strong>: más operaciones, más cambios de herramienta, más tiempo. En fabricación aditiva, la complejidad geométrica <strong>es casi gratis</strong>: a la impresora le da igual un cubo o una pieza con celdillas internas, porque lo que cuesta es el volumen y la altura, no la forma. Esa inversión es la que hizo posible la optimización topológica que vimos en el Tema 3.</div>
+
+        <div class="ti1-curio"><strong>Las tres marcas del objeto de plástico.</strong> La línea que lo recorre es la <em>línea de junta</em>, donde se cierran las dos mitades del molde. El circulito rugoso es la huella del <em>expulsor</em> que empujó la pieza para sacarla. Y el espesor uniforme existe porque una pared gruesa se enfría más despacio, se contrae y deja una marca hundida. Las tres son consecuencias del moldeo por inyección: el proceso está escrito en la pieza.</div>
+      </section>
+
+      <section aria-labelledby="prototipado">
+        <h2 id="prototipado">2. Prototipado rápido</h2>
+        <p>El currículo nombra el <strong>prototipado rápido</strong> como técnica de fabricación, y conviene precisar qué significa «prototipo», porque no todos sirven para lo mismo. Un prototipo no es una versión pequeña del producto: es <strong>una pregunta construida</strong>. Antes de fabricarlo hay que saber a qué pregunta responde.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de prototipo y la pregunta que responden">
+          <table>
+            <caption>Cuatro prototipos del KR-1, cuatro preguntas distintas</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Pregunta que responde</th><th scope="col">Cómo se fabrica</th><th scope="col">Coste</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>De concepto</strong></th><td>¿Cabe todo dentro y se entiende la idea?</td><td>Cartón, cinta y un par de tornillos, en media hora.</td><td>Casi nulo</td></tr>
+              <tr><th scope="row"><strong>Dimensional</strong></th><td>¿Encaja la válvula en su alojamiento?</td><td>Solo la zona del alojamiento, impresa en PLA barato.</td><td>Bajo</td></tr>
+              <tr><th scope="row"><strong>Funcional</strong></th><td>¿Funciona el sistema completo?</td><td>Caja impresa en el material definitivo, con toda la electrónica.</td><td>Medio</td></tr>
+              <tr><th scope="row"><strong>De validación</strong></th><td>¿Aguanta un verano en el huerto?</td><td>Como el funcional, instalado en el sitio real y medido durante semanas.</td><td>Medio, pero cuesta tiempo</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>El error clásico: saltar directamente al prototipo funcional.</strong> Cuesta dos días de impresión y responde a la vez a cuatro preguntas, de modo que si falla no se sabe cuál era la que fallaba. Un prototipo dimensional de 20 minutos que compruebe solo el alojamiento de la válvula ahorra esos dos días. La regla es: <strong>un prototipo, una pregunta, el material más barato que permita responderla</strong>.</div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Prototipo, preserie y producción</strong>El <strong>prototipo</strong> responde preguntas y se fabrica de una en una. La <strong>preserie</strong> del Tema 2 se fabrica con el proceso definitivo para medir la dispersión y el coste real. La <strong>producción</strong> repite ese proceso ya afinado. Cambiar de etapa sin pasar por la anterior es lo que produce el clásico «en el prototipo funcionaba»: el prototipo se ajustó a mano y la serie no admite ajustes individuales.</div>
+      </section>
+
+      <section aria-labelledby="bajo-demanda">
+        <h2 id="bajo-demanda">3. Fabricación bajo demanda</h2>
+        <p>La <strong>fabricación bajo demanda</strong> consiste en producir cuando existe el pedido, no para almacenar. Es posible cuando el proceso no exige utillaje específico —moldes, troqueles— y el tiempo de puesta en marcha es despreciable: justo las condiciones de la fabricación digital.</p>
+
+        <div class="comparacion">
+          <div><h3>Producción para almacén</h3><p>Se fabrica una serie grande, se guarda y se vende. Coste unitario bajo por el efecto de la serie del Tema 2. Riesgo: si el producto cambia o no se vende, el almacén es dinero perdido.</p></div>
+          <div><h3>Fabricación bajo demanda</h3><p>Se fabrica cada unidad al pedirla. Coste unitario más alto y constante, pero sin almacén, sin riesgo de obsolescencia y con personalización posible en cada unidad.</p></div>
+        </div>
+
+        <p class="ti1-formula">coste unitario = coste variable + coste del utillaje / número de unidades <span class="ti1-formula-leyenda">cuando no hay utillaje, el segundo término desaparece</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Dónde se cruzan las dos curvas</strong>Un molde de inyección para la caja del KR-1 puede costar varios miles de euros y bajar el coste de cada caja a menos de un euro; imprimirla cuesta unos 2,30 € siempre. Existe un número de unidades —el <strong>punto de equilibrio</strong>— a partir del cual el molde sale más barato. Para cien cajas, imprimir. Para cien mil, moldear. Saber calcular ese cruce es una de las decisiones de ingeniería más frecuentes y más fáciles de justificar con números.</div>
+
+        <div class="ti1-curio"><strong>Los repuestos son el caso donde esto cambia todo.</strong> Guardar en un almacén la pieza de recambio de un producto descatalogado cuesta dinero durante años. Guardar su archivo e imprimirla el día que alguien la necesite cuesta cero. Es una de las razones de fondo por las que la fabricación digital afecta a la reparabilidad y, por tanto, a la obsolescencia del Tema 2.</div>
+      </section>
+
+      <section aria-labelledby="digital">
+        <h2 id="digital">4. Fabricación digital</h2>
+        <p>Llamamos <strong>fabricación digital</strong> a los procesos en los que la máquina obtiene la geometría directamente de un archivo, sin plantillas ni utillaje intermedio. Todos comparten la misma cadena, que es la del CAM del Tema 3:</p>
+
+        <p class="ti1-formula">modelo CAD → archivo de intercambio → preparación (CAM) → programa de máquina → pieza</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: técnicas de fabricación digital disponibles en un centro">
+          <table>
+            <caption>Las tres técnicas digitales de un aula-taller</caption>
+            <thead><tr><th scope="col">Técnica</th><th scope="col">Qué hace</th><th scope="col">Geometría</th><th scope="col">Materiales</th><th scope="col">En el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Impresión 3D por filamento</strong></th><td>Deposita hilo fundido capa a capa.</td><td>Tridimensional, con huecos internos.</td><td>PLA, PETG, ABS, ASA, flexibles.</td><td>La caja, la tapa y el alojamiento de la válvula.</td></tr>
+              <tr><th scope="row"><strong>Corte láser</strong></th><td>Corta o graba una plancha con un haz enfocado.</td><td>Plana: contornos en dos dimensiones y media.</td><td>Madera fina, contrachapado, acrílico, cartón.</td><td>El soporte de la placa y la plantilla de taladros.</td></tr>
+              <tr><th scope="row"><strong>Control numérico</strong> (CNC)</th><td>Fresa o taladra siguiendo trayectorias programadas.</td><td>Tridimensional accesible desde fuera.</td><td>Madera, polímeros, aluminio.</td><td>Una placa base de aluminio, si se necesita rigidez.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Corte láser: dos parámetros que lo deciden todo.</strong> La <strong>potencia</strong> y la <strong>velocidad</strong>. Mucha potencia y poca velocidad: corta, pero quema los bordes. Poca potencia y mucha velocidad: graba sin cortar. La combinación depende del material y del espesor, y se determina con una <em>pieza de prueba</em> con varias combinaciones antes de cortar la pieza buena. Y nunca se corta un material sin comprobar antes que es seguro: el PVC libera cloro y no se corta jamás con láser.</div>
+
+        <div class="aviso"><strong>El archivo no es la pieza</strong>Un STL descargado de internet no está listo para imprimir: puede tener la escala equivocada, las normales invertidas, agujeros en la malla o un espesor imposible. Y como vimos en el Tema 3, el STL no conserva la información de diseño, así que corregirlo es más difícil que rehacerlo. Descargar un modelo es un punto de partida, no un atajo al final.</div>
+      </section>
+
+      <section aria-labelledby="impresion">
+        <h2 id="impresion">5. Impresión 3D: los parámetros que importan</h2>
+        <p>El laminador —el CAM de la impresora— ofrece decenas de ajustes. Seis deciden el resultado, y conviene saber qué compran y qué pagan cada uno.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: parámetros de impresión 3D y su efecto">
+          <table>
+            <caption>Los seis parámetros que hay que decidir a conciencia</caption>
+            <thead><tr><th scope="col">Parámetro</th><th scope="col">Si lo aumentas</th><th scope="col">Coste</th><th scope="col">Para la caja del KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Altura de capa</strong></th><td>Imprime más rápido y con peor acabado.</td><td>Menos tiempo, peor detalle.</td><td>0,2 mm: acabado suficiente y tiempo razonable.</td></tr>
+              <tr><th scope="row"><strong>Espesor de pared</strong></th><td>Más resistencia y más material.</td><td>Más tiempo y más filamento.</td><td>2 mm, o tres perímetros: es lo que exige el grado de protección.</td></tr>
+              <tr><th scope="row"><strong>Relleno</strong></th><td>Más rigidez, con rendimiento decreciente.</td><td>Mucho más tiempo y material.</td><td>20 %: pasar de 20 a 60 % apenas mejora y casi duplica el tiempo.</td></tr>
+              <tr><th scope="row"><strong>Temperatura</strong></th><td>Mejor unión entre capas y más riesgo de deformación.</td><td>Precisión de detalle.</td><td>Según el fabricante del filamento; no se improvisa.</td></tr>
+              <tr><th scope="row"><strong>Orientación</strong></th><td>Cambia por completo la resistencia de la pieza.</td><td>Puede exigir soportes.</td><td>Decisiva: se explica abajo.</td></tr>
+              <tr><th scope="row"><strong>Soportes</strong></th><td>Permiten voladizos imposibles.</td><td>Material perdido y marcas al retirarlos.</td><td>Se evitan rediseñando, no añadiéndolos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La orientación decide la resistencia: anisotropía</strong>Una pieza impresa no es igual de resistente en todas las direcciones. Dentro de cada capa el material es continuo; <strong>entre capas</strong> la unión es solo una soldadura parcial, y puede tener la mitad de la resistencia. Consecuencia práctica: una pieza rompe con facilidad cuando la fuerza intenta <em>separar</em> las capas. Un gancho impreso en posición vertical se desprende por una capa; el mismo gancho tumbado aguanta mucho más. La orientación es una decisión de diseño, no un ajuste de la máquina.</div>
+
+        <h3>Voladizos y la regla de los 45 grados</h3>
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de voladizos en impresión 3D">
+          <img src="assets/tema06_voladizos.svg" alt="Tres columnas de cinco capas con desplazamiento creciente: con 30 grados cada capa apoya casi entera y se imprime bien; con 45 grados el desplazamiento es la mitad del ancho de capa, que es el límite; con 70 grados la parte voladiza queda en el aire y necesita soportes.">
+          <figcaption>El desplazamiento de cada capa es la altura de capa por la tangente del ángulo. En cuanto supera media anchura de capa, la nueva capa no tiene nada debajo.</figcaption>
+        </figure>
+
+        <p class="ti1-formula">desplazamiento por capa = altura de capa × tan(ángulo del voladizo)</p>
+        <p>Con capas de 0,2 mm y una anchura de extrusión de 0,4 mm, el desplazamiento admisible es de unos 0,2 mm: exactamente lo que da un ángulo de 45°. De ahí la regla, que no es una superstición del gremio sino geometría elemental. Un chaflán de 45° en lugar de un saliente recto elimina el soporte, ahorra material y deja mejor superficie.</p>
+      </section>
+
+      <section aria-labelledby="dfm">
+        <h2 id="dfm">6. Diseñar para fabricar</h2>
+        <p>El <strong>diseño para la fabricación</strong> consiste en incorporar las limitaciones del proceso al propio diseño, en lugar de descubrirlas cuando la pieza sale mal. Cada proceso tiene su lista; estas son las reglas que afectan al KR-1.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: reglas de diseño para la fabricación por proceso">
+          <table>
+            <caption>Reglas de diseño por proceso</caption>
+            <thead><tr><th scope="col">Proceso</th><th scope="col">Regla</th><th scope="col">Por qué</th></tr></thead>
+            <tbody>
+              <tr><th scope="row" rowspan="4">Impresión 3D</th><td>Voladizos por debajo de 45° respecto a la vertical.</td><td>Cada capa necesita apoyo en la anterior.</td></tr>
+              <tr><td>Paredes múltiplo de la anchura de extrusión.</td><td>Una pared de 0,5 mm con boquilla de 0,4 mm deja huecos.</td></tr>
+              <tr><td>Agujeros verticales ligeramente sobredimensionados.</td><td>Salen algo menores de lo nominal por contracción y por el trazado circular.</td></tr>
+              <tr><td>Orientar la pieza según la dirección de la carga.</td><td>Anisotropía: entre capas la resistencia es menor.</td></tr>
+              <tr><th scope="row" rowspan="2">Corte láser</th><td>Compensar el espesor del haz en los encajes.</td><td>El haz consume material: un encaje nominal queda holgado.</td></tr>
+              <tr><td>No dejar islas sueltas dentro de un contorno cortado.</td><td>Caen dentro de la máquina al terminar el corte.</td></tr>
+              <tr><th scope="row" rowspan="2">Mecanizado</th><td>Todo rincón interior tiene un radio mínimo.</td><td>Una fresa cilíndrica no puede dejar una esquina perfectamente recta.</td></tr>
+              <tr><td>La herramienta tiene que poder llegar.</td><td>Un hueco interior cerrado no es mecanizable.</td></tr>
+              <tr><th scope="row" rowspan="2">Moldeo</th><td>Ángulos de desmoldeo en las paredes verticales.</td><td>Sin conicidad, la pieza no sale del molde.</td></tr>
+              <tr><td>Espesores uniformes.</td><td>Una zona gruesa se contrae al enfriarse y deja una marca hundida.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el alojamiento de la válvula del KR-1 se diseñó con un agujero de 12,0 mm y la válvula, de 12,0 mm, no entró. ¿Es un error de la impresora, del laminador, del plano o del diseño? (Del diseño: el plano no llevaba tolerancia y nadie decidió qué holgura necesitaba un ajuste deslizante. Es el Tema 2 cobrándose su deuda.)</div>
+
+        <div class="ti1-note"><strong>Una pieza, muchas piezas o ninguna.</strong> Antes de fabricar conviene preguntarse si la pieza debe existir. Dos piezas atornilladas pueden ser una sola pieza impresa; y un soporte complicado puede sustituirse por un perfil comercial cortado a medida. La pieza que no se fabrica no falla, no cuesta y no se retrasa.</div>
+      </section>
+
+      <section aria-labelledby="eleccion">
+        <h2 id="eleccion">7. Elegir la técnica de fabricación</h2>
+        <p>El criterio 2.3 pide fabricar prototipos «empleando las técnicas de fabricación más adecuadas, incluidas las de fabricación digital, y aplicando los criterios técnicos y de sostenibilidad necesarios». La elección se decide con seis preguntas, en este orden:</p>
+
+        <ol>
+          <li><strong>¿Qué geometría tiene la pieza?</strong> Plana, de revolución, con huecos internos, con paredes finas. Esto ya descarta familias completas.</li>
+          <li><strong>¿Cuántas unidades?</strong> Una, diez, cien, cien mil. Determina si se amortiza un utillaje.</li>
+          <li><strong>¿Qué material exige el Tema 5?</strong> No todos los materiales admiten todos los procesos.</li>
+          <li><strong>¿Qué tolerancia y qué acabado hacen falta?</strong> Solo en las cotas críticas: exigir precisión donde no importa encarece sin mejorar nada.</li>
+          <li><strong>¿Qué medios hay disponibles de verdad?</strong> Una técnica que el centro no tiene no es una opción, es un deseo.</li>
+          <li><strong>¿Qué coste ambiental tiene?</strong> Material desperdiciado, consumo de la máquina y posibilidad de reciclar los restos.</li>
+        </ol>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elección de técnica para cada pieza del KR-1">
+          <table>
+            <caption>Decisión de fabricación de las piezas del KR-1</caption>
+            <thead><tr><th scope="col">Pieza</th><th scope="col">Técnica</th><th scope="col">Por qué esta y no otra</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Caja y tapa</th><td>Impresión 3D en PETG</td><td>Hueca, con alojamientos interiores y paso de cables: geometría imposible por arranque y sin serie que amortice un molde.</td></tr>
+              <tr><th scope="row">Soporte de la placa</th><td>Corte láser en contrachapado de 4 mm</td><td>Es plana. Se corta en un minuto frente a las dos horas que costaría imprimirla.</td></tr>
+              <tr><th scope="row">Plantilla de taladros</th><td>Corte láser en acrílico</td><td>Útil de verificación del Tema 2: necesita precisión en la posición de los agujeros, no resistencia.</td></tr>
+              <tr><th scope="row">Escuadra de sujeción</th><td>Plegado de chapa o perfil comercial cortado</td><td>Deformación: más rápida, más rígida y sin desperdicio frente a imprimirla.</td></tr>
+              <tr><th scope="row">Tornillería y prensaestopas</th><td>Comercial normalizado</td><td>Fabricar lo que se compra normalizado es la peor decisión posible del Tema 2.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La regla que más ahorra en un proyecto escolar</strong>Si es plana, se corta. Si es hueca o compleja, se imprime. Si es un elemento normalizado, se compra. La impresora 3D es la herramienta más versátil del taller y también la más lenta: usarla para todo es la causa número uno de que un proyecto no llegue a la fecha de entrega.</div>
+      </section>
+
+      <section aria-labelledby="seguridad">
+        <h2 id="seguridad">8. Seguridad e higiene en el trabajo</h2>
+        <p>Es contenido expreso del currículo y no un apéndice de buenas intenciones. La prevención de riesgos laborales en España se rige por la Ley 31/1995, que establece un principio aplicable tal cual al aula-taller: <strong>primero se evita el riesgo; lo que no se puede evitar se evalúa; y solo lo que queda se combate con protección</strong>.<sup><a href="#fuente_1">[1]</a></sup> El equipo de protección individual es el último recurso, nunca el primero.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Eliminar</div><p>¿Se puede hacer sin esa máquina? Cortar el contrachapado con láser evita la sierra de calar.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Sustituir</div><p>Usar un material o un proceso menos peligroso. Nunca cortar PVC con láser: se elige otro plástico.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Aislar</div><p>Resguardos, carcasas, extracción de humos y enclavamientos que paran la máquina al abrirla.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Organizar</div><p>Procedimiento escrito, formación previa, un solo operador por máquina y nunca trabajar solo en el taller.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Proteger</div><p>Gafas, guantes cuando corresponda, protección auditiva, calzado cerrado. Lo último, no lo primero.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: riesgos por máquina y medidas de prevención">
+          <table>
+            <caption>Riesgos y medidas por puesto de trabajo</caption>
+            <thead><tr><th scope="col">Máquina o tarea</th><th scope="col">Riesgo principal</th><th scope="col">Medidas</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Impresora 3D</strong></th><td>Quemadura en boquilla y base; emisión de partículas y compuestos volátiles.</td><td>No tocar en caliente; ventilación o filtro, sobre todo con ABS y ASA; no dejarla sin vigilancia toda la noche.</td></tr>
+              <tr><th scope="row"><strong>Cortadora láser</strong></th><td>Lesión ocular, incendio y humos tóxicos.</td><td>Nunca con la tapa abierta; extracción en marcha; extintor accesible; jamás cortar PVC ni materiales desconocidos; no dejarla sin vigilancia.</td></tr>
+              <tr><th scope="row"><strong>Taladro y fresadora</strong></th><td>Atrapamiento, proyección de viruta, rotura de broca.</td><td>Pieza siempre amarrada, nunca sujeta con la mano; gafas; pelo recogido, sin guantes holgados, cadenas ni mangas sueltas.</td></tr>
+              <tr><th scope="row"><strong>Sierra de calar y de cinta</strong></th><td>Corte, proyección, retroceso de la pieza.</td><td>Empujador, resguardo bajado, manos fuera de la línea de corte.</td></tr>
+              <tr><th scope="row"><strong>Soldadura de estaño</strong></th><td>Quemadura; humos de fundente; plomo en soldaduras antiguas.</td><td>Soporte para el soldador, ventilación, lavado de manos al terminar, estaño sin plomo.</td></tr>
+              <tr><th scope="row"><strong>Lijado y acabado</strong></th><td>Polvo respirable.</td><td>Lijado en húmedo o con aspiración, mascarilla adecuada.</td></tr>
+              <tr><th scope="row"><strong>Montaje eléctrico</strong></th><td>Cortocircuito, quemadura, daño a la placa.</td><td>Montar siempre sin tensión; tensiones de seguridad; nunca red eléctrica en montajes escolares. Se detalla en el Tema 10.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>Tres reglas que no se negocian</strong><strong>1.</strong> Ninguna máquina se usa sin haber recibido formación específica sobre ella. <strong>2.</strong> Los guantes están prohibidos en máquinas con elementos giratorios: si el guante se engancha, arrastra la mano. <strong>3.</strong> Nunca se corta o se calienta un material que no se ha identificado: el PVC libera cloruro de hidrógeno, y algunas espumas y maderas tratadas desprenden compuestos tóxicos.</div>
+
+        <div class="ti1-note"><strong>La higiene es parte de la seguridad.</strong> Orden en el puesto, herramientas en su sitio, restos de material retirados, suelo libre de cables y limpieza al terminar. No es disciplina: la mayoría de los accidentes de taller escolar son tropiezos, cortes con restos y quemaduras con herramientas que alguien dejó donde no debía. Y el mantenimiento cuenta: una boquilla obstruida, una lente de láser sucia o una broca mellada son a la vez un problema de calidad y un riesgo.</div>
+
+        <div class="ti1-curio"><strong>La señalización de seguridad es un lenguaje normalizado.</strong> La forma y el color dicen tanto como el pictograma: redonda con barra roja es prohibición, redonda azul es obligación, triángulo amarillo es advertencia y cuadrado verde es salvamento. Es exactamente la misma idea que la simbología de esquemas del Tema 3: un código común que cualquiera entiende sin leyenda, incluso sin compartir idioma.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con piezas fabricadas y con las decisiones de proceso escritas.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 6">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Elegir el proceso</th><td>Que asignas a cada pieza la técnica adecuada y justificas el descarte de las otras.</td><td>Tabla pieza → técnica → motivo, con el cálculo del punto de equilibrio frente a un molde.</td></tr>
+              <tr><th scope="row">Prototipar con método</th><td>Que cada prototipo responde a una pregunta y usa el material más barato posible.</td><td>Secuencia de prototipos fechados, con la pregunta de cada uno y lo aprendido.</td></tr>
+              <tr><th scope="row">Fabricación digital</th><td>Que controlas la cadena del archivo a la pieza y los parámetros que importan.</td><td>Parámetros elegidos con su motivo, pieza de prueba del láser, orientación razonada por la dirección de la carga.</td></tr>
+              <tr><th scope="row">Diseñar para fabricar</th><td>Que has modificado el diseño para hacerlo fabricable.</td><td>Al menos dos cambios de diseño documentados: un chaflán que elimina soportes, una holgura de encaje compensada.</td></tr>
+              <tr><th scope="row">Seguridad</th><td>Que aplicas el orden de prevención y las medidas de cada máquina.</td><td>Procedimiento de trabajo seguro de una máquina, riesgos identificados y registro de incidencias del taller.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cierre del Proyecto 1: con las piezas fabricadas, la documentación del Tema 4 y la memoria, el KR-1 ya es un producto. En el Bloque C empieza a moverse.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Anisotropía</dt><dd>Propiedad de un material o pieza cuyo comportamiento mecánico depende de la dirección considerada.</dd>
+          <dt>Ángulo de desmoldeo</dt><dd>Ligera conicidad dada a las paredes de una pieza moldeada para que pueda salir del molde.</dd>
+          <dt>Arranque de material</dt><dd>Familia de procesos en los que se parte de un bloque y se elimina el material sobrante.</dd>
+          <dt>Conformación por deformación</dt><dd>Familia de procesos en los que el material cambia de forma sin variar su masa.</dd>
+          <dt>Control numérico</dt><dd>Gobierno automático de una máquina herramienta mediante un programa de trayectorias.</dd>
+          <dt>Diseño para la fabricación</dt><dd>Práctica de incorporar al diseño las limitaciones del proceso con el que se va a fabricar.</dd>
+          <dt>Fabricación aditiva</dt><dd>Familia de procesos en los que la pieza se construye añadiendo material capa a capa.</dd>
+          <dt>Fabricación bajo demanda</dt><dd>Producción de cada unidad cuando existe el pedido, sin fabricar para almacén.</dd>
+          <dt>Fabricación digital</dt><dd>Procesos en los que la máquina obtiene la geometría directamente de un archivo, sin utillaje específico.</dd>
+          <dt>Laminador</dt><dd>Programa que convierte un modelo 3D en las trayectorias y el código que ejecuta la impresora.</dd>
+          <dt>Línea de junta</dt><dd>Marca que deja en la pieza el plano de cierre de las dos mitades de un molde.</dd>
+          <dt>Moldeo</dt><dd>Familia de procesos en los que el material fluido adopta la forma de un molde.</dd>
+          <dt>Prototipado rápido</dt><dd>Fabricación de prototipos en plazos muy cortos y sin utillaje, para responder preguntas de diseño.</dd>
+          <dt>Punto de equilibrio</dt><dd>Número de unidades a partir del cual un proceso con utillaje resulta más económico que otro sin él.</dd>
+          <dt>Relleno</dt><dd>Estructura interna con que se rellena una pieza impresa, expresada en porcentaje de su volumen.</dd>
+          <dt>Soporte</dt><dd>Material provisional que se imprime para sostener un voladizo y se retira al terminar.</dd>
+          <dt>Utillaje</dt><dd>Conjunto de moldes, troqueles, plantillas y útiles específicos que un proceso necesita para una pieza concreta.</dd>
+          <dt>Voladizo</dt><dd>Parte de una pieza impresa que sobresale sin material debajo que la sostenga.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Todo proceso de fabricación quita material, lo deforma, le da forma en estado fluido o lo añade; y una quinta familia une las piezas entre sí.</li>
+          <li>En fabricación por arranque la complejidad geométrica encarece; en fabricación aditiva es casi gratuita, y eso invierte las reglas del diseño.</li>
+          <li>Un prototipo es una pregunta construida: uno por pregunta, con el material más barato que permita responderla.</li>
+          <li>Prototipo, preserie y producción no son etapas intercambiables; saltarse la preserie produce el clásico «en el prototipo funcionaba».</li>
+          <li>La fabricación bajo demanda elimina el utillaje y el almacén a cambio de un coste unitario constante; el punto de equilibrio se calcula, no se intuye.</li>
+          <li>La fabricación digital comparte una sola cadena: modelo CAD, archivo de intercambio, preparación, programa de máquina y pieza.</li>
+          <li>En impresión 3D, altura de capa, espesor, relleno, temperatura, orientación y soportes son las seis decisiones reales; el resto son matices.</li>
+          <li>Una pieza impresa es anisótropa: entre capas resiste bastante menos, de modo que la orientación es una decisión de diseño.</li>
+          <li>La regla de los 45° es geometría: el desplazamiento por capa es la altura de capa por la tangente del ángulo, y no puede superar media anchura de capa.</li>
+          <li>Si es plana, se corta; si es hueca o compleja, se imprime; si es normalizada, se compra. Usar la impresora para todo agota el calendario.</li>
+          <li>La prevención sigue un orden: eliminar, sustituir, aislar, organizar y, solo al final, proteger con equipo individual.</li>
+          <li>Tres reglas inflexibles: formación antes de usar cualquier máquina, sin guantes en máquinas con giro, y nunca cortar ni calentar un material sin identificar.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292">Ley 31/1995, de 8 de noviembre, de Prevención de Riesgos Laborales</a>. Principios de la acción preventiva (artículo 15).</li>
+          <li id="fuente_2">[2] <a href="https://www.insst.es/">Instituto Nacional de Seguridad y Salud en el Trabajo (INSST)</a>. Fichas y notas técnicas de prevención por equipo de trabajo.</li>
+          <li id="fuente_3">[3] <a href="https://www.insst.es/documentacion/catalogo-de-publicaciones">INSST — Catálogo de publicaciones</a>. Guías técnicas de máquinas, equipos de protección individual y señalización.</li>
+          <li id="fuente_4">[4] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Señalización de seguridad (UNE-EN ISO 7010) y terminología de fabricación aditiva (UNE-EN ISO/ASTM 52900).</li>
+          <li id="fuente_5">[5] <a href="https://www.freecad.org/">FreeCAD</a>. Modelado de las piezas y exportación a los formatos de fabricación.</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque B y criterio 2.3.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema05.html">← Tema 5</a>
+  <a href="tema07.html">Tema 7 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

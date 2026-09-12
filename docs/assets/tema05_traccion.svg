@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-labelledby="t5t_title t5t_desc">
+<title id="t5t_title">Curva tensión-deformación de un acero dulce</title>
+<desc id="t5t_desc">Gráfica de tensión frente a deformación. Primero un tramo recto, la zona elástica, en el que la pieza recupera su forma al descargarla; termina en el límite elástico. Después la zona plástica, donde la deformación es permanente: un escalón de fluencia, un ascenso por endurecimiento hasta la resistencia a tracción, que es el valor máximo, y por último un descenso por estrechamiento de la sección hasta la rotura.</desc>
+<defs><marker id="t5t_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#46616a"/></marker></defs>
+<rect width="900" height="440" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Ensayo de tracción de un acero dulce</text>
+
+<rect x="90" y="60" width="150" height="300" fill="#dff3ef" opacity=".85"/>
+<rect x="240" y="60" width="550" height="300" fill="#fff4d9" opacity=".7"/>
+<text x="165" y="84" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#245c49">zona elástica</text>
+<text x="420" y="84" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#705015">zona plástica: deformación permanente</text>
+
+<g stroke="#386da0" stroke-width="1.2" stroke-dasharray="6 5">
+<path d="M90 140 H240"/><path d="M90 90 H600"/>
+</g>
+<path d="M90 360 L240 140 C270 132 300 152 330 148 C420 138 500 112 600 90 C660 84 700 100 730 120 C760 140 775 156 790 170"
+      fill="none" stroke="#167e78" stroke-width="4"/>
+
+<g stroke="#46616a" stroke-width="2" fill="none" marker-end="url(#t5t_a)">
+<path d="M90 360 H872"/><path d="M90 360 V52"/>
+</g>
+<text x="866" y="384" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" fill="#46616a">deformación ε (%)</text>
+<text x="52" y="60" font-family="system-ui,sans-serif" font-size="13" fill="#46616a" transform="rotate(-90 52 60)" text-anchor="end">tensión σ (MPa)</text>
+
+<circle cx="240" cy="140" r="6" fill="#0b6680" stroke="#083f4e" stroke-width="2"/>
+<text x="252" y="132" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0b6680">límite elástico R<tspan font-size="10">e</tspan></text>
+<circle cx="600" cy="90" r="6" fill="#c6922d" stroke="#8a6317" stroke-width="2"/>
+<text x="860" y="80" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#705015">resistencia a tracción R<tspan font-size="10">m</tspan></text>
+<circle cx="790" cy="170" r="6" fill="#c85c40" stroke="#8f3a24" stroke-width="2"/>
+<text x="782" y="196" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#8f3a24">rotura</text>
+
+<text x="40" y="416" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Dentro de la zona elástica la pieza recupera su forma al descargarla; pasado el límite elástico, la deformación es permanente.</text>
+<text x="40" y="433" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Por eso una estructura se dimensiona para trabajar por debajo de R<tspan font-size="9">e</tspan>, no por debajo de R<tspan font-size="9">m</tspan>.</text>
+</svg>

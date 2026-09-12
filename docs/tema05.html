@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 5 del Bloque B de Tecnología e Ingeniería I: propiedades físicas, químicas y mecánicas de los materiales, ensayos, materiales técnicos y nuevos materiales, tratamientos superficiales PVD y CVD, criterios de sostenibilidad y selección razonada del material.">
+  <title>Tema 5. Propiedades, clasificación y selección de los materiales técnicos · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 05 · Bloque B · Materiales y fabricación</p>
+        <h1>Tema 5. Propiedades, clasificación y selección de los materiales técnicos</h1>
+        <p class="hero-lead">Qué distingue a un material de otro, cómo se mide esa diferencia y con qué criterios técnicos y de sostenibilidad se elige el adecuado para un producto.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 5">
+        <strong>Pregunta guía</strong>
+        <p>La caja del KR-1 va a pasar tres veranos en el huerto: sol directo, agua del riego, polvo y algún balonazo. ¿De qué material la fabricas, y cómo demuestras que esa elección es mejor que las otras cuatro que barajaste?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#por-que">Elegir mal un material</a></li>
+        <li><a href="#fisicas">Propiedades físicas</a></li>
+        <li><a href="#quimicas">Propiedades químicas</a></li>
+        <li><a href="#mecanicas">Propiedades mecánicas</a></li>
+        <li><a href="#ensayos">Ensayos: de dónde salen los datos</a></li>
+        <li><a href="#familias">Las familias de materiales técnicos</a></li>
+        <li><a href="#nuevos">Nuevos materiales y tratamientos</a></li>
+        <li><a href="#sostenibilidad">Criterios de sostenibilidad</a></li>
+        <li><a href="#seleccion">Seleccionar: el método</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Hasta aquí el KR-1 ha sido un plan, un plano y un presupuesto. Este tema es el primero en el que hay materia: qué es exactamente eso con lo que vamos a fabricar. La trampa del bloque es creer que consiste en memorizar familias de materiales. No lo es: consiste en aprender a <strong>convertir un requisito en una propiedad medible</strong> y a defender una elección con números. Al final del tema deberías poder discutir con el taller, no solo aprobar un examen.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> «quiero un material resistente» no significa nada. ¿Resistente a qué: a que lo estiren, a que lo rayen, a que lo golpeen de golpe, a que lo aplasten despacio durante años, al sol, al cloro del agua? Cada una de esas preguntas se responde con una propiedad distinta, y un material puede ser excelente en una y desastroso en la siguiente.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>distinguir propiedades físicas, químicas y mecánicas, y decir cuál responde a cada requisito;</li>
+          <li>interpretar una curva de tracción e identificar el límite elástico y la resistencia a tracción;</li>
+          <li>explicar la diferencia entre dureza, resistencia, tenacidad y fragilidad sin confundirlas;</li>
+          <li>describir los ensayos de los que proceden los datos de un catálogo;</li>
+          <li>situar un material en su familia —metálico, cerámico, polimérico, compuesto o híbrido— y prever su comportamiento;</li>
+          <li>explicar qué aportan el grafeno, el estaneno y el <em>shrilk</em>, y qué hacen los tratamientos PVD y CVD;</li>
+          <li>valorar un material por su ciclo completo: energía, contaminación, reciclabilidad y biodegradabilidad;</li>
+          <li>seleccionar un material con una matriz de requisitos y propiedades, y justificar el descarte de las alternativas.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="por-que">
+        <h2 id="por-que">1. Lo que ocurre cuando se elige mal un material</h2>
+        <p>En el Tema 1 el prototipo de la caja del KR-1 se deformó al sol. No fue mala suerte: fue una propiedad que nadie había mirado. El material era PLA, excelente para imprimir y con una <strong>temperatura de reblandecimiento de unos 60 °C</strong>, temperatura que una caja negra al sol de agosto alcanza sin dificultad. El fallo no estaba en la impresora ni en el diseño: estaba en la hoja de características que no se leyó.</p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La cadena que hay que recorrer</strong><strong>requisito de uso → propiedad medible → valor numérico → material candidato</strong>. «Tiene que aguantar el verano» no es un requisito utilizable. «Debe mantener su forma a 70 °C» sí lo es: es una propiedad, tiene unidades y se puede buscar en un catálogo. Todo este tema consiste en aprender a hacer esa traducción.</div>
+
+        <h3>Las tres familias de propiedades</h3>
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Físicas</h3><p>Cómo se comporta el material frente a la energía, el calor, la electricidad y el propio espacio: densidad, conductividad, dilatación, fusión.</p></div>
+          <div class="ti1-card"><h3>Químicas</h3><p>Cómo reacciona con su entorno: oxidación, corrosión, ataque por agua, disolventes o radiación solar.</p></div>
+          <div class="ti1-card"><h3>Mecánicas</h3><p>Cómo responde a las fuerzas: dureza, resistencia, elasticidad, plasticidad, tenacidad, fragilidad y fatiga.</p></div>
+        </div>
+        <div class="ti1-note"><strong>Y una cuarta que el currículo trata aparte pero decide tanto como las otras: la aptitud tecnológica.</strong> Un material puede ser perfecto en el papel y no poderse fabricar con los medios del centro. Si no se puede imprimir, cortar, doblar o pegar, no es candidato. Esa condición se estudia en el Tema 6, pero conviene tenerla presente desde aquí.</div>
+      </section>
+
+      <section aria-labelledby="fisicas">
+        <h2 id="fisicas">2. Propiedades físicas</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: propiedades físicas, su unidad y el requisito que resuelven">
+          <table>
+            <caption>Propiedades físicas y para qué se usan</caption>
+            <thead><tr><th scope="col">Propiedad</th><th scope="col">Qué mide</th><th scope="col">Unidad</th><th scope="col">Requisito que resuelve en el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Densidad</strong></th><td>Masa por unidad de volumen.</td><td>kg/m³ o g/cm³</td><td>Cuánto pesará el soporte y cuánto material consume la impresión.</td></tr>
+              <tr><th scope="row"><strong>Conductividad térmica</strong></th><td>Facilidad con que el calor atraviesa el material.</td><td>W/(m·K)</td><td>Si la caja cerrada al sol se convierte en un horno para la electrónica.</td></tr>
+              <tr><th scope="row"><strong>Conductividad eléctrica</strong></th><td>Facilidad con que circula la corriente.</td><td>S/m</td><td>Elegir conductor para el cableado y aislante para la carcasa.</td></tr>
+              <tr><th scope="row"><strong>Dilatación térmica</strong></th><td>Cuánto cambia de tamaño al calentarse.</td><td>1/K</td><td>Si la tapa deja de encajar entre la noche y el mediodía.</td></tr>
+              <tr><th scope="row"><strong>Temperatura de fusión o reblandecimiento</strong></th><td>A qué temperatura pierde su forma.</td><td>°C</td><td>El fallo del primer prototipo: el PLA reblandece hacia los 60 °C.</td></tr>
+              <tr><th scope="row"><strong>Absorción de agua</strong></th><td>Cuánta humedad admite en su masa.</td><td>% en masa</td><td>Si el material se hincha o pierde propiedades con el riego.</td></tr>
+              <tr><th scope="row"><strong>Comportamiento magnético</strong></th><td>Si es atraído por un campo magnético.</td><td>—</td><td>Posibilidad de un cierre magnético en la tapa.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Densidad frente a peso: un error que cuesta dinero</strong>La densidad es una propiedad del material; el peso, del objeto. Un aluminio de 2,7 g/cm³ da una pieza más ligera que un acero de 7,8 g/cm³ <em>si la geometría es la misma</em>, pero si el aluminio obliga a engrosar la pared para aguantar la misma carga, la ventaja se reduce o desaparece. Lo que se compara no son materiales: son <strong>piezas dimensionadas para cumplir el mismo requisito</strong>. Es la idea que el Tema 9 convertirá en cálculo.</div>
+
+        <div class="ti1-curio"><strong>La dilatación se nota más de lo que parece.</strong> El coeficiente de dilatación de un polímero ronda los 70 millonésimos por grado. Una tapa de 120 mm que pase de 5 °C por la noche a 50 °C al mediodía cambia unos 0,4 mm. Parece poco, hasta que se recuerda del Tema 2 que la tolerancia de encaje de esa tapa era de ±0,2 mm. Las holguras de una pieza que trabaja a la intemperie no se calculan a temperatura de aula.</div>
+      </section>
+
+      <section aria-labelledby="quimicas">
+        <h2 id="quimicas">3. Propiedades químicas</h2>
+        <p>Las propiedades químicas describen lo que el entorno le hace al material con el tiempo. Son las que menos se miran en un prototipo —porque el prototipo dura dos semanas— y las que más fallos provocan en un producto, que dura años.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: propiedades químicas y su efecto">
+          <table>
+            <caption>Cómo ataca el entorno a un material</caption>
+            <thead><tr><th scope="col">Fenómeno</th><th scope="col">Qué ocurre</th><th scope="col">Dónde aparece en el KR-1</th><th scope="col">Cómo se combate</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Oxidación</strong></th><td>El material reacciona con el oxígeno y forma una capa de óxido.</td><td>Tornillería y soporte metálico.</td><td>Acero inoxidable, aluminio anodizado, pintura o galvanizado.</td></tr>
+              <tr><th scope="row"><strong>Corrosión</strong></th><td>Deterioro por reacción con el medio, acelerada por humedad y sales.</td><td>Contactos de la sonda enterrada: es la causa de que la sonda resistiva se destruya.</td><td>Sonda capacitiva, que no expone los electrodos al agua.</td></tr>
+              <tr><th scope="row"><strong>Par galvánico</strong></th><td>Dos metales distintos en contacto y con humedad: el menos noble se corroe.</td><td>Un tornillo de acero en un soporte de aluminio.</td><td>Usar el mismo metal o aislar el contacto con una arandela.</td></tr>
+              <tr><th scope="row"><strong>Degradación por radiación ultravioleta</strong></th><td>El sol rompe las cadenas del polímero: amarillea, se vuelve quebradizo y se agrieta.</td><td>La caja, expuesta todo el verano.</td><td>Polímeros con aditivo anti-UV, pigmentación o ubicación a la sombra.</td></tr>
+              <tr><th scope="row"><strong>Ataque por agentes químicos</strong></th><td>Disolventes, fertilizantes o productos de limpieza disuelven o hinchan el material.</td><td>Fertilizante disuelto en el agua de riego.</td><td>Comprobar la compatibilidad química en la hoja del fabricante.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>La corrosión no es un defecto de fabricación</strong>Es el resultado previsible de poner un material donde no le corresponde. Cuando una sonda de humedad resistiva se cubre de verdín en tres semanas, no está mal hecha: está haciendo exactamente lo que la física predice al pasar corriente entre dos electrodos metálicos dentro de tierra húmeda. La solución es de diseño, no de garantía.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el aluminio se oxida mucho más rápido que el acero, y sin embargo un perfil de aluminio dura décadas a la intemperie mientras uno de acero sin proteger se deshace. ¿Qué diferencia hay entre las dos capas de óxido? (Pista: una es porosa y se desprende; la otra es compacta y se queda pegada.)</div>
+      </section>
+
+      <section aria-labelledby="mecanicas">
+        <h2 id="mecanicas">4. Propiedades mecánicas</h2>
+        <p>Son las que el currículo pide expresamente y las que más se confunden entre sí, porque en el lenguaje corriente «duro», «fuerte» y «resistente» significan casi lo mismo. En ingeniería son propiedades distintas, se miden con ensayos distintos y un material puede tener una altísima y otra pésima.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: propiedades mecánicas, definición y ejemplo">
+          <table>
+            <caption>Las siete propiedades mecánicas que hay que distinguir</caption>
+            <thead><tr><th scope="col">Propiedad</th><th scope="col">Definición</th><th scope="col">Ejemplo claro</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Dureza</strong></th><td>Resistencia a ser penetrado o rayado en la superficie.</td><td>El vidrio es muy duro: no se raya con una llave.</td></tr>
+              <tr><th scope="row"><strong>Resistencia mecánica</strong></th><td>Tensión máxima que soporta antes de romper.</td><td>Un cable de acero sostiene toneladas.</td></tr>
+              <tr><th scope="row"><strong>Elasticidad</strong></th><td>Capacidad de recuperar la forma al retirar la carga.</td><td>Un muelle vuelve a su longitud.</td></tr>
+              <tr><th scope="row"><strong>Plasticidad</strong></th><td>Capacidad de deformarse permanentemente sin romper.</td><td>El plomo o la arcilla conservan la forma que les das.</td></tr>
+              <tr><th scope="row"><strong>Tenacidad</strong></th><td>Energía que absorbe antes de romper: aguanta el golpe.</td><td>Un casco de policarbonato se abolla pero no estalla.</td></tr>
+              <tr><th scope="row"><strong>Fragilidad</strong></th><td>Lo contrario de la tenacidad: rompe de golpe sin avisar.</td><td>El vidrio, durísimo y frágil a la vez.</td></tr>
+              <tr><th scope="row"><strong>Fatiga</strong></th><td>Rotura tras muchos ciclos de carga muy inferiores a la de rotura.</td><td>Un clip se parte a la vigésima vez que lo doblas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Duro no es tenaz, y es la confusión más costosa</strong>El vidrio es más duro que el aluminio y se rompe con un golpe que el aluminio absorbe sin problema. <strong>Dureza</strong> es resistencia superficial al rayado o a la penetración; <strong>tenacidad</strong> es capacidad de absorber energía antes de romper. Buscar el material «más duro» para una pieza que va a recibir golpes es elegir exactamente lo contrario de lo que hace falta. Para la caja del KR-1, que puede recibir un balonazo, la propiedad crítica es la tenacidad.</div>
+
+        <div class="ti1-note"><strong>La fatiga es la asesina silenciosa.</strong> Casi ninguna pieza rota en servicio ha soportado una carga superior a su resistencia: la mayoría se rompen por fatiga, tras cientos de miles de ciclos de cargas pequeñas. Es lo que le espera al mecanismo de apertura de la válvula del KR-1, que abrirá y cerrará varias veces al día durante años. Cuando en el Tema 9 calculemos ese mecanismo, el número de ciclos previstos será un dato del problema.</div>
+      </section>
+
+      <section aria-labelledby="ensayos">
+        <h2 id="ensayos">5. Ensayos: de dónde salen los números del catálogo</h2>
+        <p>Una propiedad mecánica no es una opinión: es el resultado de un ensayo normalizado. Saber de qué ensayo procede cada cifra es lo que permite compararlas, y explica por qué dos catálogos pueden dar valores distintos del «mismo» material.</p>
+
+        <h3>El ensayo de tracción</h3>
+        <p>Es el ensayo fundamental. Se toma una probeta de forma y medidas normalizadas, se estira a velocidad controlada y se registra la fuerza aplicada frente al alargamiento. Dividiendo la fuerza por la sección inicial se obtiene la <strong>tensión</strong>, y el alargamiento relativo da la <strong>deformación</strong>. El resultado es esta curva, de la que sale la mitad de los datos de cualquier hoja de material:</p>
+
+        <p class="ti1-formula">σ = F / S<sub>0</sub> <span class="ti1-formula-leyenda">tensión, en N/mm² o MPa</span></p>
+        <p class="ti1-formula">ε = Δl / l<sub>0</sub> <span class="ti1-formula-leyenda">deformación, adimensional o en %</span></p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Curva de tracción desplazable de un acero dulce">
+          <img src="assets/tema05_traccion.svg" alt="Curva de tensión frente a deformación: tramo recto de la zona elástica hasta el límite elástico, escalón de fluencia, ascenso por endurecimiento hasta la resistencia a tracción y descenso hasta la rotura.">
+          <figcaption>La cifra que se usa para dimensionar no es la de rotura, sino la del límite elástico: pasado ese punto la pieza sigue entera, pero ya está deformada para siempre.</figcaption>
+        </figure>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Módulo de elasticidad y coeficiente de seguridad</strong>La <strong>pendiente</strong> del tramo recto es el módulo de elasticidad o módulo de Young: cuanto mayor, más rígido el material. No confundir rigidez con resistencia: un material puede ser muy rígido y romper pronto. Y para dimensionar no se trabaja en el límite elástico, sino dividiéndolo por un <strong>coeficiente de seguridad</strong> —del orden de 1,5 a 3 en estructuras ordinarias— que absorbe la incertidumbre de las cargas, del material y de la fabricación.</div>
+
+        <h3>Los otros ensayos</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: ensayos de materiales y qué miden">
+          <table>
+            <caption>Ensayos normalizados y la propiedad que determinan</caption>
+            <thead><tr><th scope="col">Ensayo</th><th scope="col">En qué consiste</th><th scope="col">Propiedad que da</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Tracción</strong></th><td>Estirar una probeta hasta la rotura.</td><td>Límite elástico, resistencia a tracción, alargamiento y módulo de elasticidad.</td></tr>
+              <tr><th scope="row"><strong>Dureza</strong> (Brinell, Vickers, Rockwell)</th><td>Presionar un penetrador de forma conocida y medir la huella.</td><td>Dureza superficial, en la escala del método usado.</td></tr>
+              <tr><th scope="row"><strong>Resiliencia</strong> (Charpy)</th><td>Romper una probeta entallada con un péndulo y medir la energía absorbida.</td><td>Tenacidad frente a impacto, en julios.</td></tr>
+              <tr><th scope="row"><strong>Fatiga</strong></th><td>Aplicar miles o millones de ciclos de carga alterna.</td><td>Límite de fatiga y vida útil en número de ciclos.</td></tr>
+              <tr><th scope="row"><strong>Flexión</strong></th><td>Apoyar la probeta y cargarla en el centro.</td><td>Resistencia y rigidez a flexión; habitual en polímeros y cerámicos.</td></tr>
+              <tr><th scope="row"><strong>Compresión</strong></th><td>Aplastar la probeta.</td><td>Resistencia a compresión; decisiva en hormigón y cerámicos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>La cifra depende del ensayo, y el ensayo depende de la norma.</strong> Los ensayos de tracción de metales siguen la norma UNE-EN ISO 6892-1, que fija la forma de la probeta, la velocidad de estirado y cómo se calcula cada valor.<sup><a href="#fuente_1">[1]</a></sup> Es la razón de ser de la normalización del Tema 2: sin una probeta y un procedimiento comunes, dos laboratorios darían números distintos del mismo acero y ningún catálogo serviría para comparar.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> los catálogos de filamento de impresión 3D suelen dar la resistencia a tracción del material… medido sobre una probeta <em>moldeada</em>, no impresa. Una pieza impresa tiene capas, y entre capas la unión es más débil. ¿Qué harías para conocer la resistencia real de tu caja: buscar otro catálogo o imprimir tres probetas y romperlas?</div>
+      </section>
+
+      <section aria-labelledby="familias">
+        <h2 id="familias">6. Las familias de materiales técnicos</h2>
+        <p>El currículo enumera los materiales técnicos «metálicos, cerámicos, moleculares, poliméricos e híbridos, entre otros». Lo útil de la clasificación no es la lista: es que <strong>cada familia tiene un patrón de comportamiento previsible</strong>, de modo que al saber a qué familia pertenece un material ya sabes bastante antes de mirar ninguna cifra.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: familias de materiales y su patrón de comportamiento">
+          <table>
+            <caption>Patrón de comportamiento de cada familia</caption>
+            <thead><tr><th scope="col">Familia</th><th scope="col">Ejemplos</th><th scope="col">Fuerte en</th><th scope="col">Débil en</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Metálicos</strong></th><td>Aceros, aluminio, cobre, latón, titanio.</td><td>Resistencia, tenacidad, rigidez, conductividad; se mecanizan y se sueldan.</td><td>Densidad alta, corrosión, coste energético de obtención.</td></tr>
+              <tr><th scope="row"><strong>Cerámicos</strong></th><td>Alúmina, vidrio, porcelana, carburo de silicio.</td><td>Dureza, resistencia a temperatura y a agentes químicos; aislantes.</td><td>Fragilidad extrema; no admiten deformación plástica.</td></tr>
+              <tr><th scope="row"><strong>Poliméricos</strong></th><td>PLA, PETG, ABS, nailon, polipropileno, siliconas.</td><td>Ligereza, moldeabilidad, coste, aislamiento, resistencia al agua.</td><td>Rigidez y resistencia bajas; sensibles a temperatura y a radiación UV.</td></tr>
+              <tr><th scope="row"><strong>Compuestos</strong></th><td>Fibra de vidrio o de carbono con resina, hormigón armado.</td><td>Relación resistencia-peso excepcional y propiedades a medida.</td><td>Coste, dificultad de reparación y de reciclaje.</td></tr>
+              <tr><th scope="row"><strong>Híbridos</strong></th><td>Paneles sándwich, materiales celulares, recubiertos.</td><td>Combinan lo mejor de dos familias en zonas distintas de la pieza.</td><td>Uniones entre materiales distintos: son el punto débil.</td></tr>
+              <tr><th scope="row"><strong>Moleculares y biomateriales</strong></th><td>Bioplásticos de almidón o de quitosano, madera, celulosa.</td><td>Origen renovable y biodegradabilidad.</td><td>Sensibles a humedad y temperatura; prestaciones mecánicas modestas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Los polímeros de impresión que de verdad vas a usar</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación de polímeros de impresión 3D para la caja del KR-1">
+          <table>
+            <caption>Cuatro candidatos para la caja del KR-1</caption>
+            <thead><tr><th scope="col">Material</th><th scope="col">Reblandece hacia</th><th scope="col">Tenacidad</th><th scope="col">Resistencia al sol</th><th scope="col">Facilidad de impresión</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>PLA</strong></th><td>60 °C</td><td>Baja: rompe en seco</td><td>Mala: amarillea y se agrieta</td><td>Excelente</td></tr>
+              <tr><th scope="row"><strong>PETG</strong></th><td>80 °C</td><td>Buena</td><td>Aceptable</td><td>Buena</td></tr>
+              <tr><th scope="row"><strong>ABS</strong></th><td>100 °C</td><td>Buena</td><td>Regular</td><td>Difícil: se despega y huele</td></tr>
+              <tr><th scope="row"><strong>ASA</strong></th><td>100 °C</td><td>Buena</td><td>Muy buena: pensado para exterior</td><td>Difícil: requiere cámara cerrada</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué el KR-1 se fabrica en PETG</strong>No es el mejor en ninguna columna y es el único razonable en todas: aguanta 80 °C, no rompe en seco, resiste el sol lo suficiente para tres veranos y se imprime en la máquina del centro sin cámara cerrada. El ASA sería técnicamente superior a la intemperie y queda descartado por una restricción de fabricación, no de material. <strong>Así se decide en ingeniería: no por el máximo de una propiedad, sino por el mínimo aceptable en todas.</strong></div>
+      </section>
+
+      <section aria-labelledby="nuevos">
+        <h2 id="nuevos">7. Nuevos materiales y nuevos tratamientos</h2>
+        <p>El currículo nombra expresamente tres materiales nuevos y dos familias de tratamientos superficiales. No hay que dominarlos: hay que saber qué prometen, por qué son noticia y en qué punto está su aplicación real. Son, en el fondo, ejemplos de investigación en curso: lo que el Tema 1 llamaba I+D.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Grafeno</div><p>Una única capa de átomos de carbono en red hexagonal. Extraordinariamente resistente, muy buen conductor eléctrico y térmico, y transparente. Su aislamiento mereció el Nobel de Física de 2010.<sup><a href="#fuente_2">[2]</a></sup> El problema no es su comportamiento, sino <strong>producirlo en cantidad y con calidad constante</strong>: por eso aparece en sensores, baterías y recubrimientos antes que en piezas estructurales.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Estaneno</div><p>El equivalente del grafeno con estaño: una capa monoatómica que, según la predicción teórica, conduciría la electricidad por sus bordes sin resistencia apreciable a temperatura ambiente. Su interés es electrónico, no mecánico, y está en fase de investigación de laboratorio.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year"><em>Shrilk</em></div><p>Un bioplástico desarrollado en el Instituto Wyss de Harvard a partir de <strong>quitosano</strong> —procedente de cáscaras de crustáceo, un residuo— y <strong>fibroína</strong> de seda, imitando la estructura del exoesqueleto de un insecto. Es transparente, flexible, comparable en resistencia al aluminio a la mitad de peso, y se degrada en compost liberando nutrientes.<sup><a href="#fuente_3">[3]</a></sup></p></div>
+        </div>
+
+        <div class="ti1-note"><strong>Cómo leer una noticia sobre un material nuevo.</strong> Pregúntate siempre tres cosas: ¿el dato procede de una muestra de laboratorio o de una pieza real?, ¿a qué coste y en qué cantidad se puede producir hoy?, ¿qué propiedad se ha medido y cuál se ha callado? Es el análisis crítico del Tema 4 aplicado a los materiales, y explica por qué el grafeno lleva quince años siendo el material del futuro.</div>
+
+        <h3>Tratamientos superficiales: cambiar la piel sin cambiar la pieza</h3>
+        <p>Muchas veces no se necesita otro material, sino otra superficie: que la pieza sea tenaz por dentro y durísima por fuera, o que no se corroa. Los tratamientos de deposición en fase de vapor consiguen exactamente eso, con capas de micrómetros o menos.</p>
+
+        <div class="comparacion">
+          <div><h3>PVD · <em>Physical Vapor Deposition</em></h3><p>El material de recubrimiento se <strong>vaporiza físicamente</strong> —por evaporación o bombardeo— en vacío y se condensa sobre la pieza. Trabaja a temperatura relativamente baja. Es el recubrimiento dorado de nitruro de titanio de las brocas y fresas.</p></div>
+          <div><h3>CVD · <em>Chemical Vapor Deposition</em></h3><p>Un gas <strong>reacciona químicamente</strong> sobre la superficie caliente y deposita ahí el material. Da capas más uniformes y adherentes, incluso en huecos, pero exige más temperatura. Es la vía industrial del grafeno y de los recubrimientos de herramientas de corte.</p></div>
+        </div>
+        <div class="ti1-curio"><strong>Una broca dorada no lleva oro.</strong> El color es nitruro de titanio depositado por PVD, en una capa de dos o tres micrómetros —unas treinta veces más fina que un cabello—. Multiplica varias veces la vida de la herramienta sin alterar nada del acero que hay debajo. Es el ejemplo más barato de una idea muy poderosa: a menudo el problema está en la superficie, no en el volumen.</div>
+      </section>
+
+      <section aria-labelledby="sostenibilidad">
+        <h2 id="sostenibilidad">8. Criterios de sostenibilidad</h2>
+        <p>El criterio 2.2 pide seleccionar materiales «atendiendo a criterios de sostenibilidad de manera responsable y ética». Eso no se resuelve eligiendo lo que suene más ecológico: exige mirar el <strong>ciclo de vida completo</strong> del material, desde que se extrae de la corteza terrestre hasta que se convierte en residuo. Es el otro ciclo de vida del que hablaba el Tema 2, el ambiental.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Extracción</div><p>Minería o cultivo: consumo de agua y de energía, alteración del terreno, y disponibilidad real. Hay materias primas consideradas <strong>críticas</strong> por concentrarse en muy pocos países.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Transformación</div><p>La fase que casi siempre domina la huella. Obtener aluminio primario exige del orden de diez veces más energía que obtenerlo reciclado; en el acero la diferencia también es grande, aunque menor.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Fabricación</div><p>Material desperdiciado, consumo de la máquina y residuos del proceso. La fabricación aditiva parte con ventaja: añade material en lugar de arrancarlo.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Uso</div><p>A veces decisiva: un material más ligero en algo que se mueve ahorra energía durante años de servicio. En una caja fija en el huerto, esta fase no cuenta.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Fin de vida</div><p>Reutilización, reparación, reciclaje, compostaje o vertedero. Depende menos del material que del <strong>diseño</strong>: si la pieza no se puede desmontar, no se recicla.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: criterios de sostenibilidad aplicados a un material">
+          <table>
+            <caption>Qué preguntar a un material</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">Pregunta concreta</th><th scope="col">Dónde se comprueba</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Energía incorporada</strong></th><td>¿Cuánta energía ha costado producir un kilo de este material?</td><td>Bases de datos de materiales y declaraciones ambientales de producto.</td></tr>
+              <tr><th scope="row"><strong>Huella de carbono</strong></th><td>¿Cuántos kilos de CO₂ equivalente por kilo de material?</td><td>Declaración ambiental del fabricante.</td></tr>
+              <tr><th scope="row"><strong>Reciclabilidad</strong></th><td>¿Existe una corriente real de reciclaje para este material, o solo es reciclable en teoría?</td><td>Códigos de identificación de plásticos y sistemas de gestión de residuos.<sup><a href="#fuente_4">[4]</a></sup></td></tr>
+              <tr><th scope="row"><strong>Biodegradabilidad</strong></th><td>¿Se degrada, en qué condiciones y en cuánto tiempo?</td><td>Norma de compostabilidad; ojo: el PLA necesita compostaje industrial, no el del huerto.</td></tr>
+              <tr><th scope="row"><strong>Toxicidad</strong></th><td>¿Es seguro durante el uso, al mecanizarlo y al incinerarlo?</td><td>Ficha de datos de seguridad del material.</td></tr>
+              <tr><th scope="row"><strong>Durabilidad</strong></th><td>¿Cuántos años cumple su función antes de sustituirse?</td><td>La mejor decisión ambiental suele ser la que hace falta reponer menos veces.</td></tr>
+              <tr><th scope="row"><strong>Disponibilidad</strong></th><td>¿Es una materia prima crítica o abundante? ¿De dónde viene?</td><td>Listas europeas de materias primas críticas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>Tres trampas de la sostenibilidad de materiales</strong><strong>1.</strong> «Biodegradable» no significa que desaparezca en el huerto: el PLA es biodegradable en compostaje industrial, y en una pila de compost casera puede durar años. <strong>2.</strong> «Reciclable» no significa reciclado: depende de que exista una corriente de recogida para ese material en concreto. <strong>3.</strong> Una pieza más duradera de un material con peor huella puede ser mejor opción que una pieza de bajo impacto que hay que reponer cada año. La cuenta se hace por servicio prestado, no por kilo de material.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> para la caja del KR-1 dudáis entre PETG virgen y PETG reciclado a partir de botellas. El reciclado tiene menor huella y peores propiedades mecánicas, con más dispersión entre lotes. ¿Cómo decidirías, y qué medida harías antes de decidir?</div>
+      </section>
+
+      <section aria-labelledby="seleccion">
+        <h2 id="seleccion">9. Seleccionar un material: el método</h2>
+        <p>Con todo lo anterior, la selección deja de ser una intuición y se convierte en un procedimiento de cuatro pasos, el mismo que se sigue en cualquier oficina técnica.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Traducir</div><p>Convertir cada requisito de uso en una propiedad con unidad y un valor umbral. «Aguanta el verano» → «mantiene su forma a 70 °C».</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Filtrar</div><p>Descartar todo material que no alcance algún umbral. Es un filtro binario: no se puntúa, se elimina. Aquí cae el PLA.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Ordenar</div><p>Entre los supervivientes, puntuar y ponderar con la matriz de decisión del Tema 1: prestaciones, coste, fabricabilidad y sostenibilidad.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Comprobar</div><p>Verificar la elección con un ensayo propio, aunque sea sencillo: imprimir la pieza y dejarla al sol una semana dice más que tres catálogos.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: matriz de selección del material de la caja del KR-1">
+          <table>
+            <caption>Selección del material de la caja del KR-1 (1 = malo, 5 = muy bueno)</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">Peso</th><th scope="col">PLA</th><th scope="col">PETG</th><th scope="col">ASA</th><th scope="col">Aluminio</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Estabilidad a 70 °C</th><td>0,25</td><td>1</td><td>4</td><td>5</td><td>5</td></tr>
+              <tr><th scope="row">Tenacidad frente a golpes</th><td>0,20</td><td>2</td><td>4</td><td>4</td><td>5</td></tr>
+              <tr><th scope="row">Resistencia al sol</th><td>0,20</td><td>1</td><td>3</td><td>5</td><td>5</td></tr>
+              <tr><th scope="row">Fabricable en el centro</th><td>0,20</td><td>5</td><td>4</td><td>1</td><td>1</td></tr>
+              <tr><th scope="row">Coste y sostenibilidad</th><td>0,15</td><td>4</td><td>4</td><td>3</td><td>2</td></tr>
+              <tr><th scope="row"><strong>Total ponderado</strong></th><td><strong>1,00</strong></td><td><strong>2,35</strong></td><td><strong>3,80</strong></td><td><strong>3,70</strong></td><td><strong>3,70</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Obsérvese lo que ha ocurrido: el PLA ni siquiera debería haber llegado a la tabla, porque falla el umbral de temperatura en el paso 2. Se ha dejado a propósito para que se vea que <strong>una matriz de decisión no sustituye al filtro</strong>: puntuando, un material inaceptable puede compensar su suspenso con notas altas en lo accesorio y quedar en un puesto respetable. Primero se elimina, después se puntúa.</p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Y el material no se elige una sola vez</strong>La selección se revisa cuando cambia el diseño, cuando cambia el proceso de fabricación y cuando el ensayo desmiente al catálogo. Es la misma idea iterativa del Tema 1: la decisión queda anotada con su motivo en el registro de cambios, de modo que cuando alguien pregunte «¿por qué PETG?» la respuesta esté escrita y fechada.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra defendiendo una elección de material con números, no recitando familias.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 5">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Traducir requisitos</th><td>Que conviertes cada condición de uso en una propiedad con unidad y umbral.</td><td>Tabla requisito → propiedad → valor umbral, con la fuente de cada dato.</td></tr>
+              <tr><th scope="row">Interpretar propiedades</th><td>Que distingues dureza, resistencia y tenacidad, y que lees una curva de tracción.</td><td>Identificación del límite elástico y de la resistencia a tracción en una curva dada, con el coeficiente de seguridad aplicado.</td></tr>
+              <tr><th scope="row">Sostenibilidad</th><td>Que valoras el ciclo completo y no te quedas en la etiqueta del envase.</td><td>Comparación de dos materiales por energía, reciclabilidad real y durabilidad; una trampa detectada y explicada.</td></tr>
+              <tr><th scope="row">Seleccionar y comprobar</th><td>Que filtras antes de puntuar y que has hecho un ensayo propio.</td><td>Materiales descartados con el umbral que incumplen, matriz ponderada de los supervivientes y resultado de un ensayo sencillo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba de realidad: imprime la misma pieza en dos materiales, déjalas una semana al sol del patio y mídelas. El resultado de ese ensayo vale más, en tu memoria, que cualquier tabla copiada de un catálogo.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Coeficiente de seguridad</dt><dd>Factor por el que se divide el límite elástico para fijar la tensión de trabajo admisible de una pieza.</dd>
+          <dt>Corrosión</dt><dd>Deterioro de un material por reacción con su medio, acelerado por la humedad y las sales.</dd>
+          <dt>CVD</dt><dd><em>Chemical Vapor Deposition</em>: recubrimiento formado por reacción química de un gas sobre la superficie caliente de la pieza.</dd>
+          <dt>Deformación</dt><dd>Alargamiento relativo de una probeta respecto a su longitud inicial.</dd>
+          <dt>Densidad</dt><dd>Masa por unidad de volumen de un material.</dd>
+          <dt>Dureza</dt><dd>Resistencia de la superficie de un material a ser penetrada o rayada.</dd>
+          <dt>Elasticidad</dt><dd>Capacidad de un material de recuperar su forma al retirar la carga.</dd>
+          <dt>Energía incorporada</dt><dd>Energía consumida para producir una unidad de masa de un material.</dd>
+          <dt>Estaneno</dt><dd>Capa monoatómica de estaño con propiedades electrónicas singulares, en fase de investigación.</dd>
+          <dt>Fatiga</dt><dd>Rotura de una pieza tras muchos ciclos de carga muy inferiores a su carga de rotura.</dd>
+          <dt>Fragilidad</dt><dd>Tendencia a romper de golpe, sin deformación previa apreciable.</dd>
+          <dt>Grafeno</dt><dd>Capa de un átomo de espesor de carbono en red hexagonal, de alta resistencia y conductividad.</dd>
+          <dt>Límite elástico</dt><dd>Tensión a partir de la cual la deformación del material deja de ser recuperable.</dd>
+          <dt>Material compuesto</dt><dd>Material formado por una matriz y un refuerzo que conservan su identidad y actúan conjuntamente.</dd>
+          <dt>Material híbrido</dt><dd>Solución que combina materiales distintos en zonas distintas de la pieza, o material y geometría.</dd>
+          <dt>Módulo de elasticidad</dt><dd>Pendiente del tramo recto de la curva de tracción; mide la rigidez del material.</dd>
+          <dt>Par galvánico</dt><dd>Corrosión acelerada del metal menos noble cuando dos metales distintos están en contacto con humedad.</dd>
+          <dt>Plasticidad</dt><dd>Capacidad de deformarse de forma permanente sin romper.</dd>
+          <dt>PVD</dt><dd><em>Physical Vapor Deposition</em>: recubrimiento formado al vaporizar físicamente un material en vacío y condensarlo sobre la pieza.</dd>
+          <dt>Resiliencia</dt><dd>Energía que absorbe un material antes de romper frente a un impacto.</dd>
+          <dt>Resistencia a tracción</dt><dd>Tensión máxima que soporta un material en el ensayo de tracción.</dd>
+          <dt>Shrilk</dt><dd>Bioplástico de quitosano y fibroína de seda que imita el exoesqueleto de los insectos y se degrada en compost.</dd>
+          <dt>Tenacidad</dt><dd>Capacidad de absorber energía y deformarse antes de romper.</dd>
+          <dt>Tensión</dt><dd>Fuerza por unidad de sección que soporta un material, medida en megapascales.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Elegir un material es recorrer la cadena requisito de uso → propiedad medible → valor numérico → candidato; «resistente» sin más no es un requisito.</li>
+          <li>Las propiedades físicas describen el comportamiento frente a calor, electricidad y espacio; las químicas, lo que el entorno hace al material con el tiempo; las mecánicas, la respuesta a las fuerzas.</li>
+          <li>La densidad es del material y el peso de la pieza: se comparan piezas dimensionadas para el mismo requisito, no materiales.</li>
+          <li>Dureza no es tenacidad: el vidrio es más duro que el aluminio y se rompe con un golpe que el aluminio absorbe.</li>
+          <li>La mayoría de las piezas que fallan en servicio lo hacen por fatiga, con cargas muy inferiores a las de rotura.</li>
+          <li>La curva de tracción da el límite elástico, la resistencia a tracción, el alargamiento y el módulo de elasticidad; se dimensiona por debajo del límite elástico, dividido por un coeficiente de seguridad.</li>
+          <li>Cada cifra de un catálogo procede de un ensayo normalizado; sin norma común, los catálogos no serían comparables.</li>
+          <li>Cada familia de materiales tiene un patrón previsible: los cerámicos son duros y frágiles, los polímeros ligeros y poco rígidos, los metales tenaces y densos.</li>
+          <li>El grafeno, el estaneno y el <em>shrilk</em> se estudian como ejemplos de investigación en curso: lo que limita su uso no es su comportamiento, sino su producción.</li>
+          <li>Los tratamientos PVD y CVD cambian la superficie sin cambiar la pieza: a menudo el problema está en la piel, no en el volumen.</li>
+          <li>La sostenibilidad de un material se valora por su ciclo completo, y «biodegradable» y «reciclable» son afirmaciones que hay que comprobar.</li>
+          <li>Se selecciona en cuatro pasos: traducir, filtrar por umbrales, ordenar con una matriz ponderada y comprobar con un ensayo propio. Primero se elimina y después se puntúa.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Normas de ensayo de materiales: UNE-EN ISO 6892-1 (tracción de metales), UNE-EN ISO 148-1 (impacto Charpy) y UNE-EN ISO 6506-1 (dureza Brinell).</li>
+          <li id="fuente_2">[2] <a href="https://www.nobelprize.org/prizes/physics/2010/summary/">Premio Nobel de Física 2010 — Andre Geim y Konstantin Novoselov, por el grafeno</a> (en inglés).</li>
+          <li id="fuente_3">[3] <a href="https://wyss.harvard.edu/technology/bioplastic/">Wyss Institute, Universidad de Harvard — Bioplástico de quitosano (<em>Shrilk</em>)</a> (en inglés).</li>
+          <li id="fuente_4">[4] <a href="https://www.ecoembes.com/es">Ecoembes</a>. Corrientes reales de recogida y reciclaje de envases en España.</li>
+          <li id="fuente_5">[5] <a href="https://www.cem.es/">Centro Español de Metrología</a>. Trazabilidad de las medidas de los ensayos.</li>
+          <li id="fuente_6">[6] <a href="https://www.miteco.gob.es/es.html">Ministerio para la Transición Ecológica y el Reto Demográfico</a>. Residuos, economía circular y declaraciones ambientales.</li>
+          <li id="fuente_7">[7] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque B y criterio 2.2.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema04.html">← Tema 4</a>
+  <a href="tema06.html">Tema 6 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

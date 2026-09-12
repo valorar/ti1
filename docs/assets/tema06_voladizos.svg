@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img" aria-labelledby="t6v_title t6v_desc">
+<title id="t6v_title">Voladizos en impresión 3D: por qué existe la regla de los 45 grados</title>
+<desc id="t6v_desc">Tres columnas de cinco capas apiladas con desplazamiento creciente. Con un voladizo de 30 grados cada capa apoya casi por completo sobre la anterior y se imprime bien. Con 45 grados el desplazamiento es la mitad del ancho de capa: es el límite. Con 70 grados el desplazamiento supera el ancho de media capa y la parte voladiza queda en el aire, por lo que necesita soportes.</desc>
+<rect width="900" height="400" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Voladizos: cada capa tiene que apoyarse en la de abajo</text>
+
+<g stroke="#46616a" stroke-width="2"><path d="M40 292 H270"/><path d="M350 292 H580"/><path d="M650 292 H880"/></g>
+
+<g fill="#dff3ef" stroke="#2b8c7f" stroke-width="2">
+<rect x="60" y="274" width="50" height="18"/><rect x="68" y="256" width="50" height="18"/><rect x="76" y="238" width="50" height="18"/><rect x="84" y="220" width="50" height="18"/><rect x="92" y="202" width="50" height="18"/>
+</g>
+<g fill="#fff4d9" stroke="#c6922d" stroke-width="2">
+<rect x="370" y="274" width="50" height="18"/><rect x="384" y="256" width="50" height="18"/><rect x="398" y="238" width="50" height="18"/><rect x="412" y="220" width="50" height="18"/><rect x="426" y="202" width="50" height="18"/>
+</g>
+<g fill="#fff0ec" stroke="#c85c40" stroke-width="2">
+<rect x="670" y="274" width="50" height="18"/><rect x="708" y="256" width="50" height="18"/><rect x="746" y="238" width="50" height="18"/><rect x="784" y="220" width="50" height="18"/><rect x="822" y="202" width="50" height="18"/>
+</g>
+<g stroke="#c85c40" stroke-width="2" stroke-dasharray="4 3" fill="none">
+<path d="M720 256 V292"/><path d="M758 238 V292"/><path d="M796 220 V292"/><path d="M834 202 V292"/>
+</g>
+<text x="806" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#8f3a24">esto queda en el aire</text>
+
+<g font-family="system-ui,sans-serif" text-anchor="middle">
+<text x="120" y="322" font-size="15" font-weight="700" fill="#245c49">Voladizo de 30°</text>
+<text x="120" y="342" font-size="12.5" fill="#46616a">desplazamiento 8 de 50</text>
+<text x="120" y="360" font-size="12.5" font-weight="700" fill="#245c49">se imprime bien</text>
+
+<text x="430" y="322" font-size="15" font-weight="700" fill="#705015">Voladizo de 45°</text>
+<text x="430" y="342" font-size="12.5" fill="#46616a">desplazamiento 14 de 50</text>
+<text x="430" y="360" font-size="12.5" font-weight="700" fill="#705015">es el límite práctico</text>
+
+<text x="760" y="322" font-size="15" font-weight="700" fill="#8f3a24">Voladizo de 70°</text>
+<text x="760" y="342" font-size="12.5" fill="#46616a">desplazamiento 38 de 50</text>
+<text x="760" y="360" font-size="12.5" font-weight="700" fill="#8f3a24">necesita soportes</text>
+</g>
+<text x="20" y="382" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">El desplazamiento de cada capa es la altura de capa por la tangente del ángulo del voladizo.</text>
+<text x="20" y="398" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">Cuando supera media anchura de capa deja de haber material debajo: de ahí la regla de los 45°.</text>
+</svg>
