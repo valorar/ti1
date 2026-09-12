@@ -8,7 +8,7 @@ Materiales de la asignatura Tecnología e Ingeniería I de 1.º de Bachillerato 
 - Consulta `analisis_y_decision.md` para ver la justificación de la estructura y el registro de la revisión externa del programa.
 - `generar_indice.py` vuelve a escribir `docs/index.html` a partir de la lista de temas: cada tarjeta enlaza al tema si existe `docs/temaNN.html` y, si no, se muestra como «En preparación».
 
-En el bloque de programación se trabaja con Python desde la primera sesión, en Jupyter Notebook a través de Google Colab, y con Thonny como segundo entorno local para la depuración paso a paso y para el trabajo con MicroPython sobre la placa controladora.
+En el bloque de programación se trabaja con Python desde la primera sesión, en Jupyter Notebook a través de Google Colab, y con Thonny como segundo entorno local para la depuración paso a paso y para el trabajo con MicroPython sobre la placa controladora del curso, un **ESP32 DevKit**, que entra en el Tema 14 y da soporte a los bloques E, F y G.
 
 No se incluyen prácticas ni pruebas de evaluación.
 

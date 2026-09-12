@@ -4,7 +4,7 @@
 
 Documento de referencia de los contenidos teóricos de la asignatura, organizado según los siete bloques de contenidos que el currículo de la Comunidad de Madrid enumera para la materia. Integra los bloques A, B, C, D, E, F y G en veintitrés temas. El proyecto es el eje metodológico de la materia: el currículo pide expresamente que los contenidos «se interrelacionen a través del desarrollo de actividades o proyectos de carácter práctico», de modo que la teoría acompaña al diseño, al cálculo, al montaje y a la comprobación de soluciones reales. No incluye prácticas ni instrumentos de evaluación, que se tratarán por separado.
 
-En el bloque de programación se trabaja con **Python desde la primera sesión**, en **Jupyter Notebook** a través de **Google Colab**, y con **Thonny** como segundo entorno local para la ejecución de archivos `.py` y la depuración paso a paso. La **placa controladora** entra en escena en el Tema 14, con **MicroPython**, en cuanto el alumnado dispone de condicionales, bucles y funciones; a partir de ahí acompaña al resto del curso y es el soporte de los bloques F y G.
+En el bloque de programación se trabaja con **Python desde la primera sesión**, en **Jupyter Notebook** a través de **Google Colab**, y con **Thonny** como segundo entorno local para la ejecución de archivos `.py` y la depuración paso a paso. La **placa controladora** —un **ESP32 DevKit** programado en **MicroPython**— entra en escena en el Tema 14, en cuanto el alumnado dispone de condicionales, bucles y funciones; a partir de ahí acompaña al resto del curso y es el soporte de los bloques F y G.
 
 Los apartados de **conocimientos previos**, **temporalización orientativa**, **proyectos integradores** y **herramientas y entornos** cierran el documento: concretan qué se supone al empezar, cuántas sesiones recibe cada tema, qué proyectos atraviesan los bloques y con qué software se trabaja.
 
@@ -234,7 +234,7 @@ Cómo decide y cómo repite un programa, cómo se parte en piezas con nombre pro
 - funciones: definición, llamada, parámetros y valor de retorno.
 - ámbito de las variables: local y global; separación entre cálculo, entrada y presentación.
 - seguimiento paso a paso de una función: estado inicial, traza y predicción del estado final.
-- primer programa en la placa controladora con MicroPython: salida digital, entrada digital y lectura de un sensor.
+- primer programa en la placa controladora (ESP32) con MicroPython: salida digital, entrada digital y lectura de un sensor analógico.
 
 ### Tema 15. Estructuras de datos y proceso de desarrollo
 
@@ -255,7 +255,7 @@ Cómo se conectan entre sí los objetos que fabricamos y qué protocolos hacen p
 
 - tecnologías emergentes: el internet de las cosas (IoT) y su aplicación a proyectos.
 - arquitectura de una solución IoT: dispositivo, red, plataforma y aplicación.
-- la placa controladora como nodo de red: identificación, alimentación y conectividad Wi-Fi.
+- la placa controladora como nodo de red: identificación, alimentación y conexión Wi-Fi del ESP32.
 - protocolos de mensajería de aplicación: MQTT y HTTP; publicación y suscripción.
 - formato de los datos intercambiados y envío de las lecturas de un sensor a una plataforma.
 - panorama de otras tecnologías de enlace —Bluetooth, Zigbee, LoRa—, a nivel de reconocimiento: para qué sirve cada una y por qué no se usan aquí.
@@ -495,15 +495,35 @@ El currículo no impone ningún software, y la competencia 3 pide precisamente s
 | CAD paramétrico y planos | FreeCAD; alternativas: Onshape o Fusion con licencia educativa | A, B |
 | CAM y fabricación digital | Laminador de la impresora 3D del centro; software de la cortadora | B |
 | Simulación de mecanismos | Algodoo o GeoGebra | C |
-| Simulación de circuitos | Tinkercad Circuits o el simulador de Falstad | D, F |
+| Simulación de circuitos | Tinkercad Circuits, que reproduce con exactitud el Arduino UNO del taller, o el simulador de Falstad | D |
 | Programación general | Python en Jupyter Notebook a través de Google Colab | E |
 | Ejecución local y depuración paso a paso | Thonny | E |
-| Placa controladora | ESP32 con MicroPython; alternativas: Raspberry Pi Pico W o micro:bit | E, F, G |
-| Simulación de la placa | Wokwi, cuando no hay hardware para todos los equipos | E, F |
+| Placa controladora | **ESP32 DevKit con MicroPython** (modelo único para todo el departamento) | E, F, G |
+| Simulación de la placa | Wokwi: simula el ESP32 con MicroPython y con Wi-Fi en el navegador, sin instalar nada | E, F |
 | Telemetría y panel de supervisión | Cliente y *broker* MQTT con un panel web sencillo | F |
 | Documentación y gestión | Procesador de textos, hoja de cálculo, tablero de tareas y carpeta compartida con historial de versiones | A, y todo el curso |
 
-Sobre la placa: se propone **ESP32** porque integra Wi-Fi, lo que hace viable el Tema 16 sin módulos añadidos, y porque admite MicroPython, de modo que el lenguaje del curso es uno solo de principio a fin. Los temas 14, 16, 18 y 19 están redactados para poder impartirse igualmente con Raspberry Pi Pico W o con micro:bit, y la decisión concreta corresponde al departamento según el material disponible.
+### La placa controladora: ESP32
+
+La placa del curso es el **ESP32 DevKit**, y la decisión se apoya en dos hechos que descartan las alternativas del taller:
+
+- **El Arduino UNO no puede ejecutar MicroPython.** Su microcontrolador tiene 2 KB de RAM y 32 KB de flash, frente a los 16 KB y 256 KB que MicroPython necesita incluso en su compilación mínima; no existe puerto de MicroPython para AVR. Conservarlo como placa del curso obligaría a programar el hardware en C++ mientras todo lo demás se programa en Python: dos sintaxis y dos dialectos de mensajes de error en el mismo trimestre, que es exactamente lo que este programa evita por principio.
+- **El micro:bit no tiene Wi-Fi**, solo Bluetooth, de modo que el Tema 16 con MQTT no es viable de forma nativa. Es la placa adecuada para la ESO y la equivocada para un bloque de internet de las cosas en Bachillerato.
+
+El **Arduino UNO R4 WiFi** tampoco resuelve el problema: su procesador principal es un Renesas y el ESP32-S3 que lleva actúa solo como radio, sin soporte de MicroPython. La única alternativa técnicamente equivalente es la **Raspberry Pi Pico 2 W**, con un soporte de MicroPython incluso más limpio y un convertidor analógico-digital mejor; se descarta por tener menos material didáctico en español y un ecosistema de módulos más reducido.
+
+**Las placas Arduino del taller no se retiran.** El material periférico —protoboards, cables, sensores, servos, controladores de motor, módulos de relé— se reutiliza íntegro, y el Arduino UNO conserva dos usos propios: el bloque D, donde el objeto son los circuitos y no la placa, y donde además Tinkercad Circuits lo simula con exactitud; y la práctica opcional en C++ para quien quiera abrir esa puerta.
+
+Cuatro precauciones que conviene tener escritas antes de la primera sesión con la placa:
+
+| Precaución | Motivo | Qué hacer |
+| --- | --- | --- |
+| Lógica de 3,3 V | Una señal de 5 V en un GPIO puede destruir la placa | Elegir módulos compatibles con 3,3 V o intercalar un adaptador de nivel |
+| Usar solo ADC1, en los GPIO 32 a 39 | El ADC2 queda bloqueado mientras el Wi-Fi está activo | Conectar la sonda de humedad a ADC1; es el fallo más frecuente del Tema 16 |
+| El convertidor analógico-digital no es lineal | Precisión limitada del ESP32 | Calibrar en seco y en saturación: aplica directamente la metrología del Tema 2 |
+| La numeración de pines varía entre clones | Cada fabricante rotula a su manera | Fijar un modelo exacto y adquirir todas las placas iguales y a la vez |
+
+Con una placa por equipo de cuatro, un grupo completo necesita unas ocho unidades: en torno a 50 €, de modo que la decisión no compromete el presupuesto del departamento.
 
 ## Continuidad con Tecnología e Ingeniería II
 
