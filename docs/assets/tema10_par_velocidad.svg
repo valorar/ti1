@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="t10_title t10_desc">
+<title id="t10_title">Curvas de par y de potencia de un motor de corriente continua</title>
+<desc id="t10_desc">El par de un motor de corriente continua disminuye linealmente con la velocidad: es máximo con el eje parado, 1,4 newton metro de par de arranque, y se anula a 2400 revoluciones por minuto, la velocidad en vacío. La potencia, que es el producto del par por la velocidad angular, describe una parábola con su máximo de 88 vatios a la mitad de la velocidad en vacío. El punto de trabajo del proyecto está a 1800 revoluciones por minuto con 0,35 newton metro.</desc>
+<defs><marker id="t10_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#46616a"/></marker></defs>
+<rect width="900" height="420" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Motor de corriente continua: par y potencia frente a velocidad</text>
+
+<g stroke="#d8e0df" stroke-width="1"><path d="M179 60 V340"/><path d="M267 60 V340"/><path d="M356 60 V340"/><path d="M445 60 V340"/><path d="M534 60 V340"/><path d="M622 60 V340"/><path d="M711 60 V340"/></g>
+
+<path d="M90 340 L179 240 L267 169 L356 126 L445 111 L534 126 L622 169 L711 240 L800 340" fill="none" stroke="#c6922d" stroke-width="3.5"/>
+<path d="M90 60 L800 340" fill="none" stroke="#167e78" stroke-width="3.5"/>
+
+<g stroke="#46616a" stroke-width="2" fill="none" marker-end="url(#t10_a)">
+<path d="M90 340 H840"/><path d="M90 340 V52"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="12" fill="#46616a" text-anchor="middle">
+<text x="90" y="362">0</text><text x="267" y="362">600</text><text x="445" y="362">1200</text><text x="622" y="362">1800</text><text x="800" y="362">2400</text>
+</g>
+<text x="836" y="384" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" fill="#46616a">velocidad n (min⁻¹)</text>
+<text x="52" y="66" font-family="system-ui,sans-serif" font-size="13" fill="#167e78" font-weight="700" transform="rotate(-90 52 66)" text-anchor="end">par M (N·m)</text>
+
+<circle cx="622" cy="270" r="6" fill="#167e78" stroke="#0f4f4a" stroke-width="2"/>
+<circle cx="622" cy="169" r="6" fill="#c6922d" stroke="#8a6317" stroke-width="2"/>
+<g stroke="#386da0" stroke-width="1.2" stroke-dasharray="6 5"><path d="M622 270 V340"/></g>
+
+<text x="108" y="54" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f4f4a">par de arranque: 1,4 N·m</text>
+<text x="800" y="326" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f4f4a">velocidad en vacío</text>
+<text x="445" y="98" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#8a6317">potencia máxima: 88 W a media velocidad</text>
+<text x="610" y="298" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f4f4a">punto de trabajo del KR-1</text>
+<text x="610" y="315" text-anchor="end" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">1800 min⁻¹ · 0,35 N·m · 66 W</text>
+
+<g font-family="system-ui,sans-serif" font-size="12.5">
+<rect x="90" y="392" width="16" height="4" fill="#167e78"/><text x="114" y="398" fill="#46616a">par</text>
+<rect x="180" y="392" width="16" height="4" fill="#c6922d"/><text x="204" y="398" fill="#46616a">potencia</text>
+<text x="290" y="398" fill="#46616a">El par máximo se da con el eje parado; la potencia máxima, a media velocidad.</text>
+</g>
+</svg>

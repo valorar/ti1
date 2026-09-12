@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 11 del Bloque D de Tecnología e Ingeniería I: señal eléctrica y electrónica, componentes pasivos, diodo, LED, transistor y MOSFET como interruptor, relé, diodo de protección, sensores analógicos y digitales, acondicionamiento de señal, conversión analógico-digital, circuitos básicos y seguridad eléctrica en el aula.">
+  <title>Tema 11. Componentes y circuitos electrónicos · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 11 · Bloque D · Sistemas eléctricos y electrónicos</p>
+        <h1>Tema 11. Componentes y circuitos electrónicos</h1>
+        <p class="hero-lead">Qué hacen los componentes electrónicos dentro de un circuito, cómo se lee un esquema que los combina y cómo se enlaza un sensor con una placa y una placa con un actuador.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 11">
+        <strong>Pregunta guía</strong>
+        <p>Una salida del ESP32 entrega 3,3 V y unos 20 mA como máximo. La electroválvula del KR-1 necesita 12 V y 310 mA. ¿Cómo puede una señal tan débil gobernar una carga quince veces mayor, y qué componente hay que poner en medio para que la placa sobreviva?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#senal">Señal eléctrica y señal electrónica</a></li>
+        <li><a href="#pasivos">Componentes pasivos</a></li>
+        <li><a href="#diodo">El diodo y el LED</a></li>
+        <li><a href="#transistor">Transistor y MOSFET</a></li>
+        <li><a href="#rele">El relé y el diodo de protección</a></li>
+        <li><a href="#sensores">Sensores y acondicionamiento</a></li>
+        <li><a href="#adc">Conversión analógico-digital</a></li>
+        <li><a href="#circuitos">Circuitos básicos</a></li>
+        <li><a href="#datasheet">Leer una hoja de características</a></li>
+        <li><a href="#seguridad">Seguridad eléctrica en el aula</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este tema cierra el Bloque D y es el puente hacia todo lo que viene después. Los bloques E y F van a programar una placa para que lea el mundo y actúe sobre él, y entre la placa y el mundo hay <strong>electrónica</strong>: un divisor que adapta lo que mide un sensor y un interruptor electrónico que amplifica lo que ordena una salida. Sin estas dos piezas, un programa perfecto no puede encender ni una bombilla.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> conecta mentalmente la electroválvula directamente a un pin del ESP32. ¿Qué ocurre? El pin intenta dar 310 mA, no puede, se calienta y se destruye —con suerte solo ese pin—. Ningún programa evita eso: es un problema de electrónica, y la respuesta es un componente de treinta céntimos.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>distinguir señal de potencia y señal de información, y trabajar con niveles lógicos;</li>
+          <li>identificar resistencias, condensadores y el relé en un esquema y decir qué hacen;</li>
+          <li>explicar el comportamiento del diodo y calcular la resistencia limitadora de un LED;</li>
+          <li>usar un transistor o un MOSFET como interruptor de un actuador, y dimensionar su resistencia de puerta;</li>
+          <li>explicar por qué toda bobina necesita un diodo de protección;</li>
+          <li>clasificar un sensor en analógico o digital y acondicionar su señal con un divisor o una resistencia de polarización;</li>
+          <li>explicar qué hace un convertidor analógico-digital y qué significan sus bits y su resolución;</li>
+          <li>interpretar los datos críticos de una hoja de características;</li>
+          <li>trabajar con seguridad en montajes electrónicos de baja tensión.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="senal">
+        <h2 id="senal">1. Señal eléctrica y señal electrónica</h2>
+        <p>El Tema 10 trataba circuitos cuyo objeto era <strong>transportar energía</strong>: llevar vatios de la batería al motor. La electrónica trata circuitos cuyo objeto es <strong>transportar información</strong>: llevar un dato de un sensor a un procesador. Las magnitudes son las mismas; los órdenes de magnitud, completamente distintos.</p>
+
+        <div class="comparacion">
+          <div><h3>Circuito de potencia</h3><p>Amperios, vatios y calor. Lo que importa es el rendimiento y el dimensionado. Cables gruesos, protecciones, disipadores.</p></div>
+          <div><h3>Circuito de señal</h3><p>Miliamperios o microamperios. Lo que importa es la fidelidad del dato: ruido, deriva y resolución. Cables finos, apantallados si hace falta.</p></div>
+        </div>
+
+        <h3>Niveles lógicos</h3>
+        <p>Un circuito digital no maneja infinitos valores: solo dos estados. El ESP32 trabaja con lógica de <strong>3,3 V</strong>, lo que significa:</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: niveles lógicos en una placa de 3,3 voltios">
+          <table>
+            <caption>Niveles lógicos con alimentación de 3,3 V</caption>
+            <thead><tr><th scope="col">Estado</th><th scope="col">Intervalo aproximado</th><th scope="col">Significado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Nivel bajo · 0</strong></th><td>de 0 V a unos 0,8 V</td><td>La entrada se interpreta como cero.</td></tr>
+              <tr><th scope="row">Zona indeterminada</th><td>entre 0,8 V y 2,0 V</td><td>El resultado no está garantizado: hay que evitar quedarse aquí.</td></tr>
+              <tr><th scope="row"><strong>Nivel alto · 1</strong></th><td>de unos 2,0 V a 3,3 V</td><td>La entrada se interpreta como uno.</td></tr>
+              <tr><th scope="row">Por encima de 3,6 V</th><td>—</td><td>Fuera de especificación: puede destruir el pin.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>La regla de los 3,3 V, escrita de nuevo</strong>Un módulo de 5 V —un ultrasonido HC-SR04, algunas placas de relé— puede entregar 5 V a una entrada de la placa y <strong>destruirla</strong>. Las soluciones son tres: comprar módulos compatibles con 3,3 V, intercalar un adaptador de nivel o, si solo hay que bajar una señal, un divisor de tensión de los del Tema 10. Lo que no es una solución es «funciona y no ha pasado nada»: un pin trabajando fuera de especificación falla cuando menos convenga.</div>
+      </section>
+
+      <section aria-labelledby="pasivos">
+        <h2 id="pasivos">2. Componentes pasivos</h2>
+        <p>Un componente <strong>pasivo</strong> no aporta energía al circuito: la disipa, la almacena o la devuelve.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: componentes pasivos y su función">
+          <table>
+            <caption>Los componentes pasivos y para qué se usan</caption>
+            <thead><tr><th scope="col">Componente</th><th scope="col">Qué hace</th><th scope="col">Magnitud</th><th scope="col">Uso en el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Resistencia fija</strong></th><td>Limita la corriente y reparte tensión.</td><td>Ω</td><td>Limitadora del LED, de puerta del MOSFET y fija del divisor.</td></tr>
+              <tr><th scope="row"><strong>Resistencia variable</strong> (potenciómetro)</th><td>Resistencia ajustable a mano.</td><td>Ω</td><td>Ajustar el umbral de riego sin reprogramar.</td></tr>
+              <tr><th scope="row"><strong>Resistencia dependiente</strong> (LDR, termistor)</th><td>Su resistencia cambia con luz o temperatura: es un sensor.</td><td>Ω</td><td>Detectar si es de día antes de regar.</td></tr>
+              <tr><th scope="row"><strong>Condensador</strong></th><td>Almacena carga; se opone a los cambios rápidos de tensión.</td><td>F (µF, nF, pF)</td><td>Estabilizar la alimentación cuando la válvula arranca.</td></tr>
+              <tr><th scope="row"><strong>Bobina</strong></th><td>Almacena energía en su campo magnético; se opone a los cambios de corriente.</td><td>H (mH)</td><td>En corriente continua, aparece como el devanado del relé y de la electroválvula.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El condensador de desacoplo: el componente que parece innecesario</strong>Cuando la electroválvula arranca, tira de golpe de 310 mA y la tensión de alimentación cae momentáneamente. Si la placa está alimentada de la misma fuente, ese bajón puede reiniciarla: el sistema «se cuelga cada vez que riega». La solución es un <strong>condensador de desacoplo</strong> cerca de la placa, que actúa como un pequeño depósito local y suministra el pico. Es la causa número uno de averías inexplicables en montajes escolares, y se arregla con un componente de céntimos.</div>
+
+        <div class="ti1-note"><strong>Sobre las bobinas en corriente continua.</strong> Como componente de circuito apenas tienen papel en continua: una bobina en régimen estacionario se comporta casi como un cable. Aparecen, eso sí, como el <strong>devanado</strong> de relés, electroválvulas y motores, y ahí su propiedad de oponerse a los cambios de corriente provoca el problema que resuelve la sección 5. Su uso pleno —reactancia, impedancia, filtros— pertenece a la corriente alterna de 2.º.</div>
+      </section>
+
+      <section aria-labelledby="diodo">
+        <h2 id="diodo">3. El diodo y el LED</h2>
+        <p>Un <strong>diodo</strong> conduce la corriente en un sentido y la bloquea en el contrario. Es el componente semiconductor más simple y el más útil: con esa única propiedad se rectifica, se protege y se orienta la corriente.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comportamiento y aplicaciones del diodo">
+          <table>
+            <caption>El diodo en sus cuatro funciones</caption>
+            <thead><tr><th scope="col">Función</th><th scope="col">Cómo se monta</th><th scope="col">Para qué</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Rectificar</strong></th><td>En serie, o en puente de cuatro diodos.</td><td>Convertir alterna en continua: es el corazón de cualquier cargador.</td></tr>
+              <tr><th scope="row"><strong>Proteger de polaridad inversa</strong></th><td>En serie con la alimentación.</td><td>Que conectar la batería al revés no destruya nada.</td></tr>
+              <tr><th scope="row"><strong>Proteger de sobretensión</strong></th><td>En paralelo con una bobina, en sentido inverso.</td><td>Absorber el pico al cortar. Sección 5.</td></tr>
+              <tr><th scope="row"><strong>Emitir luz</strong> (LED)</th><td>En serie con una resistencia limitadora.</td><td>Señalizar el estado del sistema.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Un diodo en conducción no es un cortocircuito: mantiene entre sus bornes una <strong>tensión umbral</strong> casi constante, unos 0,7 V en los de silicio y entre 1,8 y 3,2 V en un LED según su color. Esa caída es la que permite calcular la resistencia limitadora:</p>
+
+        <p class="ti1-formula">R = (V<sub>alim</sub> − V<sub>LED</sub>) / I<sub>LED</sub> <span class="ti1-formula-leyenda">la resistencia absorbe la tensión que el LED no consume</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: cálculo de la resistencia limitadora de un LED">
+          <table>
+            <caption>LED indicador del KR-1, alimentado desde un pin de 3,3 V</caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Operación</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Datos</th><td>LED verde: V = 2,1 V, I deseada = 8 mA</td><td>—</td></tr>
+              <tr><th scope="row">Tensión a absorber</th><td>3,3 − 2,1</td><td>1,2 V</td></tr>
+              <tr><th scope="row">Resistencia teórica</th><td>1,2 / 0,008</td><td>150 Ω</td></tr>
+              <tr><th scope="row">Valor comercial</th><td>Serie normalizada</td><td>150 Ω exacto</td></tr>
+              <tr><th scope="row">Potencia disipada</th><td>1,2 · 0,008</td><td>0,010 W — cualquier resistencia de 1/4 W sobra</td></tr>
+              <tr><th scope="row">Comprobación del pin</th><td>8 mA frente al máximo de unos 20 mA por pin</td><td>Dentro de especificación ✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>Un LED sin resistencia se destruye, y a veces se lleva el pin por delante</strong>El LED no limita su propia corriente: al superar su tensión umbral, la corriente crece de forma casi incontrolada. Conectado directamente a 3,3 V pedirá muchísimo más de lo que soporta, y también más de lo que el pin puede dar. La resistencia limitadora no es opcional; es parte del componente.</div>
+
+        <div class="ti1-curio"><strong>El LED también es un sensor de luz.</strong> Un diodo emisor de luz, conectado al revés, genera una pequeña corriente cuando se ilumina: es el mismo efecto fotovoltaico del panel solar del Tema 20, en miniatura. No es un buen sensor —un LDR o un fotodiodo son mucho mejores—, pero demuestra algo importante: en electrónica la mayoría de los efectos funcionan en los dos sentidos, como el motor de continua del Tema 10.</div>
+      </section>
+
+      <section aria-labelledby="transistor">
+        <h2 id="transistor">4. Transistor y MOSFET como interruptor</h2>
+        <p>Aquí está la respuesta a la pregunta guía. Un <strong>transistor</strong> permite que una señal pequeña controle una corriente grande. Tiene dos modos de uso, y en este curso nos interesa sobre todo el segundo.</p>
+
+        <div class="comparacion">
+          <div><h3>Como amplificador</h3><p>Trabaja en la zona lineal: la corriente de salida es proporcional a la de entrada. Es la base del audio y de la instrumentación. Se menciona y no se desarrolla.</p></div>
+          <div><h3>Como interruptor</h3><p>Trabaja en dos estados: corte —no conduce— y saturación —conduce casi como un cable—. Es lo que necesita una placa para encender un actuador, y es el 99 % de lo que haremos.</p></div>
+        </div>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Esquema desplazable del divisor del sensor y de la etapa de potencia">
+          <img src="assets/tema11_actuador.svg" alt="A la izquierda, divisor de tensión con la sonda de humedad y una resistencia fija de 10 kiloohmios entre 3,3 voltios y masa, con el punto intermedio a la entrada analógica GPIO 34. A la derecha, la electroválvula alimentada a 12 voltios cuya corriente conmuta un MOSFET gobernado desde GPIO 26 a través de una resistencia de 220 ohmios, con un diodo de protección en paralelo con la electroválvula.">
+          <figcaption>Los dos circuitos que hacen falta para que el programa del Bloque E interactúe con el mundo: uno para leer y otro para actuar. Fíjate en que las masas de los dos están unidas.</figcaption>
+        </figure>
+
+        <h3>Transistor bipolar o MOSFET</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación entre transistor bipolar y MOSFET">
+          <table>
+            <caption>Los dos interruptores electrónicos</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Transistor bipolar (BJT)</th><th scope="col">MOSFET</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Terminales</th><td>Base, colector, emisor</td><td>Puerta, drenador, fuente</td></tr>
+              <tr><th scope="row">Se controla con</th><td><strong>Corriente</strong> de base</td><td><strong>Tensión</strong> de puerta</td></tr>
+              <tr><th scope="row">Consumo del control</th><td>Del orden de mA: carga el pin</td><td>Casi nulo en régimen estacionario</td></tr>
+              <tr><th scope="row">Pérdida al conducir</th><td>Unos 0,2 a 0,7 V, que se convierten en calor</td><td>Muy baja: se comporta como una resistencia pequeña</td></tr>
+              <tr><th scope="row">Corriente que admite</th><td>Cientos de mA en los pequeños</td><td>Varios amperios incluso en encapsulados modestos</td></tr>
+              <tr><th scope="row">Cuándo elegirlo</th><td>Cargas pequeñas, circuitos sencillos, muy barato</td><td>Actuadores, motores, todo lo que tire de corriente</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué el KR-1 lleva un MOSFET</strong>La electroválvula pide 310 mA. Con un bipolar, la placa tendría que aportar unos 10 mA de base —la mitad del máximo del pin— y el transistor disiparía en torno a 0,2 W en forma de calor. Con un MOSFET adecuado para lógica de 3,3 V, el pin apenas aporta corriente y la pérdida es una fracción de eso. La resistencia de 220 Ω en la puerta no sirve para limitar corriente de control: <strong>limita el pico instantáneo al cargar la capacidad de la puerta</strong> y protege el pin en el instante de la conmutación.</div>
+
+        <div class="aviso"><strong>Un MOSFET mal elegido conduce a medias, y eso es peor que no conducir</strong>Hay que comprobar en la hoja de características que el componente está pensado para <strong>lógica de 3,3 V</strong>: muchos MOSFET necesitan 10 V en la puerta para conducir bien. Con 3,3 V quedan en un estado intermedio, con resistencia apreciable, y toda la potencia que no llega al actuador se convierte en calor en el propio MOSFET. Se calienta, funciona mal y acaba fallando. El dato que hay que buscar se explica en la sección 9.</div>
+      </section>
+
+      <section aria-labelledby="rele">
+        <h2 id="rele">5. El relé y el diodo de protección</h2>
+        <p>Un <strong>relé</strong> es un interruptor accionado por un electroimán: una bobina atrae un contacto mecánico. Su virtud decisiva es el <strong>aislamiento galvánico</strong>: el circuito de mando y el de potencia no comparten ningún conductor, de modo que un problema en uno no alcanza al otro.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: relé frente a MOSFET">
+          <table>
+            <caption>Cuándo un relé y cuándo un MOSFET</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">Relé</th><th scope="col">MOSFET</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Aislamiento entre mando y potencia</th><td>Total</td><td>Ninguno: comparten masa</td></tr>
+              <tr><th scope="row">Tipo de carga</th><td>Cualquiera, también alterna</td><td>Solo continua</td></tr>
+              <tr><th scope="row">Velocidad de conmutación</th><td>Milisegundos: no sirve para PWM</td><td>Microsegundos: es el componente del PWM</td></tr>
+              <tr><th scope="row">Vida útil</th><td>Limitada: los contactos se desgastan</td><td>Prácticamente ilimitada</td></tr>
+              <tr><th scope="row">Consumo propio</th><td>La bobina consume mientras esté activada</td><td>Despreciable</td></tr>
+              <tr><th scope="row">Ruido</th><td>Chasquido audible</td><td>Silencioso</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Por qué toda bobina necesita un diodo</h3>
+        <p>Una bobina se opone a los cambios de corriente. Mientras está alimentada, almacena energía en su campo magnético. Cuando el interruptor corta, esa corriente <strong>no puede desaparecer de golpe</strong>: la bobina genera la tensión que haga falta para mantenerla, y esa tensión puede ser de decenas o cientos de voltios, con polaridad invertida.</p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El diodo de recirculación</strong>Montando un diodo <strong>en paralelo con la bobina y en sentido inverso</strong> —cátodo hacia el positivo— se le ofrece a esa corriente un camino cerrado por donde seguir circulando hasta extinguirse. El pico de tensión se limita a la caída del diodo, unos 0,7 V, y el MOSFET sobrevive. Sin él, el pico aparece entre los bornes del MOSFET y lo perfora. Es el componente que más averías evita y el que más se olvida, y por eso está dibujado explícitamente en el esquema de la sección 4. <strong>Regla del curso: si el actuador tiene bobina, lleva diodo.</strong></div>
+
+        <div class="ti1-note"><strong>Y el relé es a la vez el problema y la solución.</strong> Un relé gobernado por un MOSFET necesita su propio diodo, porque su bobina hace exactamente lo mismo. Los módulos de relé comerciales suelen traerlo incorporado —conviene comprobarlo en el esquema del módulo— junto con un optoacoplador que refuerza el aislamiento.</div>
+      </section>
+
+      <section aria-labelledby="sensores">
+        <h2 id="sensores">6. Sensores y acondicionamiento de señal</h2>
+        <p>Un <strong>sensor</strong> convierte una magnitud física en una magnitud eléctrica. Y casi nunca la entrega en la forma que la placa necesita: entre los dos hace falta un <strong>acondicionamiento</strong>.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de sensor y su acondicionamiento">
+          <table>
+            <caption>Sensores según lo que entregan</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Qué entrega</th><th scope="col">Ejemplos</th><th scope="col">Acondicionamiento</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Resistivo</strong></th><td>Una resistencia variable.</td><td>LDR, termistor NTC, sonda de humedad resistiva.</td><td>Divisor de tensión con resistencia fija.</td></tr>
+              <tr><th scope="row"><strong>Analógico de tensión</strong></th><td>Una tensión proporcional a la magnitud.</td><td>Sonda capacitiva de humedad, sensor de corriente.</td><td>Directo a la entrada ADC, comprobando el margen.</td></tr>
+              <tr><th scope="row"><strong>Digital de contacto</strong></th><td>Abierto o cerrado.</td><td>Pulsador, final de carrera, sensor de nivel.</td><td>Resistencia de polarización y filtrado de rebotes.</td></tr>
+              <tr><th scope="row"><strong>Digital con protocolo</strong></th><td>Un número por un bus de datos.</td><td>Sensor de temperatura y humedad ambiente, barómetro.</td><td>Ninguno eléctrico: se lee con una biblioteca.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Resistencias de polarización</h3>
+        <p>Un pulsador que solo conecta el pin a masa deja el pin «al aire» cuando está sin pulsar, y una entrada al aire capta ruido y da lecturas aleatorias. La solución es una <strong>resistencia de polarización</strong> que fije el nivel de reposo:</p>
+
+        <div class="comparacion">
+          <div><h3><em>Pull-up</em></h3><p>Resistencia entre el pin y la alimentación. En reposo el pin lee 1; al pulsar se une a masa y lee 0. Es la configuración habitual, y el ESP32 la tiene incorporada por programa.</p></div>
+          <div><h3><em>Pull-down</em></h3><p>Resistencia entre el pin y masa. En reposo lee 0; al pulsar se une a la alimentación y lee 1. Más intuitiva de leer y algo menos frecuente.</p></div>
+        </div>
+
+        <div class="ti1-note"><strong>Los rebotes del contacto.</strong> Un contacto mecánico no pasa limpiamente de abierto a cerrado: rebota durante unos milisegundos, y la placa puede contar diez pulsaciones donde hubo una. Se resuelve con un condensador —solución electrónica— o comprobando el estado dos veces con una pequeña espera —solución por programa—. Lo veremos en el Tema 14, al leer el primer pulsador; es un ejemplo perfecto de que un mismo problema admite solución en hardware o en software, y de que conviene saber elegir.</div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Calibrar es convertir cuentas en unidades</strong>Un sensor entrega números sin significado físico. Del Tema 2: hay que <strong>calibrar</strong>, es decir, establecer la correspondencia entre lo que lee y la magnitud real, midiendo al menos dos puntos conocidos. En la sonda del KR-1 esos dos puntos son el sustrato en seco y saturado de agua. Sin esa calibración, el programa toma decisiones sobre una escala arbitraria, y cuando el sensor envejezca nadie se dará cuenta.</div>
+      </section>
+
+      <section aria-labelledby="adc">
+        <h2 id="adc">7. Conversión analógico-digital</h2>
+        <p>La magnitud física es continua; el procesador solo maneja números. El <strong>convertidor analógico-digital</strong> —ADC— hace la traducción: mide una tensión y la expresa como un número entero.</p>
+
+        <p class="ti1-formula">niveles = 2<sup>n</sup> <span class="ti1-formula-leyenda">n es el número de bits del convertidor</span></p>
+        <p class="ti1-formula">resolución = V<sub>ref</sub> / 2<sup>n</sup> <span class="ti1-formula-leyenda">el escalón mínimo de tensión que puede distinguir</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: resolución de un convertidor según sus bits">
+          <table>
+            <caption>Resolución con una referencia de 3,3 V</caption>
+            <thead><tr><th scope="col">Bits</th><th scope="col">Niveles</th><th scope="col">Resolución</th><th scope="col">Dónde aparece</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">8</th><td>256</td><td>12,9 mV</td><td>Microcontroladores muy sencillos.</td></tr>
+              <tr><th scope="row">10</th><td>1024</td><td>3,2 mV</td><td>Arduino UNO.</td></tr>
+              <tr><th scope="row">12</th><td>4096</td><td>0,81 mV</td><td>ESP32: el del KR-1.</td></tr>
+              <tr><th scope="row">16</th><td>65 536</td><td>0,05 mV</td><td>Instrumentación de medida.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Más bits no es más exactitud</strong>Es el aviso del Tema 2 traducido a electrónica: la <strong>resolución</strong> es el escalón más pequeño que el convertidor distingue; la <strong>exactitud</strong>, cuánto se aproxima al valor verdadero. El ADC del ESP32 tiene 12 bits de resolución y una linealidad mediocre, de modo que sus últimos bits no significan nada. Leer 2847 en lugar de 2846 no es información: es ruido. La respuesta profesional es promediar varias lecturas y calibrar.</div>
+
+        <div class="aviso"><strong>En el ESP32: usa solo ADC1, los GPIO 32 a 39</strong>El ESP32 tiene dos convertidores, y el segundo —ADC2— comparte recursos con la radio: <strong>mientras el Wi-Fi está activo, sus lecturas quedan bloqueadas</strong>. Conectar la sonda a un pin de ADC2 produce el fallo más desconcertante posible: el sensor funciona perfectamente hasta que el sistema se conecta a la red, y entonces deja de leer sin que el programa haya cambiado. La documentación del fabricante lo dice expresamente, y por eso la sonda del KR-1 va al GPIO 34.<sup><a href="#fuente_2">[2]</a></sup></div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el divisor del Tema 10 daba entre 0,83 y 2,54 V para todo el margen de humedad. Con un ADC de 12 bits y referencia 3,3 V, eso son unas 2120 cuentas de recorrido. ¿Merece la pena rediseñar el divisor para aprovechar los 4096 niveles completos? (Con 2120 cuentas ya sobra resolución para una decisión de riego: el esfuerzo rinde más en calibrar y promediar que en ganar escala.)</div>
+      </section>
+
+      <section aria-labelledby="circuitos">
+        <h2 id="circuitos">8. Circuitos electrónicos básicos</h2>
+        <p>El currículo pide interpretar «circuitos básicos». Estos cuatro cubren prácticamente todo lo que aparece en un montaje de este nivel, y los cuatro se reconocen de un vistazo cuando se sabe qué buscar.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Rectificación</h3><p>Uno o cuatro diodos convierten alterna en continua; un condensador alisa lo que queda. Es el interior de cualquier alimentador.</p></div>
+          <div class="ti1-card"><h3>Temporización</h3><p>Una resistencia y un condensador: el condensador tarda un tiempo previsible en cargarse. Es la base de los retardos analógicos y del filtrado de rebotes.</p></div>
+          <div class="ti1-card"><h3>Señalización</h3><p>LED más resistencia limitadora. Sencillo y decisivo: un sistema sin indicador de estado es imposible de depurar en campo.</p></div>
+          <div class="ti1-card"><h3>Control de un actuador</h3><p>Entrada lógica, resistencia de puerta, MOSFET, actuador y diodo de protección. Es el esquema de la sección 4 y el que se repetirá en los bloques F y G.</p></div>
+        </div>
+
+        <h3>Cómo leer un esquema electrónico sin perderse</h3>
+        <ol>
+          <li><strong>Localiza la alimentación y la masa.</strong> Toda la lectura se organiza de arriba abajo: lo positivo arriba, la masa abajo.</li>
+          <li><strong>Separa las etapas.</strong> Casi todo esquema se divide en alimentación, entrada de señal, procesamiento y salida de potencia.</li>
+          <li><strong>Sigue una etapa entera</strong> antes de pasar a la siguiente, como en el Tema 3.</li>
+          <li><strong>Busca los componentes de protección.</strong> Los diodos, los fusibles y las resistencias en serie cuentan de qué tenía miedo quien lo diseñó, y eso enseña mucho.</li>
+          <li><strong>Comprueba las referencias.</strong> R1, C2, Q1, D3 remiten a la lista de materiales, y el esquema y la lista se leen juntos.</li>
+        </ol>
+
+        <div class="ti1-note"><strong>Simula antes de montar.</strong> Un simulador de circuitos permite comprobar el divisor, el limitador del LED y el efecto del condensador de desacoplo en minutos y sin quemar nada. No reproduce el ruido, ni las capacidades parásitas, ni el error de un cable suelto, así que no sustituye al montaje. Pero sí evita el montaje de un circuito que estaba mal en el papel.</div>
+      </section>
+
+      <section aria-labelledby="datasheet">
+        <h2 id="datasheet">9. Leer una hoja de características</h2>
+        <p>La <strong>hoja de características</strong> es la fuente primaria del Tema 1 aplicada a la electrónica: el documento en el que el fabricante se compromete. Tiene decenas de páginas y casi siempre bastan cinco datos.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué buscar en una hoja de características">
+          <table>
+            <caption>Los cinco datos que hay que buscar siempre</caption>
+            <thead><tr><th scope="col">Dato</th><th scope="col">Qué significa</th><th scope="col">Por qué importa</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Valores máximos absolutos</strong></th><td>Límites que no se deben alcanzar nunca.</td><td>No son condiciones de trabajo: son el punto de destrucción. Se diseña bien por debajo.</td></tr>
+              <tr><th scope="row"><strong>Condiciones de funcionamiento</strong></th><td>Intervalo en el que el fabricante garantiza el comportamiento.</td><td>Es el intervalo real de diseño.</td></tr>
+              <tr><th scope="row"><strong>Típico, mínimo y máximo</strong></th><td>Tres columnas para el mismo parámetro.</td><td>Se dimensiona con el peor caso, no con el típico. Es el error del Tema 1.</td></tr>
+              <tr><th scope="row"><strong>Tensión de puerta</strong> (en un MOSFET)</th><td>Tensión necesaria para conducir plenamente.</td><td>Decide si sirve con lógica de 3,3 V o se quedará a medio conducir.</td></tr>
+              <tr><th scope="row"><strong>Encapsulado y disipación</strong></th><td>Forma física y calor que puede evacuar.</td><td>Determina si necesita disipador y si cabe en la placa.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La resistencia en conducción del MOSFET</strong>El parámetro que decide si un MOSFET sirve para 3,3 V es su resistencia entre drenador y fuente <em>cuando conduce</em>, medida <strong>con la tensión de puerta que tú vas a aplicar</strong>. Una hoja que solo la especifica con 10 V en la puerta está avisando de que ese componente no es para lógica de 3,3 V. Con esa resistencia y la corriente de la carga se calcula la potencia disipada —<em>P = I²·R</em>, el efecto Joule del Tema 10— y se decide si hace falta disipador.</div>
+
+        <div class="ti1-curio"><strong>Los datos «típicos» son promedios de fabricación.</strong> Un fabricante mide miles de unidades y publica el valor típico junto a los límites. Tu componente concreto estará en algún punto de ese intervalo, y no sabes en cuál. Diseñar con el típico funciona en el prototipo y falla en la preserie del Tema 2, cuando aparecen las unidades del otro extremo. Es la misma dispersión que allí se medía, vista desde la hoja del fabricante.</div>
+      </section>
+
+      <section aria-labelledby="seguridad">
+        <h2 id="seguridad">10. Seguridad eléctrica en el aula</h2>
+        <p>El Tema 6 fijó el orden de prevención. Aquí se concreta para el montaje electrónico, donde el riesgo para las personas es bajo y el riesgo para el material, alto.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: reglas de seguridad en montajes electrónicos">
+          <table>
+            <caption>Reglas de trabajo en montajes de baja tensión</caption>
+            <thead><tr><th scope="col">Regla</th><th scope="col">Motivo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Nunca la tensión de red.</strong> Se trabaja con 3,3 V, 5 V y 12 V.</th><td>Los 230 V del enchufe son mortales y no tienen ningún papel en este curso.</td></tr>
+              <tr><th scope="row"><strong>Montar y modificar siempre sin tensión.</strong></th><td>Un cable que se mueve con el circuito alimentado es un cortocircuito esperando.</td></tr>
+              <tr><th scope="row"><strong>Comprobar la polaridad antes de alimentar.</strong></th><td>Invertir la alimentación destruye la mayoría de los integrados al instante.</td></tr>
+              <tr><th scope="row"><strong>Revisar la tensión de la fuente antes de conectar.</strong></th><td>Alimentar con 12 V un módulo de 5 V lo quema sin remedio.</td></tr>
+              <tr><th scope="row"><strong>Fusible en la línea de potencia.</strong></th><td>Acota el daño de un cortocircuito a un componente de céntimos.</td></tr>
+              <tr><th scope="row"><strong>Masas unidas entre etapas.</strong></th><td>Sin masa común, las señales no tienen referencia y el sistema es indepurable.</td></tr>
+              <tr><th scope="row"><strong>Cuidado con las baterías de litio.</strong></th><td>Un cortocircuito entrega corrientes enormes: calor, incendio y gases. No se perforan ni se cargan sin su circuito de protección.</td></tr>
+              <tr><th scope="row"><strong>Soldar con ventilación</strong> y lavarse las manos al acabar.</th><td>Humos del fundente; estaño sin plomo.</td></tr>
+              <tr><th scope="row"><strong>Tocar el componente antes de tocar el teclado.</strong></th><td>Si está caliente, algo va mal: es el mejor indicador de avería que existe.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>El orden de encendido de un montaje.</strong> Primero se revisa el montaje en frío; después se alimenta solo la parte de señal y se comprueban las tensiones con el polímetro; solo cuando esas son correctas se conecta la potencia. Y a la primera vez conviene alimentar con una fuente que permita limitar la corriente: si hay un cortocircuito, la fuente lo revela sin que nada se queme.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con las dos interfaces del KR-1 montadas, medidas y documentadas.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 11">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Componentes</th><td>Que identificas cada componente en un esquema y explicas su papel.</td><td>Esquema del KR-1 con los componentes referenciados y el papel de cada uno en una línea.</td></tr>
+              <tr><th scope="row">Cálculo electrónico</th><td>Que dimensionas una resistencia limitadora y compruebas los límites del pin.</td><td>Cálculo del LED con valor comercial elegido y comprobación de la corriente del pin.</td></tr>
+              <tr><th scope="row">Etapa de potencia</th><td>Que la placa gobierna el actuador con un interruptor electrónico y con protección.</td><td>Montaje con MOSFET, resistencia de puerta y diodo de recirculación, medido en los dos estados.</td></tr>
+              <tr><th scope="row">Sensor y ADC</th><td>Que acondicionas el sensor, lo calibras y conoces los límites del convertidor.</td><td>Divisor calculado, sonda en ADC1, dos puntos de calibración y lecturas promediadas.</td></tr>
+              <tr><th scope="row">Documentación técnica</th><td>Que localizas en la hoja de características los datos que deciden el diseño.</td><td>Ficha resumen del MOSFET con los cinco datos y la potencia disipada calculada.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cierre del Bloque D: con el divisor y la etapa de potencia montados, el KR-1 ya puede leer el mundo y actuar sobre él. Falta lo que decide cuándo: el programa. Eso es el Bloque E.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Acondicionamiento de señal</dt><dd>Conjunto de circuitos que adaptan la salida de un sensor a lo que puede leer un procesador.</dd>
+          <dt>Aislamiento galvánico</dt><dd>Separación eléctrica total entre dos circuitos, que no comparten ningún conductor.</dd>
+          <dt>Cátodo y ánodo</dt><dd>Terminales de un diodo; la corriente circula del ánodo al cátodo y no en sentido contrario.</dd>
+          <dt>Componente pasivo</dt><dd>Componente que no aporta energía al circuito: la disipa, la almacena o la devuelve.</dd>
+          <dt>Condensador de desacoplo</dt><dd>Condensador situado junto a un circuito para suministrar los picos de corriente y estabilizar su alimentación.</dd>
+          <dt>Convertidor analógico-digital (ADC)</dt><dd>Circuito que traduce una tensión a un número entero.</dd>
+          <dt>Corte y saturación</dt><dd>Los dos estados de un transistor usado como interruptor: no conduce y conduce plenamente.</dd>
+          <dt>Diodo de recirculación</dt><dd>Diodo en paralelo con una bobina que ofrece un camino a la corriente al cortar, evitando el pico de tensión.</dd>
+          <dt>Hoja de características</dt><dd>Documento del fabricante con los valores garantizados y los límites de un componente.</dd>
+          <dt>LDR</dt><dd>Resistencia cuyo valor depende de la luz que recibe.</dd>
+          <dt>MOSFET</dt><dd>Transistor controlado por tensión, muy eficiente como interruptor de cargas de corriente continua.</dd>
+          <dt>Nivel lógico</dt><dd>Intervalo de tensión que un circuito digital interpreta como cero o como uno.</dd>
+          <dt>Optoacoplador</dt><dd>Componente que transmite una señal mediante luz, manteniendo el aislamiento galvánico.</dd>
+          <dt>Rebote</dt><dd>Sucesión de aperturas y cierres rápidos que produce un contacto mecánico al conmutar.</dd>
+          <dt>Relé</dt><dd>Interruptor mecánico accionado por un electroimán, con aislamiento entre mando y potencia.</dd>
+          <dt>Resistencia de polarización</dt><dd>Resistencia que fija el nivel de reposo de una entrada digital, hacia la alimentación o hacia masa.</dd>
+          <dt>Resolución</dt><dd>Escalón mínimo de tensión que un convertidor puede distinguir.</dd>
+          <dt>Sensor</dt><dd>Dispositivo que convierte una magnitud física en una magnitud eléctrica.</dd>
+          <dt>Tensión umbral</dt><dd>Tensión que un diodo mantiene entre sus bornes cuando conduce.</dd>
+          <dt>Termistor</dt><dd>Resistencia cuyo valor depende de la temperatura.</dd>
+          <dt>Transistor</dt><dd>Componente semiconductor que permite que una señal pequeña controle una corriente mucho mayor.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Un circuito de potencia transporta energía y uno de señal transporta información; las magnitudes son las mismas y los órdenes de magnitud, muy distintos.</li>
+          <li>El ESP32 trabaja con lógica de 3,3 V: por encima de 3,6 V en un pin se sale de especificación y se puede destruir.</li>
+          <li>Un condensador de desacoplo evita que el arranque del actuador reinicie la placa; es la avería inexplicable más frecuente.</li>
+          <li>Las bobinas apenas cuentan como componente en corriente continua, pero aparecen como devanado de relés, electroválvulas y motores.</li>
+          <li>Un diodo conduce en un sentido y bloquea en el otro; en conducción mantiene una tensión umbral, y por eso un LED necesita resistencia limitadora.</li>
+          <li>Como interruptor, un MOSFET se controla por tensión, no consume del pin y disipa muy poco; hay que comprobar que sirve para lógica de 3,3 V.</li>
+          <li>La resistencia de puerta no limita corriente de control: limita el pico instantáneo de la conmutación y protege el pin.</li>
+          <li>Si el actuador tiene bobina, lleva diodo de recirculación. Sin él, el pico al cortar destruye el interruptor electrónico.</li>
+          <li>Un relé aporta aislamiento galvánico y sirve para cualquier carga, pero es lento, se desgasta y consume mientras está activado.</li>
+          <li>Un sensor resistivo se acondiciona con un divisor; una entrada digital necesita resistencia de polarización y filtrado de rebotes.</li>
+          <li>Calibrar es convertir cuentas en unidades midiendo al menos dos puntos conocidos; sin calibración, el programa decide sobre una escala arbitraria.</li>
+          <li>La resolución de un ADC es su escalón mínimo, y no equivale a exactitud: los últimos bits del ESP32 son ruido.</li>
+          <li>En el ESP32 hay que usar solo ADC1 —GPIO 32 a 39—, porque ADC2 queda bloqueado con el Wi-Fi activo.</li>
+          <li>En una hoja de características se dimensiona con el peor caso, nunca con el valor típico; los máximos absolutos son el punto de destrucción, no de trabajo.</li>
+          <li>Nunca se trabaja con la tensión de red; se monta sin tensión, se comprueba la polaridad y las masas de las etapas van unidas.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.tinkercad.com/">Tinkercad Circuits</a>. Montaje y simulación de circuitos con componentes electrónicos y polímetro virtual.</li>
+          <li id="fuente_2">[2] <a href="https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/api-reference/peripherals/adc.html">Espressif — Documentación del convertidor analógico-digital del ESP32</a> (en inglés). Limitación de ADC2 con el Wi-Fi activo y asignación de pines de ADC1.</li>
+          <li id="fuente_3">[3] <a href="https://www.falstad.com/circuit/">Simulador de circuitos de Falstad</a> (en inglés). Visualización del comportamiento de diodos, condensadores y transistores.</li>
+          <li id="fuente_4">[4] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Simbología de esquemas eléctricos y electrónicos (UNE-EN 60617).</li>
+          <li id="fuente_5">[5] <a href="https://www.insst.es/">INSST</a>. Riesgo eléctrico, soldadura blanda y manipulación de baterías.</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque D y criterio 4.2.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema10.html">← Tema 10</a>
+  <a href="tema12.html">Tema 12 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

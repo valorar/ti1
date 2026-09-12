@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 10 del Bloque D de Tecnología e Ingeniería I: magnitudes eléctricas, ley de Ohm y leyes de Kirchhoff, cálculo de circuitos de corriente continua, divisores, efecto Joule y dimensionado del cableado, medida con polímetro, motor de corriente continua, puente en H y PWM.">
+  <title>Tema 10. Circuitos y máquinas eléctricas de corriente continua · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 10 · Bloque D · Sistemas eléctricos y electrónicos</p>
+        <h1>Tema 10. Circuitos y máquinas eléctricas de corriente continua</h1>
+        <p class="hero-lead">Cómo se representa, se calcula y se monta un circuito de corriente continua, y cómo funciona el motor que lo convierte en movimiento.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 10">
+        <strong>Pregunta guía</strong>
+        <p>El KR-1 tiene que funcionar con un panel solar pequeño y una batería. ¿Cuánta corriente consume de verdad, qué sección de cable necesita, qué pasa si el cable es largo y por qué el motor arranca dando un tirón de corriente diez veces mayor del previsto?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#magnitudes">Las magnitudes eléctricas</a></li>
+        <li><a href="#ohm">Ley de Ohm y resistencia</a></li>
+        <li><a href="#asociacion">Serie, paralelo y mixto</a></li>
+        <li><a href="#kirchhoff">Las leyes de Kirchhoff</a></li>
+        <li><a href="#divisores">Divisores de tensión y de intensidad</a></li>
+        <li><a href="#joule">Efecto Joule y cableado</a></li>
+        <li><a href="#medida">Medir con el polímetro</a></li>
+        <li><a href="#motor">El motor de corriente continua</a></li>
+        <li><a href="#control">Puente en H y PWM</a></li>
+        <li><a href="#alimentacion">Alimentación y protecciones</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">El Bloque C dejó el accionamiento calculado y montado; ahora hay que darle electricidad. Este tema recupera lo que traes de la ESO —tensión, intensidad, ley de Ohm— y lo lleva al nivel en que sirve para <strong>dimensionar</strong>: elegir una sección de cable, un fusible, una batería y un driver. Y termina con el motor de corriente continua, que es la máquina eléctrica que convierte todo esto en el movimiento del Tema 9.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> un cargador de móvil dice «5 V, 2 A». Un motor pequeño dice «12 V, 0,5 A». ¿Puedes alimentar el motor con el cargador? ¿Y al revés, cargar el móvil con la fuente del motor? Las dos respuestas son no, y por razones distintas. Al final del tema podrás explicar cada una con números.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>definir tensión, intensidad, resistencia, potencia y energía, y relacionarlas con sus unidades;</li>
+          <li>aplicar la ley de Ohm y resolver asociaciones de resistencias en serie, paralelo y mixtas;</li>
+          <li>plantear las leyes de Kirchhoff en un circuito de dos mallas;</li>
+          <li>calcular un divisor de tensión y explicar por qué es la base de la lectura de un sensor;</li>
+          <li>calcular la potencia disipada por efecto Joule y la caída de tensión en un cable, y dimensionar su sección;</li>
+          <li>medir tensión, intensidad y resistencia con un polímetro sin destruirlo;</li>
+          <li>explicar el funcionamiento de un motor de corriente continua e interpretar su curva par-velocidad;</li>
+          <li>describir cómo se invierte el giro con un puente en H y cómo se regula la velocidad con PWM;</li>
+          <li>dimensionar la alimentación de un sistema y elegir sus protecciones.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="magnitudes">
+        <h2 id="magnitudes">1. Las magnitudes eléctricas</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: magnitudes eléctricas, unidad y analogía hidráulica">
+          <table>
+            <caption>Las cinco magnitudes del circuito</caption>
+            <thead><tr><th scope="col">Magnitud</th><th scope="col">Qué mide</th><th scope="col">Símbolo</th><th scope="col">Unidad</th><th scope="col">Analogía con el agua</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Tensión</strong></th><td>Diferencia de potencial que empuja a las cargas.</td><td>V o U</td><td>voltio (V)</td><td>La presión entre dos puntos de la instalación.</td></tr>
+              <tr><th scope="row"><strong>Intensidad</strong></th><td>Carga que atraviesa una sección por segundo.</td><td>I</td><td>amperio (A)</td><td>El caudal que pasa por la tubería.</td></tr>
+              <tr><th scope="row"><strong>Resistencia</strong></th><td>Oposición al paso de la corriente.</td><td>R</td><td>ohmio (Ω)</td><td>El estrechamiento del tubo.</td></tr>
+              <tr><th scope="row"><strong>Potencia</strong></th><td>Energía transferida por segundo.</td><td>P</td><td>vatio (W)</td><td>Presión por caudal.</td></tr>
+              <tr><th scope="row"><strong>Energía</strong></th><td>Potencia por tiempo; lo que se paga en la factura.</td><td>E</td><td>julio (J) o kWh</td><td>El agua total consumida.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="ti1-formula">P = V · I <span class="ti1-formula-leyenda">potencia en corriente continua</span></p>
+        <p class="ti1-formula">E = P · t <span class="ti1-formula-leyenda">1 kWh = 3,6 · 10⁶ J</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La analogía del agua sirve, hasta un punto</strong>Ayuda a entender que la tensión empuja y la intensidad circula, y que sin diferencia de presión no hay caudal. Pero tiene un límite importante: <strong>la tensión se mide siempre entre dos puntos</strong>, nunca «en» un punto, igual que la presión no significa nada sin decir respecto a qué. Cuando alguien dice «en este punto hay 5 V» está sobreentendiendo «respecto a masa», y ese sobreentendido causa la mitad de los errores de medida del laboratorio.</div>
+
+        <div class="ti1-note"><strong>Corriente continua y corriente alterna.</strong> En <strong>corriente continua</strong> la tensión mantiene su polaridad: una pila, una batería, un panel solar, la salida de un cargador. En <strong>corriente alterna</strong>, la tensión cambia de sentido periódicamente: es lo que hay en el enchufe. Este curso trabaja solo con continua; la alterna —con su impedancia, su factor de potencia y su diagrama de Fresnel— es contenido de Tecnología e Ingeniería II. Aquí la alterna solo aparecerá en el Tema 20, al hablar del transporte de energía.</div>
+      </section>
+
+      <section aria-labelledby="ohm">
+        <h2 id="ohm">2. Ley de Ohm y resistencia</h2>
+        <p class="ti1-formula">V = I · R <span class="ti1-formula-leyenda">la ley de Ohm, en sus tres formas: I = V/R y R = V/I</span></p>
+
+        <p>La resistencia de un conductor depende del material y de su geometría:</p>
+        <p class="ti1-formula">R = ρ · L / S <span class="ti1-formula-leyenda">ρ resistividad (Ω·mm²/m), L longitud (m), S sección (mm²)</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: resistividad de materiales conductores">
+          <table>
+            <caption>Resistividad a 20 °C</caption>
+            <thead><tr><th scope="col">Material</th><th scope="col">ρ (Ω·mm²/m)</th><th scope="col">Uso</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Plata</th><td>0,016</td><td>Contactos de calidad; demasiado cara para cableado.</td></tr>
+              <tr><th scope="row">Cobre</th><td>0,017</td><td>El conductor estándar de toda instalación.</td></tr>
+              <tr><th scope="row">Aluminio</th><td>0,028</td><td>Líneas de transporte: peor conductor, mucho más ligero y barato.</td></tr>
+              <tr><th scope="row">Hierro</th><td>0,10</td><td>Estructural, no conductor.</td></tr>
+              <tr><th scope="row">Nicromo</th><td>1,10</td><td>Resistencias calefactoras: interesa que disipe.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Combinando las dos fórmulas se resuelve el problema real</strong>Sustituyendo la resistencia del cable en la ley de Ohm se obtiene la <strong>caída de tensión</strong> en una línea: <em>ΔV = I · ρ · L / S</em>. Con esa expresión ya se puede responder a la pregunta guía del tema: si el panel solar está a 15 m de la caja, ¿qué sección de cable hace falta para que no se pierda por el camino la tensión que necesita la placa? Lo calcularemos en la sección 6.</div>
+
+        <div class="ti1-curio"><strong>Por qué las líneas de alta tensión son de aluminio.</strong> El aluminio conduce peor que el cobre, pero pesa un tercio. En una línea de decenas de kilómetros sostenida por torres, el peso decide: con aluminio se pueden separar más las torres y las estructuras son más ligeras. Se compensa la peor conductividad usando más sección. Es un ejemplo perfecto de la selección de materiales del Tema 5: no gana el mejor conductor, gana el que optimiza el conjunto.</div>
+      </section>
+
+      <section aria-labelledby="asociacion">
+        <h2 id="asociacion">3. Asociación de resistencias</h2>
+        <div class="comparacion">
+          <div><h3>Serie</h3><p>Un solo camino. <strong>La misma intensidad</strong> por todos los elementos y la tensión se reparte. <em>R = R₁ + R₂ + …</em> La resistencia total es mayor que la mayor.</p></div>
+          <div><h3>Paralelo</h3><p>Varios caminos. <strong>La misma tensión</strong> en todos los elementos y la intensidad se reparte. <em>1/R = 1/R₁ + 1/R₂ + …</em> La resistencia total es menor que la menor.</p></div>
+        </div>
+
+        <p class="ti1-formula">serie: R<sub>eq</sub> = R<sub>1</sub> + R<sub>2</sub>  ·  paralelo: R<sub>eq</sub> = R<sub>1</sub>·R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: ejemplo resuelto de circuito mixto">
+          <table>
+            <caption>Circuito mixto: R₁ = 100 Ω en serie con R₂ = 60 Ω y R₃ = 40 Ω en paralelo, a 12 V</caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Operación</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Paralelo R₂ ∥ R₃</th><td>(60 · 40) / (60 + 40)</td><td>24 Ω</td></tr>
+              <tr><th scope="row">Total en serie</th><td>100 + 24</td><td>124 Ω</td></tr>
+              <tr><th scope="row">Intensidad total</th><td>12 / 124</td><td>0,097 A = 97 mA</td></tr>
+              <tr><th scope="row">Tensión en R₁</th><td>0,097 · 100</td><td>9,7 V</td></tr>
+              <tr><th scope="row">Tensión en el paralelo</th><td>12 − 9,7</td><td>2,3 V</td></tr>
+              <tr><th scope="row">Intensidad por R₂</th><td>2,3 / 60</td><td>0,038 A</td></tr>
+              <tr><th scope="row">Intensidad por R₃</th><td>2,3 / 40</td><td>0,058 A</td></tr>
+              <tr><th scope="row">Comprobación</th><td>0,038 + 0,058</td><td>0,096 ≈ 0,097 A ✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Comprueba siempre por dos caminos.</strong> Como en el Tema 9: la suma de las intensidades de las ramas tiene que dar la intensidad total, y la suma de las tensiones tiene que dar la de la fuente. Si no cuadra, hay un error, y lo has encontrado tú antes de montar nada. Es la forma más barata de revisar un cálculo eléctrico.</div>
+      </section>
+
+      <section aria-labelledby="kirchhoff">
+        <h2 id="kirchhoff">4. Las leyes de Kirchhoff</h2>
+        <p>Con serie y paralelo se resuelven muchos circuitos, pero no todos. Las <strong>leyes de Kirchhoff</strong> son generales y no son más que la conservación de la carga y de la energía aplicadas a un circuito.</p>
+
+        <p class="ti1-formula">Σ I<sub>entran</sub> = Σ I<sub>salen</sub> <span class="ti1-formula-leyenda">primera ley, en cada nudo: la carga no se acumula</span></p>
+        <p class="ti1-formula">Σ V = 0 <span class="ti1-formula-leyenda">segunda ley, en cada malla: recorriéndola entera se vuelve al mismo potencial</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Qué significan de verdad</strong>La <strong>primera</strong> dice que en una unión de cables no desaparece ni aparece corriente: lo que entra, sale. La <strong>segunda</strong> dice que si das una vuelta completa a un circuito sumando las subidas y bajadas de tensión, acabas donde empezaste, igual que al recorrer un camino circular en una montaña vuelves a la misma altura. Son las dos afirmaciones más útiles y más elementales de toda la electricidad.</div>
+
+        <div class="ti1-note"><strong>El truco que evita casi todos los errores de signo.</strong> Antes de plantear nada, dibuja una flecha de sentido supuesto en cada rama, aunque te lo inventes. Después recorre cada malla siempre en el mismo sentido y aplica la regla: si atraviesas una resistencia a favor de la flecha, la tensión resta; si vas en contra, suma. Si al final una intensidad sale negativa, el circuito no está mal: solo significa que la corriente va al revés de como la supusiste.</div>
+      </section>
+
+      <section aria-labelledby="divisores">
+        <h2 id="divisores">5. Divisores de tensión y de intensidad</h2>
+        <p>El <strong>divisor de tensión</strong> es, con diferencia, el circuito más útil de todo el curso: es la manera de convertir la resistencia de un sensor en una tensión que la placa pueda leer.</p>
+
+        <p class="ti1-formula">V<sub>2</sub> = V · R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>) <span class="ti1-formula-leyenda">tensión en R₂ de dos resistencias en serie</span></p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: divisor con la sonda de humedad del KR-1">
+          <table>
+            <caption>Divisor con la sonda del KR-1: R fija de 10 kΩ, alimentación de 3,3 V</caption>
+            <thead><tr><th scope="col">Estado del sustrato</th><th scope="col">R sonda</th><th scope="col">Cálculo</th><th scope="col">V que lee la placa</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Seco</th><td>30 kΩ</td><td>3,3 · 10 / (30 + 10)</td><td>0,83 V</td></tr>
+              <tr><th scope="row">Medio</th><td>10 kΩ</td><td>3,3 · 10 / (10 + 10)</td><td>1,65 V</td></tr>
+              <tr><th scope="row">Saturado</th><td>3 kΩ</td><td>3,3 · 10 / (3 + 10)</td><td>2,54 V</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Elegir bien la resistencia fija</strong>Si R fija es muy pequeña frente a la sonda, todas las lecturas se apelotonan cerca de cero; si es muy grande, cerca de la alimentación. La regla práctica es tomar <strong>R fija del orden de la resistencia media del sensor</strong>: así el recorrido de tensión es lo más amplio posible y la medida, lo más fina. Con 10 kΩ el margen de lectura va de 0,83 a 2,54 V, más de la mitad del recorrido disponible. Es una decisión de diseño, no un valor que venga dado.</div>
+
+        <p>El <strong>divisor de intensidad</strong> es el caso simétrico: en dos ramas en paralelo, la corriente se reparte en proporción inversa a las resistencias.</p>
+        <p class="ti1-formula">I<sub>1</sub> = I · R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>) <span class="ti1-formula-leyenda">por la rama de menos resistencia pasa más corriente</span></p>
+
+        <div class="ti1-think"><strong>Piensa:</strong> los tres valores de la tabla están medidos con el sensor recién estrenado. Si con el tiempo los contactos se corroen, su resistencia sube y toda la escala se desplaza sin que el programa se entere: el sistema creerá que el sustrato está más seco y regará de más. ¿Qué haría falta para detectarlo? (Calibración periódica del Tema 2, o una lectura de referencia conocida con la que comparar.)</div>
+      </section>
+
+      <section aria-labelledby="joule">
+        <h2 id="joule">6. Efecto Joule y dimensionado del cableado</h2>
+        <p>Toda corriente que atraviesa una resistencia disipa energía en forma de calor. Es el <strong>efecto Joule</strong>, y según el caso es el objetivo del circuito o su principal problema.</p>
+
+        <p class="ti1-formula">P = I² · R <span class="ti1-formula-leyenda">potencia disipada; crece con el cuadrado de la corriente</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El cuadrado lo cambia todo</strong>Duplicar la corriente no duplica el calor: lo <strong>cuadruplica</strong>. Por eso una instalación que funcionaba bien empieza a calentarse peligrosamente al añadirle carga, y por eso la energía se transporta a alta tensión: para la misma potencia, más tensión significa menos corriente, y menos corriente al cuadrado significa muchísima menos pérdida. Es la idea que sostiene toda la red eléctrica del Tema 20.</div>
+
+        <h3>Cálculo de la sección del cable del KR-1</h3>
+        <p>El panel solar está a 15 m de la caja y hay que llevar 12 V con una corriente máxima de 1,5 A. La línea son dos conductores, de ida y de vuelta, así que la longitud total es 30 m. Se admite una caída de tensión del 3 %, es decir 0,36 V.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: cálculo de la sección del cable">
+          <table>
+            <caption>Dimensionado de la línea del panel</caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Operación</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Caída admisible</th><td>3 % de 12 V</td><td>0,36 V</td></tr>
+              <tr><th scope="row">Resistencia máxima de la línea</th><td>0,36 / 1,5</td><td>0,24 Ω</td></tr>
+              <tr><th scope="row">Sección mínima</th><td>S = ρ·L/R = 0,017 · 30 / 0,24</td><td>2,1 mm²</td></tr>
+              <tr><th scope="row">Sección comercial</th><td>Siguiente valor normalizado</td><td>2,5 mm²</td></tr>
+              <tr><th scope="row">Comprobación con 2,5 mm²</th><td>R = 0,017·30/2,5 = 0,204 Ω; ΔV = 0,31 V</td><td>2,6 % ✓</td></tr>
+              <tr><th scope="row">Pérdida por Joule</th><td>P = 1,5² · 0,204</td><td>0,46 W</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Dos criterios, y manda el más exigente.</strong> Un cable se dimensiona por <strong>caída de tensión</strong> —que es lo que acabamos de hacer— y por <strong>calentamiento admisible</strong>, que fija la corriente máxima que puede llevar sin deteriorar su aislamiento. En líneas largas con poca corriente manda la caída de tensión; en líneas cortas con mucha corriente, el calentamiento. Elegir el cable «por lo gordo que parece» es como elegir un material por su aspecto.</div>
+
+        <div class="aviso"><strong>Un cable demasiado fino no avisa</strong>No se funde como un fusible: se calienta, degrada su aislamiento durante meses y acaba provocando un cortocircuito o un incendio. Es la razón de que las secciones estén normalizadas y de que el elemento de protección se dimensione <strong>para proteger el cable</strong>, no solo el aparato conectado. Volveremos sobre esto en el Tema 21.</div>
+      </section>
+
+      <section aria-labelledby="medida">
+        <h2 id="medida">7. Medir con el polímetro</h2>
+        <p>El <strong>polímetro</strong> es el instrumento del bloque. Medir bien con él exige entender una sola idea: cada magnitud se mide de una manera distinta, y equivocarse en eso destruye el aparato o el circuito.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: cómo medir cada magnitud con el polímetro">
+          <table>
+            <caption>Las tres medidas y cómo se hacen</caption>
+            <thead><tr><th scope="col">Magnitud</th><th scope="col">Cómo se conecta</th><th scope="col">Resistencia interna</th><th scope="col">Error típico</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Tensión</strong></th><td><strong>En paralelo</strong> con el elemento, sin abrir el circuito.</td><td>Muy alta: apenas desvía corriente.</td><td>Olvidar que se mide entre dos puntos.</td></tr>
+              <tr><th scope="row"><strong>Intensidad</strong></th><td><strong>En serie</strong>: hay que abrir el circuito e intercalarlo.</td><td>Casi nula: es casi un cable.</td><td>Conectarlo en paralelo: cortocircuito inmediato.</td></tr>
+              <tr><th scope="row"><strong>Resistencia</strong></th><td>Con el componente <strong>desconectado</strong> y el circuito sin tensión.</td><td>Inyecta una pequeña corriente propia.</td><td>Medir con el circuito alimentado: lectura falsa o avería.</td></tr>
+              <tr><th scope="row"><strong>Continuidad</strong></th><td>Como la resistencia, con aviso acústico.</td><td>—</td><td>Comprobar un cable sin desconectarlo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>El error que funde el fusible del polímetro</strong>Medir intensidad es la única función que exige <strong>abrir el circuito</strong>. Si dejas las puntas en la escala de amperios y las pones en paralelo con la fuente, estás poniendo un cable entre los dos bornes: cortocircuito. El polímetro lleva un fusible precisamente para eso, y en todo laboratorio escolar se funde varias veces al año. Regla: al terminar de medir corriente, devuelve siempre el mando y la punta a la posición de tensión.</div>
+
+        <div class="ti1-note"><strong>Elige la escala antes de tocar el circuito.</strong> Si no conoces el orden de magnitud, empieza por la escala mayor y baja. Y anota siempre la escala usada junto al valor: como vimos en el Tema 2, la exactitud de un polímetro depende de la escala, así que un número sin su escala es un número sin incertidumbre conocida.</div>
+      </section>
+
+      <section aria-labelledby="motor">
+        <h2 id="motor">8. El motor de corriente continua</h2>
+        <p>Una <strong>máquina eléctrica</strong> convierte energía eléctrica en mecánica —motor— o al revés —generador—. Y el motor de corriente continua tiene una propiedad que lo hace inmejorable para este curso: <strong>es reversible</strong>. Si lo haces girar con la mano, produce tensión. Si le das tensión, gira.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">El principio</div><p>Un conductor por el que circula corriente dentro de un campo magnético experimenta una fuerza. Esa es toda la física del motor.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">El inductor</div><p>Crea el campo magnético, con imanes permanentes en los motores pequeños o con bobinas en los grandes.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">El inducido o rotor</div><p>Las bobinas que reciben la corriente y sobre las que aparece la fuerza que produce el par.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Colector y escobillas</div><p>Invierten la corriente en el inducido cada media vuelta para que el par siempre empuje en el mismo sentido. Son la pieza que se desgasta y limita la vida del motor.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">La fuerza contraelectromotriz</div><p>Al girar, el motor genera una tensión opuesta a la que se le aplica. Es la clave de todo lo que viene a continuación.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué un motor consume muchísimo al arrancar</strong>La corriente que circula depende de la diferencia entre la tensión aplicada y la fuerza contraelectromotriz, dividida por la pequeña resistencia del bobinado. Con el motor <strong>parado</strong> no hay fuerza contraelectromotriz, así que la corriente solo la limita esa resistencia: es la <strong>corriente de arranque</strong> o de rotor bloqueado, y puede ser diez veces la nominal. A medida que el motor coge velocidad, la fuerza contraelectromotriz crece y la corriente baja. Por eso un motor bloqueado por un atasco se quema: se queda permanentemente en la situación de arranque.</div>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de las curvas de par y potencia de un motor de corriente continua">
+          <img src="assets/tema10_par_velocidad.svg" alt="El par decrece linealmente desde 1,4 newton metro con el eje parado hasta cero a 2400 revoluciones por minuto; la potencia describe una parábola con máximo de 88 vatios a 1200 revoluciones por minuto. El punto de trabajo del proyecto está a 1800 revoluciones con 0,35 newton metro.">
+          <figcaption>El par máximo se obtiene con el motor parado y la potencia máxima a media velocidad. Ninguno de los dos puntos es el punto de trabajo: ahí el rendimiento sería pésimo.</figcaption>
+        </figure>
+
+        <div class="ti1-note"><strong>Tres datos del catálogo que hay que leer juntos.</strong> <strong>Tensión nominal</strong>: alimentarlo por encima lo destruye, por debajo lo deja sin par. <strong>Corriente nominal y de rotor bloqueado</strong>: la segunda dimensiona la fuente y la protección. <strong>Par nominal y de arranque</strong>: el de arranque decide si el mecanismo del Tema 9 se pone en marcha. Un motor elegido solo por su tensión es un motor elegido a ciegas.</div>
+      </section>
+
+      <section aria-labelledby="control">
+        <h2 id="control">9. Invertir el giro y regular la velocidad</h2>
+        <p>El KR-1 necesita abrir <em>y</em> cerrar la válvula, y hacerlo sin golpes. Eso significa invertir el sentido de giro y regular la velocidad, y las dos cosas se resuelven con soluciones normalizadas.</p>
+
+        <h3>El puente en H</h3>
+        <p>Invertir el giro de un motor de continua es invertir la polaridad de su alimentación. Un <strong>puente en H</strong> son cuatro interruptores electrónicos dispuestos de modo que, activando una diagonal o la otra, la corriente atraviesa el motor en un sentido o en el contrario. Se compra como circuito integrado y se gobierna con dos o tres señales de la placa.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: estados de un puente en H">
+          <table>
+            <caption>Los cuatro estados de un puente en H</caption>
+            <thead><tr><th scope="col">Diagonal activa</th><th scope="col">Efecto</th><th scope="col">En el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Una diagonal</th><td>Gira en un sentido.</td><td>Abre la válvula.</td></tr>
+              <tr><th scope="row">La otra diagonal</th><td>Gira en sentido contrario.</td><td>Cierra la válvula.</td></tr>
+              <tr><th scope="row">Ninguna</th><td>Motor libre: se para por rozamiento.</td><td>Reposo.</td></tr>
+              <tr><th scope="row">Los dos de abajo</th><td>Frenado: el motor se cortocircuita sobre sí mismo.</td><td>Parada rápida al llegar al tope.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>Nunca las dos ramas del mismo lado a la vez</strong>Activar simultáneamente el interruptor de arriba y el de abajo del mismo lado pone la alimentación en cortocircuito a través de ambos: es el fallo llamado <em>disparo pasante</em> y destruye el integrado en microsegundos. Los puentes comerciales llevan protección interna, pero el programa de control del Bloque F debe estar escrito para que esa combinación no pueda producirse jamás. Es un caso de <strong>enclavamiento</strong>, y volverá en el Tema 18.</div>
+
+        <h3>Modulación de ancho de pulso (PWM)</h3>
+        <p>Regular la velocidad bajando la tensión con una resistencia funciona, y es una idea pésima: toda la diferencia se convierte en calor por efecto Joule. La solución moderna es <strong>conmutar</strong>: encender y apagar la alimentación muy rápido y variar la proporción de tiempo encendido, el <strong>ciclo de trabajo</strong>.</p>
+
+        <p class="ti1-formula">V<sub>media</sub> = V · D <span class="ti1-formula-leyenda">D es el ciclo de trabajo, de 0 a 1</span></p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué el PWM no calienta</strong>Un interruptor cerrado tiene casi cero tensión entre sus bornes; uno abierto deja pasar casi cero corriente. Como la potencia disipada es el producto de ambas, en los dos estados es casi nula: <strong>solo se pierde energía durante la conmutación</strong>, que dura microsegundos. Una resistencia en serie, en cambio, disipa todo el rato. Ese es el motivo de que el PWM esté en todas partes: reguladores de luz, cargadores, variadores y la salida de cualquier placa controladora. El motor, gracias a su inercia mecánica y eléctrica, no ve los pulsos: ve el valor medio.</div>
+
+        <div class="ti1-note"><strong>El PWM tiene dos parámetros, y hay que decidir los dos.</strong> El <strong>ciclo de trabajo</strong> fija la velocidad. La <strong>frecuencia</strong> decide si se oye: por debajo de unos pocos kilohercios, el motor pita de forma audible y molesta; por encima, el zumbido desaparece pero aumentan las pérdidas de conmutación. En MicroPython, los dos se fijan en dos líneas, y lo veremos en el Tema 14.</div>
+      </section>
+
+      <section aria-labelledby="alimentacion">
+        <h2 id="alimentacion">10. Alimentación y protecciones</h2>
+        <p>Un sistema real necesita decidir de dónde viene la energía, cómo se reparte y qué pasa cuando algo va mal.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: balance de consumo del KR-1">
+          <table>
+            <caption>Balance de consumo del KR-1</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Tensión</th><th scope="col">Corriente</th><th scope="col">Tiempo diario</th><th scope="col">Energía</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Placa en reposo</th><td>3,3 V</td><td>28 mA</td><td>23,5 h</td><td>2,2 Wh</td></tr>
+              <tr><th scope="row">Placa con Wi-Fi activo</th><td>3,3 V</td><td>180 mA</td><td>0,5 h</td><td>0,3 Wh</td></tr>
+              <tr><th scope="row">Electroválvula abierta</th><td>12 V</td><td>310 mA</td><td>0,4 h</td><td>1,5 Wh</td></tr>
+              <tr><th scope="row">Sonda</th><td>3,3 V</td><td>5 mA</td><td>0,2 h</td><td>0,003 Wh</td></tr>
+              <tr><th scope="row"><strong>Total diario</strong></th><td>—</td><td>—</td><td>—</td><td><strong>≈ 4,0 Wh</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Lo que consume no es lo que parece</strong>La electroválvula tiene diez veces más corriente que la placa en reposo, y sin embargo consume menos de la mitad de la energía diaria: porque solo está abierta veinticuatro minutos. <strong>La energía es potencia por tiempo</strong>, y el consumo lo domina lo que está encendido siempre, no lo que consume mucho un rato. Es exactamente el razonamiento que aplicaremos a una vivienda entera en el Tema 21.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: protecciones de un circuito de baja tensión">
+          <table>
+            <caption>Protecciones y de qué protegen</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Protege de</th><th scope="col">Cómo se dimensiona</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Fusible</strong></th><td>Sobrecorriente y cortocircuito.</td><td>Por encima de la corriente máxima normal y por debajo de lo que aguanta el cable.</td></tr>
+              <tr><th scope="row"><strong>Diodo en serie o puente</strong></th><td>Inversión de polaridad al conectar.</td><td>Por corriente máxima; cuesta una pequeña caída de tensión.</td></tr>
+              <tr><th scope="row"><strong>Diodo de protección</strong></th><td>La sobretensión al cortar una bobina.</td><td>En paralelo con el actuador; se estudia en el Tema 11.</td></tr>
+              <tr><th scope="row"><strong>Regulador de tensión</strong></th><td>Alimentar a 3,3 V desde los 12 V de la batería.</td><td>Por corriente y por calor que debe disipar.</td></tr>
+              <tr><th scope="row"><strong>Masa común</strong></th><td>Referencias distintas entre etapas.</td><td>No es un componente: es una regla de montaje.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>Masa, alimentación y señal no son lo mismo</strong>La <strong>masa</strong> es la referencia común respecto a la cual se miden todas las tensiones; la <strong>alimentación</strong> lleva la energía; la <strong>señal</strong> lleva información. Confundirlas es el error de montaje más común. Y hay una regla que se olvida siempre: <strong>si dos circuitos se comunican, sus masas deben estar unidas</strong>. Una placa alimentada por USB y un motor alimentado por batería, con las masas sueltas, dan lecturas absurdas y comportamientos imposibles de depurar. Y el tema del Bloque D termina donde empieza la seguridad: <strong>en este curso jamás se trabaja con la tensión de red</strong>.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un circuito calculado, montado y medido, y con los tres valores coincidiendo dentro de un margen que sepas explicar.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 10">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Calcular</th><td>Que resuelves circuitos mixtos y aplicas Kirchhoff cuando hace falta.</td><td>Circuito de dos mallas resuelto con comprobación por dos caminos.</td></tr>
+              <tr><th scope="row">Dimensionar</th><td>Que eliges sección de cable, fusible y fuente con criterios y valores comerciales.</td><td>Cálculo de caída de tensión, sección normalizada elegida y balance energético diario.</td></tr>
+              <tr><th scope="row">Simular y montar</th><td>Que compruebas en simulador antes de montar y que el montaje real coincide.</td><td>Captura del simulador, montaje en placa de pruebas y tabla calculado-simulado-medido.</td></tr>
+              <tr><th scope="row">Medir</th><td>Que usas el polímetro correctamente en las tres funciones.</td><td>Acta de medidas con escala usada en cada una y el circuito abierto para medir corriente.</td></tr>
+              <tr><th scope="row">Motor</th><td>Que interpretas su curva y prevés la corriente de arranque.</td><td>Punto de trabajo situado en la curva, corriente de arranque medida y protección dimensionada a partir de ella.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Medida reveladora: conecta el motor con un amperímetro en serie y bloquéale el eje un segundo con cuidado. Verás la corriente de arranque real, y entenderás de golpe por qué el fusible y el diodo no son adornos.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Caída de tensión</dt><dd>Tensión que se pierde en un conductor por su propia resistencia.</dd>
+          <dt>Ciclo de trabajo</dt><dd>Fracción del periodo durante la cual una señal conmutada está activa; fija el valor medio.</dd>
+          <dt>Colector y escobillas</dt><dd>Conjunto que invierte la corriente en el inducido de un motor de continua para mantener el sentido del par.</dd>
+          <dt>Corriente de rotor bloqueado</dt><dd>Corriente que consume un motor con el eje parado; puede ser diez veces la nominal.</dd>
+          <dt>Divisor de tensión</dt><dd>Dos resistencias en serie cuyo punto intermedio entrega una fracción de la tensión de alimentación.</dd>
+          <dt>Efecto Joule</dt><dd>Disipación de energía en forma de calor al circular corriente por una resistencia.</dd>
+          <dt>Fuerza contraelectromotriz</dt><dd>Tensión que genera un motor al girar, opuesta a la aplicada; limita la corriente consumida.</dd>
+          <dt>Fusible</dt><dd>Elemento que se funde al superarse una corriente, interrumpiendo el circuito.</dd>
+          <dt>Intensidad</dt><dd>Carga eléctrica que atraviesa una sección por unidad de tiempo.</dd>
+          <dt>Leyes de Kirchhoff</dt><dd>Conservación de la carga en cada nudo y de la energía en cada malla de un circuito.</dd>
+          <dt>Masa</dt><dd>Punto de referencia común respecto al que se miden las tensiones de un circuito.</dd>
+          <dt>Máquina eléctrica</dt><dd>Dispositivo que convierte energía eléctrica en mecánica o al revés.</dd>
+          <dt>Polímetro</dt><dd>Instrumento que mide tensión, intensidad, resistencia y continuidad.</dd>
+          <dt>Puente en H</dt><dd>Conjunto de cuatro interruptores electrónicos que permite invertir la polaridad aplicada a un motor.</dd>
+          <dt>PWM</dt><dd>Modulación de ancho de pulso: regulación del valor medio conmutando la alimentación a alta frecuencia.</dd>
+          <dt>Resistividad</dt><dd>Propiedad del material que, junto con la longitud y la sección, determina la resistencia de un conductor.</dd>
+          <dt>Tensión</dt><dd>Diferencia de potencial eléctrico entre dos puntos.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>La tensión se mide siempre entre dos puntos; decir «hay 5 V en este punto» supone una referencia que hay que declarar.</li>
+          <li>La ley de Ohm relaciona tensión, intensidad y resistencia; la resistencia de un conductor depende del material, la longitud y la sección.</li>
+          <li>En serie la intensidad es común y la tensión se reparte; en paralelo, al revés. Comprobar por dos caminos detecta los errores.</li>
+          <li>Las leyes de Kirchhoff son la conservación de la carga en cada nudo y de la energía en cada malla.</li>
+          <li>El divisor de tensión convierte la resistencia de un sensor en una tensión legible; la resistencia fija se elige del orden de la del sensor.</li>
+          <li>La potencia disipada crece con el cuadrado de la corriente: duplicarla cuadruplica el calor.</li>
+          <li>Un cable se dimensiona por caída de tensión y por calentamiento, y manda el criterio más exigente; la protección protege al cable.</li>
+          <li>El polímetro mide tensión en paralelo, intensidad en serie abriendo el circuito y resistencia con el circuito sin tensión.</li>
+          <li>El motor de corriente continua es reversible y su par es máximo con el eje parado, cuando la corriente también es máxima.</li>
+          <li>La corriente de arranque puede ser diez veces la nominal porque aún no hay fuerza contraelectromotriz; un motor bloqueado se quema.</li>
+          <li>El puente en H invierte el giro activando una diagonal u otra, y activar las dos ramas del mismo lado destruye el integrado.</li>
+          <li>El PWM regula la velocidad sin disipar calor porque el interruptor nunca tiene a la vez tensión y corriente apreciables.</li>
+          <li>El consumo diario lo domina lo que está encendido siempre, no lo que consume mucho durante poco tiempo.</li>
+          <li>Masa, alimentación y señal son cosas distintas, y dos circuitos que se comunican deben compartir la masa.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://www.tinkercad.com/">Tinkercad Circuits</a>. Montaje y simulación de circuitos de corriente continua con polímetro virtual.</li>
+          <li id="fuente_2">[2] <a href="https://www.falstad.com/circuit/">Simulador de circuitos de Falstad</a> (en inglés). Visualización del flujo de corriente en tiempo real.</li>
+          <li id="fuente_3">[3] <a href="https://www.cem.es/">Centro Español de Metrología</a>. Unidades eléctricas del Sistema Internacional y trazabilidad de la medida.</li>
+          <li id="fuente_4">[4] <a href="https://www.une.org/">UNE — Asociación Española de Normalización</a>. Secciones normalizadas de conductores y grados de protección (UNE-EN 60529).</li>
+          <li id="fuente_5">[5] <a href="https://www.insst.es/">INSST</a>. Riesgo eléctrico y trabajo con instalaciones de baja tensión.</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque D y criterio 4.2.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema09.html">← Tema 9</a>
+  <a href="tema11.html">Tema 11 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

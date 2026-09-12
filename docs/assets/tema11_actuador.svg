@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img" aria-labelledby="t11_title t11_desc">
+<title id="t11_title">Leer un sensor y accionar un actuador desde la placa</title>
+<desc id="t11_desc">A la izquierda, un divisor de tensión: la sonda de humedad y una resistencia fija en serie entre la alimentación de 3,3 voltios y masa; el punto intermedio se lleva a una entrada analógica de la placa. A la derecha, la etapa de potencia: la electroválvula se alimenta de 12 voltios y su corriente la conmuta un MOSFET gobernado desde una salida digital a través de una resistencia; un diodo montado en paralelo con la electroválvula, con el cátodo hacia los 12 voltios, protege al MOSFET de la sobretensión que aparece al cortar.</desc>
+<rect width="900" height="400" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Del sensor a la placa, y de la placa al actuador</text>
+
+<g stroke="#17262d" stroke-width="2.5" fill="none">
+<path d="M90 90 H300"/><path d="M90 310 H300"/><path d="M150 90 V118"/><path d="M150 162 V232"/><path d="M150 276 V310"/><path d="M150 197 H270"/>
+</g>
+<rect x="132" y="118" width="36" height="44" fill="#fff4d9" stroke="#c6922d" stroke-width="2.5"/>
+<rect x="132" y="232" width="36" height="44" fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5"/>
+<path d="M118 172 L182 110" stroke="#c6922d" stroke-width="2.5"/>
+<circle cx="150" cy="197" r="4.5" fill="#17262d"/>
+<g font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">
+<text x="96" y="82" font-weight="700" fill="#0b6680">+3,3 V</text>
+<text x="96" y="330">GND</text>
+<text x="192" y="146" font-weight="700" fill="#8a6317">sonda de humedad</text>
+<text x="192" y="262" font-weight="700" fill="#164d5f">R fija 10 kΩ</text>
+<text x="276" y="194" font-weight="700" fill="#245c49">→ GPIO 34</text>
+<text x="276" y="212">entrada ADC1</text>
+</g>
+<text x="195" y="360" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#18384a">Divisor de tensión: acondiciona la señal</text>
+
+<path d="M400 60 V350" stroke="#d8e0df" stroke-width="2"/>
+
+<g stroke="#17262d" stroke-width="2.5" fill="none">
+<path d="M470 90 H820"/><path d="M470 310 H820"/>
+<path d="M630 90 V118"/><path d="M630 182 V218"/><path d="M630 268 V310"/>
+<path d="M630 200 H740"/><path d="M740 200 V90"/>
+<path d="M595 243 H545"/><path d="M505 243 H462"/>
+</g>
+<rect x="596" y="118" width="68" height="64" rx="6" fill="#e9f5ee" stroke="#167e78" stroke-width="2.5"/>
+<rect x="592" y="218" width="76" height="50" rx="6" fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5"/>
+<rect x="505" y="233" width="40" height="20" fill="#fff4d9" stroke="#c6922d" stroke-width="2.5"/>
+<circle cx="630" cy="200" r="4.5" fill="#17262d"/>
+<path d="M728 152 L752 152 L740 128 Z" fill="#fff0ec" stroke="#c85c40" stroke-width="2.5"/>
+<path d="M726 128 H754" stroke="#c85c40" stroke-width="3"/>
+<g stroke="#17262d" stroke-width="2.5" fill="none"><path d="M740 200 V152"/><path d="M740 128 V90"/></g>
+<g stroke="#17262d" stroke-width="2.5"><path d="M614 322 H646"/><path d="M620 330 H640"/><path d="M626 338 H634"/></g>
+<path d="M630 310 V322" stroke="#17262d" stroke-width="2.5"/>
+
+<g font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">
+<text x="476" y="82" font-weight="700" fill="#0b6680">+12 V</text>
+<text x="476" y="330">GND</text>
+<text x="588" y="146" text-anchor="end" font-weight="700" fill="#245c49">electroválvula</text>
+<text x="588" y="164" text-anchor="end">o motor de CC</text>
+<text x="630" y="248" text-anchor="middle" font-weight="700" fill="#164d5f">MOSFET</text>
+<text x="766" y="146" font-weight="700" fill="#8f3a24">diodo de</text>
+<text x="766" y="163" font-weight="700" fill="#8f3a24">protección</text>
+<text x="525" y="270" text-anchor="middle" font-weight="700" fill="#8a6317">220 Ω</text>
+<text x="458" y="247" text-anchor="end" font-weight="700" fill="#245c49">GPIO 26</text>
+</g>
+<text x="645" y="360" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#18384a">Etapa de potencia: la placa manda, el MOSFET conmuta</text>
+<text x="645" y="380" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#46616a">Sin el diodo, la sobretensión al cortar destruye el MOSFET</text>
+</svg>
