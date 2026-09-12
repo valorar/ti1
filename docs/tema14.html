@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 14 del Bloque E de Tecnología e Ingeniería I: condicionales simples, dobles y múltiples, bucles con condición de parada y de recorrido, contadores y acumuladores, bucles infinitos, estructuras anidadas, funciones con parámetros y valor de retorno, ámbito de las variables y primer programa en el ESP32 con MicroPython.">
+  <title>Tema 14. Estructuras de control, funciones y primer programa en la placa · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 14 · Bloque E · Sistemas informáticos. Programación</p>
+        <h1>Tema 14. Estructuras de control, funciones y primer programa en la placa</h1>
+        <p class="hero-lead">Cómo decide y cómo repite un programa, cómo se parte en piezas con nombre propio y cómo se hace que actúe sobre el mundo físico.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 14">
+        <strong>Pregunta guía</strong>
+        <p>Hasta ahora tus programas imprimían texto. Al final de este tema, uno de ellos va a encender un LED, leer un pulsador y medir la humedad del sustrato en una placa real. ¿Qué tiene que aprender el programa —y qué tienes que aprender tú— para dar ese salto?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#condicionales">Condicionales</a></li>
+        <li><a href="#multiple">Selección múltiple</a></li>
+        <li><a href="#recorrido">Bucles de recorrido</a></li>
+        <li><a href="#parada">Bucles con condición de parada</a></li>
+        <li><a href="#infinitos">Bucles infinitos y su control</a></li>
+        <li><a href="#anidadas">Estructuras anidadas</a></li>
+        <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#ambito">Ámbito de las variables</a></li>
+        <li><a href="#traza">Trazar una función</a></li>
+        <li><a href="#placa">Primer programa en la placa</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este es el tema central del bloque. Con los condicionales y los bucles se completan las tres estructuras de la programación estructurada del Tema 12; con las funciones, el programa deja de ser una lista de líneas y se convierte en algo que se puede organizar y comprobar por partes; y con la placa, el código sale de la pantalla. <strong>Las funciones llegan aquí a propósito</strong>, y no al final del bloque: sin ellas, todo lo que viene después se escribiría de una sola pieza.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> el criterio 5.3 del currículo pide «mostrar el progreso paso a paso de la ejecución de un programa y predecir su estado final». Ese ejercicio es fácil con seis líneas y casi imposible con sesenta. Esa es la razón profunda por la que existen las funciones: no ahorran escritura, hacen que un programa se pueda entender.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>escribir condicionales simples, dobles y múltiples, y condiciones compuestas;</li>
+          <li>recorrer una secuencia con un bucle <code>for</code> y usar contadores y acumuladores;</li>
+          <li>escribir un bucle <code>while</code> con una condición de parada que se cumpla de verdad;</li>
+          <li>reconocer un bucle infinito, distinguir cuándo es un error y cuándo es lo deseado, e interrumpirlo;</li>
+          <li>combinar selección e iteración en estructuras anidadas sin perder la legibilidad;</li>
+          <li>definir funciones con parámetros y valor de retorno, y llamarlas;</li>
+          <li>explicar el ámbito local y global, y separar cálculo, entrada y presentación;</li>
+          <li>trazar la ejecución de una función y predecir su estado final;</li>
+          <li>escribir en MicroPython un programa que encienda una salida, lea una entrada digital y mida un sensor analógico en el ESP32.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="condicionales">
+        <h2 id="condicionales">1. Condicionales: <code>if</code>, <code>else</code></h2>
+        <p>Un <strong>condicional</strong> ejecuta un bloque solo si se cumple una condición. La condición es una expresión booleana de las del Tema 13.</p>
+
+        <pre><code># Selección simple: hacer algo o no hacer nada
+humedad = 410
+UMBRAL = 500
+
+if humedad &lt; UMBRAL:
+    print("Sustrato seco: hay que regar")</code></pre>
+
+        <pre><code># Selección doble: uno de los dos caminos, siempre
+if humedad &lt; UMBRAL:
+    print("Sustrato seco: hay que regar")
+else:
+    print("Humedad suficiente: no regar")</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Los dos puntos y el sangrado</strong>La línea del <code>if</code> termina siempre en <strong>dos puntos</strong>, y lo que depende de la condición va <strong>sangrado cuatro espacios</strong>. No hay llaves ni <em>fin si</em>: el bloque termina cuando el sangrado vuelve al nivel anterior. Es la sintaxis del Tema 12 en acción, y el <code>IndentationError</code> más frecuente viene de aquí.</div>
+
+        <h3>Condiciones compuestas</h3>
+        <pre><code>humedad = 410
+hora = 8
+modo_manual = False
+
+# Tres condiciones a la vez, con nombres del Tema 13
+seco = humedad &lt; UMBRAL
+en_horario = 7 &lt;= hora &lt; 10
+
+if seco and en_horario and not modo_manual:
+    print("Regar 30 s")
+else:
+    print("No regar")</code></pre>
+
+        <div class="ti1-note"><strong>Las condiciones se evalúan de izquierda a derecha y con cortocircuito.</strong> En <code>a and b</code>, si <code>a</code> es falso Python ni siquiera mira <code>b</code>: el resultado ya está decidido. Eso permite un truco muy útil en programas de control: poner primero la comprobación que evita el error. <code>if lecturas &gt; 0 and total / lecturas &lt; 500:</code> nunca divide entre cero, porque si <code>lecturas</code> es cero la segunda parte no se evalúa.</div>
+      </section>
+
+      <section aria-labelledby="multiple">
+        <h2 id="multiple">2. Selección múltiple: <code>elif</code></h2>
+        <pre><code>lectura = 2847   # cuentas del ADC de 12 bits
+
+if lectura &lt; 1200:
+    estado = "saturado"
+elif lectura &lt; 2000:
+    estado = "húmedo"
+elif lectura &lt; 3000:
+    estado = "seco"
+else:
+    estado = "muy seco o sensor desconectado"
+
+print("Estado del sustrato:", estado)   # seco</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Solo se ejecuta una rama, y el orden importa</strong>Python comprueba las condiciones en orden y, en cuanto una es verdadera, <strong>ejecuta su bloque y sale de toda la estructura</strong>. Por eso no hace falta escribir <code>elif 1200 &lt;= lectura &lt; 2000</code>: si hemos llegado a ese <code>elif</code>, ya sabemos que la lectura no era menor de 1200. Y por eso el orden no es indiferente: si pusieras <code>lectura &lt; 3000</code> primero, las lecturas saturadas entrarían por esa rama y las dos siguientes no se alcanzarían nunca.</div>
+
+        <div class="ti1-note"><strong>El <code>else</code> final es una red de seguridad.</strong> En la tabla anterior recoge el caso «muy seco o sensor desconectado», y no es un detalle decorativo: un sensor con el cable suelto da lecturas al máximo, indistinguibles de un sustrato desértico. Un programa de control debe tener siempre una rama para «esto no debería pasar», porque en el huerto pasa. Lo formalizaremos en el Tema 18 como estado de fallo.</div>
+      </section>
+
+      <section aria-labelledby="recorrido">
+        <h2 id="recorrido">3. Bucles de recorrido: <code>for</code></h2>
+        <p>Un bucle <code>for</code> repite un bloque <strong>una vez por cada elemento</strong> de una secuencia. Es el bucle que se usa cuando se sabe de antemano cuántas repeticiones hay.</p>
+
+        <pre><code># Recorrer una lista de medidas
+medidas = [420, 515, 380, 610]
+for medida in medidas:
+    print("Lectura:", medida)
+
+# Recorrer un rango de números
+for i in range(5):        # 0, 1, 2, 3, 4
+    print(i)
+
+for vuelta in range(1, 5):    # 1, 2, 3, 4
+    print("Vuelta", vuelta)</code></pre>
+
+        <div class="aviso"><strong><code>range(5)</code> da cinco números, y el último es 4</strong>El límite superior <strong>no se incluye</strong>. Es la fuente inagotable del error «me falta un elemento» o «me sobra uno». <code>range(5)</code> es 0, 1, 2, 3, 4; <code>range(1, 5)</code> es 1, 2, 3, 4. Si lo que quieres son las vueltas 1 a 4 del husillo, escribe <code>range(1, 5)</code> y comprueba imprimiéndolo antes de fiarte.</div>
+
+        <h3>Contadores y acumuladores</h3>
+        <pre><code>medidas = [420, 515, 380, 610]
+
+total = 0          # acumulador: se inicializa a 0
+lecturas = 0       # contador: se inicializa a 0
+maxima = medidas[0]
+
+for medida in medidas:
+    total = total + medida
+    lecturas = lecturas + 1
+    if medida &gt; maxima:
+        maxima = medida
+
+media = total / lecturas
+print(f"Media: {media:.1f}  Máxima: {maxima}  Lecturas: {lecturas}")
+# Media: 481.3   Máxima: 610   Número de lecturas: 4</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Los tres patrones que resuelven casi todo</strong><strong>Contador:</strong> empieza en cero y suma uno en cada vuelta; sirve para «cuántos». <strong>Acumulador:</strong> empieza en cero y suma el valor; sirve para «total» y, dividido por el contador, para la media. <strong>Extremo:</strong> empieza con el primer elemento y se actualiza si encuentra algo mayor o menor; sirve para «el máximo» y «el mínimo». Con estos tres patrones se trata cualquier serie de medidas, que es exactamente lo que hará el Tema 15 con los datos del huerto.</div>
+
+        <div class="ti1-note"><strong>Inicializar el extremo a cero es un error.</strong> Si buscas el mínimo y empiezas con <code>minima = 0</code>, ningún valor positivo será menor y el resultado será siempre cero. Y si buscas el máximo de temperaturas que pueden ser negativas, empezar en cero también falla. La forma robusta es empezar con el <strong>primer elemento</strong> de la serie, como en el código anterior.</div>
+      </section>
+
+      <section aria-labelledby="parada">
+        <h2 id="parada">4. Bucles con condición de parada: <code>while</code></h2>
+        <p>Un bucle <code>while</code> repite un bloque <strong>mientras</strong> se cumpla una condición. Se usa cuando no se sabe cuántas repeticiones harán falta.</p>
+
+        <pre><code># Esperar a que el sustrato se humedezca, comprobando cada segundo
+import time
+
+tiempo = 0
+humedad = 410
+
+while humedad &lt; UMBRAL and tiempo &lt; 60:
+    time.sleep(1)
+    tiempo = tiempo + 1
+    humedad = leer_humedad()      # función que definiremos más adelante
+
+if humedad &gt;= UMBRAL:
+    print(f"Umbral alcanzado en {tiempo} s")
+else:
+    print("Aviso: 60 s de riego sin alcanzar el umbral")</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Todo <code>while</code> de un sistema de control necesita dos condiciones de salida</strong>Una es la deseada —se alcanzó el umbral— y la otra es el <strong>límite de seguridad</strong>: un tiempo máximo, un número máximo de intentos. Sin la segunda, un sensor averiado deja el programa regando indefinidamente. Ese es el «nunca más de 30 segundos» del enunciado del Tema 12, y ahora ya sabemos dónde se escribe. La regla del curso: <strong>un bucle que espera algo del mundo físico siempre lleva tiempo máximo</strong>.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: cuándo usar for y cuándo while">
+          <table>
+            <caption>Elegir el bucle</caption>
+            <thead><tr><th scope="col">Situación</th><th scope="col">Bucle</th><th scope="col">Ejemplo en el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Se sabe cuántas repeticiones.</th><td><code>for</code> con <code>range</code></td><td>Tomar 10 lecturas para promediar.</td></tr>
+              <tr><th scope="row">Hay una colección que recorrer.</th><td><code>for</code> sobre la colección</td><td>Procesar la lista de medidas del día.</td></tr>
+              <tr><th scope="row">Se repite hasta que ocurra algo.</th><td><code>while</code></td><td>Esperar a que la humedad suba, con tiempo máximo.</td></tr>
+              <tr><th scope="row">Debe repetirse siempre.</th><td><code>while True</code></td><td>El bucle principal del sistema de control.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="infinitos">
+        <h2 id="infinitos">5. Bucles infinitos, <code>break</code> y <code>continue</code></h2>
+        <p>Un <strong>bucle infinito</strong> es el que nunca termina. En un programa de cálculo es un error; en un programa de control, es <strong>exactamente lo que se quiere</strong>, y es lo que representaba la flecha de retorno del diagrama de flujo del Tema 12.</p>
+
+        <pre><code># El bucle principal de un sistema de control: no termina nunca
+while True:
+    humedad = leer_humedad()
+    if humedad &lt; UMBRAL:
+        regar(30)
+    time.sleep(3600)      # esperar una hora</code></pre>
+
+        <div class="comparacion">
+          <div><h3>Bucle infinito por error</h3><p>La condición nunca cambia porque olvidaste incrementar el contador, o porque la variable de la condición se modifica dentro de un <code>if</code> que no siempre se cumple. El programa se queda colgado.</p></div>
+          <div><h3>Bucle infinito por diseño</h3><p><code>while True</code> con una espera dentro. Es la forma normal de un programa que gobierna una máquina: mientras haya corriente, vigila. Se detiene desconectando la placa.</p></div>
+        </div>
+
+        <pre><code># break sale del bucle; continue salta a la siguiente vuelta
+medidas = [420, 515, -1, 380, 4095, 610]
+
+suma = 0
+validas = 0
+for medida in medidas:
+    if medida &lt; 0 or medida &gt; 4090:
+        continue                  # lectura no válida: la salta y sigue
+    if medida == 0:
+        break                     # fallo grave: sale del bucle
+    suma = suma + medida
+    validas = validas + 1
+
+print(f"{validas} lecturas válidas, media {suma / validas:.1f}")
+# 4 lecturas válidas, media 481.3</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Filtrar lecturas no válidas es trabajo de ingeniería, no de programación</strong>Las dos lecturas descartadas —un valor negativo y un 4095— no son datos: son síntomas. Un −1 significa que la función de lectura falló; un 4095 en un ADC de 12 bits es el máximo absoluto, y suele indicar que el sensor está desconectado. Un programa de control que promedia ciegamente todas las lecturas acabará decidiendo con basura. Saber <strong>qué valores son imposibles</strong> es conocimiento del Tema 11, no del lenguaje.</div>
+
+        <div class="ti1-note"><strong>Cómo se interrumpe un bucle que se ha colgado.</strong> En Colab, el botón de detener la celda. En Thonny, el botón de parada o <kbd>Ctrl</kbd>+<kbd>C</kbd> en la consola. Y en la placa, <kbd>Ctrl</kbd>+<kbd>C</kbd> en el intérprete interactivo detiene el programa y devuelve el control. Conviene saberlo antes de escribir el primer <code>while True</code>, no después.</div>
+      </section>
+
+      <section aria-labelledby="anidadas">
+        <h2 id="anidadas">6. Estructuras anidadas</h2>
+        <p><strong>Anidar</strong> es poner una estructura dentro de otra. Cada nivel añade cuatro espacios de sangrado, y ahí está tanto su potencia como su peligro.</p>
+
+        <pre><code># Promediar tres series de lecturas: un for dentro de otro for
+series = [[420, 515, 380], [610, 590, 640], [300, 310, 290]]
+
+for numero, serie in enumerate(series, start=1):
+    total = 0
+    for medida in serie:
+        total = total + medida
+    media = total / len(serie)
+    if media &lt; UMBRAL:
+        print(f"Serie {numero}: media {media:.0f} — seco")
+    else:
+        print(f"Serie {numero}: media {media:.0f} — húmedo")</code></pre>
+
+        <div class="aviso"><strong>Más de tres niveles de sangrado: algo va mal</strong>Cuando un bloque llega al cuarto nivel de sangrado, el programa ha dejado de ser legible y la traza del criterio 5.3 se vuelve impracticable. La solución no es reordenar el sangrado: es <strong>extraer una función</strong>, que es justo lo que viene en la sección siguiente. Un bucle anidado dentro de un <code>if</code> dentro de otro bucle dentro de otro <code>if</code> siempre se puede escribir como dos funciones legibles.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> en el código anterior, la variable <code>total</code> se pone a cero <em>dentro</em> del bucle exterior. ¿Qué pasaría si la inicialización estuviera fuera, antes del primer <code>for</code>? (Las series se acumularían unas sobre otras y las medias de la segunda y la tercera serían absurdas. Es un error de una sola línea de sangrado y de los más difíciles de ver.)</div>
+      </section>
+
+      <section aria-labelledby="funciones">
+        <h2 id="funciones">7. Funciones</h2>
+        <p>Una <strong>función</strong> es un bloque de código con nombre propio que se puede ejecutar cuantas veces se quiera. Se define una vez con <code>def</code> y se <strong>llama</strong> escribiendo su nombre con paréntesis.</p>
+
+        <pre><code>def cuentas_a_porcentaje(cuentas, seco=3000, saturado=1200):
+    """Convierte una lectura del ADC en porcentaje de humedad.
+
+    cuentas: lectura del ADC, de 0 a 4095
+    seco, saturado: valores de calibración del Tema 11
+    Devuelve un porcentaje entre 0 y 100.
+    """
+    if cuentas &gt;= seco:
+        return 0.0
+    if cuentas &lt;= saturado:
+        return 100.0
+    return (seco - cuentas) / (seco - saturado) * 100
+
+
+# Llamadas a la función
+print(cuentas_a_porcentaje(3000))    # 0.0
+print(cuentas_a_porcentaje(2100))    # 50.0
+print(cuentas_a_porcentaje(1200))    # 100.0
+print(cuentas_a_porcentaje(2847))    # 8.5</code></pre>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: partes de una función">
+          <table>
+            <caption>Las partes de una función</caption>
+            <thead><tr><th scope="col">Parte</th><th scope="col">Qué es</th><th scope="col">En el ejemplo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Definición</strong></th><td>La línea <code>def</code>, terminada en dos puntos.</td><td><code>def cuentas_a_porcentaje(...):</code></td></tr>
+              <tr><th scope="row"><strong>Parámetros</strong></th><td>Los nombres que recibe, entre paréntesis.</td><td><code>cuentas</code>, <code>seco</code>, <code>saturado</code></td></tr>
+              <tr><th scope="row"><strong>Valor por omisión</strong></th><td>Valor que toma un parámetro si no se le pasa.</td><td><code>seco=3000</code></td></tr>
+              <tr><th scope="row"><strong>Documentación</strong></th><td>El <em>docstring</em> del Tema 13.</td><td>El bloque entre triples comillas.</td></tr>
+              <tr><th scope="row"><strong>Cuerpo</strong></th><td>El bloque sangrado que se ejecuta.</td><td>Los tres <code>if</code> y el cálculo.</td></tr>
+              <tr><th scope="row"><strong>Valor de retorno</strong></th><td>Lo que devuelve con <code>return</code>; termina la ejecución.</td><td>El porcentaje.</td></tr>
+              <tr><th scope="row"><strong>Argumentos</strong></th><td>Los valores concretos que se pasan al llamarla.</td><td><code>2847</code></td></tr>
+              <tr><th scope="row"><strong>Llamada</strong></th><td>El nombre con paréntesis, donde se necesite.</td><td><code>cuentas_a_porcentaje(2847)</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Para qué sirven de verdad las funciones</strong><strong>1. Reutilizar:</strong> la conversión se escribe una vez y se usa cincuenta. <strong>2. Nombrar:</strong> <code>cuentas_a_porcentaje(x)</code> dice lo que hace mejor que tres líneas de aritmética. <strong>3. Probar:</strong> se puede comprobar la función sola, con valores conocidos, sin ejecutar todo el sistema. <strong>4. Cambiar sin miedo:</strong> si mañana se recalibra el sensor, se toca una función y no cincuenta sitios. Esta última es la razón por la que en la industria nadie escribe programas sin funciones.</div>
+
+        <pre><code># Y ahora la función se puede probar sola, con los casos del Tema 13
+assert cuentas_a_porcentaje(3000) == 0.0
+assert cuentas_a_porcentaje(1200) == 100.0
+assert cuentas_a_porcentaje(5000) == 0.0      # fuera de rango: no rompe
+assert abs(cuentas_a_porcentaje(2100) - 50.0) &lt; 0.1
+print("La conversión funciona")</code></pre>
+
+        <div class="ti1-note"><strong><code>return</code> termina la función ahí mismo.</strong> En cuanto se ejecuta un <code>return</code>, la función devuelve el valor y no sigue leyendo su cuerpo. Eso permite el estilo del ejemplo: resolver primero los casos especiales y dejar el cálculo general al final, sin <code>else</code> anidados. Y una función sin <code>return</code> devuelve <code>None</code>, que es el valor «nada»: si al imprimir el resultado de tu función aparece <code>None</code>, te has olvidado de devolver algo.</div>
+      </section>
+
+      <section aria-labelledby="ambito">
+        <h2 id="ambito">8. Ámbito de las variables</h2>
+        <p>El <strong>ámbito</strong> de una variable es la parte del programa en la que existe.</p>
+
+        <pre><code>UMBRAL = 500              # variable global: visible en todo el archivo
+
+def hay_que_regar(humedad):
+    margen = 20           # variable LOCAL: solo existe dentro de la función
+    return humedad &lt; UMBRAL - margen
+
+print(hay_que_regar(410))   # True
+# print(margen)             # NameError: margen no existe aquí</code></pre>
+
+        <div class="comparacion">
+          <div><h3>Variable local</h3><p>Nace al entrar en la función y desaparece al salir. Nadie de fuera puede verla ni estropearla. Es lo normal y lo deseable.</p></div>
+          <div><h3>Variable global</h3><p>Definida fuera de toda función; visible desde cualquier parte. Útil para las constantes de configuración, peligrosa para todo lo demás.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Las funciones reciben y devuelven; no espían</strong>Una función bien escrita recibe todo lo que necesita como <strong>parámetros</strong> y comunica el resultado con <strong>return</strong>. Si en lugar de eso lee variables globales y las modifica, deja de ser comprobable: su resultado depende del estado del resto del programa, y ya no se puede probar por separado. La excepción aceptada son las <strong>constantes de configuración</strong> en mayúsculas —<code>UMBRAL</code>—, que se leen pero nunca se modifican.</div>
+
+        <h3>Separar cálculo, entrada y presentación</h3>
+        <pre><code># MAL: una función que lo mezcla todo
+def procesar():
+    valor = int(input("Lectura: "))
+    print("Humedad:", (3000 - valor) / 18)
+
+# BIEN: tres responsabilidades, tres funciones
+def pedir_lectura():
+    return int(input("Lectura del ADC: "))
+
+def cuentas_a_porcentaje(cuentas):
+    return (3000 - cuentas) / 18
+
+def mostrar(porcentaje):
+    print(f"Humedad: {porcentaje:.1f} %")
+
+# El programa principal solo enlaza las tres
+lectura = pedir_lectura()
+humedad = cuentas_a_porcentaje(lectura)
+mostrar(humedad)</code></pre>
+
+        <div class="ti1-note"><strong>Por qué la segunda versión es mucho mejor.</strong> La función de cálculo se puede probar con <code>assert</code>, porque no pide nada por teclado ni imprime nada. Y cuando en la sección siguiente el dato venga del sensor de la placa en lugar del teclado, <strong>solo hay que cambiar una función</strong>: el cálculo y la presentación siguen intactos. Esa es la separación que convierte un programa de aula en un programa que sobrevive al cambio de hardware.</div>
+      </section>
+
+      <section aria-labelledby="traza">
+        <h2 id="traza">9. Trazar una función</h2>
+        <p>Ahora la traza del Tema 12 sobre una función, que es como el criterio 5.3 resulta practicable.</p>
+
+        <pre><code>def media_valida(medidas, minimo=0, maximo=4090):
+    total = 0
+    validas = 0
+    for m in medidas:
+        if minimo &lt;= m &lt;= maximo:
+            total = total + m
+            validas = validas + 1
+    if validas == 0:
+        return None
+    return total / validas
+
+print(media_valida([420, 4095, 515]))</code></pre>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: traza de la función media_valida">
+          <table>
+            <caption>Traza de <code>media_valida([420, 4095, 515])</code></caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Qué ocurre</th><th scope="col">m</th><th scope="col">total</th><th scope="col">validas</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>Entra en la función; se crean las locales.</td><td>—</td><td>0</td><td>0</td></tr>
+              <tr><th scope="row">2</th><td>1.ª vuelta: 420 está en rango.</td><td>420</td><td>420</td><td>1</td></tr>
+              <tr><th scope="row">3</th><td>2.ª vuelta: 4095 &gt; 4090, no entra en el <code>if</code>.</td><td>4095</td><td>420</td><td>1</td></tr>
+              <tr><th scope="row">4</th><td>3.ª vuelta: 515 está en rango.</td><td>515</td><td>935</td><td>2</td></tr>
+              <tr><th scope="row">5</th><td><code>validas</code> no es 0: no devuelve <code>None</code>.</td><td>515</td><td>935</td><td>2</td></tr>
+              <tr><th scope="row">6</th><td><code>return 935 / 2</code> → 467,5. Las locales desaparecen.</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Predecir antes de ejecutar</strong>El ejercicio que pide el currículo no es rellenar la tabla después de ver el resultado: es <strong>escribir el estado final antes de pulsar ejecutar</strong>, y después comprobar. Cuando la predicción y el resultado coinciden, has entendido el programa. Cuando no coinciden, has encontrado o un error del programa o un hueco en tu comprensión, y las dos cosas son valiosas. Hazlo a mano unas cuantas veces: lo que el depurador de Thonny mostrará en el Tema 15 es exactamente esta tabla, generada automáticamente.</div>
+      </section>
+
+      <section aria-labelledby="placa">
+        <h2 id="placa">10. Primer programa en la placa</h2>
+        <p>Ha llegado el momento. <strong>MicroPython</strong> es Python adaptado a microcontroladores: el mismo lenguaje, la misma sintaxis, y unos módulos propios para hablar con los pines. Lo que has aprendido hasta aquí sirve tal cual.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de los pines del ESP32">
+          <img src="assets/tema14_esp32.svg" alt="Pines del ESP32: a la izquierda alimentación de 3,3 voltios y masa, los GPIO 36, 39, 34 y 35 de ADC1 y solo entrada, y los GPIO 32 y 33 de ADC1 de entrada o salida; a la derecha entrada de 5 voltios, masa y los GPIO 23, 22, 21, 19, 18 y 5 como salida y PWM, más los GPIO 25 y 26 de ADC2 utilizables solo como salida.">
+          <figcaption>Los pines que se usan en el curso. La sonda va al GPIO 34 porque pertenece a ADC1, el único convertidor que sigue funcionando con el Wi-Fi activo.</figcaption>
+        </figure>
+
+        <h3>Salida digital: encender un LED</h3>
+        <pre><code>from machine import Pin
+import time
+
+led = Pin(23, Pin.OUT)        # GPIO 23 como salida
+
+for i in range(5):
+    led.value(1)              # encender
+    time.sleep(0.5)
+    led.value(0)              # apagar
+    time.sleep(0.5)</code></pre>
+
+        <h3>Entrada digital: leer un pulsador</h3>
+        <pre><code>from machine import Pin
+import time
+
+led = Pin(23, Pin.OUT)
+boton = Pin(18, Pin.IN, Pin.PULL_UP)   # resistencia de pull-up interna
+
+while True:
+    if boton.value() == 0:             # con pull-up, pulsado = 0
+        time.sleep(0.02)               # antirrebote del Tema 11
+        if boton.value() == 0:
+            led.value(not led.value())  # cambia de estado
+            while boton.value() == 0:   # esperar a que suelte
+                time.sleep(0.01)
+    time.sleep(0.01)</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El antirrebote, resuelto por programa</strong>El Tema 11 explicaba que un contacto mecánico rebota durante unos milisegundos. Aquí está la solución en software que allí se anunciaba: al detectar la pulsación, esperar 20 ms y <strong>volver a comprobar</strong>. Si sigue pulsado, era real; si no, era un rebote. Y el bucle final espera a que se suelte, para que una pulsación larga no cuente como muchas. Son cinco líneas que sustituyen a un condensador, y es el ejemplo perfecto de que un problema físico puede resolverse en hardware o en software.</div>
+
+        <h3>Entrada analógica: leer la sonda de humedad</h3>
+        <pre><code>from machine import Pin, ADC
+import time
+
+sonda = ADC(Pin(34))                  # GPIO 34: ADC1
+sonda.atten(ADC.ATTN_11DB)            # margen de medida hasta ~3,3 V
+
+SECO = 3000
+SATURADO = 1200
+
+def leer_humedad(n=10):
+    """Devuelve el porcentaje de humedad promediando n lecturas."""
+    total = 0
+    for i in range(n):
+        total = total + sonda.read()
+        time.sleep(0.01)
+    cuentas = total / n
+    if cuentas &gt;= SECO:
+        return 0.0
+    if cuentas &lt;= SATURADO:
+        return 100.0
+    return (SECO - cuentas) / (SECO - SATURADO) * 100
+
+while True:
+    print(f"Humedad: {leer_humedad():.1f} %")
+    time.sleep(2)</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Fíjate en lo que acaba de pasar</strong>La función <code>leer_humedad()</code> es la misma que escribimos en la sección 7, con dos cambios: el dato ahora viene del ADC en lugar de un argumento, y promedia diez lecturas para atenuar el ruido del Tema 11. <strong>El cálculo no ha cambiado</strong>, porque estaba separado en su propia función. Y la promediación es una decisión de ingeniería, no de programación: diez lecturas separadas 10 ms filtran el ruido eléctrico sin retrasar nada apreciable.</div>
+
+        <div class="aviso"><strong>Cuatro cosas antes de conectar la placa</strong><strong>1.</strong> El pin de la sonda tiene que ser de ADC1 —GPIO 32 a 39—, o dejará de leer al activar el Wi-Fi en el Tema 16. <strong>2.</strong> Ninguna señal por encima de 3,3 V. <strong>3.</strong> La electroválvula no se conecta a un pin: va con el MOSFET y el diodo del Tema 11. <strong>4.</strong> Las masas de la placa y de la alimentación de 12 V, unidas. Las cuatro reglas vienen del Bloque D y las cuatro se incumplen el primer día si nadie las recuerda.</div>
+
+        <div class="ti1-note"><strong>Y si no hay placa para todos los equipos:</strong> Wokwi simula el ESP32 con MicroPython en el navegador, incluidos el LED, el pulsador y un potenciómetro que hace de sonda. El programa que funciona en el simulador funciona en la placa casi sin cambios, y permite que todos los equipos avancen a la vez.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un programa organizado en funciones que funciona en la placa, y con una predicción de traza acertada.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 14">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Condicionales</th><td>Que usas selección múltiple con el orden correcto y una rama final de seguridad.</td><td>Clasificación del estado del sustrato con <code>elif</code> y rama para sensor desconectado.</td></tr>
+              <tr><th scope="row">Bucles</th><td>Que eliges <code>for</code> o <code>while</code> con criterio y aplicas los tres patrones.</td><td>Contador, acumulador y extremo sobre una serie real de medidas; un <code>while</code> con tiempo máximo.</td></tr>
+              <tr><th scope="row">Funciones</th><td>Que tu programa está organizado en funciones probables por separado.</td><td>Al menos tres funciones con <em>docstring</em>, parámetros y retorno, y sus <code>assert</code>.</td></tr>
+              <tr><th scope="row">Separación de responsabilidades</th><td>Que el cálculo no imprime ni pide datos.</td><td>La función de cálculo reutilizada sin cambios al pasar del teclado al sensor.</td></tr>
+              <tr><th scope="row">Traza</th><td>Que predices el estado final antes de ejecutar.</td><td>Tabla de traza de una función con bucle y condicional, con la predicción fechada antes de la ejecución.</td></tr>
+              <tr><th scope="row">La placa</th><td>Que gobiernas una salida, lees una entrada digital con antirrebote y mides un analógico.</td><td>Los tres programas funcionando, con vídeo o captura, y la sonda en un pin de ADC1.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba de fuego del tema: cambia la calibración del sensor. Si te basta con modificar dos constantes al principio del archivo, has organizado bien el programa. Si tienes que buscar números por todas partes, todavía no.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Acumulador</dt><dd>Variable que se inicializa a cero y va sumando valores dentro de un bucle.</dd>
+          <dt>Ámbito</dt><dd>Parte del programa en la que una variable existe y es accesible.</dd>
+          <dt>Anidar</dt><dd>Colocar una estructura de control dentro de otra.</dd>
+          <dt>Antirrebote</dt><dd>Técnica que descarta las conmutaciones espurias de un contacto mecánico.</dd>
+          <dt>Argumento</dt><dd>Valor concreto que se pasa a una función al llamarla.</dd>
+          <dt>Bucle infinito</dt><dd>Bucle que no termina; error en un cálculo y comportamiento deseado en un programa de control.</dd>
+          <dt>Contador</dt><dd>Variable que se inicializa a cero y se incrementa en cada vuelta de un bucle.</dd>
+          <dt>Cortocircuito de evaluación</dt><dd>Propiedad por la que una condición compuesta deja de evaluarse en cuanto el resultado está decidido.</dd>
+          <dt>Función</dt><dd>Bloque de código con nombre propio, parámetros y valor de retorno, que puede llamarse cuantas veces se quiera.</dd>
+          <dt>Global</dt><dd>Variable definida fuera de toda función y visible desde cualquier parte del archivo.</dd>
+          <dt>Local</dt><dd>Variable que nace al entrar en una función y desaparece al salir de ella.</dd>
+          <dt>MicroPython</dt><dd>Versión de Python adaptada a microcontroladores, con módulos para acceder a los pines.</dd>
+          <dt>Parámetro</dt><dd>Nombre que aparece en la definición de una función y recibe un valor al llamarla.</dd>
+          <dt>Pull-up</dt><dd>Resistencia que fija el nivel alto de una entrada digital en reposo; el ESP32 la tiene integrada.</dd>
+          <dt>Return</dt><dd>Instrucción que devuelve un valor y termina inmediatamente la ejecución de la función.</dd>
+          <dt>Valor por omisión</dt><dd>Valor que toma un parámetro cuando no se le pasa argumento.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>La línea de un <code>if</code>, un <code>for</code>, un <code>while</code> o un <code>def</code> termina en dos puntos, y su bloque va sangrado cuatro espacios.</li>
+          <li>Las condiciones compuestas se evalúan con cortocircuito, lo que permite poner primero la comprobación que evita el error.</li>
+          <li>En una cadena de <code>elif</code> solo se ejecuta una rama, y el orden de las condiciones cambia el resultado.</li>
+          <li>Un programa de control necesita siempre una rama final para «esto no debería pasar»: en el huerto, pasa.</li>
+          <li><code>for</code> se usa cuando se sabe cuántas repeticiones o hay una colección; <code>while</code>, cuando se repite hasta que ocurra algo.</li>
+          <li><code>range(5)</code> da cinco números y el último es 4: el límite superior no se incluye.</li>
+          <li>Contador, acumulador y extremo son los tres patrones que resuelven casi cualquier serie de medidas; el extremo se inicializa con el primer elemento, nunca a cero.</li>
+          <li>Todo bucle que espera algo del mundo físico lleva un límite de seguridad además de su condición deseada.</li>
+          <li>Un <code>while True</code> con espera dentro es la forma normal del bucle principal de un sistema de control.</li>
+          <li>Descartar lecturas imposibles es conocimiento del sistema, no del lenguaje: un −1 o un 4095 son síntomas, no datos.</li>
+          <li>Pasado el tercer nivel de sangrado, la solución no es reordenar: es extraer una función.</li>
+          <li>Las funciones sirven para reutilizar, nombrar, probar por separado y cambiar sin miedo.</li>
+          <li>Una función recibe por parámetros y comunica por <code>return</code>; leer y modificar variables globales la vuelve imposible de comprobar.</li>
+          <li>Separar cálculo, entrada y presentación permite pasar del teclado al sensor cambiando una sola función.</li>
+          <li>El ejercicio del criterio 5.3 consiste en predecir el estado final antes de ejecutar, y después comprobar.</li>
+          <li>MicroPython es el mismo Python: <code>Pin</code> gobierna una salida o lee una entrada, y <code>ADC</code> mide un analógico, siempre en un pin de ADC1.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://docs.python.org/es/3/tutorial/controlflow.html">Tutorial oficial de Python — Estructuras de control y funciones</a> (en español).</li>
+          <li id="fuente_2">[2] <a href="https://docs.micropython.org/en/latest/esp32/quickref.html">MicroPython — Referencia rápida para el ESP32</a> (en inglés). Uso de <code>Pin</code>, <code>ADC</code> y <code>PWM</code>.</li>
+          <li id="fuente_3">[3] <a href="https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/api-reference/peripherals/adc.html">Espressif — Convertidor analógico-digital del ESP32</a> (en inglés). Pines de ADC1 y limitación de ADC2 con el Wi-Fi activo.</li>
+          <li id="fuente_4">[4] <a href="https://wokwi.com/">Wokwi</a>. Simulador de ESP32 con MicroPython en el navegador.</li>
+          <li id="fuente_5">[5] <a href="https://thonny.org/">Thonny</a>. Grabar MicroPython en la placa y depurar paso a paso.</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque E y criterios 5.1 y 5.3.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema13.html">← Tema 13</a>
+  <a href="tema15.html">Tema 15 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

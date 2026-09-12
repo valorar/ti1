@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 16 del Bloque E de Tecnología e Ingeniería I: internet de las cosas, arquitectura de una solución IoT, el ESP32 como nodo de red, conexión Wi-Fi, protocolos MQTT y HTTP, publicación y suscripción, formato JSON de los datos, panorama de Bluetooth, Zigbee y LoRa, seguridad, privacidad y consumo del nodo.">
+  <title>Tema 16. Internet de las cosas y redes de dispositivos · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 16 · Bloque E · Sistemas informáticos. Programación</p>
+        <h1>Tema 16. Internet de las cosas y redes de dispositivos</h1>
+        <p class="hero-lead">Cómo se conectan entre sí los objetos que fabricamos y qué protocolos hacen posible que se entiendan.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 16">
+        <strong>Pregunta guía</strong>
+        <p>En agosto no hay nadie en el instituto. ¿Cómo se entera alguien, desde su casa, de que el depósito del KR-1 se ha vaciado, y cómo le manda la orden de no volver a intentar regar hasta que se rellene?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#iot">Qué es el internet de las cosas</a></li>
+        <li><a href="#arquitectura">Arquitectura de una solución</a></li>
+        <li><a href="#nodo">El ESP32 como nodo de red</a></li>
+        <li><a href="#wifi">Conectar la placa al Wi-Fi</a></li>
+        <li><a href="#protocolos">MQTT y HTTP</a></li>
+        <li><a href="#publicar">Publicar las lecturas</a></li>
+        <li><a href="#suscribir">Recibir órdenes</a></li>
+        <li><a href="#enlaces">Otras tecnologías de enlace</a></li>
+        <li><a href="#seguridad">Seguridad, privacidad y consumo</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Este tema cierra el Bloque E y es el puente al Bloque F. El KR-1 ya sabe medir, decidir, actuar y recordar; lo que le falta es <strong>hablar</strong>. Y hablar, en un sistema técnico, no es enviar un mensaje bonito: es elegir una arquitectura, un protocolo y un formato de datos, y hacerlo teniendo en cuenta la seguridad, la privacidad y el consumo. Es, además, el contenido que el currículo enumera como «tecnologías emergentes».</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> ¿por qué una bombilla inteligente necesita internet para encenderse desde el sofá, si el móvil está a tres metros? La respuesta explica casi todo este tema: porque los dos hablan con un servidor intermedio, no entre sí. Y eso tiene ventajas —funciona también desde otra ciudad— e inconvenientes —si el servidor cierra, la bombilla se vuelve tonta—.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>explicar qué es el internet de las cosas y qué lo distingue de conectar un ordenador a la red;</li>
+          <li>describir las cuatro capas de una solución IoT y situar cada componente del KR-1;</li>
+          <li>explicar qué necesita una placa para ser un nodo de red: identificación, alimentación y conectividad;</li>
+          <li>conectar un ESP32 a una red Wi-Fi desde MicroPython y comprobar la conexión;</li>
+          <li>distinguir MQTT de HTTP y decidir cuál conviene en cada caso;</li>
+          <li>explicar el modelo de publicación y suscripción, y el papel de los temas;</li>
+          <li>publicar una lectura en formato JSON y suscribirse a un tema de órdenes;</li>
+          <li>situar Bluetooth, Zigbee y LoRa frente al Wi-Fi en alcance, consumo y velocidad;</li>
+          <li>valorar los riesgos de seguridad y privacidad de un dispositivo conectado y estimar su consumo.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="iot">
+        <h2 id="iot">1. Qué es el internet de las cosas</h2>
+        <p>El <strong>internet de las cosas</strong> es la extensión de la red a objetos que no son ordenadores: sensores, electrodomésticos, vehículos, máquinas industriales, instalaciones. Lo que cambia no es la tecnología de red, que es la misma: lo que cambia son las <strong>restricciones</strong>.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: diferencias entre un ordenador y un nodo IoT">
+          <table>
+            <caption>Un ordenador y un nodo IoT en la misma red</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Ordenador</th><th scope="col">Nodo IoT</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Energía</th><td>Enchufado; el consumo casi no importa.</td><td>Batería o panel: cada miliamperio cuenta.</td></tr>
+              <tr><th scope="row">Potencia de cálculo</th><td>Gigabytes de memoria.</td><td>Cientos de kilobytes.</td></tr>
+              <tr><th scope="row">Datos que envía</th><td>Megabytes o gigabytes.</td><td>Unas decenas de bytes cada varios minutos.</td></tr>
+              <tr><th scope="row">Quién lo maneja</th><td>Una persona delante.</td><td>Nadie: funciona solo durante meses.</td></tr>
+              <tr><th scope="row">Qué pasa si falla la red</th><td>El usuario lo ve y reacciona.</td><td>Tiene que reaccionar el propio dispositivo.</td></tr>
+              <tr><th scope="row">Mantenimiento</th><td>Actualizaciones frecuentes.</td><td>Difícil o imposible: está en un tejado o enterrado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La restricción que ordena todas las decisiones</strong><strong>Nadie va a estar delante.</strong> De ahí sale todo lo demás: el programa tiene que sobrevivir a un corte de red sin bloquearse, volver a conectarse solo, dejar el sistema en estado seguro si algo falla y consumir lo suficientemente poco como para durar el verano. Un programa de escritorio puede darse el lujo de esperar a que alguien pulse «reintentar»; un nodo IoT, no. Esta es la idea que el Bloque F desarrollará como diseño de un sistema automático.</div>
+
+        <div class="ti1-curio"><strong>La obsolescencia que llega por la red.</strong> Un objeto conectado depende de un servidor que alguien tiene que mantener. Cuando la empresa cierra el servicio, el objeto sigue perfectamente sano y deja de funcionar: es <strong>obsolescencia funcional</strong> del Tema 2, provocada no por una avería sino por una decisión ajena. Es una razón técnica de peso para que el KR-1 siga funcionando sin red —regando por su cuenta— y use internet solo para informar. Un sistema que no puede trabajar sin red es un sistema más frágil, no más moderno.</div>
+      </section>
+
+      <section aria-labelledby="arquitectura">
+        <h2 id="arquitectura">2. Arquitectura de una solución IoT</h2>
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama desplazable de la arquitectura IoT del proyecto">
+          <img src="assets/tema16_arquitectura_iot.svg" alt="El nodo formado por el ESP32, la sonda y la electroválvula se conecta por Wi-Fi al punto de acceso del centro, que a través de internet alcanza un broker MQTT; del broker parten los datos al panel web y al móvil. El nodo publica en el tema kr1 barra humedad y se suscribe al tema kr1 barra orden, por el que le llegan las órdenes de vuelta.">
+          <figcaption>Las cuatro capas del sistema. La clave está en el centro: el nodo y el panel no se conocen, solo conocen el nombre de los temas.</figcaption>
+        </figure>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: las cuatro capas de una solución IoT">
+          <table>
+            <caption>Las cuatro capas y el KR-1</caption>
+            <thead><tr><th scope="col">Capa</th><th scope="col">Qué hace</th><th scope="col">En el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Dispositivo</strong></th><td>Mide, decide y actúa. Es el nodo.</td><td>ESP32 con la sonda del Tema 11 y la electroválvula del Tema 8.</td></tr>
+              <tr><th scope="row"><strong>Red</strong></th><td>Transporta los mensajes.</td><td>Wi-Fi del centro y, a partir de ahí, internet.</td></tr>
+              <tr><th scope="row"><strong>Plataforma</strong></th><td>Recibe, reparte y guarda los datos.</td><td>Un <em>broker</em> MQTT y una base de datos sencilla.</td></tr>
+              <tr><th scope="row"><strong>Aplicación</strong></th><td>Presenta la información y permite mandar órdenes.</td><td>El panel web del Tema 18 y el móvil.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Y a veces hay una capa más: la pasarela.</strong> Cuando los nodos usan una tecnología que no llega a internet por sí sola —Zigbee, por ejemplo—, hace falta un dispositivo intermedio que traduzca: la <strong>pasarela</strong>. El KR-1 no la necesita porque el ESP32 lleva Wi-Fi integrado y habla directamente con el router. Esa es, precisamente, la razón por la que se eligió esta placa y no un micro:bit.</div>
+      </section>
+
+      <section aria-labelledby="nodo">
+        <h2 id="nodo">3. El ESP32 como nodo de red</h2>
+        <p>Para que una placa sea un nodo de red necesita tres cosas, y conviene enumerarlas porque las tres dan problemas.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Identificación</h3><p>Una <strong>dirección MAC</strong> única de fábrica, una <strong>dirección IP</strong> que le asigna la red y un <strong>nombre de cliente</strong> propio para el protocolo. Dos nodos con el mismo nombre se expulsan mutuamente.</p></div>
+          <div class="ti1-card"><h3>Alimentación</h3><p>El Wi-Fi es lo que más consume del nodo: de 28 mA en reposo pasa a unos 180 mA transmitiendo. Eso decide la batería y el panel del Tema 23.</p></div>
+          <div class="ti1-card"><h3>Conectividad</h3><p>Credenciales de la red, cobertura suficiente en el huerto y una política de qué hacer cuando la red no está.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Direcciones: MAC e IP no son lo mismo</strong>La <strong>MAC</strong> es el número de serie del interfaz de red: viene de fábrica, no cambia y solo sirve dentro de la red local. La <strong>IP</strong> es la dirección en la red: la asigna el router, puede cambiar cada vez que el nodo se conecta y es la que se usa para encaminar los mensajes. Que la IP cambie es la razón por la que el panel <strong>no puede</strong> llamar al nodo por su dirección, y por tanto la razón por la que existe el modelo de publicación y suscripción de la sección 5.</div>
+
+        <div class="aviso"><strong>Antes de contar con el Wi-Fi del centro</strong>Una red escolar suele tener restricciones que un nodo IoT no puede sortear: portal de autenticación con navegador, filtrado por MAC, puertos bloqueados o redes separadas para invitados. Conviene <strong>hablar con quien administra la red antes de diseñar</strong>, no después de montar. Y si el acceso no es posible, la alternativa razonable es un punto de acceso propio con un router sencillo, o el modo en que la propia placa crea su red para configuración local.</div>
+      </section>
+
+      <section aria-labelledby="wifi">
+        <h2 id="wifi">4. Conectar la placa al Wi-Fi</h2>
+        <pre><code>import network
+import time
+
+SSID = "IES_Huerto"
+CLAVE = "..."                 # nunca se escribe en el código que se publica
+
+def conectar_wifi(tiempo_max_s=20):
+    """Conecta a la red Wi-Fi. Devuelve True si lo consigue."""
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    if wlan.isconnected():
+        return True
+    wlan.connect(SSID, CLAVE)
+    inicio = time.time()
+    while not wlan.isconnected():
+        if time.time() - inicio &gt; tiempo_max_s:
+            print("Sin conexión tras", tiempo_max_s, "s")
+            return False
+        time.sleep(0.5)
+    print("Conectado. IP:", wlan.ifconfig()[0])
+    return True</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Fíjate en el bucle de espera</strong>Es el <code>while</code> con <strong>límite de seguridad</strong> del Tema 14, y aquí se entiende por qué era una regla y no un consejo. Sin el <code>tiempo_max_s</code>, un router apagado deja la placa esperando <em>para siempre</em>: no riega, no mide y no avisa. Con el límite, la función devuelve <code>False</code> y el programa principal puede decidir seguir funcionando sin red, que es exactamente lo que debe hacer un sistema de riego.</div>
+
+        <pre><code># El uso correcto: la red es opcional, el riego no
+if conectar_wifi():
+    publicar_estado()
+else:
+    print("Modo autónomo: se riega igual, se registra en el archivo local")
+# ... y a continuación el bucle de control, que funciona en los dos casos</code></pre>
+
+        <div class="aviso"><strong>Las credenciales no van en el código que se publica</strong>Si el proyecto se sube a un repositorio como el del Tema 4, la contraseña del Wi-Fi queda publicada para siempre —y borrarla después no sirve, porque el historial la conserva—. La práctica correcta es guardarla en un <strong>archivo aparte</strong> —por ejemplo <code>secretos.py</code>— que se importa y que se excluye del repositorio mediante <code>.gitignore</code>. Es exactamente la misma regla de privacidad del Tema 4, aplicada a un dato que no es personal pero sí sensible.</div>
+      </section>
+
+      <section aria-labelledby="protocolos">
+        <h2 id="protocolos">5. MQTT y HTTP</h2>
+        <p>Un <strong>protocolo</strong> es un conjunto de reglas acordadas para intercambiar mensajes. En el internet de las cosas conviven sobre todo dos, y sirven para cosas distintas.</p>
+
+        <div class="comparacion">
+          <div><h3>HTTP · petición y respuesta</h3><p>El cliente <strong>pregunta</strong> y el servidor responde. Es el protocolo de la Web. Simple, universal y con una limitación: <strong>el servidor no puede iniciar la conversación</strong>. Para saber si hay una orden nueva, el nodo tiene que preguntar cada cierto tiempo.</p></div>
+          <div><h3>MQTT · publicación y suscripción</h3><p>Los dispositivos se conectan a un <strong>broker</strong> y le entregan mensajes etiquetados con un <strong>tema</strong>. El broker los reparte a todos los suscritos a ese tema. La conexión queda abierta, de modo que una orden llega <strong>al instante</strong> sin preguntar.</p></div>
+        </div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: comparación entre MQTT y HTTP">
+          <table>
+            <caption>Cuándo cada uno</caption>
+            <thead><tr><th scope="col">Criterio</th><th scope="col">MQTT</th><th scope="col">HTTP</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Modelo</th><td>Publicación y suscripción</td><td>Petición y respuesta</td></tr>
+              <tr><th scope="row">Tamaño del mensaje</th><td>Cabecera de pocos bytes</td><td>Cabeceras de cientos de bytes</td></tr>
+              <tr><th scope="row">Consumo</th><td>Bajo: conexión abierta y mensajes mínimos</td><td>Mayor: cada petición reabre y repite cabeceras</td></tr>
+              <tr><th scope="row">Órdenes hacia el dispositivo</th><td>Inmediatas</td><td>Solo si el dispositivo pregunta</td></tr>
+              <tr><th scope="row">Varios receptores</th><td>Naturales: todos los suscritos</td><td>Hay que pedirlo uno a uno</td></tr>
+              <tr><th scope="row">Facilidad</th><td>Requiere un broker</td><td>Vale cualquier servidor web</td></tr>
+              <tr><th scope="row">Uso típico</th><td>Telemetría y control de dispositivos</td><td>Enviar un dato a un servicio o consultar una página</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué el KR-1 usa MQTT</strong>Porque necesita las dos direcciones. Publicar la humedad podría hacerse con HTTP sin problema. Pero recibir la orden «no riegues, el depósito está vacío» exigiría que el nodo preguntara cada minuto —gastando energía y llegando tarde—, mientras con MQTT el mensaje llega en cuanto alguien lo publica. Y el desacoplamiento es la otra ventaja: <strong>el panel no necesita saber dónde está el nodo</strong>, lo que resuelve el problema de la IP cambiante de la sección 3.</div>
+
+        <div class="ti1-note"><strong>Los temas se organizan como carpetas.</strong> Un <strong>tema</strong> MQTT es una cadena con niveles separados por barras: <code>kr1/bancal2/humedad</code>, <code>kr1/bancal2/orden</code>. Y quien se suscribe puede usar comodines: <code>kr1/+/humedad</code> recibe la humedad de todos los bancales, y <code>kr1/#</code> todo lo del proyecto. Diseñar bien el árbol de temas al principio es lo que permite añadir un segundo bancal después sin tocar el panel.</div>
+      </section>
+
+      <section aria-labelledby="publicar">
+        <h2 id="publicar">6. Publicar las lecturas</h2>
+        <p>Los datos se envían como texto, y el formato convenido en el internet de las cosas es <strong>JSON</strong>: exactamente el diccionario del Tema 15, escrito como cadena.</p>
+
+        <pre><code>import ujson
+from umqtt.simple import MQTTClient
+
+BROKER = "broker.ejemplo.org"
+CLIENTE = "kr1-bancal2"          # único: dos iguales se expulsan
+TEMA_DATOS = b"kr1/bancal2/humedad"
+
+def publicar(cliente, humedad_pct, cuentas, rego):
+    """Publica una lectura en formato JSON."""
+    mensaje = {
+        "humedad_pct": round(humedad_pct, 1),
+        "cuentas": cuentas,
+        "rego": rego,
+    }
+    cliente.publish(TEMA_DATOS, ujson.dumps(mensaje))
+
+cliente = MQTTClient(CLIENTE, BROKER, keepalive=60)
+cliente.connect()
+publicar(cliente, 8.5, 2847, True)
+# Se envía: {"humedad_pct": 8.5, "cuentas": 2847, "rego": true}</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué JSON y no «8.5»</strong>Enviar solo el número obliga a que quien lo reciba <strong>sepa de antemano</strong> qué significa, en qué unidad está y en qué orden vienen los campos. Con JSON, cada dato viaja con su nombre, y añadir la temperatura el mes que viene no rompe al panel que ya estaba funcionando. Es la misma razón por la que en el Tema 15 el histórico se guardaba como lista de diccionarios y no como lista de tuplas: <strong>los datos viajan con su nombre</strong>.</div>
+
+        <div class="ti1-note"><strong>Qué publicar y cada cuánto.</strong> No se publica cada lectura: se publica lo que alguien va a mirar. El KR-1 publica cada quince minutos la humedad, y además <strong>un mensaje inmediato cuando ocurre algo</strong> —empieza a regar, termina, detecta un fallo—. Esa combinación de cadencia fija más eventos es el patrón habitual en telemetría, y reduce el consumo respecto a publicar continuamente. El Tema 18 lo formalizará como monitorización.</div>
+      </section>
+
+      <section aria-labelledby="suscribir">
+        <h2 id="suscribir">7. Recibir órdenes</h2>
+        <pre><code>TEMA_ORDEN = b"kr1/bancal2/orden"
+riego_bloqueado = False
+
+def al_recibir(tema, mensaje):
+    """Se ejecuta cada vez que llega un mensaje del broker."""
+    global riego_bloqueado
+    orden = ujson.loads(mensaje)
+    if orden.get("bloquear") is True:
+        riego_bloqueado = True
+        print("Riego bloqueado por orden remota")
+    elif orden.get("bloquear") is False:
+        riego_bloqueado = False
+        print("Riego desbloqueado")
+
+cliente.set_callback(al_recibir)
+cliente.subscribe(TEMA_ORDEN)
+
+# En el bucle principal, comprobar si ha llegado algo
+while True:
+    cliente.check_msg()                 # no bloquea: mira y sigue
+    humedad = leer_humedad()
+    if humedad &lt; UMBRAL and not riego_bloqueado:
+        regar(30)
+    publicar(cliente, humedad, 0, False)
+    time.sleep(900)</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Una función que se ejecuta cuando pasa algo</strong><code>al_recibir</code> no la llama tu programa: la llama la biblioteca cuando llega un mensaje. Se le llama <strong>función de respuesta</strong> o <em>callback</em>, y es la primera vez en el curso que aparece código que no se ejecuta en el orden en que está escrito. Es también el motivo de la única variable global del bloque: la función tiene que comunicar al programa principal que el estado ha cambiado, y <code>global</code> es la forma sencilla de hacerlo. En el Tema 18 esto se resolverá mejor, con una máquina de estados.</div>
+
+        <div class="aviso"><strong>Una orden remota no puede desactivar una protección</strong>Esta es una regla de diseño, no una recomendación. El bloqueo remoto puede <strong>impedir</strong> que se riegue, pero jamás debe poder <strong>forzar</strong> un riego indefinido ni anular el límite de tiempo del Tema 14. La razón es sencilla: un mensaje puede llegar corrupto, duplicado, retrasado o de alguien que no debería estar ahí. Las protecciones viven en el nodo y no se negocian por la red. El Tema 18 lo llamará <em>enclavamiento</em>.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el nodo publica cada quince minutos. Si se queda sin red tres días, ¿cómo se enteraría alguien? Una posibilidad es que el panel vigile la <em>ausencia</em> de mensajes, en lugar de esperar un mensaje de error. MQTT incluso ofrece un mecanismo para ello, el mensaje de última voluntad, que el broker publica automáticamente si el nodo desaparece. ¿Qué te parece más fiable: que el sistema avise de que va mal, o que el vigilante note que ha dejado de hablar?</div>
+      </section>
+
+      <section aria-labelledby="enlaces">
+        <h2 id="enlaces">8. Otras tecnologías de enlace</h2>
+        <p>El Wi-Fi no es la única forma de conectar un nodo, y conviene saber qué existe, aunque en este curso no las usemos. Se estudian <strong>a nivel de reconocimiento</strong>: para qué sirve cada una y por qué no es la elegida aquí.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tecnologías de enlace para nodos IoT">
+          <table>
+            <caption>Cuatro tecnologías de enlace comparadas</caption>
+            <thead><tr><th scope="col">Tecnología</th><th scope="col">Alcance</th><th scope="col">Velocidad</th><th scope="col">Consumo</th><th scope="col">Uso típico</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Wi-Fi</strong></th><td>Decenas de metros</td><td>Alta</td><td>Alto</td><td>Nodos con alimentación disponible y acceso a un router. <strong>El KR-1.</strong></td></tr>
+              <tr><th scope="row"><strong>Bluetooth de baja energía</strong></th><td>Unos 10 m</td><td>Baja</td><td>Muy bajo</td><td>Pulseras, sensores que se leen con el móvil al pasar. No llega a internet solo.</td></tr>
+              <tr><th scope="row"><strong>Zigbee</strong></th><td>Decenas de metros, en malla</td><td>Baja</td><td>Muy bajo</td><td>Domótica del Tema 23: muchos nodos que se reenvían entre sí. Necesita pasarela.</td></tr>
+              <tr><th scope="row"><strong>LoRa</strong></th><td>Kilómetros</td><td>Muy baja</td><td>Muy bajo</td><td>Sensores agrícolas o urbanos aislados. Pocos bytes cada muchos minutos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La regla que explica la tabla entera</strong><strong>Alcance, velocidad y consumo no se pueden tener los tres a la vez.</strong> Wi-Fi da velocidad y paga consumo; LoRa da alcance y paga velocidad; Bluetooth de baja energía ahorra consumo y paga alcance. Elegir tecnología de enlace es decidir cuál de los tres sacrificas, y la decisión la impone la aplicación: un huerto a veinte metros del edificio con panel solar admite Wi-Fi; el mismo sensor en un campo a cinco kilómetros, con una pila, exige LoRa.</div>
+
+        <div class="ti1-note"><strong>Y dos ideas de red que conviene conocer.</strong> Una red en <strong>estrella</strong> —el Wi-Fi— tiene todos los nodos colgando de un punto central: si cae, cae todo. Una red en <strong>malla</strong> —Zigbee— permite que cada nodo reenvíe los mensajes de los demás, de modo que la red se reconfigura sola si uno falla y el alcance total crece con el número de nodos. Es la razón de que la domótica del Tema 23 use malla y no Wi-Fi para las decenas de sensores de una vivienda.</div>
+      </section>
+
+      <section aria-labelledby="seguridad">
+        <h2 id="seguridad">9. Seguridad, privacidad y consumo</h2>
+        <h3>Seguridad</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: riesgos de seguridad de un nodo IoT">
+          <table>
+            <caption>Riesgos y medidas mínimas</caption>
+            <thead><tr><th scope="col">Riesgo</th><th scope="col">Qué podría pasar en el KR-1</th><th scope="col">Medida mínima</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Mensajes sin cifrar</th><td>Cualquiera en la red ve las lecturas y las órdenes.</td><td>Usar MQTT sobre TLS cuando el broker lo admita.</td></tr>
+              <tr><th scope="row">Broker abierto</th><td>Cualquiera publica en tu tema y ordena regar.</td><td>Usuario y contraseña en el broker; temas con permisos.</td></tr>
+              <tr><th scope="row">Credenciales en el código</th><td>La clave del Wi-Fi publicada en el repositorio.</td><td>Archivo aparte excluido del control de versiones.</td></tr>
+              <tr><th scope="row">Contraseñas por omisión</th><td>Un dispositivo con la clave de fábrica es de acceso público.</td><td>Cambiarlas todas antes de conectar nada.</td></tr>
+              <tr><th scope="row">Órdenes maliciosas</th><td>Alguien vacía el depósito regando sin parar.</td><td>Protecciones en el nodo, no en la red: límite de tiempo y de riegos diarios.</td></tr>
+              <tr><th scope="row">Sin actualizaciones</th><td>Una vulnerabilidad conocida sigue abierta años.</td><td>Prever cómo se actualizará el nodo antes de instalarlo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Un objeto conectado es un objeto atacable</strong>Conectar algo a la red le añade una función y también una superficie de ataque. Y en el internet de las cosas el problema es peor que en un ordenador por dos motivos: los dispositivos son muchos, y nadie los actualiza. Ha habido ataques masivos construidos con cámaras y grabadoras domésticas que conservaban su contraseña de fábrica. La pregunta de diseño no es «¿quién iba a querer atacar mi riego?», sino <strong>«¿qué puede hacer alguien con mi dispositivo si lo controla?»</strong>.</div>
+
+        <h3>Privacidad</h3>
+        <div class="aviso"><strong>Los datos de un sensor pueden ser datos personales</strong>La humedad de un bancal, no. Pero un sensor de presencia, un consumo eléctrico detallado o una cámara del centro sí revelan información sobre personas, y entran de lleno en la normativa de protección de datos del Tema 4.<sup><a href="#fuente_5">[5]</a></sup> Tres reglas para un proyecto escolar: <strong>medir solo lo necesario</strong>, <strong>no publicar datos que identifiquen a nadie</strong> y <strong>preguntar antes de instalar un sensor donde haya personas</strong>. Y dejarlo escrito en la memoria, porque es una decisión de diseño como cualquier otra.</div>
+
+        <h3>Consumo del nodo</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: consumo del nodo según la estrategia de conexión">
+          <table>
+            <caption>Tres estrategias de conexión y su consumo diario</caption>
+            <thead><tr><th scope="col">Estrategia</th><th scope="col">Wi-Fi</th><th scope="col">Consumo medio</th><th scope="col">Energía diaria</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Siempre conectado</th><td>Activo las 24 h</td><td>≈ 120 mA</td><td>≈ 9,5 Wh</td></tr>
+              <tr><th scope="row">Conectar solo para publicar</th><td>30 s cada 15 min</td><td>≈ 31 mA</td><td>≈ 2,5 Wh</td></tr>
+              <tr><th scope="row">Sueño profundo entre medidas</th><td>30 s cada 15 min, resto dormido</td><td>≈ 4 mA</td><td>≈ 0,3 Wh</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El sueño profundo cambia el orden de magnitud</strong>El ESP32 puede apagar casi todo y despertar por temporizador consumiendo microamperios. Pasar de «siempre conectado» a «dormir entre medidas» divide el consumo por más de treinta, y eso decide si el panel solar del Tema 23 necesita ser de 10 W o de 1 W. El precio es que el nodo <strong>no recibe órdenes mientras duerme</strong>: hay que elegir entre control inmediato y autonomía. Para el KR-1, que revisa cada quince minutos, la espera es aceptable; para un sistema de seguridad, no lo sería.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un nodo que publica de verdad, obedece una orden y sigue funcionando cuando se le quita la red.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 16">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Arquitectura</th><td>Que sitúas cada componente en su capa y justificas el protocolo elegido.</td><td>Diagrama de las cuatro capas de tu sistema y una comparación razonada entre MQTT y HTTP.</td></tr>
+              <tr><th scope="row">Conexión</th><td>Que el nodo se conecta, informa de su IP y no se bloquea si no hay red.</td><td>Función de conexión con tiempo máximo y prueba con el router apagado: el sistema sigue regando.</td></tr>
+              <tr><th scope="row">Publicación</th><td>Que envías datos con nombre, en JSON, con una cadencia razonada.</td><td>Mensajes recibidos en el broker, árbol de temas diseñado y política de cadencia más eventos.</td></tr>
+              <tr><th scope="row">Suscripción</th><td>Que una orden remota cambia el comportamiento sin poder anular una protección.</td><td>Bloqueo remoto funcionando y comprobación de que el límite de tiempo de riego sigue actuando.</td></tr>
+              <tr><th scope="row">Seguridad y privacidad</th><td>Que has identificado los riesgos y aplicado las medidas mínimas.</td><td>Credenciales fuera del repositorio, broker con usuario y contraseña, y un apartado de privacidad en la memoria.</td></tr>
+              <tr><th scope="row">Consumo</th><td>Que estimas el consumo del nodo y eliges una estrategia de conexión.</td><td>Tabla de consumo de las tres estrategias con la energía diaria y la elección justificada.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba definitiva del bloque: desconecta el router. El KR-1 debe seguir midiendo, seguir riegando cuando toque, seguir registrando en su archivo local y volver a publicar solo cuando la red regrese. Si se queda colgado, todavía no es un sistema de control.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Broker</dt><dd>Servidor intermediario que recibe los mensajes publicados y los reparte a los suscritos a cada tema.</dd>
+          <dt>Cliente</dt><dd>Dispositivo o programa que se conecta a un broker o a un servidor; su nombre debe ser único.</dd>
+          <dt>Dirección IP</dt><dd>Dirección que identifica un dispositivo en una red; la asigna el router y puede cambiar.</dd>
+          <dt>Dirección MAC</dt><dd>Identificador único de fábrica del interfaz de red de un dispositivo.</dd>
+          <dt>Función de respuesta</dt><dd>Función que no llama el programa principal, sino la biblioteca cuando ocurre un suceso.</dd>
+          <dt>HTTP</dt><dd>Protocolo de petición y respuesta propio de la Web; el servidor no puede iniciar la conversación.</dd>
+          <dt>Internet de las cosas</dt><dd>Extensión de la red a objetos que no son ordenadores, con fuertes restricciones de energía, cálculo y mantenimiento.</dd>
+          <dt>JSON</dt><dd>Formato de texto para intercambiar datos con pares de clave y valor; equivalente a un diccionario.</dd>
+          <dt>LoRa</dt><dd>Tecnología de enlace de muy largo alcance, baja velocidad y bajo consumo.</dd>
+          <dt>Malla</dt><dd>Topología en la que los nodos reenvían los mensajes de los demás, de modo que la red se reconfigura sola.</dd>
+          <dt>MQTT</dt><dd>Protocolo ligero de publicación y suscripción, pensado para dispositivos con pocos recursos.</dd>
+          <dt>Nodo</dt><dd>Dispositivo que mide, decide y actúa dentro de una solución IoT.</dd>
+          <dt>Pasarela</dt><dd>Dispositivo que traduce entre una tecnología de enlace local e internet.</dd>
+          <dt>Protocolo</dt><dd>Conjunto de reglas acordadas para intercambiar mensajes.</dd>
+          <dt>Publicación y suscripción</dt><dd>Modelo en el que quien envía y quien recibe no se conocen: solo comparten el nombre de un tema.</dd>
+          <dt>Sueño profundo</dt><dd>Modo de muy bajo consumo en el que la placa apaga casi todo y despierta por temporizador.</dd>
+          <dt>Tema</dt><dd>Etiqueta jerárquica con la que se clasifica un mensaje MQTT.</dd>
+          <dt>Zigbee</dt><dd>Tecnología de enlace de bajo consumo y topología en malla, habitual en domótica.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Lo que distingue un nodo IoT de un ordenador no es la tecnología de red: son las restricciones de energía, cálculo, datos y mantenimiento.</li>
+          <li>La restricción que ordena todas las decisiones es que nadie va a estar delante: el nodo debe reconectarse solo y quedar en estado seguro si falla.</li>
+          <li>Un sistema que no puede trabajar sin red es más frágil, no más moderno: el KR-1 riega sin internet y usa la red solo para informar.</li>
+          <li>Una solución IoT tiene cuatro capas: dispositivo, red, plataforma y aplicación; y a veces una pasarela entre las dos primeras.</li>
+          <li>La MAC viene de fábrica y no cambia; la IP la asigna el router y puede cambiar, y por eso el panel no puede llamar al nodo por su dirección.</li>
+          <li>Todo bucle de conexión lleva tiempo máximo: sin él, un router apagado deja la placa esperando para siempre.</li>
+          <li>Las credenciales van en un archivo aparte excluido del repositorio, porque el historial conserva lo que se publica una vez.</li>
+          <li>HTTP es petición y respuesta; MQTT es publicación y suscripción, con mensajes mínimos y órdenes inmediatas.</li>
+          <li>En MQTT el nodo y el panel no se conocen: solo comparten el nombre de un tema, organizado por niveles como carpetas.</li>
+          <li>Los datos viajan en JSON, con cada campo con su nombre, de modo que añadir una medida no rompe lo que ya funcionaba.</li>
+          <li>Se publica con una cadencia fija y además ante cada suceso relevante; no cada lectura.</li>
+          <li>Una orden remota puede impedir una acción pero nunca desactivar una protección: las protecciones viven en el nodo.</li>
+          <li>Alcance, velocidad y consumo no se pueden tener a la vez: Wi-Fi, Bluetooth de baja energía, Zigbee y LoRa sacrifican uno cada uno.</li>
+          <li>Un objeto conectado es un objeto atacable, y la pregunta de diseño es qué puede hacer alguien si lo controla.</li>
+          <li>Un sensor puede generar datos personales; se mide solo lo necesario y se pregunta antes de instalarlo donde haya personas.</li>
+          <li>El sueño profundo divide el consumo por más de treinta, a cambio de no recibir órdenes mientras duerme.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://docs.micropython.org/en/latest/esp32/quickref.html">MicroPython — Referencia rápida del ESP32</a> (en inglés). Módulo <code>network</code> y modos de bajo consumo.</li>
+          <li id="fuente_2">[2] <a href="https://mqtt.org/">MQTT.org</a> (en inglés). Especificación y documentación del protocolo.</li>
+          <li id="fuente_3">[3] <a href="https://www.json.org/json-es.html">JSON — Especificación del formato</a> (en español).</li>
+          <li id="fuente_4">[4] <a href="https://www.incibe.es/">INCIBE — Instituto Nacional de Ciberseguridad</a>. Guías de seguridad de dispositivos conectados.</li>
+          <li id="fuente_5">[5] <a href="https://www.aepd.es/">Agencia Española de Protección de Datos</a>. Tratamiento de datos personales e internet de las cosas.</li>
+          <li id="fuente_6">[6] <a href="https://wokwi.com/">Wokwi</a>. Simulación de ESP32 con Wi-Fi y MQTT en el navegador.</li>
+          <li id="fuente_7">[7] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque E: internet de las cosas y protocolos de comunicación.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema15.html">← Tema 15</a>
+  <a href="tema17.html">Tema 17 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

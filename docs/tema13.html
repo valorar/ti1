@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 13 del Bloque E de Tecnología e Ingeniería I: tipos de datos, constantes y variables, conversión de tipos, operadores aritméticos, relacionales y lógicos, precedencia, expresiones y traza, entrada y salida, cálculo de magnitudes técnicas con unidades y redondeo, y casos de prueba.">
+  <title>Tema 13. Datos, variables y operaciones · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 13 · Bloque E · Sistemas informáticos. Programación</p>
+        <h1>Tema 13. Datos, variables y operaciones</h1>
+        <p class="hero-lead">Con qué datos trabaja un programa, cómo se guardan en variables y cómo se combinan para obtener resultados.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 13">
+        <strong>Pregunta guía</strong>
+        <p>La sonda del KR-1 devuelve el número 2847. El riego se decide en porcentaje de humedad, el consumo se factura en kilovatios hora y el caudal se mide en litros por hora. ¿Cómo se escribe un programa que no confunda ninguna de esas cuatro cosas?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#variables">Variables y asignación</a></li>
+        <li><a href="#tipos">Los cuatro tipos de datos</a></li>
+        <li><a href="#conversion">Conversión de tipos</a></li>
+        <li><a href="#aritmeticos">Operadores aritméticos</a></li>
+        <li><a href="#relacionales">Relacionales y lógicos</a></li>
+        <li><a href="#precedencia">Precedencia y expresiones</a></li>
+        <li><a href="#entrada">Entrada y salida de datos</a></li>
+        <li><a href="#tecnico">Calcular magnitudes técnicas</a></li>
+        <li><a href="#pruebas">Comprobar con casos conocidos</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Un programa de ingeniería es, casi siempre, una cadena de cálculos sobre magnitudes físicas. Este tema da las piezas: cómo se guarda un dato, de qué tipo es, cómo se combina con otros y —lo que más importa en esta materia— <strong>cómo se evita el error de unidades</strong>, que en el Tema 9 identificamos como el más frecuente y el más caro de todos.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> ¿cuánto es <code>7 / 2</code>? ¿Y <code>7 // 2</code>? ¿Y <code>"7" + "2"</code>? Las tres expresiones son válidas en Python y dan 3.5, 3 y "72". Si las tres te parecen evidentes, este tema te servirá de repaso rápido. Si alguna te ha sorprendido, ahí está exactamente el tipo de error que vamos a aprender a evitar.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>declarar variables con nombres significativos y explicar qué hace una asignación;</li>
+          <li>distinguir entero, real, cadena y booleano, y saber de qué tipo es cada dato de un programa;</li>
+          <li>convertir entre tipos y reconocer los errores de tipo más frecuentes;</li>
+          <li>usar los operadores aritméticos, incluidos la división entera, el resto y la potencia;</li>
+          <li>construir condiciones con operadores relacionales y lógicos;</li>
+          <li>aplicar la precedencia de operadores y evaluar una expresión paso a paso;</li>
+          <li>pedir datos por teclado y presentar resultados con el formato adecuado;</li>
+          <li>escribir un cálculo técnico documentando unidades y redondeando con criterio;</li>
+          <li>comprobar un programa con casos de prueba de resultado conocido.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="variables">
+        <h2 id="variables">1. Variables y asignación</h2>
+        <p>Una <strong>variable</strong> es un nombre asociado a un valor guardado en la memoria. La <strong>asignación</strong> es la operación que establece esa asociación, y se escribe con el signo igual.</p>
+
+        <pre><code>par = 0.35            # N·m
+relacion = 9
+rendimiento = 0.85
+par_salida = par * relacion * rendimiento
+print(par_salida)     # 2.6775</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El igual de la programación no es el de las matemáticas</strong>En matemáticas <em>x = x + 1</em> es una ecuación sin solución. En programación es una instrucción perfectamente normal: «toma el valor actual de <code>x</code>, súmale uno y guarda el resultado otra vez en <code>x</code>». El igual no afirma una igualdad: <strong>ordena guardar</strong>. Se lee de derecha a izquierda: primero se calcula lo de la derecha, después se guarda en el nombre de la izquierda.</div>
+
+        <pre><code>lecturas = 0
+lecturas = lecturas + 1   # ahora vale 1
+lecturas = lecturas + 1   # ahora vale 2
+lecturas += 1             # forma abreviada: ahora vale 3</code></pre>
+
+        <h3>Identificadores: las reglas y las costumbres</h3>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: reglas de los nombres de variable">
+          <table>
+            <caption>Cómo se nombra una variable</caption>
+            <thead><tr><th scope="col">Regla o costumbre</th><th scope="col">Bien</th><th scope="col">Mal</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Empieza por letra o guion bajo, nunca por cifra.</th><td><code>par_motor</code></td><td><code>2par</code></td></tr>
+              <tr><th scope="row">Sin espacios; se separan las palabras con guion bajo.</th><td><code>tiempo_riego_s</code></td><td><code>tiempo riego</code></td></tr>
+              <tr><th scope="row">Sin tildes ni eñes, por compatibilidad.</th><td><code>presion</code></td><td><code>presión</code></td></tr>
+              <tr><th scope="row">Distingue mayúsculas de minúsculas.</th><td>Elegir una y mantenerla</td><td><code>Par</code> y <code>par</code> a la vez</td></tr>
+              <tr><th scope="row">No usar palabras reservadas del lenguaje.</th><td><code>lista_medidas</code></td><td><code>for</code>, <code>if</code>, <code>print</code></td></tr>
+              <tr><th scope="row">Que diga la magnitud y, si hay duda, la unidad.</th><td><code>caudal_l_h</code></td><td><code>q</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Constantes: Python confía en ti.</strong> Python no tiene constantes de verdad; se usa el <strong>convenio</strong> de escribir en mayúsculas los valores que no deben cambiar durante la ejecución: <code>UMBRAL_RIEGO = 500</code>. El lenguaje te dejará modificarla, pero cualquiera que lea el programa sabrá que no debe. Y reunir todas esas constantes al principio del archivo tiene una ventaja práctica enorme: ajustar el sistema en el huerto se convierte en cambiar tres números en el primer bloque, en lugar de buscarlos repartidos por doscientas líneas.</div>
+      </section>
+
+      <section aria-labelledby="tipos">
+        <h2 id="tipos">2. Los cuatro tipos de datos</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: tipos de datos básicos en Python">
+          <table>
+            <caption>Los tipos básicos y su papel en el KR-1</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">En Python</th><th scope="col">Ejemplos</th><th scope="col">Para qué en el proyecto</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Entero</strong></th><td><code>int</code></td><td><code>0</code>, <code>2847</code>, <code>-15</code></td><td>Lecturas del ADC, número de ciclos, contadores.</td></tr>
+              <tr><th scope="row"><strong>Real</strong></th><td><code>float</code></td><td><code>0.35</code>, <code>2.6775</code>, <code>3.3</code></td><td>Tensiones, pares, caudales: casi toda magnitud física.</td></tr>
+              <tr><th scope="row"><strong>Cadena</strong></th><td><code>str</code></td><td><code>"KR-1"</code>, <code>"riego"</code></td><td>Mensajes, nombres de tema MQTT, etiquetas del registro.</td></tr>
+              <tr><th scope="row"><strong>Booleano</strong></th><td><code>bool</code></td><td><code>True</code>, <code>False</code></td><td>Estados: válvula abierta, modo manual, sensor válido.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pre><code>lectura = 2847               # int
+tension = 2.29               # float
+estado = "regando"           # str
+valvula_abierta = True       # bool
+
+print(type(lectura))         # &lt;class 'int'&gt;
+print(type(tension))         # &lt;class 'float'&gt;</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Python averigua el tipo, pero el tipo existe</strong>No hay que declararlo: Python lo deduce del valor. Eso es cómodo y tiene una consecuencia importante: <strong>el tipo de una variable puede cambiar a lo largo del programa</strong>, y ahí empiezan los errores. Si una variable vale a veces un número y a veces un texto, el programa funcionará hasta el día en que reciba el otro. La disciplina es propia, no del lenguaje: una variable, un tipo, durante todo el programa.</div>
+
+        <div class="ti1-note"><strong>Los booleanos van en mayúscula inicial:</strong> <code>True</code> y <code>False</code>, no <code>true</code> ni <code>verdadero</code>. Y son mucho más útiles de lo que parecen: casi todo el programa de control del Tema 18 se reduce a comprobar y modificar unos pocos booleanos de estado.</div>
+
+        <div class="aviso"><strong>Los reales no son exactos</strong>Prueba a ejecutar <code>print(0.1 + 0.2)</code>: Python responde <code>0.30000000000000004</code>. No es un fallo de Python: es que los números reales se guardan en binario con un número finito de bits, y muchos decimales no tienen representación exacta, igual que 1/3 no se puede escribir exactamente en decimal. La consecuencia práctica es inmediata: <strong>nunca compares dos reales con igualdad</strong>. En lugar de <code>if tension == 3.3</code>, escribe <code>if abs(tension - 3.3) &lt; 0.01</code>. Es la tolerancia del Tema 2 aplicada al código.</div>
+      </section>
+
+      <section aria-labelledby="conversion">
+        <h2 id="conversion">3. Conversión de tipos</h2>
+        <p>Convertir un dato de un tipo a otro se hace con funciones cuyo nombre es el del tipo destino.</p>
+
+        <pre><code>int("2847")        # 2847        texto a entero
+float("2.29")      # 2.29        texto a real
+str(2847)          # "2847"      número a texto
+int(2.9)           # 2           trunca, NO redondea
+round(2.9)         # 3           redondea
+int(True)          # 1           un booleano es 1 o 0</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">int() trunca y round() redondea</strong>Es una diferencia que se paga caro en un cálculo técnico. <code>int(2.9)</code> vale <strong>2</strong>: descarta la parte decimal sin mirarla. <code>round(2.9)</code> vale <strong>3</strong>. Si calculas cuántas vueltas necesita un husillo y usas <code>int()</code>, te quedarás sistemáticamente corto. Elige con intención, y cuando lo que quieras sea «al menos tantas», usa <code>math.ceil()</code>.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: errores de tipo frecuentes">
+          <table>
+            <caption>Los errores de tipo que vas a cometer</caption>
+            <thead><tr><th scope="col">Lo que escribes</th><th scope="col">Qué pasa</th><th scope="col">Cómo se arregla</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>"7" + 2</code></th><td><code>TypeError</code>: no se puede sumar texto y número.</td><td><code>int("7") + 2</code></td></tr>
+              <tr><th scope="row"><code>"7" + "2"</code></th><td>No da error: da <code>"72"</code>. Concatena.</td><td>Convertir antes: <code>int("7") + int("2")</code></td></tr>
+              <tr><th scope="row"><code>"3" * 2</code></th><td>No da error: da <code>"33"</code>. Repite el texto.</td><td>Convertir antes de multiplicar.</td></tr>
+              <tr><th scope="row"><code>int("2,29")</code></th><td><code>ValueError</code>: la coma no es un separador decimal válido.</td><td>Usar punto, o sustituir la coma antes.</td></tr>
+              <tr><th scope="row"><code>int("2.29")</code></th><td><code>ValueError</code>: <code>int</code> no acepta decimales en texto.</td><td><code>int(float("2.29"))</code></td></tr>
+              <tr><th scope="row"><code>print("Par: " + par)</code></th><td><code>TypeError</code> si <code>par</code> es un número.</td><td><code>print("Par:", par)</code> o <code>str(par)</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>El más peligroso es el segundo.</strong> <code>"7" + "2"</code> no produce ningún mensaje de error: produce <code>"72"</code> y el programa sigue como si nada. Es un <strong>error lógico</strong> de los del Tema 12: aparece cuando un dato que creías número llega como texto, y eso pasa siempre que el dato viene de fuera —del teclado, de un archivo o de la red—. De ahí la regla de la sección siguiente.</div>
+      </section>
+
+      <section aria-labelledby="aritmeticos">
+        <h2 id="aritmeticos">4. Operadores aritméticos</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: operadores aritméticos de Python">
+          <table>
+            <caption>Los siete operadores aritméticos</caption>
+            <thead><tr><th scope="col">Operador</th><th scope="col">Operación</th><th scope="col">Ejemplo</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>+</code></th><td>Suma</td><td><code>7 + 2</code></td><td><code>9</code></td></tr>
+              <tr><th scope="row"><code>-</code></th><td>Resta</td><td><code>7 - 2</code></td><td><code>5</code></td></tr>
+              <tr><th scope="row"><code>*</code></th><td>Multiplicación</td><td><code>7 * 2</code></td><td><code>14</code></td></tr>
+              <tr><th scope="row"><code>/</code></th><td>División real</td><td><code>7 / 2</code></td><td><code>3.5</code> — siempre real</td></tr>
+              <tr><th scope="row"><code>//</code></th><td>División entera</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+              <tr><th scope="row"><code>%</code></th><td>Resto o módulo</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+              <tr><th scope="row"><code>**</code></th><td>Potencia</td><td><code>7 ** 2</code></td><td><code>49</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La división entera y el resto sirven de verdad</strong>Parecen curiosidades y resuelven dos problemas cotidianos. Con <strong>división entera</strong> se reparte: 137 segundos son <code>137 // 60 = 2</code> minutos. Con el <strong>resto</strong> se obtiene lo que sobra —<code>137 % 60 = 17</code> segundos— y se detectan periodicidades: <code>if minuto % 15 == 0</code> es «cada cuarto de hora», que es exactamente cómo se programa la cadencia de medida del Tema 18.</div>
+
+        <pre><code># Funciones matemáticas: hay que importar el módulo math
+import math
+
+print(math.pi)          # 3.141592653589793
+print(math.sqrt(2))     # 1.4142135623730951
+print(math.ceil(4.1))   # 5   redondeo hacia arriba
+print(math.floor(4.9))  # 4   redondeo hacia abajo
+print(math.radians(30)) # 0.5235987755982988
+print(math.sin(math.radians(30)))  # 0.49999999999999994</code></pre>
+
+        <div class="ti1-note"><strong>Las funciones trigonométricas trabajan en radianes.</strong> Es el error de unidades del Tema 9 con otro disfraz: <code>math.sin(30)</code> no vale 0,5, porque interpreta 30 radianes. Hay que convertir con <code>math.radians()</code>. Y fíjate en el último resultado: 0,49999999999999994 en lugar de 0,5, otra vez la inexactitud de los reales.</div>
+      </section>
+
+      <section aria-labelledby="relacionales">
+        <h2 id="relacionales">5. Operadores relacionales y lógicos</h2>
+        <p>Los <strong>operadores relacionales</strong> comparan dos valores y devuelven un booleano. Son la materia prima de las decisiones del Tema 14.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: operadores relacionales y lógicos">
+          <table>
+            <caption>Comparar y combinar</caption>
+            <thead><tr><th scope="col">Operador</th><th scope="col">Significa</th><th scope="col">Ejemplo</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>==</code></th><td>Igual a</td><td><code>500 == 500</code></td><td><code>True</code></td></tr>
+              <tr><th scope="row"><code>!=</code></th><td>Distinto de</td><td><code>500 != 480</code></td><td><code>True</code></td></tr>
+              <tr><th scope="row"><code>&lt;</code>  <code>&gt;</code></th><td>Menor, mayor</td><td><code>410 &lt; 500</code></td><td><code>True</code></td></tr>
+              <tr><th scope="row"><code>&lt;=</code>  <code>&gt;=</code></th><td>Menor o igual, mayor o igual</td><td><code>500 &gt;= 500</code></td><td><code>True</code></td></tr>
+              <tr><th scope="row"><code>and</code></th><td>Las dos condiciones a la vez</td><td><code>True and False</code></td><td><code>False</code></td></tr>
+              <tr><th scope="row"><code>or</code></th><td>Al menos una de las dos</td><td><code>True or False</code></td><td><code>True</code></td></tr>
+              <tr><th scope="row"><code>not</code></th><td>Lo contrario</td><td><code>not True</code></td><td><code>False</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>Un igual asigna, dos iguales comparan</strong>Es el error clásico y el que más tiempo hace perder. <code>umbral = 500</code> <em>guarda</em> 500 en la variable; <code>umbral == 500</code> <em>pregunta</em> si vale 500. Confundirlos dentro de un <code>if</code> produce un <code>SyntaxError</code> en Python —por suerte—, pero la confusión de fondo persiste: al leer código hay que distinguir cuándo se está ordenando y cuándo preguntando.</div>
+
+        <pre><code># Las condiciones del riego, tal como quedarán en el Tema 14
+humedad = 410
+hora = 8
+modo_manual = False
+
+seco = humedad &lt; 500
+en_horario = 7 &lt;= hora &lt; 10      # comparación encadenada, legal en Python
+hay_que_regar = seco and en_horario and not modo_manual
+
+print(seco, en_horario, hay_que_regar)   # True True True</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Dar nombre a las condiciones cambia la legibilidad</strong>Comparar las dos versiones del mismo código: <code>if humedad &lt; 500 and 7 &lt;= hora &lt; 10 and not modo_manual:</code> frente a <code>if hay_que_regar:</code>. La segunda se lee de un golpe, se puede imprimir para depurar y se puede reutilizar. Guardar una condición en un booleano con nombre es la técnica más rentable de todo el bloque, y se usará sin descanso en los temas 14 y 18.</div>
+      </section>
+
+      <section aria-labelledby="precedencia">
+        <h2 id="precedencia">6. Precedencia y evaluación de expresiones</h2>
+        <p>Una <strong>expresión</strong> es una combinación de valores, variables y operadores que produce un resultado. El orden en que se aplican los operadores lo fija la <strong>precedencia</strong>.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: precedencia de operadores">
+          <table>
+            <caption>Precedencia, de mayor a menor</caption>
+            <thead><tr><th scope="col">Orden</th><th scope="col">Operadores</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>Paréntesis <code>( )</code></td></tr>
+              <tr><th scope="row">2</th><td>Potencia <code>**</code></td></tr>
+              <tr><th scope="row">3</th><td>Signo negativo <code>-x</code></td></tr>
+              <tr><th scope="row">4</th><td>Multiplicación y divisiones <code>*</code> <code>/</code> <code>//</code> <code>%</code></td></tr>
+              <tr><th scope="row">5</th><td>Suma y resta <code>+</code> <code>-</code></td></tr>
+              <tr><th scope="row">6</th><td>Relacionales <code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code> <code>==</code> <code>!=</code></td></tr>
+              <tr><th scope="row">7</th><td><code>not</code></td></tr>
+              <tr><th scope="row">8</th><td><code>and</code></td></tr>
+              <tr><th scope="row">9</th><td><code>or</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Evaluación paso a paso</h3>
+        <pre><code>resultado = 2 + 3 * 4 ** 2 / 8</code></pre>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: evaluación paso a paso de una expresión">
+          <table>
+            <caption>Cómo evalúa Python esa expresión</caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Se aplica</th><th scope="col">Expresión resultante</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>Potencia: <code>4 ** 2</code></td><td><code>2 + 3 * 16 / 8</code></td></tr>
+              <tr><th scope="row">2</th><td>Multiplicación: <code>3 * 16</code></td><td><code>2 + 48 / 8</code></td></tr>
+              <tr><th scope="row">3</th><td>División: <code>48 / 8</code></td><td><code>2 + 6.0</code></td></tr>
+              <tr><th scope="row">4</th><td>Suma</td><td><code>8.0</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Los paréntesis son gratis y valen mucho.</strong> Nadie te va a felicitar por memorizar la tabla de precedencias, y en cambio un paréntesis mal puesto puede costar una tarde. Escribe <code>(a + b) / 2</code> aunque sepas que no hace falta, y sobre todo escribe <code>(seco and en_horario) or modo_forzado</code> en lugar de fiarte de que <code>and</code> tiene más precedencia que <code>or</code>. El código se escribe para leerlo, no para demostrar nada.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> ¿qué vale <code>2 ** 3 ** 2</code>? Si crees que 64, la precedencia te ha traicionado: la potencia se asocia de derecha a izquierda, así que es <code>2 ** 9 = 512</code>. Es el caso donde ni conocer la tabla salva: la única defensa es el paréntesis.</div>
+      </section>
+
+      <section aria-labelledby="entrada">
+        <h2 id="entrada">7. Entrada y salida de datos</h2>
+        <pre><code># input() SIEMPRE devuelve una cadena de texto
+texto = input("Introduce el par del motor en N·m: ")
+par = float(texto)          # hay que convertir
+print("El par vale", par, "N·m")</code></pre>
+
+        <div class="aviso"><strong>input() devuelve texto, siempre</strong>Aunque el usuario escriba 0.35, lo que llega es la cadena <code>"0.35"</code>. Si la usas sin convertir, <code>par * 9</code> no multiplicará: repetirá el texto nueve veces. Es el error de tipo más frecuente del curso y es silencioso, porque no produce ningún mensaje. Regla: <strong>todo <code>input()</code> va seguido de su conversión</strong>, y lo mismo vale para cualquier dato que llegue de un archivo o de la red en el Tema 16.</div>
+
+        <h3>Formato de la salida</h3>
+        <pre><code>par = 0.35
+relacion = 9
+rendimiento = 0.85
+par_salida = par * relacion * rendimiento
+
+print(par_salida)                                  # 2.6775000000000003
+print(round(par_salida, 2))                        # 2.68
+print(f"Par de salida: {par_salida:.2f} N·m")      # Par de salida: 2.68 N·m
+print(f"Relación {relacion}:1 · rendimiento {rendimiento:.0%}")
+# Relación 9:1 · rendimiento 85%</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Las cadenas formateadas</strong>Una cadena precedida de <code>f</code> permite insertar valores entre llaves, con un formato indicado tras dos puntos: <code>{valor:.2f}</code> significa «real con dos decimales» y <code>{valor:.0%}</code>, «porcentaje sin decimales». Es la forma de presentar un resultado técnico con las <strong>cifras significativas</strong> que los datos sostienen, y no las diecisiete que arrastra el cálculo. Del Tema 2: escribir 2,6775000000000003 N·m no es más preciso, es menos honesto.</div>
+      </section>
+
+      <section aria-labelledby="tecnico">
+        <h2 id="tecnico">8. Calcular magnitudes técnicas con Python</h2>
+        <p>Aquí es donde este tema se separa de un curso de programación al uso. Un cálculo de ingeniería escrito en código debe cumplir las mismas condiciones que la memoria de cálculo del Tema 9: <strong>datos con unidades, hipótesis declaradas y resultado con cifras sensatas</strong>.</p>
+
+        <pre><code>"""Accionamiento del KR-1: cálculo de la cadena de potencia.
+Datos del catálogo del motor y del reductor. Unidades en el SI.
+Hipótesis: rendimiento de cada etapa 0,95; de los cojinetes 0,94.
+"""
+import math
+
+# --- Datos ---
+PAR_MOTOR_NM = 0.35          # N·m, par nominal de catálogo
+N_MOTOR_RPM = 1800           # min-1, velocidad nominal
+RELACION = 9                 # adimensional, dos etapas de 3
+REND_ETAPA = 0.95            # por etapa de engranajes
+REND_COJINETES = 0.94
+
+# --- Cálculo ---
+omega_motor = 2 * math.pi * N_MOTOR_RPM / 60      # rad/s
+potencia_entrada = PAR_MOTOR_NM * omega_motor     # W
+rendimiento = REND_ETAPA ** 2 * REND_COJINETES
+potencia_salida = potencia_entrada * rendimiento  # W
+n_salida = N_MOTOR_RPM / RELACION                 # min-1
+par_salida = PAR_MOTOR_NM * RELACION * rendimiento  # N·m
+
+# --- Resultados ---
+print(f"Velocidad angular de entrada: {omega_motor:.1f} rad/s")
+print(f"Potencia de entrada:          {potencia_entrada:.1f} W")
+print(f"Rendimiento total:            {rendimiento:.2f}")
+print(f"Potencia de salida:           {potencia_salida:.1f} W")
+print(f"Velocidad de salida:          {n_salida:.0f} min-1")
+print(f"Par de salida:                {par_salida:.2f} N·m")</code></pre>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: reglas de un cálculo técnico en código">
+          <table>
+            <caption>Las cinco reglas de un cálculo técnico escrito en Python</caption>
+            <thead><tr><th scope="col">Regla</th><th scope="col">Cómo se aplica</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>1. Unidad en el nombre o en el comentario</strong></th><td><code>PAR_MOTOR_NM</code>, o <code># N·m</code> al lado. Nunca una variable sin unidad conocida.</td></tr>
+              <tr><th scope="row"><strong>2. Datos separados del cálculo</strong></th><td>Bloque de constantes arriba, cálculo debajo. Cambiar un dato no obliga a buscar por todo el archivo.</td></tr>
+              <tr><th scope="row"><strong>3. Hipótesis escritas</strong></th><td>En el comentario inicial del archivo, como en la memoria del Tema 9.</td></tr>
+              <tr><th scope="row"><strong>4. Un paso, una línea</strong></th><td>Una línea gigante es imposible de depurar. Los pasos intermedios se guardan en variables con nombre.</td></tr>
+              <tr><th scope="row"><strong>5. Resultado con cifras significativas</strong></th><td>Formatear la salida. Y si el dato de partida tenía dos cifras, el resultado no puede tener seis.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>El comentario entre triples comillas.</strong> El bloque del principio, escrito entre <code>"""</code>, es la forma convencional de documentar un archivo o una función en Python. Se llama <em>docstring</em> y tiene una ventaja sobre un comentario normal: las herramientas lo leen y lo muestran como ayuda. Es el equivalente en código de la cabecera de un plano del Tema 3.</div>
+      </section>
+
+      <section aria-labelledby="pruebas">
+        <h2 id="pruebas">9. Comprobar con casos de resultado conocido</h2>
+        <p>Un cálculo escrito en código puede estar mal y dar un número plausible. La única defensa es comprobarlo con <strong>casos cuyo resultado se conoce por otra vía</strong>.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: casos de prueba del cálculo de potencia">
+          <table>
+            <caption>Casos de prueba del programa anterior</caption>
+            <thead><tr><th scope="col">Caso</th><th scope="col">Entrada</th><th scope="col">Resultado esperado</th><th scope="col">De dónde sale el valor esperado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Caso base</th><td>Los datos del catálogo</td><td>2,68 N·m</td><td>Cálculo a mano del Tema 9.</td></tr>
+              <tr><th scope="row">Rendimiento perfecto</th><td><code>REND_ETAPA = 1</code>, <code>REND_COJINETES = 1</code></td><td>3,15 N·m</td><td>0,35 · 9, sin pérdidas: comprueba la fórmula.</td></tr>
+              <tr><th scope="row">Relación unidad</th><td><code>RELACION = 1</code></td><td>Par de salida ≈ par de entrada</td><td>Sin reductor no hay multiplicación de par.</td></tr>
+              <tr><th scope="row">Orden de magnitud</th><td>Los datos del catálogo</td><td>Decenas de vatios</td><td>Un motor pequeño de 12 V no da kilovatios.</td></tr>
+              <tr><th scope="row">Caso límite</th><td><code>RELACION = 0</code></td><td>Debería avisar, no calcular</td><td>Una relación nula no tiene sentido físico.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Los casos extremos son los que encuentran los errores</strong>El caso base solo confirma lo que ya sabías. Los que descubren fallos son los otros cuatro: poner el rendimiento a 1 verifica la fórmula desnuda; poner la relación a 1 comprueba que no hay un factor colado; el orden de magnitud detecta un error de unidades de mil veces; y el caso absurdo revela que el programa no comprueba sus datos de entrada. Es el mismo razonamiento del Tema 9 —contrastar por dos caminos—, ahora aplicado al código.</div>
+
+        <pre><code># Comprobación automática: si la condición es falsa, el programa avisa
+par_esperado = 2.68
+assert abs(par_salida - par_esperado) &lt; 0.01, "El par de salida no coincide"
+print("Comprobación superada")</code></pre>
+
+        <div class="ti1-note"><strong><code>assert</code>: la comprobación que no se olvida.</strong> Escribir la comprobación <em>dentro</em> del programa tiene una ventaja sobre hacerla a mano: se vuelve a ejecutar cada vez que se ejecuta el programa. Si mañana alguien cambia una constante y rompe el cálculo, el <code>assert</code> lo avisa al instante en lugar de dejar pasar un resultado equivocado. Y fíjate en la comparación: <code>abs(...) &lt; 0.01</code>, nunca <code>==</code>, por la inexactitud de los reales de la sección 2.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un cálculo técnico escrito en código que otra persona pueda revisar como revisaría una memoria.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 13">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Tipos y conversión</th><td>Que sabes de qué tipo es cada dato y convieres lo que llega de fuera.</td><td>Programa con <code>input()</code> convertido, tres errores de tipo provocados y explicados.</td></tr>
+              <tr><th scope="row">Operadores</th><td>Que usas división entera y resto donde toca y controlas la precedencia.</td><td>Conversión de segundos a minutos y segundos; una expresión evaluada paso a paso en una tabla.</td></tr>
+              <tr><th scope="row">Condiciones con nombre</th><td>Que guardas las condiciones en booleanos legibles.</td><td>Las condiciones del riego como tres booleanos con nombre, impresos para depurar.</td></tr>
+              <tr><th scope="row">Cálculo técnico</th><td>Que aplicas las cinco reglas: unidades, datos separados, hipótesis, un paso por línea y formato.</td><td>Programa de cálculo con <em>docstring</em>, constantes en mayúsculas y salida formateada.</td></tr>
+              <tr><th scope="row">Comprobación</th><td>Que compruebas con casos de resultado conocido, incluidos los extremos.</td><td>Tabla de casos de prueba con los cinco tipos y al menos un <code>assert</code> en el código.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba reveladora: ejecuta tu cálculo con el rendimiento a 1 y comprueba que el resultado es el producto desnudo. Si no lo es, hay un factor de más o de menos escondido en alguna línea.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Asignación</dt><dd>Operación que guarda un valor en una variable; se evalúa primero la derecha y después se guarda en la izquierda.</dd>
+          <dt>Booleano</dt><dd>Tipo de dato con dos valores posibles, verdadero y falso.</dd>
+          <dt>Cadena formateada</dt><dd>Cadena precedida de <em>f</em> en la que se insertan valores entre llaves con un formato indicado.</dd>
+          <dt>Concatenar</dt><dd>Unir dos cadenas de texto una tras otra.</dd>
+          <dt>Constante</dt><dd>Valor que no debe cambiar durante la ejecución; en Python se señala por convenio con el nombre en mayúsculas.</dd>
+          <dt>Conversión de tipo</dt><dd>Transformación de un dato de un tipo a otro mediante una función como <em>int</em>, <em>float</em> o <em>str</em>.</dd>
+          <dt>División entera</dt><dd>División que descarta la parte decimal del cociente.</dd>
+          <dt>Docstring</dt><dd>Bloque de texto entre triples comillas que documenta un archivo o una función.</dd>
+          <dt>Entero</dt><dd>Tipo de dato numérico sin parte decimal.</dd>
+          <dt>Expresión</dt><dd>Combinación de valores, variables y operadores que produce un resultado.</dd>
+          <dt>Identificador</dt><dd>Nombre con el que se designa una variable, una constante o una función.</dd>
+          <dt>Módulo (operador)</dt><dd>Resto de una división entera; sirve para detectar periodicidades.</dd>
+          <dt>Operador lógico</dt><dd>Operador que combina booleanos: <em>and</em>, <em>or</em> y <em>not</em>.</dd>
+          <dt>Operador relacional</dt><dd>Operador que compara dos valores y devuelve un booleano.</dd>
+          <dt>Precedencia</dt><dd>Orden en que se aplican los operadores de una expresión.</dd>
+          <dt>Real</dt><dd>Tipo de dato numérico con parte decimal, guardado de forma aproximada en binario.</dd>
+          <dt>Variable</dt><dd>Nombre asociado a un valor guardado en la memoria.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>El igual de la programación no afirma una igualdad: ordena guardar, y se lee de derecha a izquierda.</li>
+          <li>Los nombres se escriben en minúsculas con guion bajo, sin tildes, y deben decir la magnitud y su unidad.</li>
+          <li>Python no tiene constantes: se usa el convenio de las mayúsculas, y reunirlas al principio permite ajustar el sistema cambiando tres números.</li>
+          <li>Hay cuatro tipos básicos: entero, real, cadena y booleano. Python deduce el tipo, pero la disciplina de no cambiarlo es tuya.</li>
+          <li>Los reales no son exactos: nunca se comparan con igualdad, sino con una tolerancia.</li>
+          <li><code>int()</code> trunca y <code>round()</code> redondea; en un cálculo técnico la diferencia se nota.</li>
+          <li>Sumar dos textos no da error, da una concatenación: es el error de tipo más peligroso porque es silencioso.</li>
+          <li>La división entera reparte y el resto detecta periodicidades: así se programa la cadencia de un sistema de control.</li>
+          <li>Las funciones trigonométricas trabajan en radianes, y olvidarlo es el error de unidades del Tema 9 con otro disfraz.</li>
+          <li>Un igual asigna y dos iguales comparan.</li>
+          <li>Guardar una condición en un booleano con nombre es la técnica más rentable del bloque.</li>
+          <li>Los paréntesis son gratis: se escriben aunque la precedencia no los exija.</li>
+          <li><code>input()</code> devuelve siempre texto, así que va seguido de su conversión, igual que cualquier dato que llegue de un archivo o de la red.</li>
+          <li>Un cálculo técnico en código lleva unidades, datos separados del cálculo, hipótesis escritas, un paso por línea y salida formateada.</li>
+          <li>Los casos de prueba que encuentran errores son los extremos: rendimiento unidad, relación unidad, orden de magnitud y caso absurdo.</li>
+          <li>Un <code>assert</code> deja la comprobación dentro del programa, de modo que se repite cada vez que se ejecuta.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://docs.python.org/es/3/tutorial/introduction.html">Tutorial oficial de Python — Números y cadenas</a> (en español).</li>
+          <li id="fuente_2">[2] <a href="https://docs.python.org/es/3/library/math.html">Documentación del módulo <code>math</code></a> (en español).</li>
+          <li id="fuente_3">[3] <a href="https://docs.python.org/es/3/tutorial/floatingpoint.html">Python — Aritmética de punto flotante: problemas y limitaciones</a> (en español). Por qué 0,1 + 0,2 no da 0,3.</li>
+          <li id="fuente_4">[4] <a href="https://peps.python.org/pep-0008/">PEP 8 — Guía de estilo de Python</a> (en inglés). Convenciones de nombres y de constantes.</li>
+          <li id="fuente_5">[5] <a href="https://www.cem.es/">Centro Español de Metrología</a>. Unidades del Sistema Internacional y expresión de resultados.</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque E.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema12.html">← Tema 12</a>
+  <a href="tema14.html">Tema 14 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="t14_title t14_desc">
+<title id="t14_title">Pines del ESP32 que se usan en el curso</title>
+<desc id="t14_desc">Esquema de los pines útiles de una placa ESP32. A la izquierda, la alimentación de 3,3 voltios y masa, los pines GPIO 36, 39, 34 y 35 que pertenecen al convertidor ADC1 y son solo de entrada, y los GPIO 32 y 33 que también son de ADC1 y pueden ser entrada o salida. A la derecha, la entrada de 5 voltios, otra masa y los pines GPIO 23, 22, 21, 19, 18 y 5 utilizables como salida digital y como salida de modulación de ancho de pulso, más los GPIO 25 y 26 que pertenecen a ADC2 y por tanto solo deben usarse como salida.</desc>
+<rect width="900" height="500" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">ESP32: qué pin usar para qué</text>
+
+<rect x="340" y="70" width="220" height="330" rx="10" fill="#eef2f4" stroke="#46616a" stroke-width="3"/>
+<rect x="418" y="52" width="64" height="26" rx="4" fill="#58707a"/>
+<text x="450" y="70" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#fff">USB-C</text>
+<text x="450" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#46616a">ESP32 DevKit</text>
+
+<g stroke="#46616a" stroke-width="3">
+<path d="M340 100 H318"/><path d="M340 136 H318"/><path d="M340 172 H318"/><path d="M340 208 H318"/><path d="M340 244 H318"/><path d="M340 280 H318"/><path d="M340 316 H318"/><path d="M340 352 H318"/><path d="M340 388 H318"/>
+<path d="M560 100 H582"/><path d="M560 136 H582"/><path d="M560 172 H582"/><path d="M560 208 H582"/><path d="M560 244 H582"/><path d="M560 280 H582"/><path d="M560 316 H582"/><path d="M560 352 H582"/><path d="M560 388 H582"/>
+</g>
+<g>
+<circle cx="312" cy="100" r="7" fill="#c85c40"/><circle cx="312" cy="136" r="7" fill="#c85c40"/>
+<circle cx="312" cy="172" r="7" fill="#8aa0a8"/><circle cx="312" cy="208" r="7" fill="#8aa0a8"/><circle cx="312" cy="244" r="7" fill="#8aa0a8"/><circle cx="312" cy="280" r="7" fill="#8aa0a8"/>
+<circle cx="312" cy="316" r="7" fill="#2b8c7f"/><circle cx="312" cy="352" r="7" fill="#2b8c7f"/><circle cx="312" cy="388" r="7" fill="#c6922d"/>
+<circle cx="588" cy="100" r="7" fill="#c85c40"/><circle cx="588" cy="136" r="7" fill="#c85c40"/>
+<circle cx="588" cy="172" r="7" fill="#c6922d"/><circle cx="588" cy="208" r="7" fill="#c6922d"/><circle cx="588" cy="244" r="7" fill="#c6922d"/><circle cx="588" cy="280" r="7" fill="#c6922d"/><circle cx="588" cy="316" r="7" fill="#c6922d"/><circle cx="588" cy="352" r="7" fill="#c6922d"/><circle cx="588" cy="388" r="7" fill="#c6922d"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="13" text-anchor="end">
+<text x="298" y="105" font-weight="700" fill="#8f3a24">3,3 V</text>
+<text x="298" y="141" font-weight="700" fill="#8f3a24">GND</text>
+<text x="298" y="177" fill="#46616a">GPIO 36 · ADC1 · solo entrada</text>
+<text x="298" y="213" fill="#46616a">GPIO 39 · ADC1 · solo entrada</text>
+<text x="298" y="249" font-weight="700" fill="#0f4f4a">GPIO 34 · ADC1 · solo entrada</text>
+<text x="298" y="285" fill="#46616a">GPIO 35 · ADC1 · solo entrada</text>
+<text x="298" y="321" font-weight="700" fill="#0f4f4a">GPIO 32 · ADC1 · entrada o salida</text>
+<text x="298" y="357" font-weight="700" fill="#0f4f4a">GPIO 33 · ADC1 · entrada o salida</text>
+<text x="298" y="393" fill="#8a6317">GPIO 25 · ADC2 · usar solo como salida</text>
+</g>
+<g font-family="system-ui,sans-serif" font-size="13">
+<text x="602" y="105" font-weight="700" fill="#8f3a24">5 V (VIN)</text>
+<text x="602" y="141" font-weight="700" fill="#8f3a24">GND</text>
+<text x="602" y="177" fill="#8a6317">GPIO 23 · salida y PWM</text>
+<text x="602" y="213" fill="#8a6317">GPIO 22 · salida y PWM</text>
+<text x="602" y="249" fill="#8a6317">GPIO 21 · salida y PWM</text>
+<text x="602" y="285" fill="#8a6317">GPIO 19 · salida y PWM</text>
+<text x="602" y="321" fill="#8a6317">GPIO 18 · salida y PWM</text>
+<text x="602" y="357" fill="#8a6317">GPIO 5 · salida y PWM</text>
+<text x="602" y="393" font-weight="700" fill="#8a6317">GPIO 26 · ADC2 · usar solo como salida</text>
+</g>
+
+<g font-family="system-ui,sans-serif" font-size="12.5">
+<circle cx="48" cy="440" r="7" fill="#2b8c7f"/><text x="66" y="445" fill="#46616a">ADC1: lectura analógica fiable también con el Wi-Fi activo</text>
+<circle cx="490" cy="440" r="7" fill="#8aa0a8"/><text x="508" y="445" fill="#46616a">solo entrada: no puede usarse como salida</text>
+<circle cx="48" cy="468" r="7" fill="#c6922d"/><text x="66" y="473" fill="#46616a">salida digital y PWM</text>
+<circle cx="490" cy="468" r="7" fill="#c85c40"/><text x="508" y="473" fill="#46616a">alimentación: nunca más de 3,3 V en un pin de datos</text>
+</g>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" role="img" aria-labelledby="t12_title t12_desc">
+<title id="t12_title">Diagrama de flujo del riego automático</title>
+<desc id="t12_desc">El programa empieza, lee la humedad, y decide: si la humedad es menor que el umbral abre la válvula treinta segundos; si no, no hace nada. En ambos casos espera una hora y vuelve a leer la humedad, de modo que el bucle no termina nunca. A la derecha se recogen los cinco símbolos normalizados: inicio y fin, proceso, decisión, entrada y salida, y línea de flujo.</desc>
+<defs><marker id="t12_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker></defs>
+<rect width="900" height="480" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Leer un diagrama de flujo</text>
+
+<rect x="180" y="50" width="140" height="36" rx="18" fill="#dff3ef" stroke="#2b8c7f" stroke-width="2.5"/>
+<path d="M160 156 L186 116 H330 L304 156 Z" fill="#fff4d9" stroke="#c6922d" stroke-width="2.5"/>
+<path d="M250 170 L340 216 L250 262 L160 216 Z" fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5"/>
+<rect x="330" y="280" width="150" height="40" rx="4" fill="#e9f5ee" stroke="#167e78" stroke-width="2.5"/>
+<rect x="170" y="370" width="160" height="40" rx="4" fill="#e9f5ee" stroke="#167e78" stroke-width="2.5"/>
+
+<g font-family="system-ui,sans-serif" font-size="13.5" text-anchor="middle">
+<text x="250" y="73" font-weight="700" fill="#245c49">inicio</text>
+<text x="245" y="141" fill="#705015">leer humedad h</text>
+<text x="250" y="212" font-weight="700" fill="#164d5f">¿h &lt; umbral?</text>
+<text x="405" y="305" fill="#245c49">abrir válvula 30 s</text>
+<text x="250" y="395" fill="#245c49">esperar 1 hora</text>
+</g>
+
+<g fill="none" stroke="#1a6b7a" stroke-width="2.5" marker-end="url(#t12_a)">
+<path d="M250 86 V110"/>
+<path d="M250 156 V164"/>
+<path d="M340 216 H400 V274"/>
+<path d="M250 262 V364"/>
+</g>
+<g fill="none" stroke="#1a6b7a" stroke-width="2.5">
+<path d="M405 320 V348 H252"/>
+<path d="M250 410 V444 H110 V136 H154"/>
+</g>
+<path d="M154 136 L146 132 V140 Z" fill="#1a6b7a"/>
+<path d="M252 348 L258 344 V352 Z" fill="#1a6b7a"/>
+<g font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#8f3a24">
+<text x="352" y="208">sí</text>
+<text x="262" y="292">no</text>
+<text x="118" y="292">el bucle no termina</text>
+</g>
+
+<path d="M500 50 V440" stroke="#d8e0df" stroke-width="2"/>
+<text x="540" y="76" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#18384a">Los cinco símbolos</text>
+<rect x="540" y="100" width="56" height="24" rx="12" fill="#dff3ef" stroke="#2b8c7f" stroke-width="2"/>
+<rect x="540" y="160" width="56" height="24" rx="3" fill="#e9f5ee" stroke="#167e78" stroke-width="2"/>
+<path d="M568 212 L596 232 L568 252 L540 232 Z" fill="#e7f3f6" stroke="#0b6680" stroke-width="2"/>
+<path d="M540 304 L552 284 H596 L584 304 Z" fill="#fff4d9" stroke="#c6922d" stroke-width="2"/>
+<path d="M540 350 H590" stroke="#1a6b7a" stroke-width="2.5" marker-end="url(#t12_a)"/>
+<g font-family="system-ui,sans-serif" font-size="13" fill="#46616a">
+<text x="616" y="117" font-weight="700" fill="#245c49">inicio y fin</text>
+<text x="616" y="177" font-weight="700" fill="#245c49">proceso: hacer algo</text>
+<text x="616" y="238" font-weight="700" fill="#164d5f">decisión: dos salidas</text>
+<text x="616" y="299" font-weight="700" fill="#705015">entrada o salida de datos</text>
+<text x="616" y="355" font-weight="700" fill="#1a6b7a">línea de flujo</text>
+</g>
+<text x="540" y="400" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">En este curso los diagramas de flujo se aprenden</text>
+<text x="540" y="418" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">para leerlos, no como método de diseño: el</text>
+<text x="540" y="436" font-family="system-ui,sans-serif" font-size="12.5" fill="#46616a">algoritmo se describe en palabras y se escribe en Python.</text>
+</svg>

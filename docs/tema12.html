@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 12 del Bloque E de Tecnología e Ingeniería I: programación textual, paradigma estructurado, Python como lenguaje interpretado, estructura de un programa, sangrado y comentarios, del enunciado al programa, algoritmos en lenguaje natural, lectura de diagramas de flujo y Jupyter Notebook con Google Colab.">
+  <title>Tema 12. Fundamentos de la programación textual: del problema al programa · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 12 · Bloque E · Sistemas informáticos. Programación</p>
+        <h1>Tema 12. Fundamentos de la programación textual: del problema al programa</h1>
+        <p class="hero-lead">Qué es programar con un lenguaje textual, cómo se estructura un programa y cómo se ejecuta el primero.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 12">
+        <strong>Pregunta guía</strong>
+        <p>El KR-1 ya sabe medir y sabe abrir el agua. Lo que no sabe es <em>cuándo</em>. ¿Cómo se le explica a una máquina una decisión como «si el sustrato está seco y es por la mañana, riega treinta segundos», de forma que no quede ninguna ambigüedad?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#textual">Qué es programar</a></li>
+        <li><a href="#lenguajes">Lenguajes y su elección</a></li>
+        <li><a href="#estructurada">Programación estructurada</a></li>
+        <li><a href="#python">Python y su entorno</a></li>
+        <li><a href="#programa">La estructura de un programa</a></li>
+        <li><a href="#algoritmo">Del enunciado al algoritmo</a></li>
+        <li><a href="#flujo">Leer un diagrama de flujo</a></li>
+        <li><a href="#traza">Seguir la ejecución paso a paso</a></li>
+        <li><a href="#errores">Los primeros errores</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Empieza el Bloque E, y empieza de cero: <strong>no se supone ningún conocimiento previo de Python</strong>. Es también el bloque más importante del curso, porque es el único lugar de la materia donde se aprende a programar —en 2.º de Bachillerato el bloque informático cambia de objeto— y porque los bloques F y G lo aplican sin volver a explicarlo. Aquí no aprenderemos a programar «en general»: aprenderemos a programar <strong>sistemas técnicos</strong>, que es otra cosa.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> explícale a otra persona, solo con palabras y sin gestos, cómo atarse un cordón. Descubrirás dos cosas: que hay pasos que nunca habías puesto en palabras, y que cada frase admite dos interpretaciones. Programar es ese ejercicio, con la diferencia de que quien escucha no tiene sentido común para rellenar los huecos.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>explicar qué distingue un lenguaje de programación textual y por qué el currículo lo exige;</li>
+          <li>situar Python entre los lenguajes y justificar su elección para esta materia;</li>
+          <li>describir las tres estructuras de la programación estructurada;</li>
+          <li>reconocer las partes de un programa: instrucciones, sintaxis, sangrado y comentarios;</li>
+          <li>trabajar en Jupyter Notebook con Google Colab entendiendo el estado de la sesión;</li>
+          <li>pasar de un enunciado en palabras a un algoritmo descrito en lenguaje natural y de ahí al programa;</li>
+          <li>leer un diagrama de flujo sencillo y reconocer sus cinco símbolos;</li>
+          <li>seguir paso a paso la ejecución de un programa y predecir su estado final;</li>
+          <li>leer un mensaje de error y localizar la línea que lo causa.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="textual">
+        <h2 id="textual">1. Qué es programar, y qué significa «textual»</h2>
+        <p><strong>Programar</strong> es escribir la secuencia de instrucciones que una máquina ejecutará sin intervención humana. La palabra clave es <em>sin intervención</em>: la máquina no interpreta, no supone y no pregunta. Hace exactamente lo que dice el programa, incluido lo que no querías decir.</p>
+
+        <div class="comparacion">
+          <div><h3>Programación por bloques</h3><p>Se arrastran piezas encajables. Evita los errores de escritura y enseña la lógica, pero limita lo que se puede expresar y no existe fuera del entorno educativo.</p></div>
+          <div><h3>Programación textual</h3><p>Se escribe código como texto. Exige precisión absoluta en la escritura y, en cambio, no tiene techo: es lo que se usa en la industria, en la universidad y en cualquier placa controladora.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El currículo exige textual, y no por capricho</strong>El criterio 5.1 de la Comunidad de Madrid pide controlar sistemas «utilizando lenguajes de programación informática <strong>textuales</strong>, aplicando el paradigma de la <strong>programación estructurada</strong>». Son dos exigencias explícitas. La razón práctica es sencilla: la placa que gobierna un sistema real se programa con texto, y el texto es lo único que se puede versionar, comentar, buscar, comparar y compartir en un repositorio, como vimos en el Tema 4.</div>
+
+        <div class="ti1-note"><strong>Y aquí Python es una herramienta, no una asignatura.</strong> En esta materia no programamos por programar: programamos para leer un sensor, decidir y accionar algo. Eso cambia el tipo de ejercicio: casi todos los programas de este bloque calculan una magnitud técnica, tratan una serie de medidas o toman una decisión de control. El objetivo del bloque no es dominar Python: es que el Bloque F pueda existir.</div>
+      </section>
+
+      <section aria-labelledby="lenguajes">
+        <h2 id="lenguajes">2. Lenguajes de programación y por qué Python</h2>
+        <p>Un <strong>lenguaje de programación</strong> es un conjunto de reglas —sintaxis— y de significados —semántica— que permiten escribir instrucciones ejecutables. Hay cientos; estos son los que te vas a encontrar.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: lenguajes de programación habituales">
+          <table>
+            <caption>Lenguajes textuales más habituales y dónde aparecen</caption>
+            <thead><tr><th scope="col">Lenguaje</th><th scope="col">Característica</th><th scope="col">Dónde se usa</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Python</strong></th><td>Interpretado, sintaxis muy legible, enorme biblioteca.</td><td>Ciencia, datos, automatización, educación, microcontroladores con MicroPython.</td></tr>
+              <tr><th scope="row"><strong>C</strong></th><td>Compilado, muy rápido y muy próximo al hardware.</td><td>Sistemas embebidos, núcleos de sistema operativo.</td></tr>
+              <tr><th scope="row"><strong>C++</strong></th><td>Como C, con orientación a objetos.</td><td>Arduino, videojuegos, software industrial.</td></tr>
+              <tr><th scope="row"><strong>Java</strong></th><td>Compilado a una máquina virtual, muy portable.</td><td>Aplicaciones empresariales, Android.</td></tr>
+              <tr><th scope="row"><strong>JavaScript</strong></th><td>Interpretado en el navegador.</td><td>Páginas web y paneles de supervisión como el del Tema 18.</td></tr>
+              <tr><th scope="row"><strong>MATLAB y Octave</strong></th><td>Orientados al cálculo numérico y matricial.</td><td>Ingeniería de control y simulación.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Compilado o interpretado</h3>
+        <div class="comparacion">
+          <div><h3>Compilado</h3><p>Un programa —el <strong>compilador</strong>— traduce todo el código fuente a instrucciones de máquina <em>antes</em> de ejecutar. Resultado: un archivo ejecutable rapidísimo, y un paso extra cada vez que cambias algo. Es C y C++.</p></div>
+          <div><h3>Interpretado</h3><p>Un programa —el <strong>intérprete</strong>— lee y ejecuta el código línea a línea. Resultado: pruebas inmediatas y algo menos de velocidad. Es Python.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué Python en esta materia</strong>Tres razones, en este orden. <strong>1. Un solo lenguaje de principio a fin:</strong> el mismo Python del ordenador sirve, como MicroPython, para la placa ESP32 de los bloques F y G. <strong>2. Sintaxis legible:</strong> un programa de control se lee casi como el algoritmo en palabras, y eso importa cuando hay que revisarlo en equipo. <strong>3. Realimentación inmediata:</strong> al ser interpretado, se prueba una línea y se ve el resultado, lo que permite el desarrollo incremental del Tema 1 aplicado al código.</div>
+
+        <div class="ti1-note"><strong>Lo que no se estudia en este curso.</strong> No hay programación orientada a objetos, ni hilos, ni interfaces gráficas. La orientación a objetos aparece de pasada al usar bibliotecas —escribirás <code>pin.value(1)</code> sin necesitar saber qué es un método—, y eso es todo. El paradigma del curso es el <strong>estructurado</strong>, que es lo que pide el currículo.</div>
+      </section>
+
+      <section aria-labelledby="estructurada">
+        <h2 id="estructurada">3. El paradigma de la programación estructurada</h2>
+        <p>La <strong>programación estructurada</strong> sostiene que cualquier programa, por complicado que sea, puede construirse combinando solo tres estructuras de control. No es una opinión pedagógica: es un resultado demostrado, y es la razón de que un programa bien escrito se pueda seguir de arriba abajo.</p>
+
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>Secuencia</h3><p>Una instrucción después de otra, en el orden escrito. Es el caso por omisión: si no dices lo contrario, Python ejecuta en orden.</p></div>
+          <div class="ti1-card"><h3>Selección</h3><p>Se elige entre dos o más caminos según una condición. En Python, <code>if</code>, <code>elif</code> y <code>else</code>. Es el Tema 14.</p></div>
+          <div class="ti1-card"><h3>Iteración</h3><p>Un bloque se repite mientras se cumpla una condición o para cada elemento de una colección. En Python, <code>while</code> y <code>for</code>. También el Tema 14.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Una entrada, una salida</strong>La regla que da nombre al paradigma: cada estructura tiene <strong>un solo punto de entrada y un solo punto de salida</strong>. Eso permite razonar sobre un programa por partes, sustituyendo mentalmente cada bloque por «lo que hace», sin tener que seguir todos los saltos posibles. Es exactamente la misma idea que el diagrama funcional por bloques del Tema 3: si cada caja tiene entradas y salidas claras, el sistema se entiende; si hay saltos arbitrarios, no.</div>
+
+        <div class="ti1-curio"><strong>La carta que cambió la programación.</strong> En 1968, el informático Edsger Dijkstra publicó una carta titulada «La sentencia <em>go to</em> considerada perjudicial». El <em>go to</em> permitía saltar a cualquier línea del programa, y su uso libre producía código imposible de seguir, lo que se llamó «código espagueti». La carta abrió el camino a la programación estructurada, y es la razón de que los lenguajes modernos —Python incluido— no tengan <em>go to</em>. No es historia: es el motivo de que puedas leer un programa de arriba abajo.</div>
+      </section>
+
+      <section aria-labelledby="python">
+        <h2 id="python">4. Python y su entorno de trabajo</h2>
+        <p>En este curso se trabaja con <strong>Jupyter Notebook</strong> a través de <strong>Google Colab</strong>. Un <em>notebook</em> es un documento formado por <strong>celdas</strong>, que pueden contener texto explicativo o código ejecutable. La ventaja para una materia técnica es grande: el mismo documento contiene el planteamiento, el cálculo, el código y la gráfica del resultado, y es el formato natural de la memoria del Tema 4.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: entornos de trabajo del curso">
+          <table>
+            <caption>Los tres entornos del curso y para qué sirve cada uno</caption>
+            <thead><tr><th scope="col">Entorno</th><th scope="col">Qué es</th><th scope="col">Cuándo se usa</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Jupyter Notebook con Google Colab</strong></th><td>Notebooks en el navegador, sin instalar nada.</td><td>Todo el aprendizaje del lenguaje y los cálculos técnicos. Es el entorno principal.</td></tr>
+              <tr><th scope="row"><strong>Thonny</strong></th><td>Editor local muy sencillo con depurador paso a paso.</td><td>Archivos <code>.py</code>, depuración del Tema 15 y grabar la placa.</td></tr>
+              <tr><th scope="row"><strong>Wokwi</strong></th><td>Simulador de ESP32 con MicroPython en el navegador.</td><td>Probar el programa de la placa cuando no hay hardware para todos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aviso"><strong>El estado de la sesión: la trampa número uno del notebook</strong>Las celdas se pueden ejecutar en cualquier orden, y el intérprete recuerda todo lo ejecutado. Eso significa que un notebook puede <strong>funcionar en tu pantalla y fallar al abrirlo de nuevo</strong>, porque dependía de una celda que ejecutaste antes y luego borraste. La comprobación obligatoria antes de entregar: <em>reiniciar el entorno y ejecutar todas las celdas de arriba abajo</em>. Si así funciona, el notebook es correcto. Si no, no lo era.</div>
+
+        <h3>El primer programa</h3>
+        <pre><code># Primer programa del curso: mostrar un texto por pantalla
+print("KR-1: sistema de riego iniciado")</code></pre>
+        <p>Dos líneas y ya hay tres cosas que observar. La primera empieza por <code>#</code>: es un <strong>comentario</strong>, texto para las personas que el intérprete ignora. La segunda es una <strong>instrucción</strong>: llama a <code>print</code> y le pasa entre paréntesis lo que debe mostrar. Y el texto va entre comillas porque es una <strong>cadena de caracteres</strong>, no un nombre.</p>
+
+        <pre><code># Calcular la potencia de un motor: el cálculo del Tema 9, ahora en Python
+par = 0.35            # N·m
+velocidad = 1800      # min-1
+omega = 2 * 3.1416 * velocidad / 60
+potencia = par * omega
+print("Potencia del motor:", potencia, "W")</code></pre>
+
+        <div class="ti1-note"><strong>Fíjate en el punto decimal.</strong> En Python los decimales se escriben con <strong>punto</strong>, no con coma: <code>0.35</code> y no <code>0,35</code>. La coma tiene otro significado —separa elementos—, de modo que escribir <code>0,35</code> no da error: da dos números, y el programa hace algo distinto de lo que querías sin avisar. Es el primer choque entre la notación española y la del lenguaje, y conviene tenerlo presente en todos los cálculos del curso.</div>
+      </section>
+
+      <section aria-labelledby="programa">
+        <h2 id="programa">5. La estructura de un programa</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elementos de un programa">
+          <table>
+            <caption>Los elementos de un programa en Python</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Qué es</th><th scope="col">Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>Instrucción</strong></th><td>Una orden completa; normalmente, una por línea.</td><td><code>potencia = par * omega</code></td></tr>
+              <tr><th scope="row"><strong>Sintaxis</strong></th><td>Las reglas de escritura del lenguaje.</td><td>Los paréntesis de <code>print(...)</code> son obligatorios.</td></tr>
+              <tr><th scope="row"><strong>Comentario</strong></th><td>Texto desde <code>#</code> hasta el final de la línea, ignorado al ejecutar.</td><td><code># N·m</code></td></tr>
+              <tr><th scope="row"><strong>Bloque</strong></th><td>Conjunto de instrucciones que se ejecutan juntas.</td><td>Lo que va dentro de un <code>if</code>.</td></tr>
+              <tr><th scope="row"><strong>Sangrado</strong></th><td>Los espacios al principio de la línea, que definen el bloque.</td><td>Cuatro espacios por nivel.</td></tr>
+              <tr><th scope="row"><strong>Función</strong></th><td>Operación con nombre a la que se le pasan datos.</td><td><code>print</code>, <code>input</code>, <code>round</code></td></tr>
+              <tr><th scope="row"><strong>Biblioteca o módulo</strong></th><td>Conjunto de funciones que se importa para usarlo.</td><td><code>import math</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">En Python el sangrado no es estética: es sintaxis</strong>En casi todos los lenguajes los bloques se delimitan con llaves y el sangrado es una costumbre. En Python, <strong>el sangrado es la única forma de indicar qué instrucciones pertenecen a un bloque</strong>. Mover una línea cuatro espacios cambia el programa. Suena arriesgado y tiene una consecuencia excelente: es imposible escribir Python mal indentado, así que todo el código de todo el mundo se lee igual. Usa siempre <strong>cuatro espacios</strong> por nivel y nunca mezcles espacios con tabuladores.</div>
+
+        <pre><code># El sangrado decide el significado. Estos dos programas NO hacen lo mismo.
+
+# A: solo riega si está seco
+if humedad &lt; umbral:
+    abrir_valvula()
+    registrar("riego")
+
+# B: riega si está seco, pero registra siempre
+if humedad &lt; umbral:
+    abrir_valvula()
+registrar("riego")</code></pre>
+
+        <div class="ti1-note"><strong>Nombres: el comentario más barato que existe.</strong> <code>humedad_actual</code> y <code>umbral_riego</code> no necesitan explicación; <code>h</code> y <code>u</code> sí. Un nombre bien elegido ahorra un comentario y sobrevive a los cambios, porque un comentario se queda obsoleto y el nombre viaja con la variable. La regla del curso: nombres en minúsculas, con guion bajo para separar palabras, y que digan la magnitud y su unidad cuando haya duda —<code>tiempo_riego_s</code>—.</div>
+      </section>
+
+      <section aria-labelledby="algoritmo">
+        <h2 id="algoritmo">6. Del enunciado al algoritmo, y del algoritmo al programa</h2>
+        <p>Un <strong>algoritmo</strong> es una secuencia finita y no ambigua de pasos que resuelve un problema. Y la forma de describirlo en este curso es <strong>en español corriente</strong>, con frases claras: no se usa ninguna notación formal de pseudocódigo.</p>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Por qué no hay pseudocódigo formal en este curso</strong>Una notación formal de pseudocódigo es un tercer lenguaje que hay que aprender, con su propia sintaxis y sus propios errores, y que después se abandona. Ese esfuerzo se invierte aquí en Python, que es <strong>ejecutable desde el primer día</strong> y sirve para la placa del Bloque F. El algoritmo se piensa y se escribe en palabras —en la memoria del proyecto, donde lo entiende cualquiera— y se traduce directamente a código.</div>
+
+        <h3>Los cuatro pasos, con un caso real</h3>
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Entender el enunciado</div><p>«Riega el bancal si el sustrato está seco, pero solo entre las 7 y las 10 de la mañana, y nunca más de 30 segundos seguidos.» Identifica los <strong>datos</strong> —humedad, hora—, las <strong>condiciones</strong> y el <strong>resultado</strong>.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Escribir el algoritmo en palabras</div><p>«Leer la humedad y la hora. Si la humedad es menor que el umbral y la hora está entre 7 y 10, abrir la válvula, esperar 30 segundos y cerrarla. En cualquier caso, registrar lo ocurrido.»</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Definir los casos de prueba</div><p>Antes de escribir código: seco a las 8 → riega. Seco a las 15 → no riega. Húmedo a las 8 → no riega. Exactamente en el umbral → hay que decidir qué pasa, y decidirlo es parte del diseño.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Traducir a Python y comprobar</div><p>Cada frase del algoritmo se convierte en una o dos líneas. Después se ejecuta con los casos de prueba y se comprueba que dan lo esperado.</p></div>
+        </div>
+
+        <pre><code># El algoritmo anterior, traducido paso a paso
+
+humedad = 410          # lectura del sensor, en cuentas del ADC
+hora = 8               # hora del día, de 0 a 23
+umbral = 500           # por debajo de este valor, el sustrato está seco
+
+if humedad &lt; umbral and 7 &lt;= hora &lt; 10:
+    print("Abrir la válvula durante 30 s")
+else:
+    print("No regar ahora")</code></pre>
+
+        <div class="ti1-note"><strong>Los casos de prueba se escriben antes que el programa.</strong> Es el hábito profesional más rentable, y es la razón de que el paso 3 vaya antes del 4. Si defines los casos después, los defines a la medida de lo que has escrito y no comprueban nada. Y ese caso incómodo —«exactamente en el umbral»— es donde están casi todos los fallos: no es una rareza de examen, es la frontera real de la decisión.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> el enunciado decía «nunca más de 30 segundos seguidos». El programa anterior no lo garantiza: solo imprime un mensaje. ¿Qué haría falta añadir para que la restricción se cumpla de verdad, incluso si el programa se interrumpe a mitad del riego? (Pista: la respuesta no está en el <code>if</code>, sino en el diseño del Tema 18 y en la válvula normalmente cerrada del Tema 8.)</div>
+      </section>
+
+      <section aria-labelledby="flujo">
+        <h2 id="flujo">7. Leer un diagrama de flujo</h2>
+        <p>Un <strong>diagrama de flujo</strong> representa un algoritmo con símbolos normalizados unidos por flechas. En este curso se aprende a <strong>leerlo</strong>, porque aparecerá en libros, en manuales y en pruebas, pero no se usa como método de diseño: para eso están las palabras y el propio Python.</p>
+
+        <figure class="ti1-diagrama" tabindex="0" aria-label="Diagrama de flujo desplazable del riego automático">
+          <img src="assets/tema12_diagrama_flujo.svg" alt="Diagrama de flujo: inicio, leer humedad, decisión si la humedad es menor que el umbral; por el sí abre la válvula 30 segundos, por el no sigue directamente; ambos caminos llegan a esperar una hora y el flujo vuelve a la lectura, formando un bucle sin fin. A la derecha, los cinco símbolos normalizados.">
+          <figcaption>El mismo algoritmo del KR-1, dibujado. Fíjate en la flecha de retorno: un programa de control no termina, se repite indefinidamente. Eso reaparecerá en el Tema 18.</figcaption>
+        </figure>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: símbolos de un diagrama de flujo">
+          <table>
+            <caption>Los cinco símbolos que hay que reconocer</caption>
+            <thead><tr><th scope="col">Símbolo</th><th scope="col">Significa</th><th scope="col">En Python</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Rectángulo redondeado</th><td>Inicio o fin del programa.</td><td>El principio y el final del archivo.</td></tr>
+              <tr><th scope="row">Rectángulo</th><td>Proceso: hacer algo.</td><td>Una instrucción o un bloque.</td></tr>
+              <tr><th scope="row">Rombo</th><td>Decisión, con dos salidas rotuladas.</td><td><code>if</code> … <code>else</code></td></tr>
+              <tr><th scope="row">Paralelogramo</th><td>Entrada o salida de datos.</td><td><code>input</code>, <code>print</code>, leer un sensor.</td></tr>
+              <tr><th scope="row">Flecha</th><td>Línea de flujo: el orden de ejecución.</td><td>El orden de las líneas; una flecha hacia atrás es un bucle.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong>Cómo se lee sin perderse.</strong> Empieza en «inicio» y recorre una sola flecha a la vez, anotando en una hoja el valor de cada dato. En cada rombo, decide qué salida tomas con los valores que tienes anotados. Si llegas a una flecha que va hacia atrás, has encontrado un bucle: pregúntate qué tendría que cambiar para salir de él. Si nada puede cambiar, el bucle es infinito, y eso puede ser un error o —como aquí— el comportamiento deseado.</div>
+      </section>
+
+      <section aria-labelledby="traza">
+        <h2 id="traza">8. Seguir la ejecución paso a paso</h2>
+        <p>El criterio 5.3 pide expresamente «mostrar el progreso paso a paso de la ejecución de un programa a partir del estado inicial y predecir su estado final». Se hace con una <strong>tabla de traza</strong>: una fila por instrucción ejecutada y una columna por variable.</p>
+
+        <pre><code>total = 0
+lecturas = 0
+for medida in [420, 515, 380, 610]:
+    total = total + medida
+    lecturas = lecturas + 1
+media = total / lecturas
+print("Humedad media:", media)</code></pre>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: traza de ejecución del programa">
+          <table>
+            <caption>Traza de la ejecución, instrucción a instrucción</caption>
+            <thead><tr><th scope="col">Paso</th><th scope="col">Instrucción</th><th scope="col">medida</th><th scope="col">total</th><th scope="col">lecturas</th><th scope="col">media</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td><code>total = 0</code></td><td>—</td><td>0</td><td>—</td><td>—</td></tr>
+              <tr><th scope="row">2</th><td><code>lecturas = 0</code></td><td>—</td><td>0</td><td>0</td><td>—</td></tr>
+              <tr><th scope="row">3</th><td>1.ª vuelta del bucle</td><td>420</td><td>420</td><td>1</td><td>—</td></tr>
+              <tr><th scope="row">4</th><td>2.ª vuelta</td><td>515</td><td>935</td><td>2</td><td>—</td></tr>
+              <tr><th scope="row">5</th><td>3.ª vuelta</td><td>380</td><td>1315</td><td>3</td><td>—</td></tr>
+              <tr><th scope="row">6</th><td>4.ª vuelta</td><td>610</td><td>1925</td><td>4</td><td>—</td></tr>
+              <tr><th scope="row">7</th><td><code>media = total / lecturas</code></td><td>610</td><td>1925</td><td>4</td><td>481,25</td></tr>
+              <tr><th scope="row">8</th><td><code>print(...)</code></td><td>610</td><td>1925</td><td>4</td><td>481,25</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La traza no es un ejercicio de examen: es la herramienta de depuración</strong>Cuando un programa da un resultado raro, la pregunta no es «¿qué está mal?» sino «¿en qué paso el valor deja de ser el que esperaba?». La traza responde a eso, y es exactamente lo que hará el depurador de Thonny en el Tema 15 de forma automática. Hacerla a mano unas cuantas veces es lo que permite entender después lo que el depurador muestra.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> ¿qué pasa si la lista de lecturas está vacía? La variable <code>lecturas</code> valdría 0 y la división de la línea 6 sería entre cero: el programa se detiene con un error. En un programa de control que se ejecuta solo en el huerto, detenerse no es una opción. Volveremos sobre esto en el Tema 15, al hablar de casos límite.</div>
+      </section>
+
+      <section aria-labelledby="errores">
+        <h2 id="errores">9. Los primeros errores, y cómo leerlos</h2>
+        <p>Vas a escribir programas con errores desde hoy y durante el resto de tu vida. Lo que distingue a quien programa bien no es cometer menos: es <strong>leer el mensaje</strong> en lugar de mirar la pantalla con desconfianza.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: errores frecuentes al empezar">
+          <table>
+            <caption>Los seis errores del primer día</caption>
+            <thead><tr><th scope="col">Mensaje</th><th scope="col">Qué ha pasado</th><th scope="col">Cómo se arregla</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>SyntaxError</code></th><td>El intérprete no entiende la escritura: falta un paréntesis, dos puntos o una comilla.</td><td>Mirar la línea indicada <strong>y la anterior</strong>: el paréntesis suele faltar antes.</td></tr>
+              <tr><th scope="row"><code>IndentationError</code></th><td>El sangrado no es coherente.</td><td>Cuatro espacios por nivel, sin mezclar tabuladores.</td></tr>
+              <tr><th scope="row"><code>NameError</code></th><td>Se usa un nombre que no existe: una errata, o una variable no definida todavía.</td><td>Comprobar la escritura y el orden de las líneas o de las celdas.</td></tr>
+              <tr><th scope="row"><code>TypeError</code></th><td>Se opera con tipos incompatibles: sumar un texto y un número.</td><td>Convertir el tipo. Es el Tema 13.</td></tr>
+              <tr><th scope="row"><code>ZeroDivisionError</code></th><td>División entre cero.</td><td>Comprobar el divisor antes de dividir.</td></tr>
+              <tr><th scope="row">Ningún mensaje, resultado raro</th><td>Error <strong>lógico</strong>: el programa hace bien lo que le pediste, y le pediste otra cosa.</td><td>Traza, casos de prueba y depurador. Es el más difícil y el más frecuente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Cómo se lee un mensaje de error</strong>Se lee <strong>de abajo arriba</strong>. La última línea dice el tipo de error y una descripción; la penúltima, el archivo y la línea donde ocurrió. Todo lo de arriba es el camino que siguió la ejecución hasta llegar allí, y suele sobrar al principio. Copiar el texto de la última línea en un buscador resuelve la mayoría de los casos, y leer lo que ya dice el mensaje resuelve casi todos los demás.</div>
+
+        <div class="ti1-note"><strong>Y una advertencia sobre la ayuda automática.</strong> Un asistente de inteligencia artificial puede escribirte un programa que funcione y que no entiendas, y eso es peor que un programa que falla: cuando haya que modificarlo en el huerto, en junio, nadie sabrá dónde tocar. La regla del bloque es la del Tema 4: puedes usarlo para entender un error o revisar tu redacción, pero <strong>el código que entregas tienes que poder explicarlo línea a línea</strong>, y se declara qué herramientas has usado.</div>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un notebook que se ejecuta de arriba abajo y con un algoritmo que se entiende antes de leer el código.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 12">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Del enunciado al algoritmo</th><td>Que escribes el algoritmo en palabras y defines los casos de prueba antes de programar.</td><td>Algoritmo en español, tabla de casos de prueba con el caso del umbral incluido.</td></tr>
+              <tr><th scope="row">Estructura del programa</th><td>Que el código tiene comentarios útiles, nombres significativos y sangrado correcto.</td><td>Programa comentado, nombres con magnitud y unidad, cuatro espacios por nivel.</td></tr>
+              <tr><th scope="row">Entorno</th><td>Que dominas el notebook y su estado de sesión.</td><td>Notebook que funciona tras reiniciar el entorno y ejecutar todo de arriba abajo.</td></tr>
+              <tr><th scope="row">Traza</th><td>Que sigues la ejecución paso a paso y predices el estado final.</td><td>Tabla de traza de un programa con bucle, con la predicción hecha antes de ejecutarlo.</td></tr>
+              <tr><th scope="row">Errores</th><td>Que lees los mensajes y localizas la causa.</td><td>Tres errores provocados a propósito, con su mensaje y su corrección explicada.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prueba honesta: entrega tu notebook a otro equipo y pídeles que lo ejecuten desde cero. Si necesitan que les expliques en qué orden pulsar, todavía no está terminado.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Algoritmo</dt><dd>Secuencia finita y no ambigua de pasos que resuelve un problema.</dd>
+          <dt>Bloque</dt><dd>Conjunto de instrucciones que se ejecutan juntas; en Python se delimita por el sangrado.</dd>
+          <dt>Cadena de caracteres</dt><dd>Dato formado por texto, escrito entre comillas.</dd>
+          <dt>Celda</dt><dd>Unidad de un notebook que contiene texto o código ejecutable.</dd>
+          <dt>Código fuente</dt><dd>Texto del programa tal como lo escribe una persona.</dd>
+          <dt>Comentario</dt><dd>Texto dirigido a las personas que el intérprete ignora; en Python empieza por almohadilla.</dd>
+          <dt>Compilador</dt><dd>Programa que traduce todo el código fuente a instrucciones de máquina antes de ejecutarlo.</dd>
+          <dt>Diagrama de flujo</dt><dd>Representación gráfica de un algoritmo con símbolos normalizados unidos por flechas.</dd>
+          <dt>Error lógico</dt><dd>Fallo en el que el programa se ejecuta sin avisos pero no hace lo que se pretendía.</dd>
+          <dt>Instrucción</dt><dd>Orden completa dirigida al intérprete.</dd>
+          <dt>Intérprete</dt><dd>Programa que lee y ejecuta el código fuente línea a línea.</dd>
+          <dt>Iteración</dt><dd>Estructura de control que repite un bloque de instrucciones.</dd>
+          <dt>Notebook</dt><dd>Documento formado por celdas de texto y de código, con sus resultados.</dd>
+          <dt>Programación estructurada</dt><dd>Paradigma que construye cualquier programa combinando secuencia, selección e iteración, cada una con una entrada y una salida.</dd>
+          <dt>Programación textual</dt><dd>Programación en la que el código se escribe como texto, frente a la programación por bloques.</dd>
+          <dt>Sangrado</dt><dd>Espacios al comienzo de una línea; en Python determina a qué bloque pertenece.</dd>
+          <dt>Selección</dt><dd>Estructura de control que elige entre caminos alternativos según una condición.</dd>
+          <dt>Secuencia</dt><dd>Ejecución de las instrucciones una tras otra en el orden escrito.</dd>
+          <dt>Sintaxis</dt><dd>Conjunto de reglas de escritura de un lenguaje de programación.</dd>
+          <dt>Traza</dt><dd>Registro del valor de las variables paso a paso durante la ejecución.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Programar es escribir instrucciones que la máquina ejecutará sin interpretar, sin suponer y sin preguntar.</li>
+          <li>El currículo exige lenguaje <strong>textual</strong> y paradigma <strong>estructurado</strong>: es lo que se usa en una placa real y lo único que se puede versionar y revisar.</li>
+          <li>En esta materia Python es una herramienta al servicio del control de sistemas, no el objeto de estudio.</li>
+          <li>Un lenguaje compilado se traduce entero antes de ejecutar; uno interpretado se ejecuta línea a línea. Python es interpretado, y eso permite probar al instante.</li>
+          <li>Python se elige por tres razones: un solo lenguaje también para la placa, sintaxis legible y realimentación inmediata.</li>
+          <li>La programación estructurada construye cualquier programa con secuencia, selección e iteración, cada una con una sola entrada y una sola salida.</li>
+          <li>En un notebook, las celdas pueden ejecutarse en cualquier orden: antes de entregar hay que reiniciar el entorno y ejecutar todo de arriba abajo.</li>
+          <li>En Python los decimales llevan punto; escribir coma no da error, da otra cosa.</li>
+          <li>El sangrado de Python es sintaxis, no estética: cuatro espacios por nivel y sin mezclar tabuladores.</li>
+          <li>Un nombre bien elegido ahorra un comentario y no se queda obsoleto.</li>
+          <li>El algoritmo se describe en español corriente; no se usa ninguna notación formal de pseudocódigo, porque ese esfuerzo se invierte en Python.</li>
+          <li>Los casos de prueba se escriben antes del programa, y el caso del umbral es donde se esconden casi todos los fallos.</li>
+          <li>Los diagramas de flujo se aprenden para leerlos: cinco símbolos y una regla, seguir una flecha a la vez anotando los valores.</li>
+          <li>La traza —una fila por instrucción y una columna por variable— es la herramienta con la que se responde a «en qué paso deja de ser lo que esperaba».</li>
+          <li>Los mensajes de error se leen de abajo arriba; el error sin mensaje, el lógico, es el más frecuente y el más difícil.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://docs.python.org/es/3/tutorial/">Tutorial oficial de Python</a> (en español). Documentación de referencia del lenguaje.</li>
+          <li id="fuente_2">[2] <a href="https://colab.research.google.com/">Google Colab</a>. Jupyter Notebook en el navegador, sin instalación.</li>
+          <li id="fuente_3">[3] <a href="https://jupyter.org/">Proyecto Jupyter</a> (en inglés). Origen y documentación del formato de notebook.</li>
+          <li id="fuente_4">[4] <a href="https://thonny.org/">Thonny</a>. Entorno local sencillo con depurador paso a paso y soporte de MicroPython.</li>
+          <li id="fuente_5">[5] <a href="https://peps.python.org/pep-0008/">PEP 8 — Guía de estilo de Python</a> (en inglés). Convenciones de sangrado y de nombres.</li>
+          <li id="fuente_6">[6] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque E y criterios 5.1 y 5.3.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema11.html">← Tema 11</a>
+  <a href="tema13.html">Tema 13 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 15 del Bloque E de Tecnología e Ingeniería I: listas, tuplas y diccionarios, cadenas como secuencias, elección de la estructura de datos, series de medidas y ficheros CSV, representación gráfica, proceso de desarrollo, compilación frente a interpretación, módulos, tipos de error y depuración paso a paso con puntos de interrupción.">
+  <title>Tema 15. Estructuras de datos y proceso de desarrollo · TI1</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/estilos.css">
+  <script src="assets/navegacion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">TI1</span><span>Tecnología e Ingeniería I<small>1.º de Bachillerato · 2026–2027</small></span></a>
+    <nav class="top-nav" aria-label="Navegación principal"><a href="index.html">Índice</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="kicker">Tema 15 · Bloque E · Sistemas informáticos. Programación</p>
+        <h1>Tema 15. Estructuras de datos y proceso de desarrollo</h1>
+        <p class="hero-lead">Cómo se guardan muchos datos en una sola variable y cómo se organiza, se comprueba y se corrige un programa que crece.</p>
+      </div>
+      <aside class="hero-note" aria-label="Pregunta guía del tema 15">
+        <strong>Pregunta guía</strong>
+        <p>El KR-1 va a medir la humedad cada quince minutos durante todo el verano: son unas ocho mil lecturas. ¿Dónde se guardan, cómo se recuperan en septiembre y cómo se demuestra, con esos datos, cuánta agua ha ahorrado el sistema?</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Índice del tema">
+      <strong>En este tema</strong>
+      <ol>
+        <li><a href="#listas">Listas</a></li>
+        <li><a href="#tuplas">Tuplas</a></li>
+        <li><a href="#diccionarios">Diccionarios</a></li>
+        <li><a href="#cadenas">Cadenas como secuencias</a></li>
+        <li><a href="#elegir">Elegir la estructura</a></li>
+        <li><a href="#series">Series de medidas y CSV</a></li>
+        <li><a href="#graficas">Representar los datos</a></li>
+        <li><a href="#desarrollo">El proceso de desarrollo</a></li>
+        <li><a href="#modulos">Módulos y bibliotecas</a></li>
+        <li><a href="#depurar">Errores y depuración</a></li>
+        <li><a href="#comprueba">Comprueba lo aprendido</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ol>
+    </nav>
+
+    <article class="paper">
+      <p class="lesson-intro">Con el Tema 14 el KR-1 ya mide y actúa. Lo que no sabe todavía es <strong>recordar</strong>. Este tema le da memoria: estructuras para guardar muchos datos, un archivo donde sobrevivan al apagón y unas gráficas que conviertan ocho mil números en una conclusión. Y cierra el bloque con lo que el currículo llama proceso de desarrollo: edición, interpretación, ejecución, pruebas y <strong>depuración</strong>, que es la destreza que más distingue a quien programa bien.</p>
+
+      <div class="question"><strong>Antes de empezar:</strong> tienes cuatro lecturas y las guardas en cuatro variables: <code>medida1</code>, <code>medida2</code>, <code>medida3</code>, <code>medida4</code>. Funciona. Ahora tienes ocho mil. Esa imposibilidad es la razón de que existan las estructuras de datos, y también la razón de que exista el bucle <code>for</code> del tema anterior: las dos cosas van juntas.</div>
+
+      <div class="objectives">
+        <strong>Al terminar serás capaz de…</strong>
+        <ul>
+          <li>crear, recorrer, buscar y modificar listas, y usar sus operaciones habituales;</li>
+          <li>explicar qué aporta una tupla frente a una lista y cuándo conviene cada una;</li>
+          <li>usar diccionarios para representar los datos de un proyecto con claves con nombre;</li>
+          <li>tratar una cadena como secuencia: acceder, trocear y aplicar sus métodos;</li>
+          <li>elegir la estructura de datos adecuada a un problema técnico y justificarlo;</li>
+          <li>registrar una serie de medidas en un archivo CSV y volver a leerla;</li>
+          <li>representar gráficamente una serie y extraer de ella una conclusión;</li>
+          <li>describir el proceso de desarrollo completo y la diferencia entre compilar e interpretar;</li>
+          <li>clasificar un error, leer su traza y depurar paso a paso con puntos de interrupción.</li>
+        </ul>
+      </div>
+
+      <section aria-labelledby="listas">
+        <h2 id="listas">1. Listas</h2>
+        <p>Una <strong>lista</strong> es una colección ordenada de elementos, guardada en una sola variable. Es la estructura de datos que más se usa y, con diferencia, la primera que hay que dominar.</p>
+
+        <pre><code>medidas = [420, 515, 380, 610]
+
+print(medidas[0])      # 420   el primero es el índice 0
+print(medidas[3])      # 610
+print(medidas[-1])     # 610   el último, contando desde el final
+print(medidas[-2])     # 380
+print(len(medidas))    # 4     número de elementos</code></pre>
+
+        <div class="aviso"><strong>El primer elemento es el 0, y el último es el len − 1</strong>Con cuatro elementos, los índices válidos son 0, 1, 2 y 3. Escribir <code>medidas[4]</code> produce <code>IndexError</code>. Es el error de índice más frecuente y tiene el mismo origen que el <code>range(5)</code> del Tema 14: <strong>contar desde cero</strong>. El índice negativo <code>-1</code> es el atajo para el último elemento y evita la mitad de esos errores.</div>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: operaciones habituales con listas">
+          <table>
+            <caption>Las operaciones que se usan de verdad</caption>
+            <thead><tr><th scope="col">Operación</th><th scope="col">Qué hace</th><th scope="col">Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>lista.append(x)</code></th><td>Añade <code>x</code> al final.</td><td><code>medidas.append(590)</code></td></tr>
+              <tr><th scope="row"><code>lista[i] = x</code></th><td>Sustituye el elemento <code>i</code>.</td><td><code>medidas[0] = 425</code></td></tr>
+              <tr><th scope="row"><code>lista.pop()</code></th><td>Saca y devuelve el último.</td><td><code>ultima = medidas.pop()</code></td></tr>
+              <tr><th scope="row"><code>x in lista</code></th><td>Devuelve <code>True</code> si <code>x</code> está.</td><td><code>if 4095 in medidas:</code></td></tr>
+              <tr><th scope="row"><code>lista.index(x)</code></th><td>Posición de la primera aparición.</td><td><code>medidas.index(610)</code> → 3</td></tr>
+              <tr><th scope="row"><code>len()</code>, <code>sum()</code>, <code>min()</code>, <code>max()</code></th><td>Número, suma y extremos.</td><td><code>sum(medidas) / len(medidas)</code></td></tr>
+              <tr><th scope="row"><code>sorted(lista)</code></th><td>Devuelve una <strong>copia</strong> ordenada.</td><td><code>ordenadas = sorted(medidas)</code></td></tr>
+              <tr><th scope="row"><code>lista[a:b]</code></th><td>Trozo desde <code>a</code> hasta <code>b</code> sin incluirlo.</td><td><code>medidas[1:3]</code> → <code>[515, 380]</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pre><code># La media, ahora en una línea
+medidas = [420, 515, 380, 610]
+media = sum(medidas) / len(medidas)
+print(f"Media: {media:.1f}")     # Media: 481.3
+
+# Y la mediana, que resiste mejor un valor disparatado
+ordenadas = sorted(medidas)
+mitad = len(ordenadas) // 2
+if len(ordenadas) % 2 == 1:
+    mediana = ordenadas[mitad]
+else:
+    mediana = (ordenadas[mitad - 1] + ordenadas[mitad]) / 2
+print(f"Mediana: {mediana:.1f}")   # Mediana: 467.5</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Media o mediana: una decisión de ingeniería</strong>Si una de las cuatro lecturas hubiera sido 4095 —sensor desconectado—, la media saltaría a 1352 y el programa creería que el sustrato está saturado. La <strong>mediana</strong> apenas se movería. En series de medidas reales, con ruido y fallos ocasionales, la mediana es más robusta que la media, y elegir una u otra no es una cuestión de estadística abstracta: es decidir cómo debe comportarse el sistema cuando un sensor falla.</div>
+
+        <div class="ti1-note"><strong>Listas de listas para tablas.</strong> Una lista cuyos elementos son listas representa una tabla: <code>tabla[fila][columna]</code>. Sirve para guardar varias series a la vez —la humedad de tres bancales—, y es la estructura que aparecerá al leer un archivo CSV en la sección 6.</div>
+      </section>
+
+      <section aria-labelledby="tuplas">
+        <h2 id="tuplas">2. Tuplas</h2>
+        <p>Una <strong>tupla</strong> es como una lista pero <strong>inmutable</strong>: una vez creada, no se puede modificar. Se escribe con paréntesis en lugar de corchetes.</p>
+
+        <pre><code>calibracion = (3000, 1200)        # (seco, saturado)
+seco, saturado = calibracion      # desempaquetado en dos variables
+print(seco, saturado)             # 3000 1200
+
+# calibracion[0] = 2900           # TypeError: no se puede modificar
+
+def leer_sensor():
+    """Devuelve varias cosas a la vez: en realidad, una tupla."""
+    return 2847, 22.5, True       # cuentas, temperatura, valido
+
+cuentas, temperatura, valido = leer_sensor()</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Para qué sirve que no se pueda modificar</strong>Dos cosas. <strong>1. Seguridad:</strong> los datos de calibración, las coordenadas de un punto o los límites de un rango no deben cambiar por accidente a mitad del programa, y la tupla lo garantiza. <strong>2. Devolver varios valores:</strong> una función que devuelve tres cosas devuelve en realidad una tupla, y al recibirla se desempaqueta en tres variables de un golpe. Es el uso más frecuente y ni siquiera hay que pensar en él.</div>
+      </section>
+
+      <section aria-labelledby="diccionarios">
+        <h2 id="diccionarios">3. Diccionarios</h2>
+        <p>Un <strong>diccionario</strong> guarda pares de <strong>clave</strong> y <strong>valor</strong>. En lugar de acceder por posición, se accede por un nombre, y eso cambia por completo la legibilidad de un programa de proyecto.</p>
+
+        <pre><code>lectura = {
+    "instante": "2027-07-14 08:15",
+    "humedad_pct": 8.5,
+    "temperatura_c": 22.5,
+    "valvula": False,
+    "bancal": 2,
+}
+
+print(lectura["humedad_pct"])        # 8.5
+lectura["valvula"] = True            # modificar
+lectura["duracion_s"] = 30           # añadir una clave nueva
+
+print(lectura.keys())                # las claves
+print(lectura.get("caudal", 0))      # 0 si la clave no existe: no falla</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Compara las dos formas de guardar una lectura</strong>Como tupla: <code>(“2027-07-14 08:15”, 8.5, 22.5, False, 2)</code>. Como diccionario: cada dato con su nombre. Con la tupla, seis meses después nadie sabrá si el 2 final es el bancal o el número de riegos, y bastará con intercambiar dos valores para que el programa siga funcionando y mienta. Con el diccionario, <code>lectura["bancal"]</code> se explica solo. <strong>En un proyecto, los datos se guardan con su nombre.</strong></div>
+
+        <pre><code># Un diccionario también sirve como configuración del sistema
+CONFIG = {
+    "umbral_riego_pct": 30,
+    "duracion_riego_s": 30,
+    "hora_inicio": 7,
+    "hora_fin": 10,
+    "periodo_medida_s": 900,
+}
+
+if humedad &lt; CONFIG["umbral_riego_pct"]:
+    regar(CONFIG["duracion_riego_s"])</code></pre>
+
+        <div class="ti1-note"><strong>Y es el formato de los datos que viajan por la red.</strong> Los mensajes que el KR-1 publicará en el Tema 16 tienen exactamente esta forma: pares de clave y valor. El formato <strong>JSON</strong> que se usa en el internet de las cosas es, para lo que nos interesa, un diccionario escrito como texto. Por eso los diccionarios entran en este curso: no son un lujo, son el puente al Tema 16.</div>
+      </section>
+
+      <section aria-labelledby="cadenas">
+        <h2 id="cadenas">4. Cadenas como secuencias</h2>
+        <p>Una cadena de texto es también una secuencia, y admite los índices y los troceados de una lista.</p>
+
+        <pre><code>linea = "2027-07-14;08:15;2847;22.5"
+
+print(linea[0])          # 2
+print(linea[0:4])        # 2027     los cuatro primeros caracteres
+print(len(linea))        # 26
+print(linea.split(";"))  # ['2027-07-14', '08:15', '2847', '22.5']
+
+campos = linea.split(";")
+fecha = campos[0]
+cuentas = int(campos[2])
+temperatura = float(campos[3])</code></pre>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: métodos de cadena útiles">
+          <table>
+            <caption>Los métodos de cadena que se usan en este curso</caption>
+            <thead><tr><th scope="col">Método</th><th scope="col">Qué hace</th><th scope="col">Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>split(sep)</code></th><td>Parte la cadena en una lista.</td><td>Leer una línea de un CSV.</td></tr>
+              <tr><th scope="row"><code>strip()</code></th><td>Quita espacios y saltos de línea de los extremos.</td><td>Limpiar lo que llega de un archivo.</td></tr>
+              <tr><th scope="row"><code>replace(a, b)</code></th><td>Sustituye texto.</td><td><code>"2,5".replace(",", ".")</code> antes de convertir.</td></tr>
+              <tr><th scope="row"><code>join(lista)</code></th><td>Une una lista de cadenas con un separador.</td><td><code>";".join(campos)</code> para escribir un CSV.</td></tr>
+              <tr><th scope="row"><code>upper()</code>, <code>lower()</code></th><td>Cambia a mayúsculas o minúsculas.</td><td>Comparar sin depender de las mayúsculas.</td></tr>
+              <tr><th scope="row"><code>startswith(x)</code></th><td>Comprueba si empieza por algo.</td><td>Saltar la línea de cabecera de un archivo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-note"><strong><code>strip()</code> y <code>replace()</code> resuelven los dos problemas de todo dato que viene de fuera:</strong> el salto de línea invisible al final —que hace fallar a <code>int()</code> sin que se vea por qué— y la coma decimal española, que Python no acepta. El Tema 13 avisaba de que todo dato externo hay que convertirlo; estos dos métodos son la limpieza previa a esa conversión.</div>
+      </section>
+
+      <section aria-labelledby="elegir">
+        <h2 id="elegir">5. Elegir la estructura de datos</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: elección de estructura de datos">
+          <table>
+            <caption>Qué estructura para qué problema</caption>
+            <thead><tr><th scope="col">Necesito…</th><th scope="col">Estructura</th><th scope="col">Ejemplo en el KR-1</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Muchos valores del mismo tipo, en orden, que crecen.</th><td><strong>Lista</strong></td><td>Las lecturas del día para promediar.</td></tr>
+              <tr><th scope="row">Un conjunto fijo de valores que no debe cambiar.</th><td><strong>Tupla</strong></td><td>Los dos puntos de calibración.</td></tr>
+              <tr><th scope="row">Devolver varias cosas de una función.</th><td><strong>Tupla</strong></td><td><code>return cuentas, temperatura, valido</code></td></tr>
+              <tr><th scope="row">Datos heterogéneos, cada uno con su nombre.</th><td><strong>Diccionario</strong></td><td>Una lectura completa, o la configuración del sistema.</td></tr>
+              <tr><th scope="row">Texto que hay que partir o limpiar.</th><td><strong>Cadena</strong> y sus métodos</td><td>Una línea leída del archivo de registro.</td></tr>
+              <tr><th scope="row">Una tabla de filas y columnas.</th><td><strong>Lista de listas</strong>, o lista de diccionarios</td><td>El histórico completo del verano.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">La regla práctica</strong><strong>Muchos datos iguales → lista. Datos distintos con nombre → diccionario. Datos que no deben cambiar → tupla.</strong> Y para un histórico, lo mejor de los dos mundos: una <strong>lista de diccionarios</strong>, donde cada elemento es una lectura completa con sus claves. Es exactamente la forma que tendrá el archivo de la sección siguiente.</div>
+      </section>
+
+      <section aria-labelledby="series">
+        <h2 id="series">6. Series de medidas y ficheros CSV</h2>
+        <p>Una lista vive en la memoria y desaparece al apagar. Para que las ocho mil lecturas del verano sobrevivan hay que escribirlas en un <strong>archivo</strong>, y el formato es el <strong>CSV</strong>: texto plano, una fila por línea y los campos separados por un carácter. Lo abre cualquier hoja de cálculo y lo lee cualquier lenguaje.</p>
+
+        <pre><code># Escribir el registro: en la placa y en el ordenador funciona igual
+def registrar(instante, cuentas, humedad_pct, rego):
+    """Añade una línea al archivo de registro."""
+    with open("registro.csv", "a") as f:
+        f.write(f"{instante};{cuentas};{humedad_pct:.1f};{int(rego)}\n")
+
+registrar("2027-07-14 08:15", 2847, 8.5, True)</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag"><code>with open(...)</code> y el modo de apertura</strong>La forma <code>with</code> garantiza que el archivo se <strong>cierra</strong> aunque el programa falle a mitad, y eso evita perder datos. Los modos importan: <code>"a"</code> añade al final —lo que quiere un registro—, <code>"w"</code> <strong>borra el contenido anterior</strong> y empieza de cero, y <code>"r"</code> solo lee. Confundir <code>"a"</code> con <code>"w"</code> es el error que borra el registro de todo el verano en una ejecución.</div>
+
+        <pre><code># Leer el registro y convertirlo en una lista de diccionarios
+def cargar_registro(ruta="registro.csv"):
+    lecturas = []
+    with open(ruta, "r") as f:
+        for linea in f:
+            linea = linea.strip()
+            if not linea or linea.startswith("#"):
+                continue                      # salta vacías y comentarios
+            campos = linea.split(";")
+            if len(campos) != 4:
+                continue                      # línea corrupta: la descarta
+            lecturas.append({
+                "instante": campos[0],
+                "cuentas": int(campos[1]),
+                "humedad_pct": float(campos[2]),
+                "rego": campos[3] == "1",
+            })
+    return lecturas
+
+datos = cargar_registro()
+print(f"{len(datos)} lecturas cargadas")</code></pre>
+
+        <div class="ti1-note"><strong>Un archivo real siempre tiene líneas malas.</strong> La última línea puede estar a medio escribir porque se cortó la corriente; puede haber líneas vacías, o con un campo de menos. Un programa que dé por buenas todas las líneas se detendrá con un error el día que las necesites. Las dos comprobaciones del código —saltar vacías y descartar las que no tienen cuatro campos— son diez segundos de escritura y la diferencia entre un análisis que funciona en septiembre y uno que no.</div>
+
+        <pre><code># Y ahora la conclusión que pedía la pregunta guía
+riegos = [d for d in datos if d["rego"]]
+CAUDAL_L_H = 4.0          # litros por hora del gotero, del catálogo
+DURACION_H = 30 / 3600    # 30 s expresados en horas
+
+agua_usada = len(riegos) * CAUDAL_L_H * DURACION_H
+print(f"Riegos: {len(riegos)}")
+print(f"Agua consumida: {agua_usada:.1f} L")</code></pre>
+      </section>
+
+      <section aria-labelledby="graficas">
+        <h2 id="graficas">7. Representar los datos</h2>
+        <p>Ocho mil números no son una conclusión. Una gráfica sí, y en Jupyter Notebook se obtiene en cuatro líneas con la biblioteca <strong>matplotlib</strong>.</p>
+
+        <pre><code>import matplotlib.pyplot as plt
+
+humedades = [d["humedad_pct"] for d in datos]
+UMBRAL_PCT = CONFIG["umbral_riego_pct"]
+
+plt.plot(humedades)
+plt.xlabel("Número de lectura")
+plt.ylabel("Humedad (%)")
+plt.title("Humedad del bancal 2, julio de 2027")
+plt.axhline(UMBRAL_PCT, linestyle="--", label="umbral de riego")
+plt.legend()
+plt.grid(True)
+plt.show()</code></pre>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Una gráfica técnica lleva siempre cuatro cosas</strong><strong>Título</strong> que diga qué es y de cuándo; <strong>ejes rotulados con su unidad</strong>; <strong>escala</strong> razonable; y las <strong>referencias</strong> que permiten interpretarla —aquí, la línea del umbral—. Es el mismo rigor de la documentación técnica del Tema 4: una gráfica sin unidades en los ejes no es un resultado, es un dibujo. Y esta gráfica sí va en la memoria del proyecto.</div>
+
+        <div class="ti1-note"><strong>La comprensión de lista.</strong> La expresión <code>[d["humedad_pct"] for d in datos]</code> construye una lista nueva recorriendo otra. Es una forma abreviada del bucle <code>for</code> con <code>append</code> del Tema 14, y se usa constantemente al tratar datos porque se lee casi como una frase: «la humedad de cada d en datos». No es imprescindible, y una vez vista resulta difícil volver atrás.</div>
+
+        <div class="ti1-think"><strong>Piensa:</strong> la gráfica tiene el número de lectura en el eje horizontal, no la fecha. Con lecturas cada quince minutos es casi lo mismo… salvo los días que el sistema estuvo apagado, en los que el eje miente. ¿Cómo lo detectarías en la propia gráfica, y qué habría que cambiar para que no ocurriera?</div>
+      </section>
+
+      <section aria-labelledby="desarrollo">
+        <h2 id="desarrollo">8. El proceso de desarrollo</h2>
+        <p>El currículo enumera las fases: <strong>edición, compilación o interpretación, ejecución, pruebas y depuración</strong>. Y añade una que no está en la lista y ocurre siempre: volver a empezar.</p>
+
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Edición</div><p>Escribir el código fuente en un editor. En Colab, las celdas del notebook; en Thonny, un archivo <code>.py</code>.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Interpretación o compilación</div><p>En Python, el intérprete lee y ejecuta. En C o C++, un compilador traduce todo antes y produce un ejecutable.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Ejecución</div><p>El programa corre con unos datos concretos. En la placa, además, hay que grabarlo antes.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Pruebas</div><p>Comprobar con los casos previstos —y con los que no—. Los <code>assert</code> del Tema 13 son pruebas que se ejecutan solas.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Depuración</div><p>Localizar y corregir la causa de un comportamiento incorrecto. Es la sección 10.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">Y otra vuelta</div><p>Cada corrección es una iteración del Tema 1, y cada cambio relevante va al registro de cambios del Tema 4.</p></div>
+        </div>
+
+        <div class="comparacion">
+          <div><h3>Compilar</h3><p>Se traduce <strong>todo</strong> el programa a código máquina antes de ejecutar. Los errores de sintaxis aparecen de golpe al compilar; el ejecutable resultante es rapidísimo y no necesita el compilador para funcionar.</p></div>
+          <div><h3>Interpretar</h3><p>Se lee y ejecuta <strong>línea a línea</strong>. Los errores aparecen cuando la ejecución llega a ellos; se puede probar al instante, y hace falta el intérprete en la máquina que ejecute.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Una consecuencia práctica que conviene tener clara</strong>Como Python es interpretado, <strong>un error de escritura en una línea que no se ejecuta no se detecta</strong>. Si la rama <code>else</code> de tu programa tiene una errata y nunca se cumple esa condición durante las pruebas, el programa parecerá correcto hasta el día que se cumpla —en agosto, en el huerto, sin nadie delante—. De ahí la insistencia en los casos de prueba: en un lenguaje interpretado, lo que no se ejecuta no se comprueba.</div>
+      </section>
+
+      <section aria-labelledby="modulos">
+        <h2 id="modulos">9. Módulos y bibliotecas</h2>
+        <p>Un <strong>módulo</strong> es un archivo con funciones reutilizables; una <strong>biblioteca</strong>, un conjunto de módulos. Python trae muchos incluidos —la <em>biblioteca estándar</em>— y se importan con <code>import</code>.</p>
+
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: módulos usados en el curso">
+          <table>
+            <caption>Los módulos que se usan en este curso</caption>
+            <thead><tr><th scope="col">Módulo</th><th scope="col">Para qué</th><th scope="col">Dónde</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>math</code></th><td>Funciones matemáticas, π, raíces, trigonometría.</td><td>Cálculos de los bloques C, D y G.</td></tr>
+              <tr><th scope="row"><code>time</code></th><td>Esperas y marcas de tiempo.</td><td>Cadencia de medida y duración del riego.</td></tr>
+              <tr><th scope="row"><code>statistics</code></th><td>Media, mediana y desviación típica.</td><td>Tratamiento de series de medidas.</td></tr>
+              <tr><th scope="row"><code>csv</code></th><td>Lectura y escritura robusta de CSV.</td><td>Alternativa a hacerlo a mano, en el ordenador.</td></tr>
+              <tr><th scope="row"><code>matplotlib</code></th><td>Gráficas.</td><td>Memoria del proyecto.</td></tr>
+              <tr><th scope="row"><code>machine</code></th><td>Pines, ADC y PWM de la placa.</td><td>Solo en MicroPython, temas 14 a 19.</td></tr>
+              <tr><th scope="row"><code>network</code>, <code>umqtt</code></th><td>Wi-Fi y mensajería.</td><td>Solo en MicroPython, Tema 16.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pre><code>import statistics
+
+humedades = [d["humedad_pct"] for d in datos]
+print(f"Media:    {statistics.mean(humedades):.1f} %")
+print(f"Mediana:  {statistics.median(humedades):.1f} %")
+print(f"Desv. típica: {statistics.stdev(humedades):.1f} %")</code></pre>
+
+        <div class="ti1-note"><strong>Tu propio módulo.</strong> Si guardas tus funciones de conversión y de registro en un archivo <code>kr1.py</code>, cualquier programa puede usarlas con <code>import kr1</code>. Eso es la <strong>modularización</strong> que pide el currículo, y es lo que permite que el programa de la placa y el análisis de datos del ordenador compartan exactamente la misma función de calibración, sin copiarla dos veces. Y cuando se recalibre el sensor, se toca un archivo.</div>
+      </section>
+
+      <section aria-labelledby="depurar">
+        <h2 id="depurar">10. Errores y depuración</h2>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: los tres tipos de error">
+          <table>
+            <caption>Los tres tipos de error, y cómo se atacan</caption>
+            <thead><tr><th scope="col">Tipo</th><th scope="col">Cuándo aparece</th><th scope="col">Cómo se localiza</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><strong>De sintaxis</strong></th><td>Antes de ejecutar nada: el intérprete no entiende la escritura.</td><td>El mensaje señala la línea. Mirar también la anterior.</td></tr>
+              <tr><th scope="row"><strong>De ejecución</strong> (excepción)</th><td>Durante la ejecución: <code>IndexError</code>, <code>ZeroDivisionError</code>, <code>ValueError</code>, <code>KeyError</code>…</td><td>La traza dice el tipo, la línea y el camino recorrido.</td></tr>
+              <tr><th scope="row"><strong>Lógico</strong></th><td>Nunca avisa: el programa termina y el resultado está mal.</td><td>Casos de prueba, traza y depurador. Es el 90 % del tiempo de depuración.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">Cómo se lee una traza de excepción</strong>Se lee <strong>de abajo arriba</strong>. La última línea da el tipo y la descripción. La penúltima, el archivo y el número de línea donde ocurrió. Encima está la cadena de llamadas: qué función llamó a qué. Y hay un detalle valioso: <strong>la línea que falla no siempre es la línea culpable</strong>. Un <code>ZeroDivisionError</code> en la línea 40 suele tener su origen en la línea 12, donde una lista se quedó vacía. La traza dice dónde se rompió; encontrar por qué es el trabajo.</div>
+
+        <h3>Las tres herramientas de depuración, de peor a mejor</h3>
+        <div class="ti1-grid">
+          <div class="ti1-card"><h3>1. <code>print()</code></h3><p>Imprimir el valor de las variables en puntos clave. Es tosco, funciona siempre y es lo único disponible dentro de la placa. Regla: imprime el <em>nombre</em> junto al valor.</p></div>
+          <div class="ti1-card"><h3>2. <code>assert</code></h3><p>Comprobar que una condición se cumple justo donde debe. Detiene el programa en el punto exacto en que el estado deja de ser correcto, en lugar de quinientas líneas después.</p></div>
+          <div class="ti1-card"><h3>3. El depurador</h3><p>Ejecutar paso a paso viendo el valor de todas las variables. Es la traza del Tema 14, generada automáticamente. En Thonny está a un clic.</p></div>
+        </div>
+
+        <h3>Depurar paso a paso con Thonny</h3>
+        <div class="ti1-timeline">
+          <div class="ti1-tl-item"><div class="ti1-tl-year">1 · Punto de interrupción</div><p>Pulsar sobre el número de línea donde quieres que el programa se detenga. Se elige la primera línea donde sospechas que algo va mal.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">2 · Ejecutar en modo depuración</div><p>El programa arranca y se detiene en ese punto, con el estado completo a la vista.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">3 · Inspeccionar variables</div><p>Thonny muestra todas las variables y su valor. Aquí se responde a «¿en qué paso deja de ser lo que esperaba?».</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">4 · Avanzar</div><p>Paso a paso: ejecutar la línea siguiente, o entrar dentro de la función que se llama para ver qué hace por dentro.</p></div>
+          <div class="ti1-tl-item"><div class="ti1-tl-year">5 · Corregir y volver a probar</div><p>Y añadir un caso de prueba que reproduzca el fallo, para que si vuelve, avise.</p></div>
+        </div>
+
+        <div class="ti1-concept"><strong class="ti1-concept-tag">El método de depuración, en cuatro pasos</strong><strong>1. Reproducir</strong> el fallo de forma fiable: un error que aparece «a veces» no se puede corregir, solo tapar. <strong>2. Acotar</strong>: partir el programa por la mitad y comprobar en qué mitad está el problema. <strong>3. Formular una hipótesis</strong> concreta y comprobarla con una sola medida, como en el Tema 9. <strong>4. Corregir y añadir la prueba</strong> que impida que vuelva. Cambiar cosas al azar hasta que funcione no es depurar: es dejar el error donde estaba, esperando.</div>
+
+        <div class="aviso"><strong>Batería de casos de prueba: lo que hay que probar siempre</strong><strong>El caso normal</strong>, que suele funcionar. <strong>El caso vacío</strong>: lista sin elementos, archivo sin líneas. <strong>Un solo elemento</strong>, donde fallan muchos bucles. <strong>Los límites</strong>: exactamente el umbral, el primer y el último índice. <strong>Valores imposibles</strong>: negativos, 4095, texto donde iba un número. Y <strong>el caso que ya falló una vez</strong>, que es el más valioso de todos y el que más se olvida añadir.</div>
+
+        <pre><code># La batería de pruebas de la función del Tema 14, completa
+assert media_valida([420, 515]) == 467.5             # normal
+assert media_valida([]) is None                      # lista vacía
+assert media_valida([420]) == 420                    # un solo elemento
+assert media_valida([4095, 4095]) is None            # todas no válidas
+assert media_valida([0, 4090]) == 2045               # los límites, incluidos
+print("Las cinco pruebas pasan")</code></pre>
+      </section>
+
+      <section aria-labelledby="comprueba">
+        <h2 id="comprueba">Comprueba lo que has aprendido</h2>
+        <p>Este tema se demuestra con un registro real, una gráfica con conclusión y una sesión de depuración documentada.</p>
+        <div class="tabla_responsiva" tabindex="0" aria-label="Tabla desplazable: qué debe mostrar tu trabajo del tema 15">
+          <table>
+            <caption>Qué debería mostrar tu trabajo</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué debes demostrar</th><th scope="col">Evidencias posibles</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Estructuras de datos</th><td>Que eliges lista, tupla o diccionario con criterio y lo justificas.</td><td>Histórico como lista de diccionarios, calibración como tupla y una frase que explique cada elección.</td></tr>
+              <tr><th scope="row">Registro</th><td>Que las medidas sobreviven al apagado y se pueden volver a leer.</td><td>Archivo CSV real con cientos de líneas y la función de carga que descarta líneas corruptas.</td></tr>
+              <tr><th scope="row">Análisis y gráfica</th><td>Que conviertes la serie en una conclusión.</td><td>Gráfica con título, ejes rotulados con unidad y línea de umbral; cálculo del agua consumida.</td></tr>
+              <tr><th scope="row">Modularización</th><td>Que tus funciones están en un módulo propio reutilizado por dos programas.</td><td>Archivo <code>kr1.py</code> importado tanto por el programa de la placa como por el análisis.</td></tr>
+              <tr><th scope="row">Depuración</th><td>Que aplicas el método y no cambias cosas al azar.</td><td>Un fallo documentado con sus cuatro pasos, captura del depurador con el punto de interrupción y la prueba añadida.</td></tr>
+              <tr><th scope="row">Pruebas</th><td>Que tu batería cubre los casos límite.</td><td>Cinco <code>assert</code> con caso normal, vacío, único, límites y valores imposibles.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cierre del aprendizaje del lenguaje: con el Tema 16 el KR-1 saldrá a la red, y a partir del Bloque F Python ya no se explica, se usa.</p>
+      </section>
+
+      <section aria-labelledby="glosario">
+        <h2 id="glosario">Glosario del tema</h2>
+        <dl class="ti1-glosario">
+          <dt>Biblioteca</dt><dd>Conjunto de módulos con funciones reutilizables.</dd>
+          <dt>Clave</dt><dd>Nombre con el que se accede a un valor dentro de un diccionario.</dd>
+          <dt>Comprensión de lista</dt><dd>Expresión que construye una lista nueva recorriendo otra en una sola línea.</dd>
+          <dt>CSV</dt><dd>Formato de archivo de texto con una fila por línea y campos separados por un carácter.</dd>
+          <dt>Depuración</dt><dd>Proceso de localizar y corregir la causa de un comportamiento incorrecto.</dd>
+          <dt>Depurador</dt><dd>Herramienta que ejecuta un programa paso a paso mostrando el valor de las variables.</dd>
+          <dt>Diccionario</dt><dd>Estructura que guarda pares de clave y valor, con acceso por nombre.</dd>
+          <dt>Excepción</dt><dd>Error que se produce durante la ejecución e interrumpe el programa.</dd>
+          <dt>Índice</dt><dd>Posición de un elemento en una secuencia; el primero es el cero.</dd>
+          <dt>Inmutable</dt><dd>Que no se puede modificar después de creado, como una tupla o una cadena.</dd>
+          <dt>JSON</dt><dd>Formato de intercambio de datos en texto, equivalente a un diccionario; se usa en el Tema 16.</dd>
+          <dt>Lista</dt><dd>Colección ordenada y modificable de elementos.</dd>
+          <dt>Mediana</dt><dd>Valor central de una serie ordenada; más robusta que la media frente a valores disparatados.</dd>
+          <dt>Modularización</dt><dd>Organización del código en módulos reutilizables e independientes.</dd>
+          <dt>Módulo</dt><dd>Archivo con funciones que puede importarse desde otro programa.</dd>
+          <dt>Punto de interrupción</dt><dd>Línea en la que se pide al depurador que detenga la ejecución.</dd>
+          <dt>Traza de excepción</dt><dd>Informe que indica el tipo de error, la línea y la cadena de llamadas que llevó hasta él.</dd>
+          <dt>Troceado</dt><dd>Extracción de una parte de una secuencia indicando el índice inicial y el final.</dd>
+          <dt>Tupla</dt><dd>Colección ordenada e inmutable de elementos.</dd>
+        </dl>
+      </section>
+
+      <section class="summary" aria-labelledby="resumen">
+        <h2 id="resumen">Resumen esencial</h2>
+        <ol>
+          <li>Una lista guarda muchos valores en orden; el primer índice es el 0 y el último, <code>len − 1</code>.</li>
+          <li>El índice negativo <code>-1</code> es el último elemento y evita la mitad de los errores de índice.</li>
+          <li>En series con ruido o fallos, la mediana es más robusta que la media: elegir una u otra es decidir cómo se comporta el sistema cuando un sensor falla.</li>
+          <li>Una tupla es inmutable: sirve para datos que no deben cambiar y para devolver varios valores de una función.</li>
+          <li>Un diccionario guarda cada dato con su nombre, y eso es lo que hace legible el histórico de un proyecto seis meses después.</li>
+          <li>El formato JSON del Tema 16 es, para lo que nos interesa, un diccionario escrito como texto.</li>
+          <li>Una cadena es una secuencia: <code>split</code>, <code>strip</code> y <code>replace</code> son la limpieza previa a toda conversión de un dato externo.</li>
+          <li>Muchos datos iguales, lista; datos distintos con nombre, diccionario; datos que no cambian, tupla; un histórico, lista de diccionarios.</li>
+          <li><code>with open(...)</code> cierra el archivo aunque el programa falle; y confundir el modo <code>"a"</code> con <code>"w"</code> borra el registro de todo el verano.</li>
+          <li>Un archivo real siempre tiene líneas malas: un lector robusto descarta las vacías y las que no tienen los campos esperados.</li>
+          <li>Una gráfica técnica lleva título, ejes rotulados con unidad, escala razonable y las referencias que permiten interpretarla.</li>
+          <li>El proceso de desarrollo es edición, interpretación o compilación, ejecución, pruebas y depuración, y siempre otra vuelta.</li>
+          <li>En un lenguaje interpretado, lo que no se ejecuta no se comprueba: una errata en una rama que nunca se cumple espera hasta agosto.</li>
+          <li>Guardar tus funciones en un módulo propio permite que la placa y el análisis compartan la misma calibración.</li>
+          <li>Hay tres tipos de error: sintaxis, ejecución y lógico; el lógico no avisa y consume la mayor parte del tiempo de depuración.</li>
+          <li>La traza se lee de abajo arriba, y la línea que falla no siempre es la línea culpable.</li>
+          <li>Depurar es reproducir, acotar, formular una hipótesis y corregir añadiendo la prueba que impida que vuelva.</li>
+          <li>La batería de pruebas cubre siempre el caso normal, el vacío, el de un elemento, los límites, los valores imposibles y el que ya falló una vez.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes y recursos fiables</h2>
+        <ul>
+          <li id="fuente_1">[1] <a href="https://docs.python.org/es/3/tutorial/datastructures.html">Tutorial oficial de Python — Estructuras de datos</a> (en español).</li>
+          <li id="fuente_2">[2] <a href="https://docs.python.org/es/3/tutorial/inputoutput.html">Tutorial oficial de Python — Entrada y salida, y lectura de archivos</a> (en español).</li>
+          <li id="fuente_3">[3] <a href="https://docs.python.org/es/3/library/statistics.html">Documentación del módulo <code>statistics</code></a> (en español).</li>
+          <li id="fuente_4">[4] <a href="https://matplotlib.org/stable/users/explain/quick_start.html">Matplotlib — Guía de inicio rápido</a> (en inglés).</li>
+          <li id="fuente_5">[5] <a href="https://thonny.org/">Thonny</a>. Depurador paso a paso con puntos de interrupción e inspección de variables.</li>
+          <li id="fuente_6">[6] <a href="https://docs.python.org/es/3/tutorial/errors.html">Tutorial oficial de Python — Errores y excepciones</a> (en español).</li>
+          <li id="fuente_7">[7] <a href="https://www.bocm.es/boletin/CM_Orden_BOCM/2022/07/26/BOCM-20220726-1.PDF">Decreto 64/2022, de 20 de julio (BOCM)</a>. Currículo de Tecnología e Ingeniería I, bloque E.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</main>
+<nav class="topic-footer" aria-label="Navegación entre temas">
+  <a href="tema14.html">← Tema 14</a>
+  <a href="tema16.html">Tema 16 →</a>
+</nav>
+<footer class="site-footer">Tecnología e Ingeniería I · 1.º de Bachillerato · Comunidad de Madrid</footer>
+</body>
+</html>

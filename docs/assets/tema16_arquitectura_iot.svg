@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-labelledby="t16_title t16_desc">
+<title id="t16_title">Arquitectura de la solución IoT del KR-1</title>
+<desc id="t16_desc">El nodo, formado por el ESP32 y la sonda, se conecta por Wi-Fi al punto de acceso del centro, que a través de Internet alcanza un servidor intermediario o broker de mensajería. Del broker parten los datos hacia el panel web y el móvil. El nodo publica sus lecturas en el tema kr1 barra humedad, y se suscribe al tema kr1 barra orden, por el que recibe las órdenes; de este modo el nodo y el panel nunca se comunican directamente ni necesitan conocer su dirección.</desc>
+<defs><marker id="t16_a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1a6b7a"/></marker></defs>
+<rect width="900" height="360" rx="24" fill="#f7faf8"/>
+<text x="20" y="32" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#18384a">Arquitectura IoT del KR-1: nadie habla directamente con nadie</text>
+
+<rect x="40" y="120" width="160" height="80" rx="10" fill="#dff3ef" stroke="#2b8c7f" stroke-width="3"/>
+<rect x="250" y="120" width="130" height="80" rx="10" fill="#e7f3f6" stroke="#0b6680" stroke-width="2.5"/>
+<rect x="430" y="120" width="170" height="80" rx="10" fill="#fff4d9" stroke="#c6922d" stroke-width="3"/>
+<rect x="660" y="120" width="200" height="80" rx="10" fill="#efeffa" stroke="#6869bc" stroke-width="2.5"/>
+
+<g font-family="system-ui,sans-serif" text-anchor="middle">
+<text x="120" y="150" font-size="14.5" font-weight="700" fill="#245c49">Nodo</text>
+<text x="120" y="170" font-size="12.5" fill="#245c49">ESP32 + sonda</text>
+<text x="120" y="188" font-size="12.5" fill="#245c49">+ electroválvula</text>
+
+<text x="315" y="152" font-size="14" font-weight="700" fill="#164d5f">Punto de</text>
+<text x="315" y="170" font-size="14" font-weight="700" fill="#164d5f">acceso</text>
+<text x="315" y="188" font-size="12" fill="#164d5f">red del centro</text>
+
+<text x="515" y="150" font-size="14.5" font-weight="700" fill="#705015">Broker MQTT</text>
+<text x="515" y="170" font-size="12.5" fill="#705015">reparte los mensajes</text>
+<text x="515" y="188" font-size="12.5" fill="#705015">por temas</text>
+
+<text x="760" y="150" font-size="14.5" font-weight="700" fill="#383974">Panel web y móvil</text>
+<text x="760" y="170" font-size="12.5" fill="#383974">se suscriben y ven</text>
+<text x="760" y="188" font-size="12.5" fill="#383974">el estado del huerto</text>
+</g>
+
+<g fill="none" stroke="#1a6b7a" stroke-width="3" marker-end="url(#t16_a)">
+<path d="M200 150 H244"/><path d="M380 150 H424"/><path d="M600 150 H654"/>
+</g>
+<g font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#1a6b7a" text-anchor="middle">
+<text x="222" y="140">Wi-Fi</text><text x="402" y="139" font-size="10">Internet</text><text x="627" y="140">TCP</text>
+</g>
+
+<path d="M515 200 V254 H124" fill="none" stroke="#8f3a24" stroke-width="2.5" stroke-dasharray="7 5"/>
+<path d="M124 254 V206" fill="none" stroke="#8f3a24" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#t16_a)"/>
+<text x="330" y="246" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#8f3a24">órdenes de vuelta</text>
+
+<text x="40" y="300" font-family="system-ui,sans-serif" font-size="13" fill="#46616a">El nodo <tspan font-weight="700" fill="#245c49">publica</tspan> sus lecturas en el tema <tspan font-family="ui-monospace,Menlo,monospace" fill="#6e3141">kr1/humedad</tspan>, y todo el que se suscriba a ese tema las recibe.</text>
+<text x="40" y="322" font-family="system-ui,sans-serif" font-size="13" fill="#46616a">Y se <tspan font-weight="700" fill="#8f3a24">suscribe</tspan> al tema <tspan font-family="ui-monospace,Menlo,monospace" fill="#6e3141">kr1/orden</tspan>, por el que le llegan las órdenes del panel.</text>
+<text x="40" y="344" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#18384a">Ninguno de los dos conoce la dirección del otro: solo conocen el nombre del tema.</text>
+</svg>
